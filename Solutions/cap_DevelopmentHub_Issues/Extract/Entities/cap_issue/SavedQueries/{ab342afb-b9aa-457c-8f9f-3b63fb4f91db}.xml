@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries>
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{ab342afb-b9aa-457c-8f9f-3b63fb4f91db}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="cap_name" select="1" icon="1" preview="1">
+        <row name="cap_issue" id="cap_issueid">
+          <cell name="cap_type" width="100" />
+          <cell name="cap_name" width="300" />
+          <cell name="ownerid" width="100" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdby" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cap_issue">
+          <attribute name="cap_issueid" />
+          <attribute name="cap_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="cap_type" />
+          <attribute name="statuscode" />
+          <attribute name="ownerid" />
+          <attribute name="createdby" />
+          <order attribute="createdon" descending="true" />
+          <order attribute="cap_name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Issue Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
