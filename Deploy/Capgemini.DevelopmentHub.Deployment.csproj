@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" 
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E0FEC5A-48CA-423F-B581-86B12F3A0E7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Capgemini.DevelopmentHub.Deployment</RootNamespace>
+<AssemblyName>Capgemini.DevelopmentHub.Deployment</AssemblyName>
+<TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+<FileAlignment>512</FileAlignment>
+<TargetFrameworkProfile />
+</PropertyGroup>
+<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+      </PropertyGroup>
+      <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+      </PropertyGroup>
+      <ItemGroup>
+        <Reference Include="Capgemini.DataMigration.Core">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.DataMigration.Core.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.DataMigration.Resiliency.Polly">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.DataMigration.Resiliency.Polly.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.DataMigration.Core">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.Xrm.DataMigration.Core.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.DataMigration.CrmStore">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.Xrm.DataMigration.CrmStore.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.DataMigration.Engine">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.Xrm.DataMigration.Engine.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.DataMigration.FileStore">
+          <HintPath>..\packages\Capgemini.Xrm.DataMigration.Engine.2.4.4.1\lib\net462\Capgemini.Xrm.DataMigration.FileStore.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.Deployment">
+          <HintPath>..\packages\Capgemini.Xrm.Deployment.1.9.3\lib\net462\Capgemini.Xrm.Deployment.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Capgemini.Xrm.Deployment.PackageDeployer">
+          <HintPath>..\packages\Capgemini.Xrm.Deployment.PackageDeployer.2.0.2\lib\net462\Capgemini.Xrm.Deployment.PackageDeployer.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="CsvHelper">
+          <HintPath>..\packages\CsvHelper.6.1.0\lib\net45\CsvHelper.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+          <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="DotNetZip">
+          <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.12\lib\net462\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
+          <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.0\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms">
+          <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.28.0\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Rest.ClientRuntime">
+          <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.9.0.2.3\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.AifServices">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.AifServices.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.Configuration">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.Configuration.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.Listeners">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.Listeners.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.Logging">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.Logging.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.Logging.Providers">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.Logging.Providers.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.Providers">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.Providers.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Common.TypeProvider">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Common.TypeProvider.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Csr.Browser.Web">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Csr.Browser.Web.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Csr.Core">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Csr.Core.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Uii.Csr.Win32Api">
+          <HintPath>..\packages\Microsoft.CrmSdk.UII.CommonAssemblies.9.0.0.7\lib\net452\Microsoft.Uii.Csr.Win32Api.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.12\lib\net462\Microsoft.Xrm.Sdk.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Xrm.Sdk.Deployment">
+          <HintPath>..\packages\Microsoft.CrmSdk.Deployment.9.0.2.3\lib\net452\Microsoft.Xrm.Sdk.Deployment.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xrm.Sdk.Workflow">
+          <HintPath>..\packages\Microsoft.CrmSdk.Workflow.9.0.2.3\lib\net452\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xrm.Tooling.Connector">
+          <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.CoreAssembly.9.0.2.3\lib\net452\Microsoft.Xrm.Tooling.Connector.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase">
+          <HintPath>..\packages\Microsoft.CrmSdk.XrmTooling.PackageDeployment.9.0.2.3\lib\net452\Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <SpecificVersion>False</SpecificVersion>
+          <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="Polly">
+          <HintPath>..\packages\Polly.5.8.0\lib\net45\Polly.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="PresentationFramework" />
+        <Reference Include="System" />
+        <Reference Include="System.Activities" />
+        <Reference Include="System.Activities.Presentation" />
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.DirectoryServices" />
+        <Reference Include="System.DirectoryServices.AccountManagement" />
+        <Reference Include="System.IdentityModel" />
+        <Reference Include="System.Runtime.Serialization" />
+        <Reference Include="System.Security" />
+        <Reference Include="System.ServiceModel" />
+        <Reference Include="System.ServiceModel.Web" />
+        <Reference Include="System.Web" />
+        <Reference Include="System.Web.Services" />
+        <Reference Include="System.Workflow.Activities" />
+        <Reference Include="System.Workflow.ComponentModel" />
+        <Reference Include="System.Workflow.Runtime" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Xml" />
+      </ItemGroup>
+      <ItemGroup>
+        <Compile Include="PackageTemplate.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+      </ItemGroup>
+      <ItemGroup>
+        <None Include="app.config" />
+        <None Include="packages.config" />
+      </ItemGroup>
+      <ItemGroup>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\CSS\common.css">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\HTML\Default.htm">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\body_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\contentarea_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\contentArea_back_home.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\content_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\content_back_orig.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\footer_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\header_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\nav_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\nav_list_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\EndHtml\Images\top_item_selected_bg.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\CSS\common.css">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\HTML\Default.htm">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\body_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\contentarea_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\contentArea_back_home.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\content_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\content_back_orig.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\footer_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\header_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\nav_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\nav_list_back.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\Content\en-us\WelcomeHtml\Images\top_item_selected_bg.gif">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="PkgFolder\ImportConfig.xml">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+      </ItemGroup>
+      <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+      <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+    </Project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<configdatastorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" installsampledata="false" waitforsampledatatoinstall="true" agentdesktopzipfile="" agentdesktopexename="" crmmigdataimportfile="" skipCustomDeployment="false" dontUseHoldingSolution="false" useNewApi="true" useAsyncImport="true" useAsyncUpgrade="true" asyncSleepIntervalMiliseconds="10000" asyncTimeoutSeconds="3600" disableSlaBeforeImport="false" enableSlaAfterImport="false" defaultSlaNames="" skipPostDeploymentActions="true">
+    <solutions/>
+    <filestoimport/>
+    <filesmapstoimport/>
+    <processesToExclude/>
+    <SDKStepsToExclude/>
+    <wordtemplatestoimport/>
+    <capgeminiConfigurationMigration/>
+</configdatastorage>

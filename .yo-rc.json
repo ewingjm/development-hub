@@ -1,0 +1,12 @@
+{
+  "@capgemini/generator-cdspackage": {
+    "promptValues": {
+      "adoUrl": "https://dev.azure.com/ewingmdev",
+      "adoToken": "k4znsj3rau5nguph4bwcdxwl76aqn2grsqlpdmf4m72gj5oukk4q",
+      "client": "Capgemini",
+      "package": "Development Hub",
+      "devUsername": "service@devhubdev.onmicrosoft.com",
+      "devPassword": "devhubdev123!"
+    }
+  }
+}

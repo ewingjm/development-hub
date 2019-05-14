@@ -1,0 +1,9 @@
+url: ""
+browser: Chrome
+remoteServerUrl: 
+users: 
+  - username: ""
+    password: ""
+    isAdfs: false
+    alias: ""
+apps: []
