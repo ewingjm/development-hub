@@ -1,0 +1,13 @@
+{
+  "CrmMigrationToolSchemaPaths": ["ReferenceDataSchema.xml"],
+  "CrmMigrationToolSchemaFilters": {},
+  "PageSize": 1000,
+  "BatchSize": 1000,
+  "TopCount": 10000,
+  "OnlyActiveRecords": false,
+  "JsonFolderPath": "Extract",
+  "OneEntityPerBatch": true,
+  "FilePrefix": "0.1",
+  "SeperateFilesPerEntity": true,
+  "LookupMapping": {}
+}

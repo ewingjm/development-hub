@@ -1,0 +1,75 @@
+name: $(packageVersion)$(rev:.r).0
+pool:
+    demands:
+    - msbuild
+    - visualstudio
+    - vstest
+steps:
+  - powershell: |
+       $comparisonType = "CurrentCultureIgnoreCase"
+       $resultArray = git show --name-only
+       $solutionList = ""
+   
+       foreach ($_ in $resultArray)
+       {
+           if ($_.StartsWith("Solutions")) 
+           {
+             $solutionName = $_.Split("/")[1]
+
+             if (!$solutionList.Contains($solutionName)) 
+             {
+               $solutionList += $solutionName + ";"
+             }
+           }
+       }
+       Write-Host "##vso[task.setvariable variable=solutionList;]$solutionList"
+    displayName: 'Configure Build Orchestration'
+  - powershell: >-
+      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 
+      -Target Default 
+      -NuGetCredentials `"Capgemini IP;$env:CAPGEMINI_UK_PACKAGE_READ_KEY`"  
+      -ScriptArgs `"--solutionVersion=$(Build.BuildNumber)`",`"--solutions=$(solutionList)`"      
+      -Verbosity Diagnostic"
+    displayName: Cake - Build Package
+    env:
+      CAPGEMINI_UK_PACKAGE_READ_KEY: $(CapgeminiUkPackageReadKey)
+      CAKE_CONN_STAGING: $(ConnectionString)
+  - task: VSTest@2
+    displayName: 'Test Assemblies'
+    inputs:
+      testAssemblyVer2: |
+        **\*Tests.Unit*.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      codeCoverageEnabled: true
+  - task: CopyFiles@2
+    displayName: "Copy package to artifact staging directory"
+    inputs:
+      SourceFolder: Deploy/bin/Release
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
+    condition: succeeded()
+  - task: PublishBuildArtifacts@1
+    inputs:
+        pathtoPublish: "$(Build.ArtifactStagingDirectory)"
+        artifactName: "DevelopmentHub"
+    condition: succeeded()
+trigger:
+  batch: true
+  branches:
+    include: ["master"]
+  paths:
+    include: [
+      "Data/Configuration/*",
+      "Data/Reference/*",
+      "Deploy/*",
+      "Solutions/*",
+      "*.yml",
+      "*.cake",
+      "*.ps1"
+      ]
+variables:
+  - name: solutionList
+    value: ''
+  - group: Azure DevOps - Capgemini UK
+  - group: Package - DevelopmentHub
+  - group: Environment - Staging

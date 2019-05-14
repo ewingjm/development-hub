@@ -1,0 +1,20 @@
+{
+  "IgnoreStatuses": false,
+  "IgnoreSystemFields": true,
+  "MigrationConfig": {
+    "ApplyAliasMapping": true,
+    "SourceRootBUName": "",
+    "Mappings": {}
+  },
+  "SaveBatchSize": 200,
+  "JsonFolderPath": "Extract",
+  "DeactivateAllProcesses": false,
+  "FilePrefix": "0.1",
+  "PassOneReferences": [
+    "businessunit",
+    "subject",
+    "uom",
+    "uomschedule",
+    "queue"
+  ]
+}

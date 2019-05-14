@@ -1,0 +1,22 @@
+name: $(packageVersion)$(rev:.r).0
+trigger: none
+steps:
+  - powershell: >-
+      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 
+      -Target Default 
+      -NuGetCredentials `"Capgemini IP;$env:CAPGEMINI_UK_PACKAGE_READ_KEY`" 
+      -Verbosity Diagnostic"
+    displayName: Cake - Build Package
+    env:
+      CAPGEMINI_UK_PACKAGE_READ_KEY: $(CapgeminiUkPackageReadKey)
+  - task: VSTest@2
+    displayName: 'Test Assemblies'
+    inputs:
+      testAssemblyVer2: |
+        **\*Tests.Unit*.dll
+        !**\*TestAdapter.dll
+        !**\obj\**
+      codeCoverageEnabled: true
+variables:
+  - group: Azure DevOps - Capgemini UK
+  - group: Package - DevelopmentHub
