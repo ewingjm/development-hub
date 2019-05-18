@@ -12,7 +12,7 @@ steps:
    
        foreach ($_ in $resultArray)
        {
-           if ($_.StartsWith("Solutions")) 
+           if ($_.StartsWith("Solutions") && $_.Contains("Extract")) 
            {
              $solutionName = $_.Split("/")[1]
 

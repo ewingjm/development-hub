@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries>
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6bf35967-f49b-4411-93a1-31ccf95debe1}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cap_name" select="1" icon="1" preview="1">
+        <row name="result" id="cap_environmentid">
+          <cell name="cap_name" width="300" />
+          <cell name="cap_url" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="statuscode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cap_environment">
+          <attribute name="cap_name" />
+          <order attribute="cap_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="cap_url" />
+          <attribute name="statuscode" />
+          <attribute name="cap_environmentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Environments" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

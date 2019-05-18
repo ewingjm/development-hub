@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships>
+  <EntityRelationship Name="business_unit_cap_environment" />
+  <EntityRelationship Name="lk_cap_environment_createdby" />
+  <EntityRelationship Name="lk_cap_environment_modifiedby" />
+  <EntityRelationship Name="owner_cap_environment" />
+  <EntityRelationship Name="team_cap_environment" />
+  <EntityRelationship Name="user_cap_environment" />
+</EntityRelationships>

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 #addin nuget:?package=Cake.Xrm&version=0.6.0
 #addin nuget:?package=Cake.Npm&version=0.16.0
 #addin nuget:?package=Cake.Git&version=0.19.0
+#addin nuget:?package=Cake.Json&version=3.0.0
 
 const string DataFolder = "./Data";
 const string ModelProjectFolder = "Common\\Capgemini.DevelopmentHub.Model";
@@ -10,8 +11,6 @@ const string ModelNamespace = "Capgemini.DevelopmentHub.Model";
 
 var target = Argument("target", "Default");
 var solution = Argument<string>("solution", "");
-var devConn = EnvironmentVariable("CAKE_CONN_DEV");
-var stagingConn = EnvironmentVariable("CAKE_CONN_STAGING");
 
 // Build package
 Task("Default")
@@ -47,12 +46,12 @@ Task("PackAll")
 
 Task("GenerateModel")
   .Does(() => {
-    GenerateModel(Directory(ModelProjectFolder).Path.CombineWithFilePath("spkl.json"), devConn);
+    GenerateModel(Directory(ModelProjectFolder).Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
   });
 
 Task("ExtractSolution")
   .Does(() => {
-    ExtractSolution(stagingConn, solution, Directory($"Solutions/{solution}").Path.Combine("Extract"), SolutionPackageType.Both);
+    ExtractSolution(GetConnectionString(solution), solution, Directory($"Solutions/{solution}").Path.Combine("Extract"), SolutionPackageType.Both);
   });
 
 // build targets 
@@ -108,7 +107,7 @@ Task("StageData")
     var dataType = Argument<string>("dataType");
     XrmImportData(
       new DataMigrationEngineImportSettings(
-        stagingConn, 
+        GetConnectionString(solution), 
         Directory(DataFolder).Path.MakeAbsolute(Context.Environment).CombineWithFilePath($"{dataType}\\{dataType}DataImport.json")));
   });
   
@@ -124,7 +123,7 @@ Task("DeployPlugins")
     }
   )
   .Does(() => {
-    DeployPlugins(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), devConn);
+    DeployPlugins(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
 });
 
 Task("DeployWorkflowActivities")
@@ -138,7 +137,7 @@ Task("DeployWorkflowActivities")
     }
   )
   .Does(() => {
-    DeployWorkflows(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), devConn);
+    DeployWorkflows(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
 });
 
 void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings, MSBuildSettings msBuildSettings = null) { 
@@ -147,6 +146,20 @@ void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings
 }
 
 // Utilities
+
+string GetConnectionString(string solution) {
+  var envConfig = ParseJsonFromFile(File($"Solutions/{solution}/env.json"));
+  var url = envConfig["environment"].ToString();
+  var username = envConfig["username"].ToString();
+  var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD");
+
+  return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
+}
+
+string getOrgFromUrl(string url) {
+  return url.Replace("https://", string.Empty).Split('.')[0];
+}
+
 FilePath GetEarlyBoundGeneratorConfig() {
     var configurationFiles = GetFiles($"{ModelProjectFolder}\\DLab.EarlyBoundGenerator.*.xml");
     if(!configurationFiles.Any()){
@@ -160,7 +173,7 @@ FilePath GetEarlyBoundGeneratorConfig() {
 
 void ExportData(DirectoryPath extractFolder, FilePath exportConfigPath) {
   DeleteFiles($"{extractFolder}/**/*");
-  XrmExportData(new DataMigrationEngineExportSettings(devConn, exportConfigPath));
+  XrmExportData(new DataMigrationEngineExportSettings(GetConnectionString(solution), exportConfigPath));
 }
 
 void PackSolution(string projectFolder, string solutionName, string solutionVersion) {
@@ -168,7 +181,7 @@ void PackSolution(string projectFolder, string solutionName, string solutionVers
   if (!String.IsNullOrEmpty(solutionVersion) && !String.IsNullOrEmpty(changedSolutions) && changedSolutions.Contains(solutionName)) {
     var versionParts = solutionVersion.Split('.');
     versionParts[2] = (int.Parse(versionParts[2]) + 1).ToString();
-    SetSolutionVersion(stagingConn, solutionName, String.Join(".", versionParts));
+    SetSolutionVersion(GetConnectionString(solution), solutionName, String.Join(".", versionParts));
   }
     
   PackSolution(new SolutionPackagerPackSettings(
