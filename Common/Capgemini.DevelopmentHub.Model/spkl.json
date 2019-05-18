@@ -1,7 +1,7 @@
 {
   "earlyboundtypes": [
     {
-      "entities": "",
+      "entities": "cap_issue",
       "actions": "",
       "generateOptionsetEnums": true,
       "generateStateEnums": true,

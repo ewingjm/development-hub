@@ -7,8 +7,11 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Capgemini.DevelopmentHub.Model</Import_RootNamespace>
-</PropertyGroup>
-<ItemGroup>
-<None Include="$(MSBuildThisFileDirectory)spkl.json" />
-    </ItemGroup>
-  </Project>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)spkl.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DevelopmentHubContext.cs" />
+  </ItemGroup>
+</Project>
