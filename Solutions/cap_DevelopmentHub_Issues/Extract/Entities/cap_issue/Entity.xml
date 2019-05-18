@@ -707,12 +707,12 @@
               <Description description="Reason for the status of the Issue" languagecode="1033" />
             </Descriptions>
             <statuses>
-              <status value="1" state="0">
+              <status value="1" state="0" TransitionData="" Color="#0000ff">
                 <labels>
-                  <label description="Active" languagecode="1033" />
+                  <label description="To Do" languagecode="1033" />
                 </labels>
               </status>
-              <status value="2" state="1">
+              <status value="2" state="1" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                 </labels>

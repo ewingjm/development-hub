@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Issue management functionality for the Development Hub." languagecode="1033" />
     </Descriptions>
-    <Version>0.0.1.0</Version>
+    <Version>0.1.2.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>capgemini</UniqueName>
@@ -86,6 +86,9 @@
       <RootComponent type="60" id="{899883f9-9876-e911-a819-002248008902}" behavior="0" />
       <RootComponent type="60" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" behavior="0" />
       <RootComponent type="61" schemaName="cap_/Images/cap_Issue.svg" behavior="0" />
+      <RootComponent type="61" schemaName="cap_/Images/cap_Logo.png" behavior="0" />
+      <RootComponent type="62" schemaName="cap_DevelopmentHub" behavior="0" />
+      <RootComponent type="80" schemaName="cap_DevelopmentHub" behavior="0" />
     </RootComponents>
     <MissingDependencies />
   </SolutionManifest>

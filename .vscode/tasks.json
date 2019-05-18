@@ -114,8 +114,7 @@
       "description": "The solution to execute the task for.",
       "type": "pickString",
       "options": [
-        "cap_DevelopmentHub_Issues",
-        "cap_DevelopmentHub_Apps"
+        "cap_DevelopmentHub_Issues"
       ]
     },
     {
