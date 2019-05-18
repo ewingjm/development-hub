@@ -18,7 +18,7 @@ namespace Capgemini.DevelopmentHub.Tests.Integration
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             this.createdEntities = new List<EntityReference>();
-            this.CrmServiceClient = new CrmServiceClient(Environment.GetEnvironmentVariable("CAKE_SWDS_DEVCONSTR"));
+            this.CrmServiceClient = new CrmServiceClient(Environment.GetEnvironmentVariable("CAKE_CONN_DEV"));
         }
 
         protected CrmServiceClient CrmServiceClient { get; private set; }
@@ -68,6 +68,7 @@ namespace Capgemini.DevelopmentHub.Tests.Integration
                 Settings = new ExecuteMultipleSettings
                 {
                     ContinueOnError = true,
+                    ReturnResponses = true
                 },
                 Requests = requestCollection
             });

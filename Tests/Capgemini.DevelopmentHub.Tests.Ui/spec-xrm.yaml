@@ -1,9 +1,10 @@
-url: ""
+url: "https://devhubci.crm11.dynamics.com"
 browser: Chrome
-remoteServerUrl: 
 users: 
-  - username: ""
+  - username: "service@devhubci.onmicrosoft.com"
     password: ""
     isAdfs: false
-    alias: ""
-apps: []
+    alias: "an admin"
+apps: 
+  - name: "Development Hub"
+    id: "438304b1-8879-e911-a9b6-002248073e1b"
