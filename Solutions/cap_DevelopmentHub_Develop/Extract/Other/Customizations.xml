@@ -12,6 +12,7 @@
   <Dashboards />
   <WebResources />
   <CustomControls />
+  <AppModuleSiteMaps />
   <AppModules />
   <EntityDataProviders />
   <Languages>
