@@ -35,6 +35,7 @@ steps:
     env:
       CAPGEMINI_UK_PACKAGE_READ_KEY: $(CapgeminiUkPackageReadKey)
       CAKE_CONN_STAGING: $(ConnectionString)
+      CAKE_DYNAMICS_PASSWORD: $(DynamicsPassword)
   - task: VSTest@2
     displayName: 'Test Assemblies'
     inputs:
@@ -74,3 +75,4 @@ variables:
   - group: Azure DevOps - Capgemini UK
   - group: Package - DevelopmentHub
   - group: Environment - Staging
+  - group: Environment - Common
