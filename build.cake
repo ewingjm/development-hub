@@ -46,12 +46,12 @@ Task("PackAll")
 
 Task("GenerateModel")
   .Does(() => {
-    GenerateModel(Directory(ModelProjectFolder).Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
+    GenerateModel(Directory(ModelProjectFolder).Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution, false));
   });
 
 Task("ExtractSolution")
   .Does(() => {
-    ExtractSolution(GetConnectionString(solution), solution, Directory($"Solutions/{solution}").Path.Combine("Extract"), SolutionPackageType.Both);
+    ExtractSolution(GetConnectionString(solution, true), solution, Directory($"Solutions/{solution}").Path.Combine("Extract"), SolutionPackageType.Both);
   });
 
 // build targets 
@@ -107,7 +107,7 @@ Task("StageData")
     var dataType = Argument<string>("dataType");
     XrmImportData(
       new DataMigrationEngineImportSettings(
-        GetConnectionString(solution), 
+        GetConnectionString(solution, true), 
         Directory(DataFolder).Path.MakeAbsolute(Context.Environment).CombineWithFilePath($"{dataType}\\{dataType}DataImport.json")));
   });
   
@@ -123,7 +123,7 @@ Task("DeployPlugins")
     }
   )
   .Does(() => {
-    DeployPlugins(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
+    DeployPlugins(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution, false));
 });
 
 Task("DeployWorkflowActivities")
@@ -137,7 +137,7 @@ Task("DeployWorkflowActivities")
     }
   )
   .Does(() => {
-    DeployWorkflows(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution));
+    DeployWorkflows(Directory($"Solutions/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution, false));
 });
 
 void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings, MSBuildSettings msBuildSettings = null) { 
@@ -147,9 +147,11 @@ void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings
 
 // Utilities
 
-string GetConnectionString(string solution) {
+string GetConnectionString(string solution, bool stagingEnvironment) {
   var envConfig = ParseJsonFromFile(File($"Solutions/{solution}/env.json"));
-  var url = envConfig["environment"].ToString();
+  
+  var targetEnvironment = stagingEnvironment && envConfig["stagingEnvironment"] != null ? "stagingEnvironment" : "environment";
+  var url = envConfig[targetEnvironment].ToString();
   var username = envConfig["username"].ToString();
   var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD");
 
@@ -169,7 +171,7 @@ FilePath GetEarlyBoundGeneratorConfig() {
 
 void ExportData(DirectoryPath extractFolder, FilePath exportConfigPath) {
   DeleteFiles($"{extractFolder}/**/*");
-  XrmExportData(new DataMigrationEngineExportSettings(GetConnectionString(solution), exportConfigPath));
+  XrmExportData(new DataMigrationEngineExportSettings(GetConnectionString(solution, false), exportConfigPath));
 }
 
 void PackSolution(string projectFolder, string solutionName, string solutionVersion) {
@@ -177,7 +179,7 @@ void PackSolution(string projectFolder, string solutionName, string solutionVers
   if (!String.IsNullOrEmpty(solutionVersion) && !String.IsNullOrEmpty(changedSolutions) && changedSolutions.Contains(solutionName)) {
     var versionParts = solutionVersion.Split('.');
     versionParts[2] = (int.Parse(versionParts[2]) + 1).ToString();
-    SetSolutionVersion(GetConnectionString(solution), solutionName, String.Join(".", versionParts));
+    SetSolutionVersion(GetConnectionString(solution, true), solutionName, String.Join(".", versionParts));
   }
     
   PackSolution(new SolutionPackagerPackSettings(
