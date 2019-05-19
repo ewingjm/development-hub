@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries>
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{3fe92e4d-4835-4ce6-a1bd-a85092283b6d}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="cap_displayname" select="1" icon="1" preview="0">
+        <row name="cap_solution" id="cap_solutionid">
+          <cell name="cap_displayname" width="300" />
+          <cell name="cap_uniquename" width="100" />
+          <cell name="cap_stagingenvironment" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cap_solution">
+          <attribute name="cap_solutionid" />
+          <attribute name="cap_displayname" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="cap_displayname" descending="false" />
+          <attribute name="cap_uniquename" />
+          <attribute name="cap_stagingenvironment" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Solution Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

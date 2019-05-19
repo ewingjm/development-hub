@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms>
+  <systemform>
+    <formid>{6d588ec7-f362-43b4-b68a-e2181734f959}</formid>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" IsUserDefined="1" name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" locklevel="0" expanded="true" showlabel="false">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2f901e38-da1d-4f66-b039-f1856d8bd0a6}">
+                        <labels>
+                          <label description="Display Name" languagecode="1033" />
+                        </labels>
+                        <control id="cap_displayname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_displayname" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{06904c4c-21c8-be97-5240-023974e0c043}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Unique Name" languagecode="1033" />
+                        </labels>
+                        <control id="cap_uniquename" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_uniquename" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1bb9d182-10a3-a0ad-343a-65a3be837291}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="cap_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="cap_description" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9aa15507-7008-c434-248d-d6284d3192bc}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Staging Environment" languagecode="1033" />
+                        </labels>
+                        <control id="cap_stagingenvironment" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cap_stagingenvironment" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{09c868aa-9b19-4887-8d17-6ec17eb9584a}" columns="111">
+        <rows>
+          <row>
+            <cell id="{6564ad49-e6b7-43c3-9ad3-aab5b08fe061}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6be944a9-b3ea-a00b-d48e-a81ea8c0c371}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{29e83648-ce14-19b8-37bb-76661c01be81}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+              </labels>
+              <control id="header_statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{b467c14d-33f6-4802-b016-11346e96b9e8}" columns="111">
+        <rows>
+          <row>
+            <cell id="{3324598d-c0f2-463c-94ff-552424d779f6}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{88d78072-d395-4b28-4136-ec589e948c67}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Created By" languagecode="1033" />
+              </labels>
+              <control id="footer_createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="true" />
+            </cell>
+            <cell id="{c5754141-b740-8d55-4e10-2eb5182718dc}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Created On" languagecode="1033" />
+              </labels>
+              <control id="footer_createdon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="true" />
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
