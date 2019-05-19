@@ -12,6 +12,7 @@
             <Title LCID="1033" Title="Environments" />
           </Titles>
         </SubArea>
+        <SubArea Id="cap_Solutions" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_solution" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="1" />
       </Group>
     </Area>
   </SiteMap>

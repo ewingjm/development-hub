@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries>
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{dc37d79a-d704-4a34-9e50-1d27bc75c416}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="cap_displayname" select="1" icon="1" preview="1">
+        <row name="cap_solution" id="cap_solutionid">
+          <cell name="cap_displayname" width="300" />
+          <cell name="cap_uniquename" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="cap_description" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="cap_stagingenvironment" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cap_solution">
+          <attribute name="cap_solutionid" />
+          <attribute name="cap_displayname" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="cap_uniquename" />
+          <attribute name="cap_stagingenvironment" />
+          <attribute name="cap_description" />
+          <order attribute="cap_displayname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Solution Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

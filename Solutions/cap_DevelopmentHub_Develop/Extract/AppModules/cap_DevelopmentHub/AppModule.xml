@@ -9,6 +9,7 @@
   <AppModuleComponents>
     <AppModuleComponent type="60" id="{c28f6f7a-c279-e911-a97c-0022480186c3}" solutionaction="Added" />
     <AppModuleComponent type="1" schemaName="cap_environment" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="cap_solution" solutionaction="Added" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
