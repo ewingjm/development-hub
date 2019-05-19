@@ -115,6 +115,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Develop\Create a solution.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create a solution.feature</DependentUpon>
+    </Compile>
     <Compile Include="Develop\Create an environment.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,6 +140,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Capgemini.DevelopmentHub.Tests.Ui.ruleset" />
+    <None Include="Develop\Create a solution.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Create a solution.feature.cs</LastGenOutput>
+    </None>
     <None Include="Develop\Create an environment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Create an environment.feature.cs</LastGenOutput>
