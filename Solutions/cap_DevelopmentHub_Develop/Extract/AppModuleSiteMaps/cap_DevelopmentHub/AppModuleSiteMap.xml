@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModuleSiteMap>
+  <SiteMapUniqueName>cap_DevelopmentHub</SiteMapUniqueName>
+  <SiteMap IntroducedVersion="7.0.0.0">
+    <Area Id="cap_DevelopmentHub" ResourceId="SitemapDesigner.NewArea" DescriptionResourceId="SitemapDesigner.NewArea" VectorIcon="/WebResources/cap_/Images/cap_Issue.svg" Icon="/WebResources/cap_/Images/cap_Issue.svg" ShowGroups="true" IntroducedVersion="7.0.0.0" ordinalvalue="0">
+      <Group Id="cap_Development" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown" ordinalvalue="1" solutionaction="Added">
+        <Titles>
+          <Title LCID="1033" Title="Develop" />
+        </Titles>
+        <SubArea Id="cap_Environments" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_environment" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="0">
+          <Titles>
+            <Title LCID="1033" Title="Environments" />
+          </Titles>
+        </SubArea>
+      </Group>
+    </Area>
+  </SiteMap>
+  <LocalizedNames>
+    <LocalizedName description="Development Hub" languagecode="1033" />
+  </LocalizedNames>
+</AppModuleSiteMap>
