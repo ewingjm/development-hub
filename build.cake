@@ -156,10 +156,6 @@ string GetConnectionString(string solution) {
   return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
 }
 
-string getOrgFromUrl(string url) {
-  return url.Replace("https://", string.Empty).Split('.')[0];
-}
-
 FilePath GetEarlyBoundGeneratorConfig() {
     var configurationFiles = GetFiles($"{ModelProjectFolder}\\DLab.EarlyBoundGenerator.*.xml");
     if(!configurationFiles.Any()){
