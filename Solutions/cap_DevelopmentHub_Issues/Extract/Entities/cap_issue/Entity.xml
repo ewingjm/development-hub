@@ -651,12 +651,12 @@
               <Description description="Status of the Issue" languagecode="1033" />
             </Descriptions>
             <states>
-              <state value="0" defaultstatus="1" invariantname="Active">
+              <state value="0" defaultstatus="809020000" invariantname="Active">
                 <labels>
                   <label description="Active" languagecode="1033" />
                 </labels>
               </state>
-              <state value="1" defaultstatus="2" invariantname="Inactive">
+              <state value="1" defaultstatus="809020001" invariantname="Inactive">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                 </labels>
@@ -707,14 +707,24 @@
               <Description description="Reason for the status of the Issue" languagecode="1033" />
             </Descriptions>
             <statuses>
-              <status value="1" state="0" TransitionData="" Color="#0000ff">
+              <status value="1" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;809020000&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
                 <labels>
                   <label description="To Do" languagecode="1033" />
                 </labels>
               </status>
-              <status value="2" state="1" TransitionData="" Color="#0000ff">
+              <status value="809020000" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;809020001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
                 <labels>
-                  <label description="Inactive" languagecode="1033" />
+                  <label description="In Progress" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="2" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;2&quot; tostatusid=&quot;1&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Cancelled" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="809020001" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;809020001&quot; tostatusid=&quot;809020000&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Done" languagecode="1033" />
                 </labels>
               </status>
             </statuses>
@@ -866,7 +876,7 @@
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
       <IconVectorName>cap_/Images/cap_Issue.svg</IconVectorName>
-      <EnforceStateTransitions>0</EnforceStateTransitions>
+      <EnforceStateTransitions>1</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
       <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>
       <ChangeTrackingEnabled>0</ChangeTrackingEnabled>
