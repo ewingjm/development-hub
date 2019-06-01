@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Issue management functionality for the Development Hub." languagecode="1033" />
     </Descriptions>
-    <Version>0.1.4.0</Version>
+    <Version>0.1.10.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>capgemini</UniqueName>
