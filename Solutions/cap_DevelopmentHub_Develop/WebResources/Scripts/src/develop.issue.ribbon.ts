@@ -22,23 +22,23 @@ namespace Capgemini.DevelopmentHub.Develop {
     }
 
     export async function startDeveloping(primaryControl: Xrm.FormContext): Promise<void> {
+        Xrm.Utility.showProgressIndicator("Creating development solution");
         let result: Xrm.ExecuteResponse;
         try {
             result = await Xrm.WebApi.online.execute(
                 new StartDevelopingRequest(primaryControl.data.entity.getEntityReference()));
         } catch (ex) {
+            Xrm.Utility.closeProgressIndicator();
             const errorResponse: Xrm.ErrorResponse = ex;
             Xrm.Navigation.openErrorDialog({
                 message: errorResponse.message,
                 errorCode: errorResponse.errorCode,
             })
         }
+        
+        Xrm.Utility.closeProgressIndicator();
 
         if (result.ok) {
-            await Xrm.Navigation.openAlertDialog({
-                text: "Development solution created."
-            });
-
             Xrm.Page.data.refresh(false);
         }
     }

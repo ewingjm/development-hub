@@ -27,6 +27,38 @@
                         <control id="cap_developmentsolution" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_developmentsolution" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{c7d2e37b-db79-1bde-1440-18491696de55}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10001">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="subgrid_SolutionMerges" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{7743d9c5-7a38-a07d-6c02-9d87ce3e18d0}">
+                          <parameters>
+                            <ViewId>{BCABBFD7-A184-E911-A97E-0022480186C3}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>cap_issue_solutionmerge_Issue</RelationshipName>
+                            <TargetEntityType>cap_solutionmerge</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{C3AE2FF7-0BEF-4F99-A9F5-55130A4A6790},{BCABBFD7-A184-E911-A97E-0022480186C3}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>

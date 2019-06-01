@@ -5,21 +5,20 @@
     using Capgemini.DevelopmentHub.Develop.Model;
     using Capgemini.DevelopmentHub.Repositories;
     using Microsoft.Xrm.Sdk;
-    using Microsoft.Xrm.Sdk.Query;
     using Xunit;
 
     /// <summary>
-    /// Tests for the StartDeveloping action.
+    /// Tests for the Issue entity.
     /// </summary>
     [Trait("Solution", "cap_DevelopmentHub_Develop")]
-    public class StartDevelopingTests : IntegrationTest
+    public class IssueTests : IntegrationTest
     {
         private readonly ICrmRepository<cap_issue> issueRepo;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StartDevelopingTests"/> class.
+        /// Initializes a new instance of the <see cref="IssueTests"/> class.
         /// </summary>
-        public StartDevelopingTests()
+        public IssueTests()
             : base(new Uri("https://devhubdevelop.crm11.dynamics.com"), "max@devhubdevelop.onmicrosoft.com")
         {
             this.issueRepo = this.RepositoryFactory.GetRepository<DevelopContext, cap_issue>();

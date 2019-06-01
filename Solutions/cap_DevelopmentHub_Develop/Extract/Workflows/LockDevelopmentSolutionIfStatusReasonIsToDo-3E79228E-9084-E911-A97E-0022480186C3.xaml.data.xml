@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{3e79228e-9084-e911-a97e-0022480186c3}" Name="Lock 'Development Solution' If Status Reason Is 'To Do'" Description="Lock the 'Development Solution' field if the issue is not in progress." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/LockDevelopmentSolutionIfStatusReasonIsToDo-3E79228E-9084-E911-A97E-0022480186C3.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>2</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.1.12.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <PrimaryEntity>cap_issue</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Lock 'Development Solution' If Status Reason Is 'To Do'" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="Lock the 'Development Solution' field if the issue is not in progress." />
+  </Descriptions>
+  <ProcessTriggers>
+    <ProcessTrigger processtriggerid="{4a79228e-9084-e911-a97e-0022480186c3}">
+      <controltype>1</controltype>
+      <scope>1</scope>
+      <controlname>statuscode</controlname>
+      <event>change</event>
+      <pipelinestage>0</pipelinestage>
+      <iscustomizable>1</iscustomizable>
+      <primaryentitytypecode>cap_issue</primaryentitytypecode>
+    </ProcessTrigger>
+    <ProcessTrigger processtriggerid="{4b79228e-9084-e911-a97e-0022480186c3}">
+      <scope>1</scope>
+      <event>load</event>
+      <pipelinestage>0</pipelinestage>
+      <iscustomizable>1</iscustomizable>
+      <primaryentitytypecode>cap_issue</primaryentitytypecode>
+    </ProcessTrigger>
+  </ProcessTriggers>
+</Workflow>

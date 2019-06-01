@@ -2,15 +2,24 @@
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EntityRelationship Name="business_unit_cap_environment" />
   <EntityRelationship Name="business_unit_cap_solution" />
+  <EntityRelationship Name="business_unit_cap_solutionmerge" />
   <EntityRelationship Name="cap_environment_solution_StagingEnvironment" />
+  <EntityRelationship Name="cap_issue_solutionmerge_Issue" />
+  <EntityRelationship Name="cap_solution_solutionmerge_TargetSolution" />
+  <EntityRelationship Name="cap_solutionmerge_issue_LastSolutionMerge" />
   <EntityRelationship Name="lk_cap_environment_createdby" />
   <EntityRelationship Name="lk_cap_environment_modifiedby" />
   <EntityRelationship Name="lk_cap_solution_createdby" />
   <EntityRelationship Name="lk_cap_solution_modifiedby" />
+  <EntityRelationship Name="lk_cap_solutionmerge_createdby" />
+  <EntityRelationship Name="lk_cap_solutionmerge_modifiedby" />
   <EntityRelationship Name="owner_cap_environment" />
   <EntityRelationship Name="owner_cap_solution" />
+  <EntityRelationship Name="owner_cap_solutionmerge" />
   <EntityRelationship Name="team_cap_environment" />
   <EntityRelationship Name="team_cap_solution" />
+  <EntityRelationship Name="team_cap_solutionmerge" />
   <EntityRelationship Name="user_cap_environment" />
   <EntityRelationship Name="user_cap_solution" />
+  <EntityRelationship Name="user_cap_solutionmerge" />
 </EntityRelationships>

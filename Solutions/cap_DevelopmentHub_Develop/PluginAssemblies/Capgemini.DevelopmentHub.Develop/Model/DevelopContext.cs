@@ -2069,6 +2069,9 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		InProgress = 809020000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Developed = 809020002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cancelled = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2188,6 +2191,24 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			set
 			{
 				this.cap_issueId = value;
+			}
+		}
+		
+		/// <summary>
+		/// The last solution merge created for this issue.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_lastsolutionmerge")]
+		public Microsoft.Xrm.Sdk.EntityReference cap_LastSolutionMerge
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cap_lastsolutionmerge");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_LastSolutionMerge");
+				this.SetAttributeValue("cap_lastsolutionmerge", value);
+				this.OnPropertyChanged("cap_LastSolutionMerge");
 			}
 		}
 		
@@ -2533,6 +2554,515 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cap_issue_solutionmerge_Issue
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_issue_solutionmerge_Issue")]
+		public System.Collections.Generic.IEnumerable<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge> cap_issue_solutionmerge_Issue
+		{
+			get
+			{
+				return this.GetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_issue_solutionmerge_Issue", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_issue_solutionmerge_Issue");
+				this.SetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_issue_solutionmerge_Issue", null, value);
+				this.OnPropertyChanged("cap_issue_solutionmerge_Issue");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cap_solutionmerge_issue_LastSolutionMerge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_lastsolutionmerge")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solutionmerge_issue_LastSolutionMerge")]
+		public Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge cap_solutionmerge_issue_LastSolutionMerge
+		{
+			get
+			{
+				return this.GetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_solutionmerge_issue_LastSolutionMerge", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solutionmerge_issue_LastSolutionMerge");
+				this.SetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_solutionmerge_issue_LastSolutionMerge", null, value);
+				this.OnPropertyChanged("cap_solutionmerge_issue_LastSolutionMerge");
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public enum cap_solutionmergeState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public enum cap_solutionmerge_statuscode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AwaitingReview = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Cancelled = 2,
+	}
+	
+	/// <summary>
+	/// Tracks the merging process for a development solution.
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_solutionmerge")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_solutionmerge : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public cap_solutionmerge() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "cap_solutionmerge";
+		
+		public const int EntityTypeCode = 10055;
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// The issue this solution merge relates to.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_issue")]
+		public Microsoft.Xrm.Sdk.EntityReference cap_Issue
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cap_issue");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_Issue");
+				this.SetAttributeValue("cap_issue", value);
+				this.OnPropertyChanged("cap_Issue");
+			}
+		}
+		
+		/// <summary>
+		/// The name of the solution merge.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_name")]
+		public string cap_name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cap_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_name");
+				this.SetAttributeValue("cap_name", value);
+				this.OnPropertyChanged("cap_name");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_solutionmergeid")]
+		public System.Nullable<System.Guid> cap_solutionmergeId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("cap_solutionmergeid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solutionmergeId");
+				this.SetAttributeValue("cap_solutionmergeid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("cap_solutionmergeId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_solutionmergeid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.cap_solutionmergeId = value;
+			}
+		}
+		
+		/// <summary>
+		/// The solution to be merged into.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_targetsolution")]
+		public Microsoft.Xrm.Sdk.EntityReference cap_TargetSolution
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cap_targetsolution");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_TargetSolution");
+				this.SetAttributeValue("cap_targetsolution", value);
+				this.OnPropertyChanged("cap_TargetSolution");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Solution Merge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmergeState> statecode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((Capgemini.DevelopmentHub.Develop.Model.cap_solutionmergeState)(System.Enum.ToObject(typeof(Capgemini.DevelopmentHub.Develop.Model.cap_solutionmergeState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("statecode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("statecode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Solution Merge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public System.Nullable<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge_statuscode> statuscode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+				if ((optionSet != null))
+				{
+					return ((Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge_statuscode)(System.Enum.ToObject(typeof(Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge_statuscode), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("statuscode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statuscode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statuscode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("statuscode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cap_solutionmerge_issue_LastSolutionMerge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solutionmerge_issue_LastSolutionMerge")]
+		public System.Collections.Generic.IEnumerable<Capgemini.DevelopmentHub.Develop.Model.cap_issue> cap_solutionmerge_issue_LastSolutionMerge
+		{
+			get
+			{
+				return this.GetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_issue>("cap_solutionmerge_issue_LastSolutionMerge", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solutionmerge_issue_LastSolutionMerge");
+				this.SetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_issue>("cap_solutionmerge_issue_LastSolutionMerge", null, value);
+				this.OnPropertyChanged("cap_solutionmerge_issue_LastSolutionMerge");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cap_issue_solutionmerge_Issue
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_issue")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_issue_solutionmerge_Issue")]
+		public Capgemini.DevelopmentHub.Develop.Model.cap_issue cap_issue_solutionmerge_Issue
+		{
+			get
+			{
+				return this.GetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_issue>("cap_issue_solutionmerge_Issue", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_issue_solutionmerge_Issue");
+				this.SetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_issue>("cap_issue_solutionmerge_Issue", null, value);
+				this.OnPropertyChanged("cap_issue_solutionmerge_Issue");
 			}
 		}
 	}
@@ -4332,6 +4862,17 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			get
 			{
 				return this.CreateQuery<Capgemini.DevelopmentHub.Develop.Model.cap_issue>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge> cap_solutionmergeSet
+		{
+			get
+			{
+				return this.CreateQuery<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>();
 			}
 		}
 		

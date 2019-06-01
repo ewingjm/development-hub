@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{1b475352-66bb-428d-ab0e-f307114bd3f7}</formid>
+    <IntroducedVersion>0.1.12.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{03157f54-2081-44d1-9d1c-d47ae774e9e2}" IsUserDefined="1">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{253b92f8-304d-4ba4-b4f6-49edd223c522}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{806fd7a2-b174-4d72-a44e-7b2a773f9385}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_name" uniqueid="{1829566e-809d-c1e8-e750-820591d0e8b7}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6ce4f6f7-457d-4b21-b791-fcbb0e451ade}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{b06b24d8-61b7-310c-0bd2-9c15e22922ae}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c4134e4-4810-7059-5540-08e179958a81}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_issue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cap_issue" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{803eca8e-2e6b-5059-b8c5-9a570b4673ae}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_targetsolution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cap_targetsolution" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{580ecd7d-a4cd-4c9e-86a6-bd6a1ec5960c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

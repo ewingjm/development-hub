@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Entity>
+<Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name LocalizedName="Issue" OriginalName="Issue">cap_issue</Name>
   <EntityInfo>
     <entity Name="cap_issue">
@@ -712,9 +712,14 @@
                   <label description="To Do" languagecode="1033" />
                 </labels>
               </status>
-              <status value="809020000" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;809020001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+              <status value="809020000" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;809020001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020000&quot; tostatusid=&quot;809020002&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
                 <labels>
                   <label description="In Progress" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="809020002" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;809020002&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020002&quot; tostatusid=&quot;809020000&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;809020002&quot; tostatusid=&quot;809020001&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Developed" languagecode="1033" />
                 </labels>
               </status>
               <status value="2" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;2&quot; tostatusid=&quot;1&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">

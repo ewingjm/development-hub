@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WebResource>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <WebResourceId>{04204eb6-9a76-e911-a819-002248008902}</WebResourceId>
   <Name>cap_/Images/cap_Logo.png</Name>
   <DisplayName>Logo.png</DisplayName>
