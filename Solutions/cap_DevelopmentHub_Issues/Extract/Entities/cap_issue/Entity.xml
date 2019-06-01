@@ -651,7 +651,7 @@
               <Description description="Status of the Issue" languagecode="1033" />
             </Descriptions>
             <states>
-              <state value="0" defaultstatus="809020000" invariantname="Active">
+              <state value="0" defaultstatus="1" invariantname="Active">
                 <labels>
                   <label description="Active" languagecode="1033" />
                 </labels>
