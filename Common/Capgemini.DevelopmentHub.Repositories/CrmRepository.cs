@@ -11,127 +11,154 @@ namespace Capgemini.DevelopmentHub.Repositories
     using Microsoft.Xrm.Sdk.Query;
 
     /// <summary>
-    /// Base repository class for late bound model
-    /// Prefer Generic implementations and early bound model if possible
+    /// Base repository class for late-bound model.
+    /// Early-bound model and repository classes should be used where possible.
     /// </summary>
     public class CrmRepository : ICrmRepository
     {
         private const string EntityImageField = "entityimage";
-        private OrganizationServiceContext orgSvcContext;
+        private OrganizationServiceContext context;
 
-        public CrmRepository(IOrganizationService service, string entityName)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmRepository"/> class.
+        /// </summary>
+        /// <param name="orgService">Organization service.</param>
+        /// <param name="entityLogicalName">Entity logical name.</param>
+        public CrmRepository(IOrganizationService orgService, string entityLogicalName)
         {
-            this.ServiceProxy = service;
-            this.EntityName = entityName;
+            this.OrgService = orgService;
+            this.EntityLogicalName = entityLogicalName;
         }
 
-        public CrmRepository(IOrganizationService service, OrganizationServiceContext context, string entityName)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmRepository"/> class.
+        /// </summary>
+        /// <param name="orgService">Organization service.</param>
+        /// <param name="entityLogicalName">Entity logical name.</param>
+        /// <param name="context">Context.</param>
+        public CrmRepository(IOrganizationService orgService, string entityLogicalName, OrganizationServiceContext context)
+            : this(orgService, entityLogicalName)
         {
-            this.ServiceProxy = service;
-            this.EntityName = entityName;
-            this.orgSvcContext = context;
+            this.context = context;
         }
 
-        public string EntityName { get; protected set; }
+        /// <summary>
+        /// Gets or sets entity logical name.
+        /// </summary>
+        public string EntityLogicalName { get; protected set; }
 
-        protected IOrganizationService ServiceProxy { get; }
+        /// <summary>
+        /// Gets organization service.
+        /// </summary>
+        protected IOrganizationService OrgService { get; }
 
+        /// <summary>
+        /// Gets or sets the current context.
+        /// </summary>
         protected OrganizationServiceContext CurrentContext
         {
             get
             {
-                return this.orgSvcContext ?? (this.orgSvcContext = this.CreateNewServiceContext());
+                return this.context ?? (this.context = this.CreateNewServiceContext());
             }
 
             set
             {
-                this.orgSvcContext = value;
+                this.context = value;
             }
         }
 
-        public virtual Entity Retrieve(Guid crmId, string[] requiredColumns)
+        /// <inheritdoc/>
+        public virtual Entity Retrieve(Guid entityId, string[] columns)
         {
-            if (requiredColumns == null || requiredColumns.Length == 0)
+            if (columns == null || columns.Length == 0)
             {
                 throw new ArgumentException($"At least one column must be specified when invoking {nameof(this.Retrieve)} method of {nameof(CrmRepository)}");
             }
 
-            var colSet = new ColumnSet(requiredColumns.Where(c => c != null).Distinct().ToArray());
-            var entity = this.ServiceProxy.Retrieve(this.EntityName, crmId, colSet);
+            var colSet = new ColumnSet(columns.Where(c => c != null).Distinct().ToArray());
+            var entity = this.OrgService.Retrieve(this.EntityLogicalName, entityId, colSet);
             return entity;
         }
 
+        /// <inheritdoc/>
         public virtual IQueryable<TObject> Find<TObject>(Expression<Func<Entity, bool>> filter, Expression<Func<Entity, TObject>> selector)
             where TObject : class
         {
-            var results = this.CurrentContext.CreateQuery(this.EntityName)
+            var results = this.CurrentContext.CreateQuery(this.EntityLogicalName)
                                      .Where(filter)
                                      .Select(selector);
 
             return results;
         }
 
-        public virtual IQueryable<TObject> Find<TObject>(Expression<Func<Entity, bool>> filter, Expression<Func<Entity, TObject>> selector, int resultStart, int numberofRowsToRetrieve)
+        /// <inheritdoc/>
+        public virtual IQueryable<TObject> Find<TObject>(Expression<Func<Entity, bool>> filter, Expression<Func<Entity, TObject>> selector, int skip, int take)
             where TObject : class
         {
-            var results = this.CurrentContext.CreateQuery(this.EntityName)
+            var results = this.CurrentContext.CreateQuery(this.EntityLogicalName)
                                      .Where(filter)
                                      .Select(selector)
-                                     .Skip(resultStart)
-                                     .Take(numberofRowsToRetrieve);
+                                     .Skip(skip)
+                                     .Take(take);
 
             return results;
         }
 
+        /// <inheritdoc/>
         public virtual Guid Create(Entity entity)
         {
             this.EnsureLogicalNameIsValid(entity);
-            entity.Id = this.ServiceProxy.Create(entity);
+            entity.Id = this.OrgService.Create(entity);
             return entity.Id;
         }
 
+        /// <inheritdoc/>
         public virtual void Update(Entity entity)
         {
             this.EnsureLogicalNameIsValid(entity);
-            this.ServiceProxy.Update(entity);
+            this.OrgService.Update(entity);
         }
 
+        /// <inheritdoc/>
         public virtual void Delete(Entity entity)
         {
             this.EnsureLogicalNameIsValid(entity);
-            this.ServiceProxy.Delete(entity.LogicalName, entity.Id);
+            this.OrgService.Delete(entity.LogicalName, entity.Id);
         }
 
-        public virtual void BulkDelete(List<Entity> entityList, int batchSize = 100)
+        /// <inheritdoc/>
+        public virtual void BulkDelete(IEnumerable<Entity> entities, int batchSize = 100)
         {
             var multipleRequest = new ExecuteMultipleRequest()
             {
                 Settings = new ExecuteMultipleSettings()
                 {
                     ContinueOnError = false,
-                    ReturnResponses = true
+                    ReturnResponses = true,
                 },
 
-                Requests = new OrganizationRequestCollection()
+                Requests = new OrganizationRequestCollection(),
             };
 
-            foreach (var entity in entityList)
+            foreach (var entity in entities)
             {
-                DeleteRequest deleteRequest = new DeleteRequest { Target = entity.ToEntityReference() };
+                var deleteRequest = new DeleteRequest { Target = entity.ToEntityReference() };
                 multipleRequest.Requests.Add(deleteRequest);
                 if (multipleRequest.Requests.Count == batchSize)
                 {
-                    ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)this.ServiceProxy.Execute(multipleRequest);
+                    var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
                     multipleRequest.Requests.Clear();
                 }
             }
 
             if (multipleRequest.Requests.Count > 0)
             {
-                ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)this.ServiceProxy.Execute(multipleRequest);
+                var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
             }
         }
 
+        /// <inheritdoc/>
         public void SetEntityPicture(Entity entity, byte[] picture)
         {
             this.EnsureLogicalNameIsValid(entity);
@@ -142,6 +169,7 @@ namespace Capgemini.DevelopmentHub.Repositories
             this.Update(ent);
         }
 
+        /// <inheritdoc/>
         public void ExecuteWorkflowForEntity(Entity entity, Guid workflowId)
         {
             this.EnsureLogicalNameIsValid(entity);
@@ -149,15 +177,19 @@ namespace Capgemini.DevelopmentHub.Repositories
             var request = new ExecuteWorkflowRequest
             {
                 WorkflowId = workflowId,
-                EntityId = entity.Id
+                EntityId = entity.Id,
             };
 
-            this.ServiceProxy.Execute(request);
+            this.OrgService.Execute(request);
         }
 
+        /// <summary>
+        /// Creates a new service context.
+        /// </summary>
+        /// <returns>A new service context.</returns>
         protected virtual OrganizationServiceContext CreateNewServiceContext()
         {
-            return this.ServiceProxy.CreateNewCrmContext<OrganizationServiceContext>();
+            return this.OrgService.CreateNewCrmContext<OrganizationServiceContext>();
         }
 
         private void EnsureLogicalNameIsValid(Entity entity)
@@ -167,9 +199,9 @@ namespace Capgemini.DevelopmentHub.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            if (entity.LogicalName != this.EntityName)
+            if (entity.LogicalName != this.EntityLogicalName)
             {
-                throw new ArgumentException($"{nameof(entity)} must be of type {this.EntityName}");
+                throw new ArgumentException($"{nameof(entity)} must be of type {this.EntityLogicalName}");
             }
         }
     }

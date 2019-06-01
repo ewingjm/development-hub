@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{97b0d9e0-dab1-41ae-8174-d252bfe633e6}</formid>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="tab_Development" id="{31087d41-1a02-6a51-ea46-1118a2776021}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Development" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{e228c329-ee43-a60b-cdc7-76e5a860b162}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b17045da-191e-ca1a-a13d-3cd4d8297718}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_developmentsolution" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_developmentsolution" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

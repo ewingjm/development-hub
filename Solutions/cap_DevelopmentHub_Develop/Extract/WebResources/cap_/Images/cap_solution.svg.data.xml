@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WebResource>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <WebResourceId>{9f93e58a-857a-e911-a97c-0022480186c3}</WebResourceId>
   <Name>cap_/Images/cap_solution.svg</Name>
   <DisplayName>Solution Icon</DisplayName>

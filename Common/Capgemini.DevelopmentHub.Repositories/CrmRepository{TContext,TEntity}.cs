@@ -10,33 +10,45 @@ namespace Capgemini.DevelopmentHub.Repositories
     using Microsoft.Xrm.Sdk.Messages;
 
     /// <summary>
-    /// Abstract Base Repository Class when early bound model is available
-    /// For Plugins and Workflows use CrmInternalRepositoryBase
-    /// For External applications (API) use CrmExternalRepositoryBase
+    /// Generic repository class for use with an early-bound model.
     /// </summary>
-    /// <typeparam name="TContext">Organizational Service Context</typeparam>
-    /// <typeparam name="TEntity">Early Bound Entity Class</typeparam>
+    /// <typeparam name="TContext">Organization service context.</typeparam>
+    /// <typeparam name="TEntity">Early-bound entity.</typeparam>
     public class CrmRepository<TContext, TEntity> : CrmRepository, ICrmRepository<TEntity>
         where TEntity : Entity, new()
         where TContext : OrganizationServiceContext
     {
-        public CrmRepository(IOrganizationService service)
-            : base(service, new TEntity().LogicalName)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmRepository{TContext, TEntity}"/> class.
+        /// </summary>
+        /// <param name="orgService">Organization service.</param>
+        public CrmRepository(IOrganizationService orgService)
+            : base(orgService, new TEntity().LogicalName)
         {
         }
 
-        public CrmRepository(IOrganizationService service, TContext context)
-            : base(service, context, new TEntity().LogicalName)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrmRepository{TContext, TEntity}"/> class.
+        /// </summary>
+        /// <param name="orgService">Organization service.</param>
+        /// <param name="context">Context.</param>
+        public CrmRepository(IOrganizationService orgService, TContext context)
+            : base(orgService, new TEntity().LogicalName, context)
         {
         }
 
+        /// <summary>
+        /// Gets the current context.
+        /// </summary>
         protected new TContext CurrentContext => (TContext)base.CurrentContext;
 
-        public new virtual TEntity Retrieve(Guid id, string[] requiredColumns)
+        /// <inheritdoc/>
+        public new virtual TEntity Retrieve(Guid entityId, string[] columns)
         {
-            return this.Retrieve(id, requiredColumns).ToEntity<TEntity>();
+            return base.Retrieve(entityId, columns).ToEntity<TEntity>();
         }
 
+        /// <inheritdoc/>
         public virtual TObject Retrieve<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector)
             where TObject : class
         {
@@ -49,6 +61,7 @@ namespace Capgemini.DevelopmentHub.Repositories
             return list;
         }
 
+        /// <inheritdoc/>
         public virtual IQueryable<TObject> Find<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector)
             where TObject : class
         {
@@ -61,6 +74,7 @@ namespace Capgemini.DevelopmentHub.Repositories
             return list;
         }
 
+        /// <inheritdoc/>
         public virtual IQueryable<TObject> Find<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector, int resultStart, int numberofRowsToRetrieve)
             where TObject : class
         {
@@ -74,6 +88,7 @@ namespace Capgemini.DevelopmentHub.Repositories
             return list;
         }
 
+        /// <inheritdoc/>
         public virtual IList<TObject> FindAll<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector, int pageSize = 5000, int maxRecords = 200000)
             where TObject : class
         {
@@ -110,21 +125,25 @@ namespace Capgemini.DevelopmentHub.Repositories
             return results;
         }
 
+        /// <inheritdoc/>
         public virtual Guid Create(TEntity entity)
         {
             return base.Create(entity);
         }
 
+        /// <inheritdoc/>
         public virtual void Update(TEntity entity)
         {
             base.Update(entity);
         }
 
+        /// <inheritdoc/>
         public virtual void Delete(TEntity entity)
         {
             base.Delete(entity);
         }
 
+        /// <inheritdoc/>
         public virtual void BulkDelete(List<TEntity> entityList, int batchSize = 100)
         {
             var multipleRequest = new ExecuteMultipleRequest()
@@ -132,32 +151,33 @@ namespace Capgemini.DevelopmentHub.Repositories
                 Settings = new ExecuteMultipleSettings()
                 {
                     ContinueOnError = false,
-                    ReturnResponses = true
+                    ReturnResponses = true,
                 },
 
-                Requests = new OrganizationRequestCollection()
+                Requests = new OrganizationRequestCollection(),
             };
 
             foreach (var entity in entityList)
             {
-                DeleteRequest deleteRequest = new DeleteRequest { Target = entity.ToEntityReference() };
+                var deleteRequest = new DeleteRequest { Target = entity.ToEntityReference() };
                 multipleRequest.Requests.Add(deleteRequest);
                 if (multipleRequest.Requests.Count == batchSize)
                 {
-                    ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)this.ServiceProxy.Execute(multipleRequest);
+                    var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
                     multipleRequest.Requests.Clear();
                 }
             }
 
             if (multipleRequest.Requests.Count > 0)
             {
-                ExecuteMultipleResponse multipleResponse = (ExecuteMultipleResponse)this.ServiceProxy.Execute(multipleRequest);
+                var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
             }
         }
 
+        /// <inheritdoc/>
         protected override OrganizationServiceContext CreateNewServiceContext()
         {
-            var context = this.ServiceProxy.CreateNewCrmContext<TContext>();
+            var context = this.OrgService.CreateNewCrmContext<TContext>();
             return context;
         }
 

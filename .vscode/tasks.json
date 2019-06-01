@@ -31,7 +31,8 @@
         "powershell",
         "-ExecutionPolicy ByPass",
         "-File build.ps1",
-        "-Target \"GenerateModel\""
+        "-Target \"GenerateModel\"",
+        "-ScriptArgs \"--solution=${input:solution}\""
       ],
       "problemMatcher": []
     },

@@ -1,3 +1,21 @@
 {
-  "webresources": []
+  "webresources": [],
+  "plugins": [
+    {
+      "assemblypath": "PluginAssemblies\\Capgemini.DevelopmentHub.Develop\\bin\\Deploy\\Capgemini.DevelopmentHub.Develop.dll",
+      "solution": "cap_DevelopmentHub_Develop"
+    }
+  ],
+  "earlyboundtypes": [
+    {
+      "entities": "publisher, solution, cap_issue",
+      "actions": "cap_StartDeveloping",
+      "generateOptionsetEnums": true,
+      "generateStateEnums": true,
+      "generateGlobalOptionsets": true,
+      "filename": "PluginAssemblies/Capgemini.DevelopmentHub.Develop/Model/DevelopContext.cs",
+      "classNamespace": "Capgemini.DevelopmentHub.Develop.Model",
+      "serviceContextName": "DevelopContext"
+    }
+  ]
 }

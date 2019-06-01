@@ -9,12 +9,18 @@
     using TechTalk.SpecFlow;
     using Xunit;
 
+    /// <summary>
+    /// Bindings for forms.
+    /// </summary>
     [Binding]
     public class FormSteps : XrmUciStepDefiner
     {
         [ThreadStatic]
         private static InvalidOperationException currentException;
 
+        /// <summary>
+        /// When I save the record.
+        /// </summary>
         [When(@"I save the record")]
         public void WhenISaveTheRecord()
         {
@@ -28,6 +34,10 @@
             }
         }
 
+        /// <summary>
+        /// Then I can edit the following fields.
+        /// </summary>
+        /// <param name="table">The fields that should be editable.</param>
         [Then(@"I can edit the following fields")]
         public void ThenICanEditTheFollowingFields(Table table)
         {
@@ -41,6 +51,10 @@
             }
         }
 
+        /// <summary>
+        /// Then a mandatory field error is displayed on the following fields.
+        /// </summary>
+        /// <param name="table">The fields that should display a mandatory field error.</param>
         [Then(@"a mandatory field error is displayed on the following fields")]
         public void ThenAMandatoryFieldErrorIsDisplayedOnTheFollowingFields(Table table)
         {

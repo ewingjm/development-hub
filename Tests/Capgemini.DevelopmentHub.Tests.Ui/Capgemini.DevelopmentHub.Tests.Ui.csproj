@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
   <Import Project="..\..\packages\xunit.core.2.4.1\build\xunit.core.props" Condition="Exists('..\..\packages\xunit.core.2.4.1\build\xunit.core.props')" />
   <Import Project="..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.6.3\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.6.3\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
   <Import Project="..\..\packages\Text.Analyzers.2.6.3\build\Text.Analyzers.props" Condition="Exists('..\..\packages\Text.Analyzers.2.6.3\build\Text.Analyzers.props')" />
-  <Import Project="..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\build\Microsoft.NetFramework.Analyzers.props')" />
-  <Import Project="..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\build\Microsoft.NetCore.Analyzers.props')" />
-  <Import Project="..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\build\Microsoft.CodeQuality.Analyzers.props')" />
   <Import Project="..\..\packages\SpecRun.Runner.1.8.5\build\SpecRun.Runner.props" Condition="Exists('..\..\packages\SpecRun.Runner.1.8.5\build\SpecRun.Runner.props')" />
   <Import Project="..\..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <PropertyGroup>
@@ -35,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>Capgemini.DevelopmentHub.Tests.Ui.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>capgemini.developmenthub.tests.ui.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>Capgemini.DevelopmentHub.Tests.Ui.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>capgemini.developmenthub.tests.ui.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BoDi, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ff7cd5ea2744b496, processorArchitecture=MSIL">
@@ -125,8 +126,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Create an environment.feature</DependentUpon>
     </Compile>
+    <Compile Include="Develop\Start developing an issue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Start developing an issue.feature</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Steps\CommandSteps.cs" />
+    <Compile Include="Steps\DataSteps.cs" />
     <Compile Include="Steps\FormSteps.cs" />
     <Compile Include="Steps\LoginSteps.cs" />
     <Compile Include="Steps\NavigationSteps.cs" />
@@ -140,6 +147,10 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Capgemini.DevelopmentHub.Tests.Ui.ruleset" />
+    <None Include="Data\a %27To Do%27 issue.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\an %27In Progress%27 issue.json" />
     <None Include="Develop\Create a solution.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Create a solution.feature.cs</LastGenOutput>
@@ -147,6 +158,10 @@
     <None Include="Develop\Create an environment.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Create an environment.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Develop\Start developing an issue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Start developing an issue.feature.cs</LastGenOutput>
     </None>
     <None Include="Issues\Create an issue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -158,19 +173,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Humanizer.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Text.Analyzers.2.6.3\analyzers\dotnet\cs\Text.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Text.Analyzers.2.6.3\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
@@ -183,17 +197,18 @@
     <Error Condition="!Exists('..\..\packages\NUnit.3.10.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.10.1\build\NUnit.props'))" />
     <Error Condition="!Exists('..\..\packages\SpecRun.Runner.1.8.5\build\SpecRun.Runner.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecRun.Runner.1.8.5\build\SpecRun.Runner.props'))" />
     <Error Condition="!Exists('..\..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\build\Microsoft.CodeQuality.Analyzers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetCore.Analyzers.2.6.3\build\Microsoft.NetCore.Analyzers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetFramework.Analyzers.2.6.3\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\Text.Analyzers.2.6.3\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Text.Analyzers.2.6.3\build\Text.Analyzers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.6.3\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.6.3\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.2.4.1\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.2.4.1\build\SpecFlow.targets'))" />
     <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props'))" />
     <Error Condition="!Exists('..\..\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.4.1\build\xunit.core.props'))" />
     <Error Condition="!Exists('..\..\packages\xunit.core.2.4.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.4.1\build\xunit.core.targets'))" />
     <Error Condition="!Exists('..\..\packages\Selenium.WebDriver.ChromeDriver.74.0.3729.6\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Selenium.WebDriver.ChromeDriver.74.0.3729.6\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('..\..\packages\Capgemini.Test.Xrm.0.0.7\build\Capgemini.Test.Xrm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Capgemini.Test.Xrm.0.0.7\build\Capgemini.Test.Xrm.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeQuality.Analyzers.2.9.2\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetCore.Analyzers.2.9.2\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetFramework.Analyzers.2.9.2\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
   </Target>
   <Import Project="..\..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" />
   <Import Project="..\..\packages\SpecFlow.2.4.1\build\SpecFlow.targets" Condition="Exists('..\..\packages\SpecFlow.2.4.1\build\SpecFlow.targets')" />

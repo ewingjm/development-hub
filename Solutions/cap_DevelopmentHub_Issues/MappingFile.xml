@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Mapping>
-  <FileToPath map="WebResources\**\*.*" to="..\WebResources\**" />
+  <FileToPath map="WebResources\**\*.*" to="..\WebResources\**"/>
+  <FileToFile map="CapgeminiDevelopmentHubIssues.dll" to="..\PluginAssemblies\Capgemini.DevelopmentHub.Issues\bin\Deploy\Capgemini.DevelopmentHub.Issues.dll"/>
 </Mapping>

@@ -22,7 +22,6 @@ namespace Capgemini.DevelopmentHub.BusinessLogic
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class CrmPluginRegistrationAttribute : Attribute
     {
-
         public CrmPluginRegistrationAttribute(
             string message,
             string entityLogicalName,
