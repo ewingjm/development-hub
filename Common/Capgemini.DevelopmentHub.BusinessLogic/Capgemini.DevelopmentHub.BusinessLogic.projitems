@@ -7,11 +7,15 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Capgemini.DevelopmentHub.BusinessLogic</Import_RootNamespace>
-</PropertyGroup>
-<ItemGroup>
-<Compile Include="$(MSBuildThisFileDirectory)CrmPluginRegistrationAttribute.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)Logging\ILogWriter.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)Logging\Severity.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)Logging\TracingServiceLogWriter.cs" />
-    </ItemGroup>
-  </Project>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CrmPluginRegistrationAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\InArgumentExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IRepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\ILogWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\Severity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging\TracingServiceLogWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RepositoryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WorkflowActivity.cs" />
+  </ItemGroup>
+</Project>

@@ -1,18 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AppModuleSiteMap>
+<AppModuleSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SiteMapUniqueName>cap_DevelopmentHub</SiteMapUniqueName>
   <SiteMap IntroducedVersion="7.0.0.0">
-    <Area Id="cap_DevelopmentHub" ResourceId="SitemapDesigner.NewArea" DescriptionResourceId="SitemapDesigner.NewArea" VectorIcon="/WebResources/cap_/Images/cap_Issue.svg" Icon="/WebResources/cap_/Images/cap_Issue.svg" ShowGroups="true" IntroducedVersion="7.0.0.0" ordinalvalue="0">
-      <Group Id="cap_Development" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown" ordinalvalue="1" solutionaction="Added">
+    <Area Id="cap_DevelopmentHub" ResourceId="SitemapDesigner.NewArea" DescriptionResourceId="SitemapDesigner.NewArea" VectorIcon="/WebResources/cap_/Images/cap_Issue.svg" Icon="/WebResources/cap_/Images/cap_Issue.svg" ShowGroups="true" IntroducedVersion="7.0.0.0">
+      <Titles>
+        <Title LCID="1033" Title="Development Hub" />
+      </Titles>
+      <Group Id="cap_Issues" ResourceId="SitemapDesigner.NewGroup" DescriptionResourceId="SitemapDesigner.NewGroup" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
+        <Titles>
+          <Title LCID="1033" Title="Issues" />
+        </Titles>
+        <SubArea Id="cap_Dashboards" ResourceId="Homepage_Dashboards" DescriptionResourceId="Dashboards_Description" Icon="/_imgs/imagestrips/transparent_spacer.gif" Url="/workplace/home_dashboards.aspx" DefaultDashboard="899883f9-9876-e911-a819-002248008902" IntroducedVersion="7.0.0.0" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Titles>
+            <Title LCID="1033" Title="Dashboard" />
+          </Titles>
+        </SubArea>
+        <SubArea Id="cap_Issues" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_issue" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Titles>
+            <Title LCID="1033" Title="Issues" />
+          </Titles>
+        </SubArea>
+      </Group>
+      <Group Id="cap_Development" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
         <Titles>
           <Title LCID="1033" Title="Develop" />
         </Titles>
-        <SubArea Id="cap_Environments" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_environment" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="0">
+        <SubArea Id="cap_Environments" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_environment" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1033" Title="Environments" />
           </Titles>
         </SubArea>
-        <SubArea Id="cap_Solutions" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_solution" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="1" />
+        <SubArea Id="cap_Solutions" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_solution" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
       </Group>
     </Area>
   </SiteMap>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Entity>
+<Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name LocalizedName="Solution" OriginalName="Solution">cap_solution</Name>
   <EntityInfo>
     <entity Name="cap_solution">

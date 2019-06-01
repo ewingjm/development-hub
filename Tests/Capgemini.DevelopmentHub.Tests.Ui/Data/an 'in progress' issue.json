@@ -1,0 +1,8 @@
+{
+  "@alias": "the issue",
+  "@logicalName": "cap_issue",
+  "cap_name": "An issue with a 'To Do' status",
+  "cap_description": "This issue has a status of 'To Do'",
+  "cap_type": 809020001,
+  "statuscode": 809020000
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "moduleResolution": "node",
+    "target": "es5",
+    "outDir": "dist/",
+    "rootDir": "src/",
+    "sourceMap": true,
+    "lib": [
+      "dom",
+      "es2015.promise",
+      "es2015",
+    ],
+    "types": [
+      "@types/xrm"
+    ]
+  },
+  "include": [
+    "src/",
+    "types/"
+  ],
+  "references": []
+}
