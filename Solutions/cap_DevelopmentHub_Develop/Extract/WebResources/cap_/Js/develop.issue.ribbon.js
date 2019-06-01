@@ -64,29 +64,29 @@ var Capgemini;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
-                                _a.trys.push([0, 2, , 3]);
-                                return [4 /*yield*/, Xrm.WebApi.online.execute(new StartDevelopingRequest(primaryControl.data.entity.getEntityReference()))];
+                                Xrm.Utility.showProgressIndicator("Creating development solution");
+                                _a.label = 1;
                             case 1:
-                                result = _a.sent();
-                                return [3 /*break*/, 3];
+                                _a.trys.push([1, 3, , 4]);
+                                return [4 /*yield*/, Xrm.WebApi.online.execute(new StartDevelopingRequest(primaryControl.data.entity.getEntityReference()))];
                             case 2:
+                                result = _a.sent();
+                                return [3 /*break*/, 4];
+                            case 3:
                                 ex_1 = _a.sent();
+                                Xrm.Utility.closeProgressIndicator();
                                 errorResponse = ex_1;
                                 Xrm.Navigation.openErrorDialog({
                                     message: errorResponse.message,
                                     errorCode: errorResponse.errorCode,
                                 });
-                                return [3 /*break*/, 3];
-                            case 3:
-                                if (!result.ok) return [3 /*break*/, 5];
-                                return [4 /*yield*/, Xrm.Navigation.openAlertDialog({
-                                        text: "Development solution created."
-                                    })];
+                                return [3 /*break*/, 4];
                             case 4:
-                                _a.sent();
-                                Xrm.Page.data.refresh(false);
-                                _a.label = 5;
-                            case 5: return [2 /*return*/];
+                                Xrm.Utility.closeProgressIndicator();
+                                if (result.ok) {
+                                    Xrm.Page.data.refresh(false);
+                                }
+                                return [2 /*return*/];
                         }
                     });
                 });

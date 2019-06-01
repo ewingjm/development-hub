@@ -8,7 +8,7 @@
   ],
   "earlyboundtypes": [
     {
-      "entities": "publisher, solution, cap_issue",
+      "entities": "publisher, solution, cap_issue, cap_solutionmerge",
       "actions": "cap_StartDeveloping",
       "generateOptionsetEnums": true,
       "generateStateEnums": true,

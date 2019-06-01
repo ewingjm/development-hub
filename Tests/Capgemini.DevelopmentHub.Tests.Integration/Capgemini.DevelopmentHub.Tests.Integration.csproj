@@ -114,7 +114,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Develop\StartDevelopingTests.cs" />
+    <Compile Include="Develop\SolutionMergeTests.cs" />
+    <Compile Include="Develop\IssueTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IntegrationTest.cs" />
     <Compile Include="Issues\IssueTests.cs" />

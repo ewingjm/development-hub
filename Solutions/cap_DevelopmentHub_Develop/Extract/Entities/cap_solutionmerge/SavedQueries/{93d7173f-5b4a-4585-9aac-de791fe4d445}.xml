@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{93d7173f-5b4a-4585-9aac-de791fe4d445}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cap_name" select="1" icon="1" preview="1">
+        <row name="result" id="cap_solutionmergeid">
+          <cell name="a_866722318e84e911a97e0022480186c3.cap_developmentsolution" width="100" disableSorting="1" />
+          <cell name="cap_targetsolution" width="100" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdby" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="a_866722318e84e911a97e0022480186c3.cap_type" width="100" disableSorting="1" />
+          <cell name="a_866722318e84e911a97e0022480186c3.cap_description" width="100" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="cap_solutionmerge">
+          <attribute name="cap_solutionmergeid" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <attribute name="cap_targetsolution" />
+          <attribute name="statuscode" />
+          <attribute name="createdby" />
+          <link-entity alias="a_866722318e84e911a97e0022480186c3" name="cap_issue" from="cap_issueid" to="cap_issue" link-type="outer" visible="false">
+            <attribute name="cap_type" />
+            <attribute name="cap_developmentsolution" />
+            <attribute name="cap_description" />
+          </link-entity>
+          <order attribute="createdon" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.1.12.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Solution Merges" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

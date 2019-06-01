@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
-    <CustomAction Id="cap.cap_issue.StartDeveloping.Button.CustomAction" Location="Mscrm.Form.cap_issue.MainTab.Actions.Controls._children" Sequence="17">
+    <CustomAction Id="cap.cap_issue.Develop.Button.CustomAction" Location="Mscrm.Form.cap_issue.MainTab.Actions.Controls._children" Sequence="17">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:cap.cap_issue.StartDeveloping.Button.Alt" Command="cap.cap_issue.StartDeveloping.Command" Id="cap.cap_issue.StartDeveloping.Button" LabelText="$LocLabels:cap.cap_issue.StartDeveloping.Button.LabelText" Sequence="17" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_issue.StartDeveloping.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_issue.StartDeveloping.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_develop.svg" />
+        <Button Alt="$LocLabels:cap.cap_issue.Develop.Button.Alt" Command="cap.cap_issue.Develop.Command" Id="cap.cap_issue.Develop.Button" LabelText="$LocLabels:cap.cap_issue.Develop.Button.LabelText" Sequence="17" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_issue.Develop.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_issue.Develop.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_develop.svg" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -11,9 +11,9 @@
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
   <CommandDefinitions>
-    <CommandDefinition Id="cap.cap_issue.StartDeveloping.Command">
+    <CommandDefinition Id="cap.cap_issue.Develop.Command">
       <EnableRules>
-        <EnableRule Id="cap.cap_issue.StartDeveloping.EnableRule" />
+        <EnableRule Id="cap.cap_issue.Develop.EnableRule" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -27,7 +27,7 @@
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules>
-      <EnableRule Id="cap.cap_issue.StartDeveloping.EnableRule">
+      <EnableRule Id="cap.cap_issue.Develop.EnableRule">
         <CustomRule FunctionName="Capgemini.DevelopmentHub.Develop.isStartDevelopingEnabled" Library="$webresource:cap_/Js/develop.issue.ribbon.js" Default="false" InvertResult="false">
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
@@ -35,24 +35,24 @@
     </EnableRules>
   </RuleDefinitions>
   <LocLabels>
-    <LocLabel Id="cap.cap_issue.StartDeveloping.Button.Alt">
+    <LocLabel Id="cap.cap_issue.Develop.Button.Alt">
       <Titles>
-        <Title description="Start Developing" languagecode="1033" />
+        <Title description="Develop" languagecode="1033" />
       </Titles>
     </LocLabel>
-    <LocLabel Id="cap.cap_issue.StartDeveloping.Button.LabelText">
+    <LocLabel Id="cap.cap_issue.Develop.Button.LabelText">
       <Titles>
-        <Title description="Start Developing" languagecode="1033" />
+        <Title description="Develop" languagecode="1033" />
       </Titles>
     </LocLabel>
-    <LocLabel Id="cap.cap_issue.StartDeveloping.Button.ToolTipDescription">
+    <LocLabel Id="cap.cap_issue.Develop.Button.ToolTipDescription">
       <Titles>
-        <Title description="Start developing this issue." languagecode="1033" />
+        <Title description="Develop this issue." languagecode="1033" />
       </Titles>
     </LocLabel>
-    <LocLabel Id="cap.cap_issue.StartDeveloping.Button.ToolTipTitle">
+    <LocLabel Id="cap.cap_issue.Develop.Button.ToolTipTitle">
       <Titles>
-        <Title description="Start Developing" languagecode="1033" />
+        <Title description="Develop" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

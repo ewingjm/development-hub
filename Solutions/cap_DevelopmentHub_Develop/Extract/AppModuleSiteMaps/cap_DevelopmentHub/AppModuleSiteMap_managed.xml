@@ -13,6 +13,11 @@
           </Titles>
         </SubArea>
         <SubArea Id="cap_Solutions" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_solution" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="1" />
+        <SubArea Id="cap_SolutionMerges" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="cap_solutionmerge" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="2">
+          <Titles>
+            <Title LCID="1033" Title="Solution Merges" />
+          </Titles>
+        </SubArea>
       </Group>
     </Area>
   </SiteMap>
