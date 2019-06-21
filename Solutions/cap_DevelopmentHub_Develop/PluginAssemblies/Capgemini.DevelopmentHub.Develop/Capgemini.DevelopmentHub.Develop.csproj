@@ -102,10 +102,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ImportJobData.cs" />
+    <Compile Include="Model\ImportResult.cs" />
+    <Compile Include="BusinessLogic\ISolutionImportService.cs" />
     <Compile Include="BusinessLogic\ISolutionService.cs" />
+    <Compile Include="Model\ImportJob.cs" />
+    <Compile Include="Model\OAuthPasswordGrantRequest.cs" />
+    <Compile Include="Model\OAuthToken.cs" />
+    <Compile Include="Model\RetrieveMultipleResponse.cs" />
+    <Compile Include="Repositories\IOAuthTokenRepository.cs" />
+    <Compile Include="Repositories\IODataClient.cs" />
+    <Compile Include="Repositories\ODataClient.cs" />
+    <Compile Include="Repositories\OAuthTokenRepository.cs" />
+    <Compile Include="BusinessLogic\SolutionImportService.cs" />
     <Compile Include="BusinessLogic\SolutionService.cs" />
     <Compile Include="CodeActivities\CreateSolution.cs" />
+    <Compile Include="CodeActivities\GetSolutionZip.cs" />
+    <Compile Include="CodeActivities\ImportSolutionZip.cs" />
     <Compile Include="Model\DevelopContext.cs" />
+    <Compile Include="Model\SolutionImportRequest.cs" />
+    <Compile Include="Plugins\InjectSecureConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,23 +9,26 @@
     /// </summary>
     public class RepositoryFactory : IRepositoryFactory
     {
-        private readonly IOrganizationService orgSvc;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryFactory"/> class.
         /// </summary>
         /// <param name="orgSvc">Organization service.</param>
         public RepositoryFactory(IOrganizationService orgSvc)
         {
-            this.orgSvc = orgSvc;
+            this.OrganizationService = orgSvc;
         }
+
+        /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        public IOrganizationService OrganizationService { get; private set; }
 
         /// <inheritdoc/>
         public ICrmRepository<TEntity> GetRepository<TContext, TEntity>()
             where TEntity : Entity, new()
             where TContext : OrganizationServiceContext
         {
-            return new CrmRepository<TContext, TEntity>(this.orgSvc);
+            return new CrmRepository<TContext, TEntity>(this.OrganizationService);
         }
     }
 }

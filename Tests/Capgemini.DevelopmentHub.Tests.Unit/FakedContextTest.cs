@@ -1,21 +1,18 @@
 ﻿namespace Capgemini.DevelopmentHub.Tests.Unit
 {
-    using System.Activities;
     using System.Diagnostics.CodeAnalysis;
     using FakeXrmEasy;
 
     /// <summary>
-    /// Base class for code activity unit tests.
+    /// Base class for custom workflow activity and plugin unit tests.
     /// </summary>
-    /// <typeparam name="TCodeActivity">The code activity under test.</typeparam>
     [ExcludeFromCodeCoverage]
-    public abstract class CodeActivityTest<TCodeActivity>
-        where TCodeActivity : CodeActivity, new()
+    public abstract class FakedContextTest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CodeActivityTest{TCodeActivity}"/> class.
+        /// Initializes a new instance of the <see cref="FakedContextTest"/> class.
         /// </summary>
-        public CodeActivityTest()
+        public FakedContextTest()
         {
             this.FakedContext = new XrmFakedContext();
         }

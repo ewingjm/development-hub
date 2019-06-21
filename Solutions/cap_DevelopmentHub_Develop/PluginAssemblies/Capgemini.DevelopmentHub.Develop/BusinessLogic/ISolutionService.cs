@@ -22,5 +22,13 @@
         /// <param name="uniqueName">The unique name.</param>
         /// <returns>A reference to the publisher.</returns>
         EntityReference GetSolutionPublisher(string uniqueName);
+
+        /// <summary>
+        /// Get a solution zip file.
+        /// </summary>
+        /// <param name="solutionUniqueName">The unique name of the solution.</param>
+        /// <param name="managed">Whether or not the solution should be managed.</param>
+        /// <returns>The solution zip file.</returns>
+        byte[] GetSolutionZip(string solutionUniqueName, bool managed);
     }
 }

@@ -13,6 +13,77 @@
         <Description description="Tracks the merging process for a development solution." languagecode="1033" />
       </Descriptions>
       <attributes>
+        <attribute PhysicalName="cap_ApprovedBy">
+          <Type>lookup</Type>
+          <Name>cap_approvedby</Name>
+          <LogicalName>cap_approvedby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.1.13.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Approved By" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The user that approved the solution merge." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="cap_ApprovedOn">
+          <Type>datetime</Type>
+          <Name>cap_approvedon</Name>
+          <LogicalName>cap_approvedon</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.1.13.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <Format>datetime</Format>
+          <CanChangeDateTimeBehavior>1</CanChangeDateTimeBehavior>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Approved On" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The date and time that the solution merge was approved." languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="cap_Issue">
           <Type>lookup</Type>
           <Name>cap_issue</Name>
@@ -598,7 +669,7 @@
                   <label description="Active" languagecode="1033" />
                 </labels>
               </state>
-              <state value="1" defaultstatus="2" invariantname="Inactive">
+              <state value="1" defaultstatus="809020001" invariantname="Inactive">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                 </labels>
@@ -654,9 +725,19 @@
                   <label description="Awaiting Review" languagecode="1033" />
                 </labels>
               </status>
+              <status value="809020000" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Approved" languagecode="1033" />
+                </labels>
+              </status>
               <status value="2" state="1" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Cancelled" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="809020001" state="1" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Merged" languagecode="1033" />
                 </labels>
               </status>
             </statuses>

@@ -6,6 +6,7 @@
     using Capgemini.DevelopmentHub.BusinessLogic.Logging;
     using Capgemini.DevelopmentHub.Develop.Model;
     using Capgemini.DevelopmentHub.Repositories;
+    using Microsoft.Crm.Sdk.Messages;
     using Microsoft.Xrm.Sdk;
 
     /// <summary>
@@ -17,6 +18,8 @@
 
         private readonly ICrmRepository<Solution> solutionRepo;
         private readonly ICrmRepository<Publisher> publisherRepo;
+
+        private readonly IOrganizationService organizationService;
         private readonly ILogWriter logWriter;
 
         /// <summary>
@@ -28,12 +31,14 @@
         {
             if (repositoryFactory == null)
             {
-                throw new System.ArgumentNullException(nameof(repositoryFactory));
+                throw new ArgumentNullException(nameof(repositoryFactory));
             }
 
             this.solutionRepo = repositoryFactory.GetRepository<DevelopContext, Solution>();
             this.publisherRepo = repositoryFactory.GetRepository<DevelopContext, Publisher>();
-            this.logWriter = logWriter ?? throw new System.ArgumentNullException(nameof(logWriter));
+
+            this.organizationService = repositoryFactory.OrganizationService;
+            this.logWriter = logWriter ?? throw new ArgumentNullException(nameof(logWriter));
         }
 
         /// <inheritdoc/>
@@ -41,12 +46,12 @@
         {
             if (string.IsNullOrEmpty(uniqueName))
             {
-                throw new ArgumentException("message", nameof(uniqueName));
+                throw new ArgumentException("The solution unique name was null or empty.", nameof(uniqueName));
             }
 
             if (string.IsNullOrEmpty(displayName))
             {
-                throw new ArgumentException("message", nameof(displayName));
+                throw new ArgumentException("The solution display name was null or empty.", nameof(displayName));
             }
 
             this.logWriter.Log(Severity.Info, Tag, $"{nameof(this.Create)}: Creating solution {uniqueName}.");
@@ -68,7 +73,7 @@
         {
             if (string.IsNullOrEmpty(uniqueName))
             {
-                throw new ArgumentException("message", nameof(uniqueName));
+                throw new ArgumentException("The solution unique name was null or empty", nameof(uniqueName));
             }
 
             this.logWriter.Log(Severity.Info, Tag, $"{nameof(this.GetSolutionPublisher)}: Getting publisher for {uniqueName}.");
@@ -92,6 +97,28 @@
             }
 
             return publisher.ToEntityReference();
+        }
+
+        /// <inheritdoc/>
+        public byte[] GetSolutionZip(string solutionUniqueName, bool managed)
+        {
+            if (string.IsNullOrEmpty(solutionUniqueName))
+            {
+                throw new ArgumentException("The solution unique name was null or empty", nameof(solutionUniqueName));
+            }
+
+            this.logWriter.Log(Severity.Info, Tag, $"Retrieving {solutionUniqueName} as an {(managed ? "managed" : "unmanaged")} solution zip.");
+
+            var response = (ExportSolutionResponse)this.organizationService.Execute(
+                new ExportSolutionRequest
+                {
+                    SolutionName = solutionUniqueName,
+                    Managed = managed,
+                });
+
+            this.logWriter.Log(Severity.Info, Tag, $"Downloaded {response.ExportSolutionFile.Length / 1024}KB.");
+
+            return response.ExportSolutionFile;
         }
     }
 }

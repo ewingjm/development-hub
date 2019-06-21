@@ -6,7 +6,9 @@
   <EntityRelationship Name="cap_environment_solution_StagingEnvironment" />
   <EntityRelationship Name="cap_issue_solutionmerge_Issue" />
   <EntityRelationship Name="cap_solution_solutionmerge_TargetSolution" />
+  <EntityRelationship Name="cap_solutionmerge_environment_LastApprovedSolutionMerge" />
   <EntityRelationship Name="cap_solutionmerge_issue_LastSolutionMerge" />
+  <EntityRelationship Name="cap_systemuser_solutionmerge_ApprovedBy" />
   <EntityRelationship Name="lk_cap_environment_createdby" />
   <EntityRelationship Name="lk_cap_environment_modifiedby" />
   <EntityRelationship Name="lk_cap_solution_createdby" />

@@ -1,6 +1,7 @@
 ﻿namespace Capgemini.DevelopmentHub.Develop.CodeActivities
 {
     using System.Activities;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using Capgemini.DevelopmentHub.BusinessLogic;
@@ -35,7 +36,7 @@
         /// <summary>
         /// The description of the workflow activity.
         /// </summary>
-        public const string Description = "Creates a solution";
+        public const string Description = "Creates a solution.";
 
         private readonly ISolutionService solutionService;
 
@@ -60,12 +61,14 @@
         /// Gets or sets the unique name of the solution.
         /// </summary>
         [Input("Unique name")]
+        [RequiredArgument]
         public InArgument<string> SolutionUniqueName { get; set; }
 
         /// <summary>
         /// Gets or sets the display name of the solution.
         /// </summary>
         [Input("Display name")]
+        [RequiredArgument]
         public InArgument<string> SolutionDisplayName { get; set; }
 
         /// <summary>
@@ -82,13 +85,13 @@
         public OutArgument<EntityReference> CreatedSolution { get; set; }
 
         /// <inheritdoc/>
-        protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ITracingService tracingSvc, IRepositoryFactory repoFactory)
+        protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
             var uniqueName = this.SolutionUniqueName.GetRequired(context, nameof(this.SolutionUniqueName));
             var displayName = this.SolutionDisplayName.GetRequired(context, nameof(this.SolutionDisplayName));
             var description = this.SolutionDescription.Get(context);
 
-            var createdSolution = this.GetSolutionService(repoFactory, new TracingServiceLogWriter(tracingSvc, true))
+            var createdSolution = this.GetSolutionService(repoFactory, logWriter)
                 .Create(this.SanitizeUniqueName(uniqueName), displayName, description);
 
             this.CreatedSolution.Set(context, createdSolution);
@@ -103,6 +106,7 @@
             return titleCaseTrimmedFirstCharLower;
         }
 
+        [ExcludeFromCodeCoverage]
         private ISolutionService GetSolutionService(IRepositoryFactory repoFactory, ILogWriter logWriter)
         {
             return this.solutionService ?? new SolutionService(repoFactory, logWriter);

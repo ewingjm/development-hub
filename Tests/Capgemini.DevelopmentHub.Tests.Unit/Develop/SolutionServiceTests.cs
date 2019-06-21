@@ -2,11 +2,13 @@
 {
     using System;
     using System.Linq;
+    using System.Text;
     using Capgemini.DevelopmentHub.BusinessLogic;
     using Capgemini.DevelopmentHub.BusinessLogic.Logging;
     using Capgemini.DevelopmentHub.Develop.BusinessLogic;
     using Capgemini.DevelopmentHub.Develop.Model;
     using Capgemini.DevelopmentHub.Repositories;
+    using Microsoft.Crm.Sdk.Messages;
     using Microsoft.Xrm.Sdk;
     using Moq;
     using Xunit;
@@ -21,6 +23,7 @@
         private readonly Mock<IRepositoryFactory> repoFactoryMock;
         private readonly Mock<ICrmRepository<Solution>> solutionRepoMock;
         private readonly Mock<ICrmRepository<Publisher>> publisherRepoMock;
+        private readonly Mock<IOrganizationService> orgServiceMock;
         private readonly Mock<ILogWriter> logWriterMock;
 
         /// <summary>
@@ -31,6 +34,7 @@
             this.repoFactoryMock = new Mock<IRepositoryFactory>();
             this.solutionRepoMock = new Mock<ICrmRepository<Solution>>();
             this.publisherRepoMock = new Mock<ICrmRepository<Publisher>>();
+            this.orgServiceMock = new Mock<IOrganizationService>();
             this.logWriterMock = new Mock<ILogWriter>();
 
             this.repoFactoryMock
@@ -39,9 +43,36 @@
             this.repoFactoryMock
                 .Setup(repoFactory => repoFactory.GetRepository<DevelopContext, Publisher>())
                 .Returns(this.publisherRepoMock.Object);
+            this.repoFactoryMock
+                .Setup(repoFactory => repoFactory.OrganizationService)
+                .Returns(this.orgServiceMock.Object);
 
             this.solutionService = new SolutionService(
                 this.repoFactoryMock.Object, this.logWriterMock.Object);
+        }
+
+        /// <summary>
+        /// Tests that calling the constructor with a null repository factory throws an exception.
+        /// </summary>
+        [Fact]
+        public void SolutionService_NullRepositoryFactory_Throws()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new SolutionService(null, this.logWriterMock.Object);
+            });
+        }
+
+        /// <summary>
+        /// Tests that calling the constructor with a null log writer throws an exception.
+        /// </summary>
+        [Fact]
+        public void SolutionService_NullLogWriter_Throws()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                new SolutionService(this.repoFactoryMock.Object, null);
+            });
         }
 
         /// <summary>
@@ -120,6 +151,38 @@
             {
                 this.solutionService.GetSolutionPublisher("solution");
             });
+        }
+
+        /// <summary>
+        /// Tests that calling <see cref="SolutionService.GetSolutionZip(string, bool)"/> with an empty solution unique name throws an exception.
+        /// </summary>
+        [Fact]
+        public void GetSolutionZip_NullOrEmptySolutionUniqueName_Throws()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                this.solutionService.GetSolutionZip(string.Empty, false);
+            });
+        }
+
+        /// <summary>
+        /// Tests that <see cref="SolutionService.GetSolutionZip(string, bool)"/> returns the <see cref="ExportSolutionResponse.ExportSolutionFile"/>.
+        /// </summary>
+        [Fact]
+        public void GetSolutionZip_ReturnsExportSolutionFile()
+        {
+            var expectedSolutionFile = Encoding.UTF8.GetBytes("the expected solution file");
+            this.orgServiceMock.SetReturnsDefault<OrganizationResponse>(new ExportSolutionResponse
+            {
+                Results = new ParameterCollection
+                {
+                    { "ExportSolutionFile", expectedSolutionFile },
+                },
+            });
+
+            var actualSolutionFile = this.solutionService.GetSolutionZip("cap_Solution", true);
+
+            Assert.Equal(expectedSolutionFile, actualSolutionFile);
         }
     }
 }

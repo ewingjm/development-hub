@@ -6,9 +6,22 @@
   <FileName>/PluginAssemblies/CapgeminiDevelopmentHubDevelop-BB5CD61C-5B82-E911-A979-002248010929/CapgeminiDevelopmentHubDevelop.dll</FileName>
   <PluginTypes>
     <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.CreateSolution, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="be5cd61c-5b82-e911-a979-002248010929" Name="CreateSolution">
-      <Description>Creates a solution</Description>
+      <Description>Creates a solution.</Description>
       <FriendlyName>Create a solution</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.GetSolutionZip, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="7d58ac9f-0a8a-e911-a97b-002248010929" Name="GetSolutionZip">
+      <Description>Gets a solution zip file as a Base64 encoded string.</Description>
+      <FriendlyName>Get solution zip</FriendlyName>
+      <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.ImportSolutionZip, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="7e58ac9f-0a8a-e911-a97b-002248010929" Name="ImportSolutionZip">
+      <Description>Imports a solution zip file as a Base64 encoded string.</Description>
+      <FriendlyName>Import solution zip</FriendlyName>
+      <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="9f3ed163-c78a-e911-a97b-002248010929" Name="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig">
+      <FriendlyName>Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig</FriendlyName>
     </PluginType>
   </PluginTypes>
 </PluginAssembly>

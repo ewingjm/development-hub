@@ -1,14 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="cap.cap_solutionmerge.Approve.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="15">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:cap.cap_solutionmerge.Approve.Button.Alt" Command="cap.cap_solutionmerge.Approve.Command" Id="cap.cap_solutionmerge.Approve.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Approve.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_approve.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="cap.cap_solutionmerge.Approve.Command">
+      <EnableRules>
+        <EnableRule Id="cap.cap_solutionmerge.Review.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="Capgemini.DevelopmentHub.Develop.approve" Library="$webresource:cap_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="cap.cap_solutionmerge.Review.EnableRule">
+        <CustomRule FunctionName="Capgemini.DevelopmentHub.Develop.isReviewEnabled" Library="$webresource:cap_/Js/develop.solutionmerge.ribbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="cap.cap_solutionmerge.Approve.Button.Alt">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Approve.Button.LabelText">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Approve.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Approve the solution merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Approve.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
