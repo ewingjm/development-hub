@@ -13,7 +13,7 @@
     /// Tests for the <see cref="CreateSolution"/> workflow activity.
     /// </summary>
     [Trait("Solution", "cap_DevelopmentHub_Develop")]
-    public class CreateSolutionTests : CodeActivityTest<CreateSolution>
+    public class CreateSolutionTests : FakedContextTest
     {
         private readonly Mock<ISolutionService> solutionServiceMock;
         private readonly CreateSolution codeActivity;

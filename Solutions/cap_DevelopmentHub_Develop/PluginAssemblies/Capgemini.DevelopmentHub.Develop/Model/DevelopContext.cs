@@ -2035,6 +2035,460 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public enum cap_environmentState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public enum cap_environment_statuscode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	/// <summary>
+	/// A Dynamics 365 environment.
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_environment")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_environment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public cap_environment() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "cap_environment";
+		
+		public const int EntityTypeCode = 10046;
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_environmentid")]
+		public System.Nullable<System.Guid> cap_environmentId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("cap_environmentid");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_environmentId");
+				this.SetAttributeValue("cap_environmentid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("cap_environmentId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_environmentid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.cap_environmentId = value;
+			}
+		}
+		
+		/// <summary>
+		/// The last solution merge that was approved for this environment.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_lastapprovedsolutionmerge")]
+		public Microsoft.Xrm.Sdk.EntityReference cap_LastApprovedSolutionMerge
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cap_lastapprovedsolutionmerge");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_LastApprovedSolutionMerge");
+				this.SetAttributeValue("cap_lastapprovedsolutionmerge", value);
+				this.OnPropertyChanged("cap_LastApprovedSolutionMerge");
+			}
+		}
+		
+		/// <summary>
+		/// The name of the environment.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_name")]
+		public string cap_name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cap_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_name");
+				this.SetAttributeValue("cap_name", value);
+				this.OnPropertyChanged("cap_name");
+			}
+		}
+		
+		/// <summary>
+		/// The URL of the environment.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_url")]
+		public string cap_Url
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cap_url");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_Url");
+				this.SetAttributeValue("cap_url", value);
+				this.OnPropertyChanged("cap_Url");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Environment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<Capgemini.DevelopmentHub.Develop.Model.cap_environmentState> statecode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((Capgemini.DevelopmentHub.Develop.Model.cap_environmentState)(System.Enum.ToObject(typeof(Capgemini.DevelopmentHub.Develop.Model.cap_environmentState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("statecode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("statecode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Environment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public System.Nullable<Capgemini.DevelopmentHub.Develop.Model.cap_environment_statuscode> statuscode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+				if ((optionSet != null))
+				{
+					return ((Capgemini.DevelopmentHub.Develop.Model.cap_environment_statuscode)(System.Enum.ToObject(typeof(Capgemini.DevelopmentHub.Develop.Model.cap_environment_statuscode), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("statuscode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statuscode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statuscode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("statuscode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 cap_solutionmerge_environment_LastApprovedSolutionMerge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_lastapprovedsolutionmerge")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solutionmerge_environment_LastApprovedSolutionMerge")]
+		public Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge cap_solutionmerge_environment_LastApprovedSolutionMerge
+		{
+			get
+			{
+				return this.GetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_solutionmerge_environment_LastApprovedSolutionMerge", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solutionmerge_environment_LastApprovedSolutionMerge");
+				this.SetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solutionmerge>("cap_solutionmerge_environment_LastApprovedSolutionMerge", null, value);
+				this.OnPropertyChanged("cap_solutionmerge_environment_LastApprovedSolutionMerge");
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
 	public enum cap_issue_cap_type
 	{
 		
@@ -2616,7 +3070,13 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		AwaitingReview = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approved = 809020000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cancelled = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Merged = 809020001,
 	}
 	
 	/// <summary>
@@ -2657,6 +3117,42 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// The user that approved the solution merge.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_approvedby")]
+		public Microsoft.Xrm.Sdk.EntityReference cap_ApprovedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("cap_approvedby");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_ApprovedBy");
+				this.SetAttributeValue("cap_approvedby", value);
+				this.OnPropertyChanged("cap_ApprovedBy");
+			}
+		}
+		
+		/// <summary>
+		/// The date and time that the solution merge was approved.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_approvedon")]
+		public System.Nullable<System.DateTime> cap_ApprovedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("cap_approvedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_ApprovedOn");
+				this.SetAttributeValue("cap_approvedon", value);
+				this.OnPropertyChanged("cap_ApprovedOn");
 			}
 		}
 		
@@ -3026,6 +3522,24 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N cap_solutionmerge_environment_LastApprovedSolutionMerge
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solutionmerge_environment_LastApprovedSolutionMerge")]
+		public System.Collections.Generic.IEnumerable<Capgemini.DevelopmentHub.Develop.Model.cap_environment> cap_solutionmerge_environment_LastApprovedSolutionMerge
+		{
+			get
+			{
+				return this.GetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_environment>("cap_solutionmerge_environment_LastApprovedSolutionMerge", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solutionmerge_environment_LastApprovedSolutionMerge");
+				this.SetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.cap_environment>("cap_solutionmerge_environment_LastApprovedSolutionMerge", null, value);
+				this.OnPropertyChanged("cap_solutionmerge_environment_LastApprovedSolutionMerge");
 			}
 		}
 		
@@ -4855,6 +5369,17 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
+		/// Gets a binding to the set of all <see cref="Capgemini.DevelopmentHub.Develop.Model.cap_environment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Capgemini.DevelopmentHub.Develop.Model.cap_environment> cap_environmentSet
+		{
+			get
+			{
+				return this.CreateQuery<Capgemini.DevelopmentHub.Develop.Model.cap_environment>();
+			}
+		}
+		
+		/// <summary>
 		/// Gets a binding to the set of all <see cref="Capgemini.DevelopmentHub.Develop.Model.cap_issue"/> entities.
 		/// </summary>
 		public System.Linq.IQueryable<Capgemini.DevelopmentHub.Develop.Model.cap_issue> cap_issueSet
@@ -4954,6 +5479,69 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 					return default(Microsoft.Xrm.Sdk.EntityReference);
 				}
 			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_ImportSolution")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_ImportSolutionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SolutionZip
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionZip"))
+				{
+					return ((string)(this.Parameters["SolutionZip"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionZip"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public cap_ImportSolutionRequest()
+		{
+			this.RequestName = "cap_ImportSolution";
+			this.SolutionZip = default(string);
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_ImportSolution")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_ImportSolutionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cap_ImportSolutionResponse()
+		{
 		}
 	}
 }

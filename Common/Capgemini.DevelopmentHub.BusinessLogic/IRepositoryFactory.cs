@@ -10,6 +10,11 @@
     public interface IRepositoryFactory
     {
         /// <summary>
+        /// Gets the organization service.
+        /// </summary>
+        IOrganizationService OrganizationService { get; }
+
+        /// <summary>
         /// Get a repository for the given entity.
         /// </summary>
         /// <typeparam name="TContext">The context.</typeparam>

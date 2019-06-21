@@ -116,6 +116,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Develop\Approved a developed issue.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Approved a developed issue.feature</DependentUpon>
+    </Compile>
     <Compile Include="Develop\Create a solution.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -130,6 +135,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Start developing an issue.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Develop\Submit an issue to be merged.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Submit an issue to be merged.feature</DependentUpon>
     </Compile>
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Steps\CommandSteps.cs" />
@@ -150,7 +160,12 @@
     <None Include="Data\a %27To Do%27 issue.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\an %27Awaiting Review%27 solution merge.json" />
     <None Include="Data\an %27In Progress%27 issue.json" />
+    <None Include="Develop\Approved a developed issue.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Approved a developed issue.feature.cs</LastGenOutput>
+    </None>
     <None Include="Develop\Create a solution.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Create a solution.feature.cs</LastGenOutput>
@@ -162,6 +177,10 @@
     <None Include="Develop\Start developing an issue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Start developing an issue.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Develop\Submit an issue to be merged.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Submit an issue to be merged.feature.cs</LastGenOutput>
     </None>
     <None Include="Issues\Create an issue.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

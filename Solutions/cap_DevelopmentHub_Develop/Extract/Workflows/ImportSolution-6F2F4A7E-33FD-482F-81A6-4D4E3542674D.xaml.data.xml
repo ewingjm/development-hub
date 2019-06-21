@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{6f2f4a7e-33fd-482f-81a6-4d4e3542674d}" Name="Import Solution" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/ImportSolution-6F2F4A7E-33FD-482F-81A6-4D4E3542674D.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>3</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <SdkMessageId>{b0aad088-c18a-e911-a97e-0022480186c3}</SdkMessageId>
+  <UniqueName>ImportSolution</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.1.13.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <PrimaryEntity>cap_environment</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Import Solution" />
+  </LocalizedNames>
+</Workflow>

@@ -13,6 +13,7 @@
                 <ModulePath>.*\.exe$</ModulePath>
               </Include>
               <Exclude>
+                <ModulePath>.*Tests.*</ModulePath>
                 <ModulePath>.*fakeiteasy.*</ModulePath>
                 <ModulePath>.*Moq.*</ModulePath>
                 <ModulePath>.*CPPUnitTestFramework.*</ModulePath>
