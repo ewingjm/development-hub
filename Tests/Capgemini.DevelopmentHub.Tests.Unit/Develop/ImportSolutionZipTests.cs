@@ -72,11 +72,7 @@
         {
             Assert.Throws<Exception>(() =>
             {
-                this.FakedContext.ExecuteCodeActivity<ImportSolutionZip>(new Dictionary<string, object>
-                {
-                    { nameof(ImportSolutionZip.SolutionZip), "SOLUTION ZIP" },
-                    { nameof(ImportSolutionZip.TargetInstanceUrl), "https://targetinstance.crm11.dynamics.com" },
-                });
+                this.FakedContext.ExecuteCodeActivity<ImportSolutionZip>(this.GetValidInputs());
             });
         }
 
@@ -120,42 +116,82 @@
 
             this.FakedContext.ExecuteCodeActivity(
                 this.GetConfiguredWorkflowContext(),
-                new Dictionary<string, object>
-                {
-                    { nameof(ImportSolutionZip.SolutionZip), expectedSolutionZip },
-                    { nameof(ImportSolutionZip.TargetInstanceUrl), "https://targetinstance.crm11.dynamics.com" },
-                },
+                this.GetValidInputs(),
                 this.importSolutionZip);
 
             this.solutionImportServiceMock.VerifyAll();
         }
 
         /// <summary>
-        /// Tests that a failed import job throws an exception.
+        /// Tests that a failed import sets the error message.
         /// </summary>
         [Fact]
-        public void ImportSolution_ImportJobFailure_Throws()
+        public void ImportSolution_ImportJobFailure_SetsError()
         {
             this.MockAccessTokenResult();
-            var failedImportJobData = ImportJobData.ParseXml("<solutionManifest><result result=\"failure\" errortext=\"\"></result></solutionManifest>");
+
+            var error = "Missing dependencies";
+            var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"failure\" errortext=\"{error}\"></result></solutionManifest>");
             this.solutionImportServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
 
-            Assert.Throws<Exception>(() =>
-            {
-                this.FakedContext.ExecuteCodeActivity(
+            var outputs = this.FakedContext.ExecuteCodeActivity(
                 this.GetConfiguredWorkflowContext(),
-                new Dictionary<string, object>
-                {
-                    { nameof(ImportSolutionZip.SolutionZip), Convert.ToBase64String(Encoding.UTF8.GetBytes("SOLUTION ZIP")) },
-                    { nameof(ImportSolutionZip.TargetInstanceUrl), "https://targetinstance.crm11.dynamics.com" },
-                },
+                this.GetValidInputs(),
                 this.importSolutionZip);
-            });
+
+            Assert.Equal(error, outputs[nameof(ImportSolutionZip.Error)]);
+        }
+
+        /// <summary>
+        /// Tests that a failed import sets IsSuccessful to false.
+        /// </summary>
+        [Fact]
+        public void ImportSolution_ImportJobFailure_SetsIsSuccessfulToFalse()
+        {
+            this.MockAccessTokenResult();
+
+            var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"failure\" errortext=\"\"></result></solutionManifest>");
+            this.solutionImportServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
+
+            var outputs = this.FakedContext.ExecuteCodeActivity(
+                this.GetConfiguredWorkflowContext(),
+                this.GetValidInputs(),
+                this.importSolutionZip);
+
+            Assert.Equal(false, outputs[nameof(ImportSolutionZip.IsSuccessful)]);
+        }
+
+        /// <summary>
+        /// Tests that a successful import sets IsSuccessful to true.
+        /// </summary>
+        [Fact]
+        public void ImportSolution_ImportJobSuccess_SetsIsSuccessfulToTrue()
+        {
+            this.MockAccessTokenResult();
+
+            var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"success\" errortext=\"\"></result></solutionManifest>");
+            this.solutionImportServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
+
+            var outputs = this.FakedContext.ExecuteCodeActivity(
+                this.GetConfiguredWorkflowContext(),
+                this.GetValidInputs(),
+                this.importSolutionZip);
+
+            Assert.Equal(true, outputs[nameof(ImportSolutionZip.IsSuccessful)]);
         }
 
         private void MockAccessTokenResult()
         {
             this.oAuthTokenRepositoryMock.SetReturnsDefault(Task.FromResult(new OAuthToken { AccessToken = "ACCESS TOKEN" }));
+        }
+
+        private Dictionary<string, object> GetValidInputs()
+        {
+            return new Dictionary<string, object>
+                {
+                    { nameof(ImportSolutionZip.SolutionZip), Convert.ToBase64String(Encoding.UTF8.GetBytes("SOLUTION ZIP")) },
+                    { nameof(ImportSolutionZip.TargetInstanceUrl), "https://targetinstance.crm11.dynamics.com" },
+                };
         }
 
         private XrmFakedWorkflowContext GetConfiguredWorkflowContext()

@@ -14,7 +14,7 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{039975e0-c765-44b3-8487-2deedaa8bea3}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{039975e0-c765-44b3-8487-2deedaa8bea3}" name="{039975e0-c765-44b3-8487-2deedaa8bea3}" columns="11" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="General" languagecode="1033" />
                   </labels>
@@ -25,6 +25,11 @@
                           <label description="" languagecode="1033" />
                         </labels>
                         <control id="cap_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_name" uniqueid="{2aec4226-5d6a-985d-7cad-6c054ad3e9a0}" disabled="false" />
+                      </cell>
+                      <cell id="{a1a32588-5ddb-4311-5283-20d8c72635a7}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                     <row>
@@ -43,6 +48,11 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{3929569d-d78b-83ce-d149-960ce651d199}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{59062375-9a2e-27b5-8c4a-ac7ea4ccd522}" showlabel="true" locklevel="0">
@@ -51,7 +61,41 @@
                         </labels>
                         <control id="cap_targetsolution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="cap_targetsolution" disabled="false" />
                       </cell>
+                      <cell id="{93071159-62a6-d468-5d0b-b624291755b1}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_2" showlabel="false" showbar="false" locklevel="0" id="{54942beb-08d9-e2ea-4cad-3623e3c7d822}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6d6ea881-bd47-3c30-847e-1da39dadae6b}" showlabel="true" rowspan="15" auto="false" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>

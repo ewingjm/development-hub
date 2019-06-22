@@ -109,6 +109,10 @@
     <Compile Include="Model\ImportJob.cs" />
     <Compile Include="Model\OAuthPasswordGrantRequest.cs" />
     <Compile Include="Model\OAuthToken.cs" />
+    <Compile Include="Model\ODataError.cs" />
+    <Compile Include="Model\ODataErrorResponse.cs" />
+    <Compile Include="Model\ODataException.cs" />
+    <Compile Include="Model\ODataInnerError.cs" />
     <Compile Include="Model\RetrieveMultipleResponse.cs" />
     <Compile Include="Repositories\IOAuthTokenRepository.cs" />
     <Compile Include="Repositories\IODataClient.cs" />
@@ -123,6 +127,9 @@
     <Compile Include="Model\SolutionImportRequest.cs" />
     <Compile Include="Plugins\InjectSecureConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\SandboxWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

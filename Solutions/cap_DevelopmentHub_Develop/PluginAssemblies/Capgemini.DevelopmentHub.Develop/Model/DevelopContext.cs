@@ -993,6 +993,9 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AIConfiguration = 402,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntityAnalyticsConfiguration = 430,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1689,6 +1692,18 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Unpublished = 4,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public enum connectortype
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CustomConnector = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NotSpecified = 0,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -3071,6 +3086,9 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Approved = 809020000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Failed = 809020002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cancelled = 2,
@@ -5542,6 +5560,36 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		public cap_ImportSolutionResponse()
 		{
+		}
+		
+		public string ErrorMessage
+		{
+			get
+			{
+				if (this.Results.Contains("ErrorMessage"))
+				{
+					return ((string)(this.Results["ErrorMessage"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		public bool IsSuccessful
+		{
+			get
+			{
+				if (this.Results.Contains("IsSuccessful"))
+				{
+					return ((bool)(this.Results["IsSuccessful"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
 		}
 	}
 }

@@ -4,6 +4,7 @@
     using System.Activities;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Net;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using Capgemini.DevelopmentHub.BusinessLogic;
@@ -78,6 +79,18 @@
         [Input("Solution zip")]
         public InArgument<string> SolutionZip { get; set; }
 
+        /// <summary>
+        /// Gets or sets true if the import was successful or false if the import failed.
+        /// </summary>
+        [Output("Succeeded")]
+        public OutArgument<bool> IsSuccessful { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message encountered when importing (if any).
+        /// </summary>
+        [Output("Error")]
+        public OutArgument<string> Error { get; set; }
+
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
@@ -90,11 +103,22 @@
             var token = this.GetOAuthTokenRepository().GetAccessToken(passwordGrantRequest).Result;
             var solutionImportService = this.GetSolutionImportService(targetInstance, token);
 
-            var importJobData = solutionImportService.ImportSolutionZip(Convert.FromBase64String(solutionZip)).Result;
-            if (importJobData.ImportResult == ImportResult.Failure)
+            ImportJobData importJobData = null;
+            try
             {
-                throw new Exception(importJobData.ErrorText);
+                logWriter.Log(Severity.Info, nameof(ImportSolutionZip), "Importing solution zip.");
+                importJobData = solutionImportService.ImportSolutionZip(Convert.FromBase64String(solutionZip)).Result;
             }
+            catch (AggregateException ex) when (ex.InnerException is WebException)
+            {
+                logWriter.Log(Severity.Info, nameof(ImportSolutionZip), $"Exception while importing. {ex.InnerException.Message}");
+                this.Error.Set(context, ex.InnerException.Message);
+                this.IsSuccessful.Set(context, false);
+                return;
+            }
+
+            this.IsSuccessful.Set(context, importJobData.ImportResult == ImportResult.Success);
+            this.Error.Set(context, importJobData.ErrorText);
         }
 
         private static OAuthPasswordGrantRequest GetPasswordGrantRequest(IWorkflowContext workflowContext)

@@ -59,15 +59,7 @@
         /// <inheritdoc/>
         public async Task<byte[]> PostAsync(string path, byte[] payload)
         {
-            byte[] response;
-            using (var webClient = this.GetWebClient())
-            {
-                response = await webClient
-                .UploadDataTaskAsync(path, payload)
-                .ConfigureAwait(false);
-            }
-
-            return response;
+            return await this.MakeODataRequest((webClient) => webClient.UploadDataTaskAsync(path, payload)).ConfigureAwait(false);
         }
 
         /// <inheritdoc/>
@@ -157,9 +149,32 @@
             return serializedResponse;
         }
 
+        private async Task<byte[]> MakeODataRequest(Func<WebClient, Task<byte[]>> request)
+        {
+            byte[] response;
+
+            using (var webClient = this.GetWebClient())
+            {
+                try
+                {
+                    response = await request.Invoke(webClient).ConfigureAwait(false);
+                }
+                catch (WebException ex)
+                {
+                    var oDataError = (ODataErrorResponse)new DataContractJsonSerializer(typeof(ODataErrorResponse), new Type[] { typeof(ODataInnerError), typeof(ODataError) })
+                        .ReadObject(ex.Response.GetResponseStream());
+
+                    // It would be preferable to throw a custom ODataException but custom exceptions are not supported in the sandbox.
+                    throw new WebException(oDataError.Error.Message, ex);
+                }
+            }
+
+            return response;
+        }
+
         private WebClient GetWebClient()
         {
-            return new WebClient
+            return new SandboxWebClient
             {
                 BaseAddress = this.api.ToString(),
                 Headers =
