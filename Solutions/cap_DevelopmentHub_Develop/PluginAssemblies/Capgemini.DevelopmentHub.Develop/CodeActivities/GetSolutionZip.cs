@@ -82,8 +82,6 @@
 
             var solutionZip = solutionService.GetSolutionZip(solutionUniqueName, managed);
 
-            logWriter.Log(Severity.Info, nameof(GetSolutionZip), Convert.ToBase64String(solutionZip));
-
             this.SolutionZip.Set(context, Convert.ToBase64String(solutionZip));
         }
 
