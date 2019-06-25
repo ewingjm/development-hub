@@ -33,7 +33,7 @@ namespace Capgemini.DevelopmentHub.Develop {
         executeWebApiRequest(new ApproveRequest(entity), "Approving solution merge.")
             .then(() => primaryControl.data.refresh(false));
     }
-
+    
     function executeWebApiRequest(request: any, progressIndicator: string): Promise<void> {
         return new Promise((resolve, reject) => {
             Xrm.Utility.showProgressIndicator(progressIndicator);

@@ -124,8 +124,8 @@
       "description": "Type of data.",
       "type": "pickString",
       "options": [
-        "Reference",
-        "Configuration"
+        "PreDeployment",
+        "PostDeployment"
       ]
     }
   ]

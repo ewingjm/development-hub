@@ -155,15 +155,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IntegratedWorkflowActivityTests.cs" />
+    <Compile Include="Develop\MergeSolutionComponentsTests.cs" />
     <Compile Include="FakedContextTest.cs" />
     <Compile Include="Develop\CreateSolutionTests.cs" />
     <Compile Include="Develop\GetSolutionZipTests.cs" />
     <Compile Include="Develop\ImportSolutionZipTests.cs" />
     <Compile Include="Develop\InjectSecureConfigTests.cs" />
-    <Compile Include="Develop\SolutionImportServiceTests.cs" />
+    <Compile Include="Develop\ODataSolutionServiceTests.cs" />
     <Compile Include="Develop\SolutionServiceTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkflowActivityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

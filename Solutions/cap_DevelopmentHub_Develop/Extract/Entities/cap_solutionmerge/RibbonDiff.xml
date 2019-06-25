@@ -6,6 +6,11 @@
         <Button Alt="$LocLabels:cap.cap_solutionmerge.Approve.Button.Alt" Command="cap.cap_solutionmerge.Approve.Command" Id="cap.cap_solutionmerge.Approve.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Approve.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_approve.svg" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="cap.cap_solutionmerge.Retry.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="14">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:cap.cap_solutionmerge.Retry.Button.Alt" Command="cap.cap_solutionmerge.Retry.Command" Id="cap.cap_solutionmerge.Retry.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Retry.Button.LabelText" Sequence="14" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_retry.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -22,11 +27,28 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="cap.cap_solutionmerge.Retry.Command">
+      <EnableRules>
+        <EnableRule Id="cap.cap_solutionmerge.Retry.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="Capgemini.DevelopmentHub.Develop.executeWorkflow" Library="$webresource:cap_/Js/develop.common.js">
+          <StringParameter Value="EF05E501-F445-49D9-AB1F-2FDB9CDF972A" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <StringParameter Value="Retrying merge" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules>
+      <EnableRule Id="cap.cap_solutionmerge.Retry.EnableRule">
+        <ValueRule Field="statuscode" Value="809020002" />
+      </EnableRule>
       <EnableRule Id="cap.cap_solutionmerge.Review.EnableRule">
         <CustomRule FunctionName="Capgemini.DevelopmentHub.Develop.isReviewEnabled" Library="$webresource:cap_/Js/develop.solutionmerge.ribbon.js" Default="false">
           <CrmParameter Value="PrimaryControl" />
@@ -53,6 +75,26 @@
     <LocLabel Id="cap.cap_solutionmerge.Approve.Button.ToolTipTitle">
       <Titles>
         <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Retry.Button.Alt">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Retry.Button.LabelText">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Retry.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Retry the failed merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Retry.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>
