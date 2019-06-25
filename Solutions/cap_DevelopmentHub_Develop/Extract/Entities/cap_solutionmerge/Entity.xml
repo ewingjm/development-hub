@@ -725,6 +725,16 @@
                   <label description="Awaiting Review" languagecode="1033" />
                 </labels>
               </status>
+              <status value="809020003" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Merging" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="809020004" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Queued" languagecode="1033" />
+                </labels>
+              </status>
               <status value="809020000" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Approved" languagecode="1033" />

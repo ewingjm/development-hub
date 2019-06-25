@@ -102,34 +102,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeActivities\MergeSolutionComponents.cs" />
     <Compile Include="Model\ImportJobData.cs" />
     <Compile Include="Model\ImportResult.cs" />
-    <Compile Include="BusinessLogic\ISolutionImportService.cs" />
+    <Compile Include="BusinessLogic\IODataSolutionService.cs" />
     <Compile Include="BusinessLogic\ISolutionService.cs" />
-    <Compile Include="Model\ImportJob.cs" />
-    <Compile Include="Model\OAuthPasswordGrantRequest.cs" />
-    <Compile Include="Model\OAuthToken.cs" />
-    <Compile Include="Model\ODataError.cs" />
-    <Compile Include="Model\ODataErrorResponse.cs" />
-    <Compile Include="Model\ODataException.cs" />
-    <Compile Include="Model\ODataInnerError.cs" />
-    <Compile Include="Model\RetrieveMultipleResponse.cs" />
-    <Compile Include="Repositories\IOAuthTokenRepository.cs" />
-    <Compile Include="Repositories\IODataClient.cs" />
-    <Compile Include="Repositories\ODataClient.cs" />
-    <Compile Include="Repositories\OAuthTokenRepository.cs" />
-    <Compile Include="BusinessLogic\SolutionImportService.cs" />
+    <Compile Include="Model\OData\ImportJob.cs" />
+    <Compile Include="BusinessLogic\ODataSolutionService.cs" />
     <Compile Include="BusinessLogic\SolutionService.cs" />
     <Compile Include="CodeActivities\CreateSolution.cs" />
     <Compile Include="CodeActivities\GetSolutionZip.cs" />
     <Compile Include="CodeActivities\ImportSolutionZip.cs" />
     <Compile Include="Model\DevelopContext.cs" />
-    <Compile Include="Model\SolutionImportRequest.cs" />
+    <Compile Include="Model\Requests\AddSolutionComponentRequest.cs" />
+    <Compile Include="Model\OData\Solution.cs" />
+    <Compile Include="Model\Requests\ImportSolutionRequest.cs" />
+    <Compile Include="Model\OData\SolutionComponent.cs" />
+    <Compile Include="Model\Requests\RemoveSolutionComponentRequest.cs" />
+    <Compile Include="Model\Requests\UpdateSolutionComponentRequest.cs" />
     <Compile Include="Plugins\InjectSecureConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\SandboxWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -159,9 +151,14 @@
       <Name>Capgemini.DevelopmentHub.Container</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Responses\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
   <!--Target the shared projects for a Dynamics 365 compatible build-->
   <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\..\..\Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
   <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\..\..\Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\..\..\Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

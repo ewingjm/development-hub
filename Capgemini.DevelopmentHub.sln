@@ -55,11 +55,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DevelopmentHub.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.DevelopmentHub.Issues", "Solutions\cap_DevelopmentHub_Issues\PluginAssemblies\Capgemini.DevelopmentHub.Issues\Capgemini.DevelopmentHub.Issues.csproj", "{64ABB0F7-44DF-6117-3387-B2B32BB452EE}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Capgemini.DevelopmentHub.Model", "Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.shproj", "{9903C7AB-FF17-4FE6-AA49-F4B429847BCA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{2b1ef6de-63cc-4b7e-9bf6-5d9b4c0afded}*SharedItemsImports = 13
 		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{56d657e2-2db7-4489-ad26-ca2e147836c6}*SharedItemsImports = 13
+		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{9903c7ab-ff17-4fe6-aa49-f4b429847bca}*SharedItemsImports = 13
 		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
+		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
 		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +128,7 @@ Global
 		{AF4354C4-16BE-A48C-ABE4-08960B527EF4} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
 		{64ABB0F7-44DF-6117-3387-B2B32BB452EE} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
+		{9903C7AB-FF17-4FE6-AA49-F4B429847BCA} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D6A7645-2C64-4610-BC84-6AD17AA98B71}

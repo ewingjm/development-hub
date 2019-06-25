@@ -105,6 +105,7 @@
   </ItemGroup>
   <Import Project="..\..\Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
   <Import Project="..\..\Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems" Label="Shared" />
+  <Import Project="..\..\Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -2,20 +2,20 @@
   <x:Members>
     <x:Property Name="InputEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
     <x:Property Name="CreatedEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
-    <x:Property Name="IsSuccessful" Type="OutArgument(x:Boolean)">
+    <x:Property Name="Succeeded" Type="OutArgument(x:Boolean)">
       <x:Property.Attributes>
         <mxsw:ArgumentRequiredAttribute Value="True" />
         <mxsw:ArgumentTargetAttribute Value="False" />
-        <mxsw:ArgumentDescriptionAttribute Value="Whether or not the import was successful." />
+        <mxsw:ArgumentDescriptionAttribute Value="Whether the import succeeded." />
         <mxsw:ArgumentDirectionAttribute Value="Output" />
         <mxsw:ArgumentEntityAttribute Value="" />
       </x:Property.Attributes>
     </x:Property>
     <x:Property Name="ErrorMessage" Type="OutArgument(x:String)">
       <x:Property.Attributes>
-        <mxsw:ArgumentRequiredAttribute Value="True" />
+        <mxsw:ArgumentRequiredAttribute Value="False" />
         <mxsw:ArgumentTargetAttribute Value="False" />
-        <mxsw:ArgumentDescriptionAttribute Value="The error message returned by the import (if any)." />
+        <mxsw:ArgumentDescriptionAttribute Value="Any message returned by the import." />
         <mxsw:ArgumentDirectionAttribute Value="Output" />
         <mxsw:ArgumentEntityAttribute Value="" />
       </x:Property.Attributes>
@@ -65,13 +65,16 @@
           <Variable x:TypeArguments="x:Object" Name="CustomActivityStep6_3_converted" />
         </sco:Collection>
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-          <mxswa:GetEntityProperty Attribute="cap_url" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="cap_environment" Value="[CustomActivityStep6_2]">
-            <mxswa:GetEntityProperty.TargetType>
-              <InArgument x:TypeArguments="s:Type">
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CustomOperationArguments</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SolutionZip }]</InArgument>
+              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                 <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
               </InArgument>
-            </mxswa:GetEntityProperty.TargetType>
-          </mxswa:GetEntityProperty>
+              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep6_2]</OutArgument>
+            </mxswa:ActivityReference.Arguments>
+          </mxswa:ActivityReference>
           <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
@@ -91,16 +94,13 @@
               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep6_1_converted]</OutArgument>
             </mxswa:ActivityReference.Arguments>
           </mxswa:ActivityReference>
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-            <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CustomOperationArguments</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SolutionZip }]</InArgument>
-              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+          <mxswa:GetEntityProperty Attribute="cap_url" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="cap_environment" Value="[CustomActivityStep6_4]">
+            <mxswa:GetEntityProperty.TargetType>
+              <InArgument x:TypeArguments="s:Type">
                 <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
               </InArgument>
-              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep6_4]</OutArgument>
-            </mxswa:ActivityReference.Arguments>
-          </mxswa:ActivityReference>
+            </mxswa:GetEntityProperty.TargetType>
+          </mxswa:GetEntityProperty>
           <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
@@ -122,8 +122,8 @@
           </mxswa:ActivityReference>
           <mxswa:ActivityReference AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.ImportSolutionZip, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep6: Import solution">
             <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="TargetInstanceUrl">[DirectCast(CustomActivityStep6_1_converted, System.String)]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="SolutionZip">[DirectCast(CustomActivityStep6_3_converted, System.String)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="SolutionZip">[DirectCast(CustomActivityStep6_1_converted, System.String)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TargetInstanceUrl">[DirectCast(CustomActivityStep6_3_converted, System.String)]</InArgument>
               <OutArgument x:TypeArguments="x:Boolean" x:Key="IsSuccessful">[CustomActivityStep6IsSuccessful_localParameter]</OutArgument>
               <OutArgument x:TypeArguments="x:String" x:Key="Error">[CustomActivityStep6Error_localParameter]</OutArgument>
             </mxswa:ActivityReference.Arguments>
@@ -131,9 +131,9 @@
         </sco:Collection>
       </mxswa:ActivityReference.Properties>
     </mxswa:ActivityReference>
-    <Sequence DisplayName="AssignOutputArgumentStep7: Assign IsSuccessful">
+    <Sequence DisplayName="AssignOutputArgumentStep18: Assign 'Succeeded'">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep7_1" />
+        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep18_1" />
         <Variable x:TypeArguments="x:String" Default="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Name="TypeName" />
       </Sequence.Variables>
       <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
@@ -143,38 +143,27 @@
           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
           </InArgument>
-          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep7_1]</OutArgument>
+          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep18_1]</OutArgument>
         </mxswa:ActivityReference.Arguments>
       </mxswa:ActivityReference>
-      <Assign x:TypeArguments="x:Boolean" To="[IsSuccessful]" Value="[CBool(AssignOutputArgumentStep7_1)]" />
+      <Assign x:TypeArguments="x:Boolean" To="[Succeeded]" Value="[CBool(AssignOutputArgumentStep18_1)]" />
     </Sequence>
-    <Sequence DisplayName="AssignOutputArgumentStep10: Assign ErrorMessage">
+    <Sequence DisplayName="AssignOutputArgumentStep19: Assign 'ErrorMessage'">
       <Sequence.Variables>
-        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep10_1" />
-        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep10_2" />
+        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep19_1" />
         <Variable x:TypeArguments="x:String" Default="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Name="TypeName" />
       </Sequence.Variables>
       <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
         <mxswa:ActivityReference.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "", "String" }]</InArgument>
-          <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-          </InArgument>
-          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep10_2]</OutArgument>
-        </mxswa:ActivityReference.Arguments>
-      </mxswa:ActivityReference>
-      <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-        <mxswa:ActivityReference.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
-          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { CustomActivityStep6Error_localParameter, AssignOutputArgumentStep10_2 }]</InArgument>
+          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { CustomActivityStep6Error_localParameter }]</InArgument>
           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
           </InArgument>
-          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep10_1]</OutArgument>
+          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep19_1]</OutArgument>
         </mxswa:ActivityReference.Arguments>
       </mxswa:ActivityReference>
-      <Assign x:TypeArguments="x:String" To="[ErrorMessage]" Value="[AssignOutputArgumentStep10_1.ToString()]" />
+      <Assign x:TypeArguments="x:String" To="[ErrorMessage]" Value="[AssignOutputArgumentStep19_1.ToString()]" />
     </Sequence>
   </mxswa:Workflow>
 </Activity>

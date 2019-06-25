@@ -10,6 +10,7 @@
     <layoutxml>
       <grid name="resultset" jump="cap_name" select="1" icon="1" preview="1">
         <row name="result" id="cap_solutionmergeid">
+          <cell name="cap_issue" width="100" />
           <cell name="a_866722318e84e911a97e0022480186c3.cap_developmentsolution" width="100" disableSorting="1" />
           <cell name="cap_targetsolution" width="100" />
           <cell name="statuscode" width="100" />
@@ -24,7 +25,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="cap_solutionmerge">
-          <attribute name="cap_solutionmergeid" />
           <attribute name="createdon" />
           <attribute name="cap_targetsolution" />
           <attribute name="statuscode" />
@@ -35,6 +35,8 @@
             <attribute name="cap_description" />
           </link-entity>
           <order attribute="createdon" descending="false" />
+          <attribute name="cap_issue" />
+          <attribute name="cap_solutionmergeid" />
         </entity>
       </fetch>
     </fetchxml>

@@ -7,12 +7,21 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Capgemini.DevelopmentHub.Repositories</Import_RootNamespace>
-</PropertyGroup>
-<ItemGroup>
-<Compile Include="$(MSBuildThisFileDirectory)CrmRepository.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)CrmRepository{TContext,TEntity}.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)ICrmRepository.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)ICrmRepository{TEntity}.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)OrganizationServiceExtensions.cs" />
-    </ItemGroup>
-  </Project>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CrmRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CrmRepository{TContext,TEntity}.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICrmRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICrmRepository{TEntity}.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IOAuthTokenRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IODataClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IODataEntityRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuthTokenRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ODataClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ODataEntityRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrganizationServiceExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SandboxWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

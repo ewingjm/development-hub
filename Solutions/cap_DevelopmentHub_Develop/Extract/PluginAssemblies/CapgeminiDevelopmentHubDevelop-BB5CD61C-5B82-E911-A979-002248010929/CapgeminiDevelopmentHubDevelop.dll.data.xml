@@ -20,6 +20,11 @@
       <FriendlyName>Import solution zip</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.MergeSolutionComponents, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="d8117b3c-4395-e911-a97d-002248010929" Name="MergeSolutionComponents">
+      <Description>Merges from a source solution into a target solution</Description>
+      <FriendlyName>Merge solution components</FriendlyName>
+      <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
     <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="9f3ed163-c78a-e911-a97b-002248010929" Name="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig">
       <FriendlyName>Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig</FriendlyName>
     </PluginType>
