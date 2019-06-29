@@ -10,6 +10,11 @@
       <FriendlyName>Create a solution</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.GetLastApprovedSolutionMerge, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="f802380c-749a-e911-a97d-002248010929" Name="GetLastApprovedSolutionMerge">
+      <Description>Gets the last approved solution merge for an environment</Description>
+      <FriendlyName>Get last approved solution merge</FriendlyName>
+      <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
     <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.GetSolutionZip, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="7d58ac9f-0a8a-e911-a97b-002248010929" Name="GetSolutionZip">
       <Description>Gets a solution zip file as a Base64 encoded string.</Description>
       <FriendlyName>Get solution zip</FriendlyName>
@@ -25,7 +30,7 @@
       <FriendlyName>Merge solution components</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
-    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="9f3ed163-c78a-e911-a97b-002248010929" Name="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig">
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="fdb0db23-769a-e911-a97d-002248010929" Name="Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig">
       <FriendlyName>Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig</FriendlyName>
     </PluginType>
   </PluginTypes>

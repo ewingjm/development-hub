@@ -36,7 +36,7 @@
         /// <inheritdoc/>
         public Task DeleteAsync(Guid entityId)
         {
-            return this.oDataClient.DeleteAsync($"{this.entitySet}({entityId.ToString()}");
+            return this.oDataClient.DeleteAsync($"{this.entitySet}({entityId.ToString()})");
         }
 
         /// <inheritdoc/>

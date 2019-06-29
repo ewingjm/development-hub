@@ -4,6 +4,7 @@
     using System.Activities;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Net;
     using System.Runtime.Serialization.Json;
     using System.Text;
     using Capgemini.DevelopmentHub.BusinessLogic.Extensions;
@@ -29,6 +30,18 @@
         public InArgument<string> TargetInstanceUrl { get; set; }
 
         /// <summary>
+        /// Gets or sets if the integration workflow activity was successful.
+        /// </summary>
+        [Output("Succeeded")]
+        public OutArgument<bool> IsSuccessful { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message encountered (if any).
+        /// </summary>
+        [Output("Error")]
+        public OutArgument<string> Error { get; set; }
+
+        /// <summary>
         /// Execute the custom workflow activity.
         /// </summary>
         /// <param name="context">The context.</param>
@@ -49,13 +62,18 @@
             var logWriter = new TracingServiceLogWriter(tracingSvc, true);
 
             logWriter.Log(Severity.Info, Tag, $"Executing integrated workflow activity.");
-            var oDataClient = context.GetExtension<IODataClient>() ?? this.GetODataClient(
-                new Uri(this.TargetInstanceUrl.GetRequired(context, nameof(this.TargetInstanceUrl))),
-                context,
-                workflowContext,
-                logWriter);
 
-            this.ExecuteWorkflowActivity(context, workflowContext, oDataClient, logWriter, repositoryFactory);
+            try
+            {
+                var oDataClient = this.GetODataClient(context, workflowContext, logWriter);
+                this.ExecuteWorkflowActivity(context, workflowContext, oDataClient, logWriter, repositoryFactory);
+            }
+            catch (AggregateException ex) when (ex.InnerException is WebException)
+            {
+                this.Error.Set(context, ex.InnerException.Message);
+                this.IsSuccessful.Set(context, false);
+                return;
+            }
         }
 
         private static OAuthPasswordGrantRequest GetPasswordGrantRequest(IWorkflowContext workflowContext, ILogWriter logWriter)
@@ -78,8 +96,17 @@
             return passwordGrantRequest;
         }
 
+        private IODataClient GetODataClient(CodeActivityContext context, IWorkflowContext workflowContext, TracingServiceLogWriter logWriter)
+        {
+            return context.GetExtension<IODataClient>() ?? this.GetNewODataClient(
+                new Uri(this.TargetInstanceUrl.GetRequired(context, nameof(this.TargetInstanceUrl))),
+                context,
+                workflowContext,
+                logWriter);
+        }
+
         [ExcludeFromCodeCoverage]
-        private IODataClient GetODataClient(Uri targetInstance, CodeActivityContext context, IWorkflowContext workflowContext, ILogWriter logWriter)
+        private IODataClient GetNewODataClient(Uri targetInstance, CodeActivityContext context, IWorkflowContext workflowContext, ILogWriter logWriter)
         {
             var passwordGrantRequest = GetPasswordGrantRequest(workflowContext, logWriter);
             passwordGrantRequest.Resource = targetInstance;

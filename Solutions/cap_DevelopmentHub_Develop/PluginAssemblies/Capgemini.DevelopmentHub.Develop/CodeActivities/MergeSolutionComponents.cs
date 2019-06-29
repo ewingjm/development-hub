@@ -65,18 +65,6 @@
         [Default("true")]
         public InArgument<bool> DeleteSourceSolutionAfterMerge { get; set; }
 
-        /// <summary>
-        /// Gets or sets true if the import was successful or false if the merge failed.
-        /// </summary>
-        [Output("Succeeded")]
-        public OutArgument<bool> IsSuccessful { get; set; }
-
-        /// <summary>
-        /// Gets or sets the error message encountered while merging (if any).
-        /// </summary>
-        [Output("Error")]
-        public OutArgument<string> Error { get; set; }
-
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IODataClient oDataClient, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
@@ -86,16 +74,7 @@
 
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
-            try
-            {
-                oDataSolutionService.MergeSolutionComponents(sourceSolutionUniqueName, targetSolutionUniqueName, deleteSourceSolutionAfterMerge).Wait();
-            }
-            catch (AggregateException ex) when (ex.InnerException is WebException)
-            {
-                this.IsSuccessful.Set(context, false);
-                this.Error.Set(context, ex.InnerException.Message);
-                return;
-            }
+            oDataSolutionService.MergeSolutionComponents(sourceSolutionUniqueName, targetSolutionUniqueName, deleteSourceSolutionAfterMerge).Wait();
 
             this.IsSuccessful.Set(context, true);
         }

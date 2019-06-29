@@ -9,7 +9,7 @@
   "earlyboundtypes": [
     {
       "entities": "publisher, solution, cap_issue, cap_solutionmerge, cap_environment, cap_solution",
-      "actions": "cap_StartDeveloping, cap_ImportSolution",
+      "actions": "cap_StartDeveloping, cap_ImportSolution, cap_GetLastApprovedSolutionMerge",
       "generateOptionsetEnums": true,
       "generateStateEnums": true,
       "generateGlobalOptionsets": true,

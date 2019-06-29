@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="Inject OAuth password grant for merge solution" SdkMessageProcessingStepId="{c100122c-4c95-e911-a97d-002248010929}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="Inject OAuth password grant for merge solution" SdkMessageProcessingStepId="{01b1db23-769a-e911-a97d-002248010929}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <PluginTypeName>Capgemini.DevelopmentHub.Develop.Plugins.InjectSecureConfig, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4</PluginTypeName>
-  <PluginTypeId>9f3ed163-c78a-e911-a97b-002248010929</PluginTypeId>
+  <PluginTypeId>fdb0db23-769a-e911-a97d-002248010929</PluginTypeId>
   <PrimaryEntity>cap_solution</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>
   <FilteringAttributes></FilteringAttributes>

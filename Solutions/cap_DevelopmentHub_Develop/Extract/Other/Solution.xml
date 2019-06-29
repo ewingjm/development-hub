@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Development related functionality for the Development Hub." languagecode="1033" />
     </Descriptions>
-    <Version>0.1.15.0</Version>
+    <Version>0.1.16.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>capgemini</UniqueName>
@@ -123,8 +123,8 @@
       <RootComponent type="62" schemaName="cap_DevelopmentHub" behavior="0" />
       <RootComponent type="80" schemaName="cap_DevelopmentHub" behavior="0" />
       <RootComponent type="91" id="{bb5cd61c-5b82-e911-a979-002248010929}" schemaName="Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" behavior="0" />
-      <RootComponent type="92" id="{a03ed163-c78a-e911-a97b-002248010929}" behavior="0" />
-      <RootComponent type="92" id="{c100122c-4c95-e911-a97d-002248010929}" behavior="0" />
+      <RootComponent type="92" id="{01b1db23-769a-e911-a97d-002248010929}" behavior="0" />
+      <RootComponent type="92" id="{feb0db23-769a-e911-a97d-002248010929}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>

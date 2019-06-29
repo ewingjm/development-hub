@@ -44,38 +44,15 @@
         [Input("Solution zip")]
         public InArgument<string> SolutionZip { get; set; }
 
-        /// <summary>
-        /// Gets or sets true if the import was successful or false if the import failed.
-        /// </summary>
-        [Output("Succeeded")]
-        public OutArgument<bool> IsSuccessful { get; set; }
-
-        /// <summary>
-        /// Gets or sets the error message encountered when importing (if any).
-        /// </summary>
-        [Output("Error")]
-        public OutArgument<string> Error { get; set; }
-
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IODataClient oDataClient, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
             var solutionZip = this.SolutionZip.GetRequired(context, nameof(this.SolutionZip));
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
-            ImportJobData importJobData = null;
-            try
-            {
-                importJobData = oDataSolutionService.ImportSolutionZip(Convert.FromBase64String(solutionZip)).Result;
-            }
-            catch (AggregateException ex) when (ex.InnerException is WebException)
-            {
-                this.Error.Set(context, ex.InnerException.Message);
-                this.IsSuccessful.Set(context, false);
-                return;
-            }
+            var importJobData = oDataSolutionService.ImportSolutionZip(Convert.FromBase64String(solutionZip)).Result;
 
             this.IsSuccessful.Set(context, importJobData.ImportResult == ImportResult.Success);
-            this.Error.Set(context, importJobData.ErrorText);
         }
     }
 }

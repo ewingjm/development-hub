@@ -3590,6 +3590,12 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Queued = 809020004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Merging = 809020003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AwaitingReview = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -6115,17 +6121,75 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			}
 		}
 		
-		public bool IsSuccessful
+		public bool Succeeded
 		{
 			get
 			{
-				if (this.Results.Contains("IsSuccessful"))
+				if (this.Results.Contains("Succeeded"))
 				{
-					return ((bool)(this.Results["IsSuccessful"]));
+					return ((bool)(this.Results["Succeeded"]));
 				}
 				else
 				{
 					return default(bool);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_GetLastApprovedSolutionMerge")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_GetLastApprovedSolutionMergeRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public cap_GetLastApprovedSolutionMergeRequest()
+		{
+			this.RequestName = "cap_GetLastApprovedSolutionMerge";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_GetLastApprovedSolutionMerge")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	public partial class cap_GetLastApprovedSolutionMergeResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cap_GetLastApprovedSolutionMergeResponse()
+		{
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference LastApprovedSolutionMerge
+		{
+			get
+			{
+				if (this.Results.Contains("LastApprovedSolutionMerge"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Results["LastApprovedSolutionMerge"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
 				}
 			}
 		}
