@@ -102,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeActivities\GetLastApprovedSolutionMerge.cs" />
     <Compile Include="CodeActivities\MergeSolutionComponents.cs" />
     <Compile Include="Model\ImportJobData.cs" />
     <Compile Include="Model\ImportResult.cs" />
