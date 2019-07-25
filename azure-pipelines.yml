@@ -74,5 +74,4 @@ variables:
     value: ''
   - group: Azure DevOps - Capgemini UK
   - group: Package - DevelopmentHub
-  - group: Environment - Staging
   - group: Environment - Common
