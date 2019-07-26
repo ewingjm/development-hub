@@ -49,7 +49,6 @@ steps:
     inputs:
       SourceFolder: Deploy/bin/Release
       TargetFolder: "$(Build.ArtifactStagingDirectory)"
-    condition: succeeded()
   - task: PublishBuildArtifacts@1
     inputs:
         pathtoPublish: "$(Build.ArtifactStagingDirectory)"
