@@ -28,6 +28,24 @@
         "Inject OAuth password grant for merge solution",
         0,
         IsolationModeEnum.Sandbox)]
+    [CrmPluginRegistration(
+        "cap_UpdateSolutionVersion",
+        cap_solution.EntityLogicalName,
+        StageEnum.PreOperation,
+        ExecutionModeEnum.Synchronous,
+        null,
+        "Inject OAuth password grant for update solution version",
+        0,
+        IsolationModeEnum.Sandbox)]
+    [CrmPluginRegistration(
+        "cap_ExportSolution",
+        cap_solution.EntityLogicalName,
+        StageEnum.PreOperation,
+        ExecutionModeEnum.Synchronous,
+        null,
+        "Inject OAuth password grant for export solution",
+        0,
+        IsolationModeEnum.Sandbox)]
     public class InjectSecureConfig : Plugin
     {
         /// <summary>

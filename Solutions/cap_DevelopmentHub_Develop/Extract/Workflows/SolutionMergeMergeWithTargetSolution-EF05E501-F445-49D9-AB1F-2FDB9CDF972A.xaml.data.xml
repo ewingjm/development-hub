@@ -21,4 +21,7 @@
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Solution Merge: Merge With Target Solution" />
   </LocalizedNames>
+  <labels>
+    <steplabels id="{ebe54a51-6c59-4eb1-8af1-ef72333771f5}" />
+  </labels>
 </Workflow>

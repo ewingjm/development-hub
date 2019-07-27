@@ -1,8 +1,6 @@
 ﻿namespace Capgemini.DevelopmentHub.Develop.CodeActivities
 {
-    using System;
     using System.Activities;
-    using System.Net;
     using Capgemini.DevelopmentHub.BusinessLogic;
     using Capgemini.DevelopmentHub.BusinessLogic.Extensions;
     using Capgemini.DevelopmentHub.BusinessLogic.Logging;
@@ -74,7 +72,7 @@
 
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
-            oDataSolutionService.MergeSolutionComponents(sourceSolutionUniqueName, targetSolutionUniqueName, deleteSourceSolutionAfterMerge).Wait();
+            oDataSolutionService.MergeSolutionComponentsAsync(sourceSolutionUniqueName, targetSolutionUniqueName, deleteSourceSolutionAfterMerge).Wait();
 
             this.IsSuccessful.Set(context, true);
         }

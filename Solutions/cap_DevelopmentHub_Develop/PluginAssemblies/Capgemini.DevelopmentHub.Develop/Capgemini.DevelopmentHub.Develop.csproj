@@ -102,8 +102,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeActivities\AddWholeNumbers.cs" />
+    <Compile Include="CodeActivities\AttachFileToNote.cs" />
+    <Compile Include="CodeActivities\GetSolutionZipFromInstance.cs" />
     <Compile Include="CodeActivities\GetLastApprovedSolutionMerge.cs" />
     <Compile Include="CodeActivities\MergeSolutionComponents.cs" />
+    <Compile Include="CodeActivities\UpdateSolutionVersion.cs" />
     <Compile Include="Model\ImportJobData.cs" />
     <Compile Include="Model\ImportResult.cs" />
     <Compile Include="BusinessLogic\IODataSolutionService.cs" />
@@ -117,10 +121,12 @@
     <Compile Include="Model\DevelopContext.cs" />
     <Compile Include="Model\Requests\AddSolutionComponentRequest.cs" />
     <Compile Include="Model\OData\Solution.cs" />
+    <Compile Include="Model\Requests\ExportSolutionRequest.cs" />
     <Compile Include="Model\Requests\ImportSolutionRequest.cs" />
     <Compile Include="Model\OData\SolutionComponent.cs" />
     <Compile Include="Model\Requests\RemoveSolutionComponentRequest.cs" />
     <Compile Include="Model\Requests\UpdateSolutionComponentRequest.cs" />
+    <Compile Include="Model\Responses\ExportSolutionResponse.cs" />
     <Compile Include="Plugins\InjectSecureConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,7 +159,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Responses\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <!--Target the shared projects for a Dynamics 365 compatible build-->

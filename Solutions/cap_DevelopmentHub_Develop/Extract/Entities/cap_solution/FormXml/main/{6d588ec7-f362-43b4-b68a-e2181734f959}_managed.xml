@@ -12,11 +12,11 @@
             <label description="General" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="50%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" name="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="General" languagecode="1033" />
+                    <label description="Information" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
@@ -40,7 +40,7 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control id="cap_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="cap_description" disabled="false" />
+                        <control id="cap_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="cap_description" disabled="false" uniqueid="{217ec1b2-099d-9d4e-a0db-a8b4b749b1be}" />
                       </cell>
                     </row>
                     <row>
@@ -55,13 +55,84 @@
                 </section>
               </sections>
             </column>
+            <column width="50%">
+              <sections>
+                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_3" showlabel="false" showbar="false" locklevel="0" id="{0cdbe593-e2a2-3804-d095-cdbe62c05d58}" IsUserDefined="0" layout="varwidth" columns="111" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                  <labels>
+                    <label description="Version" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e19301c6-463e-5c3e-6700-c673cabaa697}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_majorversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="cap_majorversion" disabled="false" uniqueid="{d32664c3-7098-dc7c-ceaa-d9dca570b8a3}" />
+                      </cell>
+                      <cell id="{5103b9da-c724-d938-8148-a7134446722e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_minorversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="cap_minorversion" disabled="false" uniqueid="{e54ad56a-c78b-9d51-31a4-ae26ee76e1d7}" />
+                      </cell>
+                      <cell id="{e3776aca-c481-d9b3-1111-39178420094b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                        <control id="cap_patchversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="cap_patchversion" disabled="false" uniqueid="{9972edae-eebb-06cb-620b-5ad58de4975c}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{ecc66872-531e-37d5-cdd2-36047e2a27ea}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Version History" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{728b7e44-68cd-d436-570d-b9a32968376a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3cab915c-69ce-3985-ad36-85da57c43a07}" showlabel="true" rowspan="15" auto="false" colspan="1">
+                        <labels>
+                          <label description="Note Text" languagecode="1033" />
+                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
           </columns>
         </tab>
       </tabs>
       <header id="{09c868aa-9b19-4887-8d17-6ec17eb9584a}" columns="111">
         <rows>
           <row>
-            <cell id="{6564ad49-e6b7-43c3-9ad3-aab5b08fe061}">
+            <cell id="{6564ad49-e6b7-43c3-9ad3-aab5b08fe061}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
@@ -84,7 +155,7 @@
       <footer id="{b467c14d-33f6-4802-b016-11346e96b9e8}" columns="111">
         <rows>
           <row>
-            <cell id="{3324598d-c0f2-463c-94ff-552424d779f6}">
+            <cell id="{3324598d-c0f2-463c-94ff-552424d779f6}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
@@ -134,6 +205,7 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
+      <controlDescriptions />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

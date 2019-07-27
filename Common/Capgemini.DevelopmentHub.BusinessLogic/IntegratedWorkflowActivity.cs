@@ -33,12 +33,14 @@
         /// Gets or sets if the integration workflow activity was successful.
         /// </summary>
         [Output("Succeeded")]
+        [Default("true")]
         public OutArgument<bool> IsSuccessful { get; set; }
 
         /// <summary>
         /// Gets or sets the error message encountered (if any).
         /// </summary>
         [Output("Error")]
+        [Default("")]
         public OutArgument<string> Error { get; set; }
 
         /// <summary>
@@ -70,10 +72,24 @@
             }
             catch (AggregateException ex) when (ex.InnerException is WebException)
             {
+                logWriter.Log(Severity.Error, Tag, ex.InnerException.Message);
                 this.Error.Set(context, ex.InnerException.Message);
                 this.IsSuccessful.Set(context, false);
                 return;
             }
+        }
+
+        [ExcludeFromCodeCoverage]
+        private static IODataClient GetNewODataClient(Uri targetInstance, CodeActivityContext context, IWorkflowContext workflowContext, ILogWriter logWriter)
+        {
+            var passwordGrantRequest = GetPasswordGrantRequest(workflowContext, logWriter);
+            passwordGrantRequest.Resource = targetInstance;
+
+            logWriter.Log(Severity.Info, Tag, $"Making password grant OAuth request for {passwordGrantRequest.Resource} as {passwordGrantRequest.Username}");
+
+            var token = (context.GetExtension<IOAuthTokenRepository>() ?? new OAuthTokenRepository()).GetAccessToken(passwordGrantRequest).Result;
+
+            return new ODataClient(targetInstance, token);
         }
 
         private static OAuthPasswordGrantRequest GetPasswordGrantRequest(IWorkflowContext workflowContext, ILogWriter logWriter)
@@ -98,24 +114,11 @@
 
         private IODataClient GetODataClient(CodeActivityContext context, IWorkflowContext workflowContext, TracingServiceLogWriter logWriter)
         {
-            return context.GetExtension<IODataClient>() ?? this.GetNewODataClient(
+            return context.GetExtension<IODataClient>() ?? GetNewODataClient(
                 new Uri(this.TargetInstanceUrl.GetRequired(context, nameof(this.TargetInstanceUrl))),
                 context,
                 workflowContext,
                 logWriter);
-        }
-
-        [ExcludeFromCodeCoverage]
-        private IODataClient GetNewODataClient(Uri targetInstance, CodeActivityContext context, IWorkflowContext workflowContext, ILogWriter logWriter)
-        {
-            var passwordGrantRequest = GetPasswordGrantRequest(workflowContext, logWriter);
-            passwordGrantRequest.Resource = targetInstance;
-
-            logWriter.Log(Severity.Info, Tag, $"Making password grant OAuth request for {passwordGrantRequest.Resource} as {passwordGrantRequest.Username}");
-
-            var token = (context.GetExtension<IOAuthTokenRepository>() ?? new OAuthTokenRepository()).GetAccessToken(passwordGrantRequest).Result;
-
-            return new ODataClient(targetInstance, token);
         }
     }
 }
