@@ -50,7 +50,7 @@
             var solutionZip = this.SolutionZip.GetRequired(context, nameof(this.SolutionZip));
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
-            var importJobData = oDataSolutionService.ImportSolutionZip(Convert.FromBase64String(solutionZip)).Result;
+            var importJobData = oDataSolutionService.ImportSolutionZipAsync(Convert.FromBase64String(solutionZip)).Result;
 
             this.IsSuccessful.Set(context, importJobData.ImportResult == ImportResult.Success);
         }

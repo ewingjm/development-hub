@@ -16,6 +16,12 @@
         [DataMember(Name = "solutionid")]
         public Guid SolutionId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the solution version.
+        /// </summary>
+        [DataMember(Name = "version")]
+        public string Version { get; set; }
+
         /// <inheritdoc/>
         public override string EntitySet => "solutions";
 
