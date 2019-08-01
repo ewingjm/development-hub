@@ -53,6 +53,11 @@
             var importJobData = oDataSolutionService.ImportSolutionZipAsync(Convert.FromBase64String(solutionZip)).Result;
 
             this.IsSuccessful.Set(context, importJobData.ImportResult == ImportResult.Success);
+
+            if (importJobData.ImportResult == ImportResult.Failure)
+            {
+                this.Error.Set(context, importJobData.ErrorText);
+            }
         }
     }
 }

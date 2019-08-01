@@ -1,0 +1,30 @@
+name: $(solution) - $(commitMessage) - $(triggeredBy)
+pool:
+  vmImage: windows-latest
+trigger: none
+steps:
+  - checkout: self
+    persistCredentials: true
+  - powershell: >-
+      $env:GIT_REDIRECT_STDERR = '2>&1';
+      git config --global user.email "$(triggeredByEmail)";
+      git config --global user.name "$(triggeredBy)";
+      git checkout master;
+      if($env:EXTRACT_SOURCE_BRANCH)
+      {
+        git merge origin/$env:EXTRACT_SOURCE_BRANCH --no-commit;
+      }
+      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 -Target ExtractSolution -NuGetCredentials `"Capgemini IP;$env:CAPGEMINI_UK_PACKAGE_READ_KEY`" -ScriptArgs `"--solution=$(solution)`",`"--unmanagedNoteId=$(unmanagedNoteId)`",`"--managedNoteId=$(managedNoteId)`" -Verbosity Diagnostic";
+      git add .;
+      git reset NuGet.config;
+      git commit -m "$(commitMessage)";
+      git push origin;
+    displayName: Extract and commit solution
+    env:
+      CAPGEMINI_UK_PACKAGE_READ_KEY: $(CapgeminiUkPackageReadKey)
+      CAKE_DYNAMICS_PASSWORD: $(dynamicsPassword)
+      CAKE_DYNAMICS_USERNAME: $(dynamicsUsername)
+      EXTRACT_SOURCE_BRANCH: $(sourceBranch) 
+variables:
+  - group: Azure DevOps - Capgemini UK
+  - group: Cake

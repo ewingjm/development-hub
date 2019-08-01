@@ -61,8 +61,12 @@
   <mxswa:Workflow>
     <mxswa:Workflow.Variables>
       <Variable x:TypeArguments="x:String" Default="[Nothing]" Name="CustomActivityStep1SolutionZip_localParameter" />
-      <Variable x:TypeArguments="x:Boolean" Default="False" Name="CustomActivityStep1IsSuccessful_localParameter" />
-      <Variable x:TypeArguments="x:String" Default="[Nothing]" Name="CustomActivityStep1Error_localParameter" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="CustomActivityStep1IsSuccessful_localParameter" />
+      <Variable x:TypeArguments="x:String" Name="CustomActivityStep1Error_localParameter">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
     </mxswa:Workflow.Variables>
     <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="CustomActivityStep1: Export the solution zip">
       <mxswa:ActivityReference.Properties>

@@ -68,7 +68,7 @@
             this.MockPasswordGrantConfiguredContext();
             this.MockAccessTokenResult();
             this.oDataSolutionServiceMock
-                .Setup(service => service.MergeSolutionComponents(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
+                .Setup(service => service.MergeSolutionComponentsAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
                 .Throws(new AggregateException(new WebException("Some merge failure")));
 
             var outputs = this.WorkflowInvoker.Invoke(new Dictionary<string, object>
@@ -89,7 +89,7 @@
             this.MockAccessTokenResult();
             var error = "Some merge failure";
             this.oDataSolutionServiceMock
-                .Setup(service => service.MergeSolutionComponents(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
+                .Setup(service => service.MergeSolutionComponentsAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()))
                 .Throws(new AggregateException(new WebException(error)));
 
             var outputs = this.WorkflowInvoker.Invoke(new Dictionary<string, object>
