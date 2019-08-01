@@ -51,8 +51,12 @@
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
     <mxswa:Workflow.Variables>
-      <Variable x:TypeArguments="x:Boolean" Default="False" Name="CustomActivityStep4IsSuccessful_localParameter" />
-      <Variable x:TypeArguments="x:String" Default="[Nothing]" Name="CustomActivityStep4Error_localParameter" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="CustomActivityStep4IsSuccessful_localParameter" />
+      <Variable x:TypeArguments="x:String" Name="CustomActivityStep4Error_localParameter">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
     </mxswa:Workflow.Variables>
     <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1: If source solution unique name does not contain data">
       <mxswa:ActivityReference.Arguments>

@@ -29,17 +29,17 @@
         {
             var accessToken = new OAuthTokenRepository().GetAccessToken(
                 new OAuthPasswordGrantRequest(
-                    Guid.Parse("686e7a7e-1c8e-4b3b-a438-9b9c5e204706"),
-                    Guid.Parse("4a89440e-6543-4f47-b562-4d30493c8a95"),
-                    new Uri("https://devhubdevelop.crm11.dynamics.com"),
-                    "max@devhubci.onmicrosoft.com",
-                    "Cadmandr1ve")).Result;
+                    Guid.Parse("eeb1e2f9-e62e-4d04-93be-738702286237"),
+                    Guid.Parse("57dbfea6-e857-4818-b9b2-7c320afd233b"),
+                    new Uri("https://dhubtest.crm11.dynamics.com"),
+                    "service@dhubtest.onmicrosoft.com",
+                    "dhubtest123!")).Result;
 
-            var oDataSolutionService = new ODataSolutionService(new ODataRepositoryFactory(new ODataClient(new Uri("https://devhubci.crm11.dynamics.com"), accessToken)), new ConsoleLogWriter());
+            var oDataSolutionService = new ODataSolutionService(new ODataRepositoryFactory(new ODataClient(new Uri("https://dhubtest.crm11.dynamics.com"), accessToken)), new ConsoleLogWriter());
 
             try
             {
-                var result = oDataSolutionService.GetSolutionZipAsync("cap_DemoIssue", true).Result;
+                oDataSolutionService.MergeSolutionComponentsAsync("cap_ExtractMergedSolutionsIntoSourceControl", "cap_DevelopmentHub_Target", false).Wait();
             }
             catch (AggregateException ex)
             {

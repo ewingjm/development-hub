@@ -96,7 +96,7 @@
             this.MockAccessTokenResult();
             var expectedSolutionZip = Convert.ToBase64String(Encoding.UTF8.GetBytes("SOLUTION ZIP"));
             this.oDataSolutionServiceMock
-                .Setup(s => s.ImportSolutionZip(It.Is<byte[]>(solution => Convert.ToBase64String(solution) == expectedSolutionZip)))
+                .Setup(s => s.ImportSolutionZipAsync(It.Is<byte[]>(solution => Convert.ToBase64String(solution) == expectedSolutionZip)))
                 .Returns(Task.FromResult(new ImportJobData()))
                 .Verifiable();
 
@@ -163,7 +163,7 @@
             this.MockPasswordGrantConfiguredContext();
             this.MockAccessTokenResult();
             this.oDataSolutionServiceMock
-                .Setup(s => s.ImportSolutionZip(It.IsAny<byte[]>()))
+                .Setup(s => s.ImportSolutionZipAsync(It.IsAny<byte[]>()))
                 .Throws(new AggregateException(new WebException("Missing dependencies")));
 
             var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
@@ -181,7 +181,7 @@
             this.MockAccessTokenResult();
             var error = "Missing dependencies";
             this.oDataSolutionServiceMock
-                .Setup(s => s.ImportSolutionZip(It.IsAny<byte[]>()))
+                .Setup(s => s.ImportSolutionZipAsync(It.IsAny<byte[]>()))
                 .Throws(new AggregateException(new WebException(error)));
 
             var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());

@@ -3,6 +3,7 @@
   <solutions>
     <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="cap_DevelopmentHub_Issues_managed.zip" useAsync="true"/>
     <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="cap_DevelopmentHub_Develop_managed.zip" useAsync="true"/>
+    <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="cap_DevelopmentHub_AzureDevOps_managed.zip" useAsync="true"/>
   </solutions>
   <filestoimport/>
   <filesmapstoimport/>

@@ -116,7 +116,8 @@
       "type": "pickString",
       "options": [
         "cap_DevelopmentHub_Issues",
-        "cap_DevelopmentHub_Develop"
+        "cap_DevelopmentHub_Develop",
+        "cap_DevelopmentHub_AzureDevOps"
       ]
     },
     {

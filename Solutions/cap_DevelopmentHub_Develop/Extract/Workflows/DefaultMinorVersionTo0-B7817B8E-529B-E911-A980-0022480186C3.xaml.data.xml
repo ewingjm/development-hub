@@ -26,17 +26,17 @@
     <Description languagecode="1033" description="Minor Version is defaulted to 0." />
   </Descriptions>
   <ProcessTriggers>
-    <ProcessTrigger processtriggerid="{71c78694-529b-e911-a980-0022480186c3}">
+    <ProcessTrigger processtriggerid="{520b9021-93b4-e911-a97b-002248019881}">
       <controltype>1</controltype>
-      <scope>2</scope>
+      <scope>1</scope>
       <controlname>cap_minorversion</controlname>
       <event>change</event>
       <pipelinestage>0</pipelinestage>
       <iscustomizable>1</iscustomizable>
       <primaryentitytypecode>cap_solution</primaryentitytypecode>
     </ProcessTrigger>
-    <ProcessTrigger processtriggerid="{72c78694-529b-e911-a980-0022480186c3}">
-      <scope>2</scope>
+    <ProcessTrigger processtriggerid="{530b9021-93b4-e911-a97b-002248019881}">
+      <scope>1</scope>
       <event>load</event>
       <pipelinestage>0</pipelinestage>
       <iscustomizable>1</iscustomizable>

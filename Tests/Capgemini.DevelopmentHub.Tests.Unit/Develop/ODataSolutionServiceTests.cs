@@ -69,7 +69,7 @@
         {
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await this.oDataSolutionService.ImportSolutionZip(null);
+                await this.oDataSolutionService.ImportSolutionZipAsync(null);
             });
         }
 
@@ -89,7 +89,7 @@
                     .Verifiable();
             this.importJobRepositoryMock.SetReturnsDefault(Task.FromResult(new ImportJob { Data = ImportJobDataString }));
 
-            await this.oDataSolutionService.ImportSolutionZip(solutionBytes).ConfigureAwait(false);
+            await this.oDataSolutionService.ImportSolutionZipAsync(solutionBytes).ConfigureAwait(false);
 
             this.oDataClientMock.Verify();
         }
@@ -101,7 +101,7 @@
         [Fact]
         public async Task MergeSolutionComponents_NullSourceSolution_Throws()
         {
-            await Assert.ThrowsAsync<ArgumentNullException>(() => this.oDataSolutionService.MergeSolutionComponents(null, "cap_Target", true))
+            await Assert.ThrowsAsync<ArgumentNullException>(() => this.oDataSolutionService.MergeSolutionComponentsAsync(null, "cap_Target", true))
                 .ConfigureAwait(false);
         }
 
@@ -112,7 +112,7 @@
         [Fact]
         public async Task MergeSolutionComponents_NullTargetSolution_Throws()
         {
-            await Assert.ThrowsAsync<ArgumentNullException>(() => this.oDataSolutionService.MergeSolutionComponents("cap_Source", null, true))
+            await Assert.ThrowsAsync<ArgumentNullException>(() => this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", null, true))
                 .ConfigureAwait(false);
         }
 
@@ -135,7 +135,7 @@
                 .Returns(Task.CompletedTask)
                 .Verifiable();
 
-            await this.oDataSolutionService.MergeSolutionComponents("cap_Source", "cap_Target", true).ConfigureAwait(false);
+            await this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", "cap_Target", true).ConfigureAwait(false);
 
             this.solutionRepositoryMock.VerifyAll();
         }
@@ -154,7 +154,7 @@
             var targetSolutionId = Guid.NewGuid();
             this.MockSolution(targetSolutionName, targetSolutionId, Enumerable.Empty<SolutionComponent>());
 
-            await this.oDataSolutionService.MergeSolutionComponents("cap_Source", "cap_Target", false).ConfigureAwait(false);
+            await this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", "cap_Target", false).ConfigureAwait(false);
 
             this.solutionRepositoryMock.Verify(repo => repo.DeleteAsync(It.Is<Guid>(guid => guid == sourceSolutionId)), Times.Never);
         }
@@ -179,7 +179,7 @@
                 .Returns(Task.FromResult(new ODataClientResponse(null, null)))
                 .Verifiable();
 
-            await this.oDataSolutionService.MergeSolutionComponents("cap_Source", "cap_Target", false).ConfigureAwait(false);
+            await this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", "cap_Target", false).ConfigureAwait(false);
 
             this.oDataClientMock.VerifyAll();
         }
@@ -200,12 +200,12 @@
             var targetSolutionComponent = new SolutionComponent { ObjectId = sourceSolutionComponent.ObjectId, RootComponentBehavior = 2 };
             this.MockSolution(targetSolutionName, targetSolutionId, new SolutionComponent[] { targetSolutionComponent });
 
-            this.oDataClientMock.
-                Setup(client => client.PostAsync("UpdateSolutionComponent", It.Is<UpdateSolutionComponentRequest>(req => req.ComponentId == targetSolutionComponent.ObjectId && req.IncludedComponentSettingsValues == null)))
+            this.oDataClientMock
+                .Setup(client => client.PostAsync("UpdateSolutionComponent", It.Is<UpdateSolutionComponentRequest>(req => req.ComponentId == targetSolutionComponent.ObjectId && req.IncludedComponentSettingsValues == null)))
                 .Returns(Task.FromResult(new ODataClientResponse(null, null)))
                 .Verifiable();
 
-            await this.oDataSolutionService.MergeSolutionComponents("cap_Source", "cap_Target", false).ConfigureAwait(false);
+            await this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", "cap_Target", false).ConfigureAwait(false);
 
             this.oDataClientMock.VerifyAll();
         }
@@ -219,19 +219,19 @@
         {
             var sourceSolutionName = "cap_Source";
             var sourceSolutionId = Guid.NewGuid();
-            var sourceSolutionComponent = new SolutionComponent { ObjectId = Guid.NewGuid(), RootComponentBehavior = 2 };
+            var sourceSolutionComponent = new SolutionComponent { ObjectId = Guid.NewGuid(), RootComponentBehavior = 0 };
             this.MockSolution(sourceSolutionName, sourceSolutionId, new SolutionComponent[] { sourceSolutionComponent });
             var targetSolutionName = "cap_Target";
             var targetSolutionId = Guid.NewGuid();
-            var targetSolutionComponent = new SolutionComponent { ObjectId = sourceSolutionComponent.ObjectId, RootComponentBehavior = 1 };
+            var targetSolutionComponent = new SolutionComponent { ObjectId = sourceSolutionComponent.ObjectId, RootComponentBehavior = 2 };
             this.MockSolution(targetSolutionName, targetSolutionId, new SolutionComponent[] { targetSolutionComponent });
 
             this.oDataClientMock.
-                Setup(client => client.PostAsync("UpdateSolutionComponent", It.Is<UpdateSolutionComponentRequest>(req => req.ComponentId == targetSolutionComponent.ObjectId && req.IncludedComponentSettingsValues == Array.Empty<string>())))
+                Setup(client => client.PostAsync("UpdateSolutionComponent", It.Is<UpdateSolutionComponentRequest>(req => req.ComponentId == targetSolutionComponent.ObjectId && req.IncludedComponentSettingsValues == null)))
                 .Returns(Task.FromResult(new ODataClientResponse(null, null)))
                 .Verifiable();
 
-            await this.oDataSolutionService.MergeSolutionComponents("cap_Source", "cap_Target", false).ConfigureAwait(false);
+            await this.oDataSolutionService.MergeSolutionComponentsAsync("cap_Source", "cap_Target", false).ConfigureAwait(false);
 
             this.oDataClientMock.VerifyAll();
         }
