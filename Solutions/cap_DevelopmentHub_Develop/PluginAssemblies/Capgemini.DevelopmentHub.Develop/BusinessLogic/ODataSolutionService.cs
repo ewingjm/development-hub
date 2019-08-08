@@ -90,11 +90,11 @@
 
             this.logWriter.Log(Severity.Info, Tag, $"Merging {sourceSolutionComponents.Count()} solution components from {sourceSolutionUniqueName} to {targetSolutionUniqueName}.");
 
-            var componentTasks = sourceSolutionComponents
-                .Select(component => this.GetTaskForComponent(component, targetSolutionComponents, targetSolutionUniqueName))
-                .Where(task => task != null);
-
-            await Task.WhenAll(componentTasks).ConfigureAwait(false);
+            // Solution components added synchronously due to solutions becoming corrupted when components were added in parallel.
+            foreach (var sourceComponent in sourceSolutionComponents)
+            {
+                await this.GetTaskForComponent(sourceComponent, targetSolutionComponents, targetSolutionUniqueName).ConfigureAwait(false);
+            }
 
             if (deleteSourceSolutionAfterMerge)
             {
@@ -210,7 +210,7 @@
         {
             this.logWriter.Log(Severity.Info, Tag, $"Retrieving solution components for solution {solutionId}.");
             var filter = $"_solutionid_value eq {solutionId}";
-            var fields = new string[] { "solutioncomponentid", "componenttype", "objectid", "rootcomponentbehavior" };
+            var fields = new string[] { "solutioncomponentid", "componenttype", "objectid", "rootcomponentbehavior", "rootsolutioncomponentid" };
 
             return this.solutionComponentRepository.FindAsync(filter, fields);
         }
