@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.7022" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.7225" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>cap_DevelopmentHub_Develop</UniqueName>
     <LocalizedNames>
@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Development related functionality for the Development Hub." languagecode="1033" />
     </Descriptions>
-    <Version>0.1.17.0</Version>
+    <Version>0.1.20.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>capgemini</UniqueName>
