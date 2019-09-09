@@ -176,7 +176,7 @@
             else
             {
                 this.logWriter.Log(Severity.Info, Tag, $"No task required. Component already present in target solution.");
-                return null;
+                return Task.CompletedTask;
             }
         }
 
