@@ -95,7 +95,14 @@ Task("BuildSolution")
 Task("PackSolution")
   .IsDependentOn("BuildSolution")
   .Does(() => {
-    PackSolution($"{SolutionsFolder}/{solution}", solution, Argument<string>("solutionVersion", ""));
+    var solutionFolder = Directory($"{SolutionsFolder}/{solution}");
+    
+    SolutionPackagerPack(
+      new SolutionPackagerPackSettings(
+        solutionFolder.Path.CombineWithFilePath($"bin\\Release\\{solution}.zip"),
+        solutionFolder.Path.Combine("Extract"),
+        SolutionPackageType.Both,
+        solutionFolder.Path.CombineWithFilePath("MappingFile.xml")));
   });
 
 // data targets 
@@ -173,21 +180,6 @@ void ExtractSolution(string connectionString, string solutionName, DirectoryPath
 void ExportData(DirectoryPath extractFolder, FilePath exportConfigPath) {
   DeleteFiles($"{extractFolder}/**/*");
   XrmExportData(new DataMigrationExportSettings(GetConnectionString(solution, false), exportConfigPath));
-}
-
-void PackSolution(string projectFolder, string solutionName, string solutionVersion) {
-  var changedSolutions = Argument<string>("solutions", "");
-  if (!String.IsNullOrEmpty(solutionVersion) && !String.IsNullOrEmpty(changedSolutions) && changedSolutions.Contains(solutionName)) {
-    var versionParts = solutionVersion.Split('.');
-    versionParts[2] = (int.Parse(versionParts[2]) + 1).ToString();
-    XrmUpdateSolutionVersion(GetConnectionString(solution, true), solutionName, String.Join(".", versionParts));
-  }
-    
-  SolutionPackagerPack(new SolutionPackagerPackSettings(
-    Directory(projectFolder).Path.CombineWithFilePath($"bin\\Release\\{solutionName}.zip"),
-    Directory(projectFolder).Path.Combine("Extract"),
-    SolutionPackageType.Both,
-    Directory(projectFolder).Path.CombineWithFilePath("MappingFile.xml")));
 }
 
 RunTarget(target);

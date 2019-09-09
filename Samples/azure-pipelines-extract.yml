@@ -16,7 +16,7 @@ steps:
       }
       Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 -Target ExtractSolution -NuGetCredentials `"Capgemini IP;$env:CAPGEMINI_UK_PACKAGE_READ_KEY`" -ScriptArgs `"--solution=$(solution)`",`"--unmanagedNoteId=$(unmanagedNoteId)`",`"--managedNoteId=$(managedNoteId)`" -Verbosity Diagnostic";
       git add .;
-      git reset NuGet.config;
+      git reset -- NuGet.config;
       git commit -m "$(commitMessage)";
       git push origin;
     displayName: Extract and commit solution
