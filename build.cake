@@ -1,9 +1,9 @@
 using System.Text.RegularExpressions;
 
-#addin nuget:?package=Cake.Xrm.Sdk&version=0.1.8
-#addin nuget:?package=Cake.Xrm.SolutionPackager&version=0.1.7
-#addin nuget:?package=Cake.Xrm.DataMigration&version=0.1.6
-#addin nuget:?package=Cake.Xrm.Spkl&version=0.1.6
+#addin nuget:?package=Cake.Xrm.Sdk&version=0.1.9
+#addin nuget:?package=Cake.Xrm.SolutionPackager&version=0.1.9
+#addin nuget:?package=Cake.Xrm.DataMigration&version=0.1.8
+#addin nuget:?package=Cake.Xrm.Spkl&version=0.1.7
 #addin nuget:?package=Cake.Xrm.XrmDefinitelyTyped&version=0.1.6
 #addin nuget:?package=Cake.Npm&version=0.17.0
 #addin nuget:?package=Cake.Json&version=3.0.0
@@ -15,7 +15,7 @@ const string DeployProjectFolder = "./Deploy";
 const string TestsFolder = "./Tests";
 
 var target = Argument("target", "Default");
-var solution = Argument<string>("solution", "");
+var solution = Argument("solution", "");
 
 // Build package
 Task("Default")
@@ -152,19 +152,60 @@ Task("DeployWorkflowActivities")
     SpklDeployWorkflows(Directory($"{SolutionsFolder}/{solution}").Path.CombineWithFilePath("spkl.json"), GetConnectionString(solution, false));
 });
 
+// Environment targets
+
+Task("BuildDevelopmentEnvironment")
+  .Does(() => {
+    Information($"Building development environment for {solution}");
+    var installedSolutions = new List<string>();
+
+    InstallSolution(GetConnectionString(solution, false), solution, false, installedSolutions);
+
+    foreach (var installedDependency in installedSolutions)
+    {
+        Information($"Solution installed: {installedDependency}");
+    }
+  });
+
 void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings, MSBuildSettings msBuildSettings = null) { 
     NuGetRestore(projectPath, nugetSettings);
     MSBuild(projectPath, msBuildSettings);
 }
 
+void InstallSolution(string connectionString, string solutionToInstall, bool managed, List<string> installedSolutions) {
+  var config = GetSolutionConfig(solutionToInstall);   
+  var dependenciesConfig = config["dependencies"];
+
+  if(dependenciesConfig != null && dependenciesConfig.Type == JTokenType.Array && dependenciesConfig.HasValues) 
+  {
+    Information($"Dependencies detected for {solutionToInstall}.");
+    foreach (var dependency in dependenciesConfig.ToObject<List<string>>())
+    {
+      if (!installedSolutions.Contains(dependency))
+      {
+        InstallSolution(connectionString, dependency, true, installedSolutions);
+      }
+    }
+  } 
+
+  solution = solutionToInstall;
+  RunTarget("PackSolution");
+  XrmImportSolution(connectionString, File($"{SolutionsFolder}/{solution}/bin/Release/{solutionToInstall}{(managed ? "_managed" : "")}.zip"), new SolutionImportSettings());
+  installedSolutions.Add(solutionToInstall);
+}
+
 // Utilities
 
+JObject GetSolutionConfig(string solution) {
+  return ParseJsonFromFile(File($"{SolutionsFolder}/{solution}/solution.json"));
+}
+
 string GetConnectionString(string solution, bool stagingEnvironment) {
-  var envConfig = ParseJsonFromFile(File($"{SolutionsFolder}/{solution}/env.json"));
+  var config = GetSolutionConfig(solution);
+  var targetEnvironment = stagingEnvironment && config["environments"]?["staging"] != null ? "staging" : "development";
   
-  var targetEnvironment = stagingEnvironment && envConfig["stagingEnvironment"] != null ? "stagingEnvironment" : "environment";
-  var url = envConfig[targetEnvironment].ToString();
-  var username = envConfig["username"].ToString();
+  var url = config["environments"][targetEnvironment]["url"].ToString();
+  var username = config["environments"][targetEnvironment]["username"].ToString();
   var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD");
 
   return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";

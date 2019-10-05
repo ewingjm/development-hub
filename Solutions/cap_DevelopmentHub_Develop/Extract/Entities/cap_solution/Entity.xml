@@ -76,7 +76,7 @@
           <AutoNumberFormat></AutoNumberFormat>
           <Format>text</Format>
           <MaxLength>50</MaxLength>
-          <Length>200</Length>
+          <Length>100</Length>
           <displaynames>
             <displayname description="Display Name" languagecode="1033" />
           </displaynames>
@@ -994,6 +994,7 @@
       <ChangeTrackingEnabled>0</ChangeTrackingEnabled>
       <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
       <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
+      <IsSolutionAware>0</IsSolutionAware>
       <HasRelatedNotes>True</HasRelatedNotes>
     </entity>
   </EntityInfo>
