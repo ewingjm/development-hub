@@ -162,7 +162,6 @@
     <Compile Include="Develop\GetSolutionZipTests.cs" />
     <Compile Include="Develop\ImportSolutionZipTests.cs" />
     <Compile Include="Develop\InjectSecureConfigTests.cs" />
-    <Compile Include="Develop\ODataSolutionServiceTests.cs" />
     <Compile Include="Develop\SolutionServiceTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
