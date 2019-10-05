@@ -1,0 +1,11 @@
+{
+    "environments": {
+        "development": {
+            "url": "https://dhdevelop.crm11.dynamics.com",
+            "username": "max@dhdevelop.onmicrosoft.com"
+        }
+    },
+    "dependencies": [
+        "cap_DevelopmentHub_Issues"
+    ]
+}

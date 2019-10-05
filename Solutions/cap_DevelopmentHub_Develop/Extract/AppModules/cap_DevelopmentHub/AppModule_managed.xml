@@ -7,15 +7,9 @@
   <ClientType>4</ClientType>
   <NavigationType>0</NavigationType>
   <AppModuleComponents>
-    <AppModuleComponent type="62" schemaName="cap_DevelopmentHub" />
-    <AppModuleComponent type="60" id="{899883f9-9876-e911-a819-002248008902}" />
-    <AppModuleComponent type="1" schemaName="cap_environment" />
-    <AppModuleComponent type="1" schemaName="cap_issue" />
-    <AppModuleComponent type="59" id="{08600d52-9576-e911-a819-002248008902}" />
-    <AppModuleComponent type="59" id="{cb92cc2f-9576-e911-a819-002248008902}" />
-    <AppModuleComponent type="59" id="{4f470eb3-9576-e911-a819-002248008902}" />
-    <AppModuleComponent type="1" schemaName="cap_solution" />
-    <AppModuleComponent type="1" schemaName="cap_solutionmerge" />
+    <AppModuleComponent type="1" schemaName="cap_environment" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="cap_solution" solutionaction="Added" />
+    <AppModuleComponent type="1" schemaName="cap_solutionmerge" solutionaction="Added" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />

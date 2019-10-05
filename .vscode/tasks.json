@@ -107,6 +107,18 @@
         "-ScriptArgs \"--solution=${input:solution}\""
       ],
       "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "Build Development Environment",
+      "command": [
+        "powershell",
+        "-ExecutionPolicy ByPass",
+        "-File build.ps1",
+        "-Target \"BuildDevelopmentEnvironment\"",
+        "-ScriptArgs \"--solution=${input:solution}\""
+      ],
+      "problemMatcher": []
     }
   ],
   "inputs": [
@@ -128,6 +140,16 @@
         "PreDeployment",
         "PostDeployment"
       ]
+    },
+    {
+      "id": "url",
+      "type": "promptString",
+      "description": "Environment URL."
+    },
+    {
+      "id": "username",
+      "type": "promptString",
+      "description": "Environment usename."
     }
   ]
 }
