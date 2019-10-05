@@ -1,7 +1,7 @@
 {
     "properties": {
         "connectionReferences": {
-            "shared_commondataserviceforapps_2": {
+            "shared_commondataserviceforapps": {
                 "impersonation": {},
                 "runtimeSource": "embedded",
                 "connection": {},
@@ -9,22 +9,14 @@
                     "name": "shared_commondataserviceforapps"
                 }
             },
-            "shared_commondataserviceforapps_1": {
-                "impersonation": {},
-                "runtimeSource": "embedded",
-                "connection": {},
-                "api": {
-                    "name": "shared_commondataserviceforapps"
-                }
-            },
-            "shared_visualstudioteamservices_1": {
+            "shared_visualstudioteamservices": {
                 "runtimeSource": "embedded",
                 "connection": {},
                 "api": {
                     "name": "shared_visualstudioteamservices"
                 }
             },
-            "shared_commondataservice_1": {
+            "shared_commondataservice": {
                 "runtimeSource": "embedded",
                 "connection": {},
                 "api": {
@@ -51,7 +43,7 @@
                     "inputs": {
                         "host": {
                             "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataservice",
-                            "connectionName": "shared_commondataservice_1",
+                            "connectionName": "shared_commondataservice",
                             "operationId": "SubscribeOnUpdatedItems"
                         },
                         "parameters": {
@@ -80,11 +72,11 @@
                             "inputs": {
                                 "host": {
                                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                                    "connectionName": "shared_commondataserviceforapps_2",
+                                    "connectionName": "shared_commondataserviceforapps",
                                     "operationId": "ListRecords"
                                 },
                                 "parameters": {
-                                    "entityName": "solutions",
+                                    "entityName": "annotations",
                                     "$select": "annotationid",
                                     "$filter": "_objectid_value eq '@{triggerBody()?['_cap_targetsolution_value']}'",
                                     "$orderby": "createdon desc",
@@ -103,12 +95,12 @@
                             "inputs": {
                                 "host": {
                                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "connectionName": "shared_commondataserviceforapps",
                                     "operationId": "GetItem"
                                 },
                                 "parameters": {
                                     "entityName": "cap_solutions",
-                                    "recordId": "@triggerBody('When_a_solution_merge_status_updates')['cap_targetsolution']",
+                                    "recordId": "@triggerOutputs()?['body/_cap_targetsolution_value']",
                                     "$select": "cap_uniquename"
                                 },
                                 "authentication": "@parameters('$authentication')"
@@ -124,12 +116,12 @@
                             "inputs": {
                                 "host": {
                                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "connectionName": "shared_commondataserviceforapps",
                                     "operationId": "GetItem"
                                 },
                                 "parameters": {
                                     "entityName": "systemusers",
-                                    "recordId": "@triggerBody('When_a_solution_merge_status_is_updated')['createdby']",
+                                    "recordId": "@triggerOutputs()?['body/_createdby_value']",
                                     "$select": "fullname,internalemailaddress"
                                 },
                                 "authentication": "@parameters('$authentication')"
@@ -145,12 +137,12 @@
                             "inputs": {
                                 "host": {
                                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "connectionName": "shared_commondataserviceforapps",
                                     "operationId": "GetItem"
                                 },
                                 "parameters": {
                                     "entityName": "cap_issues",
-                                    "recordId": "@triggerBody('When_a_solution_merge_status_is_updated')['cap_issue']",
+                                    "recordId": "@triggerOutputs()?['body/_cap_issue_value']",
                                     "$select": "cap_name,cap_type"
                                 },
                                 "authentication": "@parameters('$authentication')"
@@ -166,7 +158,7 @@
                             "inputs": {
                                 "host": {
                                     "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices",
-                                    "connectionName": "shared_visualstudioteamservices_1",
+                                    "connectionName": "shared_visualstudioteamservices",
                                     "operationId": "QueueNewBuild"
                                 },
                                 "parameters": {
@@ -174,7 +166,7 @@
                                     "project": "Development Hub",
                                     "buildDefId": "Dynamics 365 Extract",
                                     "buildDetails/sourceBranch": "master",
-                                    "buildDetails/parameters": "{\n  \"unmanagedNoteId\": \"@{actionBody('Get_notes_containing_merged_solution_zips')?['value'][0]['annotationid']}\",\n  \"managedNoteId\": \"@{actionBody('Get_notes_containing_merged_solution_zips')?['value'][1]['annotationid']}\",\n  \"solution\": \"@{outputs('Get_target_solution')?['body/cap_uniquename']}\",\n  \"triggeredBy\": \"@{outputs('Get_solution_merge_creator')?['body/fullname']}\",\n  \"triggeredByEmail\": \"@{outputs('Get_solution_merge_creator')?['body/internalemailaddress']}\",\n  \"commitMessage\": \"@{outputs('Get_solution_merge_issue')?['body/cap_type']} - @{outputs('Get_solution_merge_issue')?['body/cap_name']}\"\n}"
+                                    "buildDetails/parameters": "{\n  \"unmanagedNoteId\": \"@{actionBody('Get_notes_containing_merged_solution_zips')?['value'][0]['annotationid']}\",\n  \"managedNoteId\": \"@{actionBody('Get_notes_containing_merged_solution_zips')?['value'][1]['annotationid']}\",\n  \"solution\": \"@{outputs('Get_target_solution')?['body/cap_uniquename']}\",\n  \"triggeredBy\": \"@{outputs('Get_solution_merge_creator')?['body/fullname']}\",\n  \"triggeredByEmail\": \"@{outputs('Get_solution_merge_creator')?['body/internalemailaddress']}\",\n  \"commitMessage\": \"@{if(equals(body('Get_solution_merge_issue')?['cap_type'], 809020001), 'Feature', 'Bug')} - @{outputs('Get_solution_merge_issue')?['body/cap_name']}\"\n}"
                                 },
                                 "authentication": "@parameters('$authentication')"
                             }

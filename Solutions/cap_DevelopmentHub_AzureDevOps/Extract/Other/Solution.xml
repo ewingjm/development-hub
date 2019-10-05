@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.7022" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.9023" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>cap_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Development Hub - Azure DevOps" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.0</Version>
+    <Version>0.1.0.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>capgemini</UniqueName>
@@ -86,7 +86,7 @@
         <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="2" type="1" schemaName="cap_solution" displayName="Solution" solution="cap_DevelopmentHub_Develop (0.1.17.0)" />
+        <Required key="2" type="1" schemaName="cap_solution" displayName="Solution" solution="cap_DevelopmentHub_Develop (0.1.20.0)" />
         <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
     </MissingDependencies>
