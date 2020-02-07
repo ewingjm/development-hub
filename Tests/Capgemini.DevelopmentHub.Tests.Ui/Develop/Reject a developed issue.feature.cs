@@ -19,7 +19,7 @@ namespace Capgemini.DevelopmentHub.Tests.Ui.Develop
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class StartDevelopingAnIssueFeature : object, Xunit.IClassFixture<StartDevelopingAnIssueFeature.FixtureData>, System.IDisposable
+    public partial class RejectADevelopedIssueFeature : object, Xunit.IClassFixture<RejectADevelopedIssueFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace Capgemini.DevelopmentHub.Tests.Ui.Develop
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "Start developing an issue.feature"
+#line 1 "Reject a developed issue.feature"
 #line hidden
         
-        public StartDevelopingAnIssueFeature(StartDevelopingAnIssueFeature.FixtureData fixtureData, Capgemini_DevelopmentHub_Tests_Ui_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public RejectADevelopedIssueFeature(RejectADevelopedIssueFeature.FixtureData fixtureData, Capgemini_DevelopmentHub_Tests_Ui_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,9 +40,8 @@ namespace Capgemini.DevelopmentHub.Tests.Ui.Develop
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Start developing an issue", "\tIn order to show progress and have a development solution created for me\r\n\tAs a " +
-                    "developer\r\n\tI want to start developing an issue that has been created in Dynamic" +
-                    "s 365", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Reject a developed issue", "\tIn order to ensure that low quality code is not merged\r\n\tAs a developer\r\n\tI want" +
+                    " to reject a solution merge", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,13 +81,13 @@ namespace Capgemini.DevelopmentHub.Tests.Ui.Develop
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="An unsaved issue")]
-        [Xunit.TraitAttribute("FeatureTitle", "Start developing an issue")]
-        [Xunit.TraitAttribute("Description", "An unsaved issue")]
-        public virtual void AnUnsavedIssue()
+        [Xunit.SkippableFactAttribute(DisplayName="Open a solution merge awaiting review")]
+        [Xunit.TraitAttribute("FeatureTitle", "Reject a developed issue")]
+        [Xunit.TraitAttribute("Description", "Open a solution merge awaiting review")]
+        public virtual void OpenASolutionMergeAwaitingReview()
         {
             string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An unsaved issue", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Open a solution merge awaiting review", null, ((string[])(null)));
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,25 +112,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I am logged in to the Development Hub app as an admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("I am viewing the Issues sub area of the Issues area", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created an \'Awaiting Review\' solution merge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.When("I select the New command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have opened the solution merge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.Then("I can\'t see the Start Developing command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I can see the Reject command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A \'to do\' issue")]
-        [Xunit.TraitAttribute("FeatureTitle", "Start developing an issue")]
-        [Xunit.TraitAttribute("Description", "A \'to do\' issue")]
-        public virtual void AToDoIssue()
+        [Xunit.SkippableFactAttribute(DisplayName="Approve a solution merge awaiting review")]
+        [Xunit.TraitAttribute("FeatureTitle", "Reject a developed issue")]
+        [Xunit.TraitAttribute("Description", "Approve a solution merge awaiting review")]
+        public virtual void ApproveASolutionMergeAwaitingReview()
         {
             string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A \'to do\' issue", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Approve a solution merge awaiting review", null, ((string[])(null)));
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -156,56 +155,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I am logged in to the Development Hub app as an admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
- testRunner.And("I have created a \'To Do\' issue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created an \'Awaiting Review\' solution merge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("I have opened the issue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have opened the solution merge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.Then("I can see the Start Developing command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I select the Reject command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="An issue that is not \'to do\'")]
-        [Xunit.TraitAttribute("FeatureTitle", "Start developing an issue")]
-        [Xunit.TraitAttribute("Description", "An issue that is not \'to do\'")]
-        public virtual void AnIssueThatIsNotToDo()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("An issue that is not \'to do\'", null, ((string[])(null)));
-#line 18
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 19
- testRunner.Given("I am logged in to the Development Hub app as an admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 20
- testRunner.And("I have created a \'In Progress\' issue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
- testRunner.And("I have opened the issue", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.Then("I can\'t see the Start Developing command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.Then("I can\'t see the Reject command", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -218,12 +177,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                StartDevelopingAnIssueFeature.FeatureSetup();
+                RejectADevelopedIssueFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                StartDevelopingAnIssueFeature.FeatureTearDown();
+                RejectADevelopedIssueFeature.FeatureTearDown();
             }
         }
     }

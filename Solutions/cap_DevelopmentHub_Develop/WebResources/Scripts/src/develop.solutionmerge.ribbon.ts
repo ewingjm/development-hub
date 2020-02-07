@@ -21,6 +21,28 @@ namespace Capgemini.DevelopmentHub.Develop {
         }
     }
 
+    class RejectRequest {
+        public entity: Xrm.LookupValue;
+
+        constructor(entity: Xrm.LookupValue) {
+            this.entity = entity;
+        }
+
+        public getMetadata() {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "cap_Reject",
+                parameterTypes: {
+                    entity: {
+                        typeName: "mscrm.cap_solutionmerge",
+                        structuralProperty: 5
+                    }
+                }
+            };
+        }
+    }
+
     export function isReviewEnabled(primaryControl: Xrm.FormContext): boolean {
         return primaryControl.getAttribute("statuscode").getValue() === cap_solutionmerge_statuscode.AwaitingReview
             &&
@@ -31,6 +53,13 @@ namespace Capgemini.DevelopmentHub.Develop {
         const entity = primaryControl.data.entity.getEntityReference();
 
         executeWebApiRequest(new ApproveRequest(entity), "Approving solution merge.")
+            .then(() => primaryControl.data.refresh(false));
+    }
+
+    export function reject(primaryControl: Xrm.FormContext): void {
+        const entity = primaryControl.data.entity.getEntityReference();
+
+        executeWebApiRequest(new RejectRequest(entity), "Rejecting solution merge.")
             .then(() => primaryControl.data.refresh(false));
     }
     

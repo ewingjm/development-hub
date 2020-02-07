@@ -17,7 +17,7 @@
     <ReferencingAttributeName>cap_ApprovedBy</ReferencingAttributeName>
     <RelationshipDescription>
       <Descriptions>
-        <Description description="The user that approved the solution merge." languagecode="1033" />
+        <Description description="The user that reviewed the solution merge." languagecode="1033" />
       </Descriptions>
     </RelationshipDescription>
     <EntityRelationshipRoles>

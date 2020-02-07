@@ -1,8 +1,8 @@
 {
     "environments": {
         "development": {
-            "url": "https://dhissues.crm11.dynamics.com",
-            "username": "max@dhissues.onmicrosoft.com"
+            "url": "https://dhubissues.crm11.dynamics.com",
+            "username": "max@dhubissues.onmicrosoft.com"
         }
     }
 }

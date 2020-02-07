@@ -18,6 +18,7 @@
   <IntroducedVersion>0.1.12.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
   <PrimaryEntity>cap_issue</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Lock 'Development Solution' If Status Reason Is 'To Do'" />
@@ -25,22 +26,4 @@
   <Descriptions>
     <Description languagecode="1033" description="Lock the 'Development Solution' field if the issue is not in progress." />
   </Descriptions>
-  <ProcessTriggers>
-    <ProcessTrigger processtriggerid="{4a79228e-9084-e911-a97e-0022480186c3}">
-      <controltype>1</controltype>
-      <scope>1</scope>
-      <controlname>statuscode</controlname>
-      <event>change</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_issue</primaryentitytypecode>
-    </ProcessTrigger>
-    <ProcessTrigger processtriggerid="{4b79228e-9084-e911-a97e-0022480186c3}">
-      <scope>1</scope>
-      <event>load</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_issue</primaryentitytypecode>
-    </ProcessTrigger>
-  </ProcessTriggers>
 </Workflow>

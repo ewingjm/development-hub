@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.9023" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.12930" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>cap_DevelopmentHub_Develop</UniqueName>
     <LocalizedNames>
@@ -91,6 +91,7 @@
       <RootComponent type="29" id="{3321de58-d1e6-4f3c-bc21-e31a834c8d9b}" behavior="0" />
       <RootComponent type="29" id="{38601740-ae0b-46af-8809-5d402b5a0a02}" behavior="0" />
       <RootComponent type="29" id="{3e79228e-9084-e911-a97e-0022480186c3}" behavior="0" />
+      <RootComponent type="29" id="{43ab3c69-507c-4866-9e1f-581084068d48}" behavior="0" />
       <RootComponent type="29" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" behavior="0" />
       <RootComponent type="29" id="{5a7f778d-9c71-4bfd-8a35-79489d5a5377}" behavior="0" />
       <RootComponent type="29" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" behavior="0" />
@@ -138,267 +139,267 @@
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
-        <Required key="0" type="1" schemaName="cap_issue" displayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
+        <Required key="0" type="1" schemaName="cap_issue" displayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
         <Dependent key="0" type="1" schemaName="cap_issue" displayName="Issue" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="2" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="2" type="29" displayName="Solution Merge: Set Name" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="2" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="2" type="29" displayName="Solution Merge: Set Name" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="2" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
+        <Required key="4" type="2" schemaName="modifiedby" displayName="Modified By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="5" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="6" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="6" type="29" displayName="Solution Merge: Merge With Target Solution" id="{ef05e501-f445-49d9-ab1f-2fdb9cdf972a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="7" type="29" displayName="Has Active Solution Merge" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="6" type="29" displayName="Solution Merge: Merge With Target Solution" id="{ef05e501-f445-49d9-ab1f-2fdb9cdf972a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="8" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="8" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="8" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="8" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="8" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="8" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="10" type="10" schemaName="cap_issue_solutionmerge_Issue" displayName="cap_issue_solutionmerge_Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="9" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="11" type="29" displayName="Solution Merge: Set Name" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="9" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="11" type="29" displayName="Solution Merge: Set Name" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="9" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="12" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
+        <Required key="10" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="9" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="12" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="12" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="12" type="29" displayName="Solution Merge: Update Issue On Status Update" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="12" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="14" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="12" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="14" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="14" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="14" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="14" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="15" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="14" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="16" type="2" schemaName="createdon" displayName="Created On" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="15" type="29" displayName="Solution Merge: Validate And Update Issue" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="18" type="2" schemaName="cap_url" displayName="URL" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="15" type="29" displayName="Solution Merge: Validate And Update Issue" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="16" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="16" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="16" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="17" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="19" type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="17" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="5" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="17" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="17" type="29" displayName="Get Post Merge Solution Version" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="18" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="21" type="2" schemaName="modifiedby" displayName="Modified By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="18" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="18" type="2" schemaName="cap_url" displayName="URL" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="18" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="19" type="29" displayName="Has Active Solution Merge" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="19" type="29" displayName="Has Active Solution Merge" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="20" type="26" schemaName="Solution Merge Lookup View" displayName="Solution Merge Lookup View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{45a0b007-c4d5-4d4a-9841-c6d65c39d042}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="20" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="21" type="10" schemaName="cap_issue_solutionmerge_Issue" displayName="cap_issue_solutionmerge_Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="22" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="22" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="22" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="22" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="22" type="26" schemaName="Quick Find Active Solution Merges" displayName="Quick Find Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{b77ad5eb-9643-4fef-b229-a54b7f33f248}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="22" type="26" schemaName="Inactive Solution Merges" displayName="Inactive Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{93d7173f-5b4a-4585-9aac-de791fe4d445}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="23" type="29" displayName="Solution Merge: Validate And Update Issue" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="23" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="23" type="29" displayName="Solution Merge: Validate And Update Issue" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="23" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="6" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="23" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="6" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="24" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="6" type="29" displayName="Lock 'Status Reason'" id="{154fbb6c-7784-e911-a97e-0022480186c3}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="24" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="24" type="29" displayName="Solution Merge: Merge With Target Solution" id="{ef05e501-f445-49d9-ab1f-2fdb9cdf972a}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="24" type="26" schemaName="Solution Merge Associated View" displayName="Solution Merge Associated View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{18d3f675-bf02-4b2d-bffb-3c674eca5054}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="24" type="29" displayName="Solution Merge: Merge With Target Solution" id="{ef05e501-f445-49d9-ab1f-2fdb9cdf972a}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="21" type="10" schemaName="cap_issue_solutionmerge_Issue" displayName="cap_issue_solutionmerge_Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="7" type="29" displayName="Has Active Solution Merge" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="25" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="25" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
+        <Required key="3" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="25" type="26" schemaName="Solution Merge Advanced Find View" displayName="Solution Merge Advanced Find View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{2baece6c-461c-4a01-9ab5-cae63af2eb7c}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="10" type="10" schemaName="cap_issue_solutionmerge_Issue" displayName="cap_issue_solutionmerge_Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" />
+        <Required key="25" type="2" schemaName="cap_url" displayName="URL" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="26" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="5" type="29" displayName="Start Developing" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="26" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
+        <Required key="13" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="26" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
+        <Required key="27" type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="15" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="15" type="29" displayName="Lock 'Development Solution' If Status Reason Is 'To Do'" id="{3e79228e-9084-e911-a97e-0022480186c3}" />
+        <Required key="28" type="2" schemaName="createdon" displayName="Created On" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="9" type="2" schemaName="cap_description" displayName="Description" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="27" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
+        <Required key="11" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="27" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
+        <Required key="25" type="2" schemaName="cap_url" displayName="URL" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="2" schemaName="cap_type" displayName="Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="27" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
+        <Required key="1" type="2" schemaName="cap_name" displayName="Name" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="2" schemaName="cap_issueid" displayName="Issue" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
-        <Dependent key="28" type="26" schemaName="Solution Merge Lookup View" displayName="Solution Merge Lookup View" parentSchemaName="cap_solutionmerge" parentDisplayName="Solution Merge" id="{45a0b007-c4d5-4d4a-9841-c6d65c39d042}" />
+        <Required key="10" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="26" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="29" type="26" schemaName="Issue Lookup View" displayName="Issue Lookup View" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" id="{a44c8d50-7d6f-4cd8-8504-d622fd2a1914}" />
+        <Required key="29" type="26" schemaName="Issue Lookup View" displayName="Issue Lookup View" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" id="{a44c8d50-7d6f-4cd8-8504-d622fd2a1914}" />
         <Dependent key="30" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="31" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
+        <Required key="31" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" id="{08600d52-9576-e911-a819-002248008902}" />
         <Dependent key="32" type="80" schemaName="cap_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="33" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" id="{08600d52-9576-e911-a819-002248008902}" />
+        <Required key="33" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
         <Dependent key="32" type="80" schemaName="cap_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="34" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.2)" id="{4f470eb3-9576-e911-a819-002248008902}" />
+        <Required key="34" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="cap_issue" parentDisplayName="Issue" solution="cap_DevelopmentHub_Issues (0.1.11.0)" id="{4f470eb3-9576-e911-a819-002248008902}" />
         <Dependent key="32" type="80" schemaName="cap_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="35" type="60" displayName="Issues Dashboard" solution="cap_DevelopmentHub_Issues (0.1.11.2)" id="{899883f9-9876-e911-a819-002248008902}" />
+        <Required key="35" type="60" displayName="Issues Dashboard" solution="cap_DevelopmentHub_Issues (0.1.11.0)" id="{899883f9-9876-e911-a819-002248008902}" />
         <Dependent key="32" type="80" schemaName="cap_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="36" type="62" schemaName="cap_DevelopmentHub" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
+        <Required key="36" type="62" schemaName="cap_DevelopmentHub" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
         <Dependent key="36" type="62" schemaName="cap_DevelopmentHub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="37" type="61" schemaName="cap_/Images/cap_Logo.png" displayName="cap_/Images/cap_Logo.png" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
+        <Required key="37" type="61" schemaName="cap_/Images/cap_Logo.png" displayName="cap_/Images/cap_Logo.png" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
         <Dependent key="32" type="80" schemaName="cap_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="38" type="61" schemaName="cap_/Images/cap_Issue.svg" displayName="cap_/Images/cap_Issue.svg" solution="cap_DevelopmentHub_Issues (0.1.11.2)" />
+        <Required key="38" type="61" schemaName="cap_/Images/cap_Issue.svg" displayName="cap_/Images/cap_Issue.svg" solution="cap_DevelopmentHub_Issues (0.1.11.0)" />
         <Dependent key="0" type="1" schemaName="cap_issue" displayName="Issue" />
       </MissingDependency>
     </MissingDependencies>

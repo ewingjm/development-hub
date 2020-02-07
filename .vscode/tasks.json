@@ -119,6 +119,18 @@
         "-ScriptArgs \"--solution=${input:solution}\""
       ],
       "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "Resolve Solution Dependencies",
+      "command": [
+        "powershell",
+        "-ExecutionPolicy ByPass",
+        "-File build.ps1",
+        "-Target \"ResolveSolutionDependencies\"",
+        "-ScriptArgs \"--solution=${input:solution}\""
+      ],
+      "problemMatcher": []
     }
   ],
   "inputs": [

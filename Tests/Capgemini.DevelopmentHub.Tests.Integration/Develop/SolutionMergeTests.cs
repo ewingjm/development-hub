@@ -20,7 +20,7 @@
         /// Initializes a new instance of the <see cref="SolutionMergeTests"/> class.
         /// </summary>
         public SolutionMergeTests()
-            : base(new Uri("https://devhubdevelop.crm11.dynamics.com"), "max@devhubdevelop.onmicrosoft.com")
+            : base(new Uri("https://dhubdevelop.crm11.dynamics.com"), "max@dhubdevelop.onmicrosoft.com")
         {
             this.issueRepo = this.RepositoryFactory.GetRepository<DevelopContext, cap_issue>();
             this.solutionMergeRepo = this.RepositoryFactory.GetRepository<DevelopContext, cap_solutionmerge>();
@@ -133,17 +133,17 @@
         }
 
         /// <summary>
-        /// Tests that the associated issue is set back to 'In Progress' if the solution merge is deactivated.
+        /// Tests that the associated issue is set back to 'In Progress' if the solution merge is cancelled.
         /// </summary>
         [Fact]
-        public void Deactivate_HasAssociatedIssue_SetsIssueStatusToInProgress()
+        public void Cancel_HasAssociatedIssue_SetsIssueStatusToInProgress()
         {
             var issue = new cap_issue
             {
-                cap_Description = "Deactivating a solution merge sets issue to 'In Progress'.",
-                cap_name = "Set issue to In Progress on deactivate of solution merge",
+                cap_Description = "Cancelling a solution merge sets issue to 'In Progress'.",
+                cap_name = "Set issue to In Progress on cancel of solution merge",
                 cap_Type = cap_issue_cap_type.Feature,
-                cap_DevelopmentSolution = "cap_SetIssueToInProgressOnDeactivateOfSolutionMerge",
+                cap_DevelopmentSolution = "cap_SetIssueToInProgressOnCancelOfSolutionMerge",
                 statuscode = cap_issue_statuscode.InProgress,
             };
             var issueReference = this.CreateTestRecord(issue);
@@ -162,6 +162,59 @@
             var updatedIssue = this.issueRepo.Retrieve(issueReference.Id, new string[] { "statuscode" });
 
             Assert.Equal(cap_issue_statuscode.InProgress, updatedIssue.statuscode);
+        }
+
+        /// <summary>
+        /// Tests that the associated issue is set back to 'In Progress' if the solution merge is cancelled.
+        /// </summary>
+        [Fact]
+        public void Reject_WhenAwaitingReview_SetsIssueStatusToInProgress()
+        {
+            var issue = new cap_issue
+            {
+                cap_Description = "Rejecting a solution merge sets issue to 'In Progress'.",
+                cap_name = "Set issue to In Progress on reject of solution merge",
+                cap_Type = cap_issue_cap_type.Feature,
+                cap_DevelopmentSolution = "cap_SetIssueToInProgressOnRejectOfSolutionMerge",
+                statuscode = cap_issue_statuscode.InProgress,
+            };
+            var issueReference = this.CreateTestRecord(issue);
+            var solutionMergeReference = this.CreateTestRecord(new cap_solutionmerge
+            {
+                cap_Issue = issueReference,
+            });
+            this.OrgService.Execute(new cap_RejectRequest { Target = solutionMergeReference });
+
+            var updatedIssue = this.issueRepo.Retrieve(issueReference.Id, new string[] { "statuscode" });
+
+            Assert.Equal(cap_issue_statuscode.InProgress, updatedIssue.statuscode);
+        }
+
+        /// <summary>
+        /// Tests that the associated issue is set back to 'In Progress' if the solution merge is cancelled.
+        /// </summary>
+        [Fact]
+        public void Reject_WhenAwaitingReview_SetsReviewedByAndOnFields()
+        {
+            var issue = new cap_issue
+            {
+                cap_Description = "Rejecting a solution merge sets reviwed by an reviwed on.",
+                cap_name = "Set reviewed by and on when solution merge is rejected",
+                cap_Type = cap_issue_cap_type.Feature,
+                cap_DevelopmentSolution = "cap_SetReviewFieldsOnRejectOfSolutionMerge",
+                statuscode = cap_issue_statuscode.InProgress,
+            };
+            var issueReference = this.CreateTestRecord(issue);
+            var solutionMergeReference = this.CreateTestRecord(new cap_solutionmerge
+            {
+                cap_Issue = issueReference,
+            });
+            this.OrgService.Execute(new cap_RejectRequest { Target = solutionMergeReference });
+
+            var updatedSolutionMerge = this.solutionMergeRepo.Retrieve(solutionMergeReference.Id, new string[] { "cap_approvedby", "cap_approvedon" });
+
+            Assert.NotNull(updatedSolutionMerge.cap_ApprovedBy);
+            Assert.NotNull(updatedSolutionMerge.cap_ApprovedOn);
         }
     }
 }

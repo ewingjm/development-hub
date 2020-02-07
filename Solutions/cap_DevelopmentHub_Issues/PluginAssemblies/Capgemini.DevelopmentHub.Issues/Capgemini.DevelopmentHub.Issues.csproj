@@ -63,20 +63,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Crm.Sdk.Proxy, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.12\lib\net462\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.22\lib\net462\Microsoft.Crm.Sdk.Proxy.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.12\lib\net462\Microsoft.Xrm.Sdk.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.CoreAssemblies.9.0.2.22\lib\net462\Microsoft.Xrm.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.Workflow.9.0.2.5\lib\net452\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\packages\Microsoft.CrmSdk.Workflow.9.0.2.22\lib\net462\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -112,6 +108,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Condition="'$(Configuration)'=='Debug' Or '$(Configuration)'=='Release'" Include="..\..\..\..\Common\Capgemini.DevelopmentHub.Container\Capgemini.DevelopmentHub.Container.csproj">
+      <Project>{f9e5ef62-5bdf-4e36-8027-d265754b56c7}</Project>
+      <Name>Capgemini.DevelopmentHub.Container</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\..\..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Humanizer.dll" />
     <Analyzer Include="..\..\..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
     <Analyzer Include="..\..\..\..\packages\Microsoft.CodeQuality.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
@@ -123,12 +125,6 @@
     <Analyzer Include="..\..\..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
     <Analyzer Include="..\..\..\..\packages\Text.Analyzers.2.6.3\analyzers\dotnet\cs\Text.Analyzers.dll" />
     <Analyzer Include="..\..\..\..\packages\Text.Analyzers.2.6.3\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Condition="'$(Configuration)'=='Debug' Or '$(Configuration)'=='Release'" Include="..\..\..\..\Common\Capgemini.DevelopmentHub.Container\Capgemini.DevelopmentHub.Container.csproj">
-      <Project>{f9e5ef62-5bdf-4e36-8027-d265754b56c7}</Project>
-      <Name>Capgemini.DevelopmentHub.Container</Name>
-    </ProjectReference>
   </ItemGroup>
   <!--Target the shared projects for a Dynamics 365 compatible build-->
   <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\..\..\Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems" Label="Shared" />

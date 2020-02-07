@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
-    <CustomAction Id="cap.cap_solutionmerge.Approve.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="15">
+    <CustomAction Id="cap.cap_solutionmerge.Approve.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="14">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:cap.cap_solutionmerge.Approve.Button.Alt" Command="cap.cap_solutionmerge.Approve.Command" Id="cap.cap_solutionmerge.Approve.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Approve.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_approve.svg" />
+        <Button Alt="$LocLabels:cap.cap_solutionmerge.Approve.Button.Alt" Command="cap.cap_solutionmerge.Approve.Command" Id="cap.cap_solutionmerge.Approve.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Approve.Button.LabelText" Sequence="14" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_approve.svg" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="cap.cap_solutionmerge.Retry.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="14">
+    <CustomAction Id="cap.cap_solutionmerge.Reject.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="15">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:cap.cap_solutionmerge.Retry.Button.Alt" Command="cap.cap_solutionmerge.Retry.Command" Id="cap.cap_solutionmerge.Retry.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Retry.Button.LabelText" Sequence="14" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_retry.svg" />
+        <Button Alt="$LocLabels:cap.cap_solutionmerge.Reject.Button.Alt" Command="cap.cap_solutionmerge.Reject.Command" Id="cap.cap_solutionmerge.Reject.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Reject.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Reject.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Reject.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_reject.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="cap.cap_solutionmerge.Retry.Button.CustomAction" Location="Mscrm.Form.cap_solutionmerge.MainTab.Actions.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:cap.cap_solutionmerge.Retry.Button.Alt" Command="cap.cap_solutionmerge.Retry.Command" Id="cap.cap_solutionmerge.Retry.Button" LabelText="$LocLabels:cap.cap_solutionmerge.Retry.Button.LabelText" Sequence="0" TemplateAlias="isv" ToolTipTitle="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipTitle" ToolTipDescription="$LocLabels:cap.cap_solutionmerge.Retry.Button.ToolTipDescription" ModernImage="$webresource:cap_/Images/cap_retry.svg" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -23,6 +28,17 @@
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="Capgemini.DevelopmentHub.Develop.approve" Library="$webresource:cap_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="cap.cap_solutionmerge.Reject.Command">
+      <EnableRules>
+        <EnableRule Id="cap.cap_solutionmerge.Review.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="Capgemini.DevelopmentHub.Develop.reject" Library="$webresource:cap_/Js/develop.solutionmerge.ribbon.js">
           <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
@@ -75,6 +91,26 @@
     <LocLabel Id="cap.cap_solutionmerge.Approve.Button.ToolTipTitle">
       <Titles>
         <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Reject.Button.Alt">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Reject.Button.LabelText">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Reject.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Reject the solution merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="cap.cap_solutionmerge.Reject.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="cap.cap_solutionmerge.Retry.Button.Alt">
