@@ -18,6 +18,7 @@
   <IntroducedVersion>0.1.17.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
   <PrimaryEntity>cap_solution</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Default Major Version To 0" />
@@ -25,22 +26,4 @@
   <Descriptions>
     <Description languagecode="1033" description="Major version defaults to 0 if not set." />
   </Descriptions>
-  <ProcessTriggers>
-    <ProcessTrigger processtriggerid="{2164ef52-849b-e911-a980-0022480186c3}">
-      <controltype>1</controltype>
-      <scope>1</scope>
-      <controlname>cap_majorversion</controlname>
-      <event>change</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_solution</primaryentitytypecode>
-    </ProcessTrigger>
-    <ProcessTrigger processtriggerid="{2264ef52-849b-e911-a980-0022480186c3}">
-      <scope>1</scope>
-      <event>load</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_solution</primaryentitytypecode>
-    </ProcessTrigger>
-  </ProcessTriggers>
 </Workflow>

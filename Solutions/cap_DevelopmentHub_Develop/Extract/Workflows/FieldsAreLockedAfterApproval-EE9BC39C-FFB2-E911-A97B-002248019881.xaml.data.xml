@@ -18,6 +18,7 @@
   <IntroducedVersion>0.1.17.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
   <PrimaryEntity>cap_solutionmerge</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Fields Are Locked After Approval" />
@@ -25,22 +26,4 @@
   <Descriptions>
     <Description languagecode="1033" description="Updates are not allowed after an approval" />
   </Descriptions>
-  <ProcessTriggers>
-    <ProcessTrigger processtriggerid="{49b1d1c0-ffb2-e911-a97b-002248019881}">
-      <controltype>1</controltype>
-      <scope>1</scope>
-      <controlname>statuscode</controlname>
-      <event>change</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_solutionmerge</primaryentitytypecode>
-    </ProcessTrigger>
-    <ProcessTrigger processtriggerid="{4ab1d1c0-ffb2-e911-a97b-002248019881}">
-      <scope>1</scope>
-      <event>load</event>
-      <pipelinestage>0</pipelinestage>
-      <iscustomizable>1</iscustomizable>
-      <primaryentitytypecode>cap_solutionmerge</primaryentitytypecode>
-    </ProcessTrigger>
-  </ProcessTriggers>
 </Workflow>

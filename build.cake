@@ -1,10 +1,14 @@
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using System.Xml.XPath.Extensions;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 #addin nuget:?package=Cake.Xrm.Sdk&version=0.1.9
 #addin nuget:?package=Cake.Xrm.SolutionPackager&version=0.1.9
 #addin nuget:?package=Cake.Xrm.DataMigration&version=0.1.8
 #addin nuget:?package=Cake.Xrm.Spkl&version=0.1.7
-#addin nuget:?package=Cake.Xrm.XrmDefinitelyTyped&version=0.1.6
 #addin nuget:?package=Cake.Npm&version=0.17.0
 #addin nuget:?package=Cake.Json&version=3.0.0
 
@@ -39,12 +43,27 @@ Task("BuildDeploymentProject")
   });
 
 Task("PackAll")
+  .IsDependentOn("ValidatePackageDependencies")
   .Does(() => {
-    var solutionDirectories = GetDirectories($"{SolutionsFolder}/*");
-    foreach (var solutionDirectory in solutionDirectories)
+    foreach (var solutionDirectory in GetDirectories($"{SolutionsFolder}/*"))
     {
       solution = solutionDirectory.GetDirectoryName();
       RunTarget("PackSolution");
+    }
+  });
+
+Task("ValidatePackageDependencies")
+  .Does(() => {
+    var dependencies = new Dictionary<string, string>();
+    foreach (var solutionDirectory in GetDirectories($"{SolutionsFolder}/*"))
+    {
+      var currentSolution = solutionDirectory.GetDirectoryName();
+      var solutionDependencies = GetSolutionDependencies(currentSolution).Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+      var mismatch = solutionDependencies.FirstOrDefault(dependency => dependencies.ContainsKey(dependency.Key) && dependencies[dependency.Key] != dependency.Value);
+      if (!mismatch.Equals(default(KeyValuePair<string,string>))) {
+        throw new Exception($"Dependency mismatch detected. {currentSolution} is dependent on {mismatch.Key} {mismatch.Value} but existing dependency on {dependencies[mismatch.Key]}.");
+      }
+      dependencies = dependencies.Concat(solutionDependencies.Where(kvp => !dependencies.ContainsKey(kvp.Key))).ToDictionary(c => c.Key, c => c.Value);
     }
   });
 
@@ -73,6 +92,45 @@ Task("BuildTestProjects")
     }
   });
 
+Task("ResolveSolutionDependencies")
+  .Does(() => {
+    Information($"Resolving dependencies for the {solution} solution.");
+    var solutionToResolve = solution;
+    var dependencies = GetSolutionDependencies(solution);
+    var resolvedSolutions = new List<string>();
+
+    var localDependencies = dependencies.Where(dep => DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+    foreach (var localDep in localDependencies)
+    {
+        if (!resolvedSolutions.Contains(localDep.Key))
+        {
+          Information($"Detected the {localDep.Key} solution in source. Building local dependency.");
+          solution = localDep.Key;
+          RunTarget("PackSolution");
+          EnsureDirectoryExists($"{SolutionsFolder}/{solutionToResolve}/bin/Release");
+          CopyFiles($"{SolutionsFolder}/{solution}/bin/Release/**/*_managed.zip", Directory($"{SolutionsFolder}/{solutionToResolve}/bin/Release"));
+          resolvedSolutions.Add(localDep.Key);
+          solution = solutionToResolve;
+        }
+    }
+
+    var externalDependencies = dependencies.Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+    foreach (var externalDep in externalDependencies)
+    {
+      if (!resolvedSolutions.Contains(externalDep.Key))
+      {
+        Information($"{externalDep.Key} solution not detected in source. Retrieving external dependency.");
+        var packageId = GetNugetPackageIdForExternalSolution(solutionToResolve, externalDep.Key);
+        if(string.IsNullOrEmpty(packageId))
+        {
+          throw new Exception($"An entry for {externalDep.Key} was not present in the externalDependencies configuration for the {solutionToResolve} solution.");
+        }
+        ResolveSolutionDependency(packageId, externalDep.Value, solutionToResolve);
+        resolvedSolutions.Add(externalDep.Key);      
+      }
+    }
+  });
+
 Task("BuildSolution")
   .DoesForEach(
     GetFiles($"{Directory($"{SolutionsFolder}/{solution}")}/**/package.json",  new GlobberSettings { Predicate = (fileSystemInfo) => !fileSystemInfo.Path.FullPath.Contains("node_modules") }), 
@@ -94,6 +152,7 @@ Task("BuildSolution")
 // pack targets
 Task("PackSolution")
   .IsDependentOn("BuildSolution")
+  .IsDependentOn("ResolveSolutionDependencies")
   .Does(() => {
     var solutionFolder = Directory($"{SolutionsFolder}/{solution}");
     
@@ -156,15 +215,9 @@ Task("DeployWorkflowActivities")
 
 Task("BuildDevelopmentEnvironment")
   .Does(() => {
-    Information($"Building development environment for {solution}");
-    var installedSolutions = new List<string>();
-
-    InstallSolution(GetConnectionString(solution, false), solution, false, installedSolutions);
-
-    foreach (var installedDependency in installedSolutions)
-    {
-        Information($"Solution installed: {installedDependency}");
-    }
+    Information($"Building development environment for {solution}.");
+    RunTarget("ResolveSolutionDependencies");
+    InstallSolution(GetConnectionString(solution, false), solution, solution, false, new List<string>());
   });
 
 void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings, MSBuildSettings msBuildSettings = null) { 
@@ -172,26 +225,60 @@ void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings
     MSBuild(projectPath, msBuildSettings);
 }
 
-void InstallSolution(string connectionString, string solutionToInstall, bool managed, List<string> installedSolutions) {
-  var config = GetSolutionConfig(solutionToInstall);   
-  var dependenciesConfig = config["dependencies"];
+string GetNugetPackageIdForExternalSolution(string dependentSolution, string dependencySolution) 
+{
+  Information($"Retrieving NuGet package ID for external dependency {dependencySolution}");
+  return GetSolutionConfig(dependentSolution)["externalDependencies"][dependencySolution]?.Value<string>();
+}
 
-  if(dependenciesConfig != null && dependenciesConfig.Type == JTokenType.Array && dependenciesConfig.HasValues) 
+Dictionary<string, string> GetSolutionDependencies(string solution) 
+{
+  var dependencyAttributes = (IEnumerable)XDocument.Load($"{SolutionsFolder}/{solution}/Extract/Other/Solution.Xml")
+    .XPathEvaluate("/ImportExportXml/SolutionManifest/MissingDependencies/MissingDependency/Required/@solution");
+    
+  var dependencies = dependencyAttributes
+    .Cast<XAttribute>()
+    .Select(solutionAttribute => solutionAttribute.Value)
+    .Where(sol => sol != "Active")
+    .Distinct()
+    .ToDictionary(sol => sol.Split(' ')[0], sol => sol.Split('(', ')')[1]);
+  
+  return dependencies;
+}
+
+void InstallSolution(string connectionString, string solutionToBuild, string solutionToInstall, bool managed, List<string> installedSolutions) {
+  var dependencies = GetSolutionDependencies(solutionToInstall);
+
+  var localDependencies = dependencies.Where(dep => DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+  foreach (var localDep in localDependencies)
   {
-    Information($"Dependencies detected for {solutionToInstall}.");
-    foreach (var dependency in dependenciesConfig.ToObject<List<string>>())
-    {
-      if (!installedSolutions.Contains(dependency))
+      if (!installedSolutions.Contains(localDep.Key))
       {
-        InstallSolution(connectionString, dependency, true, installedSolutions);
+        InstallSolution(connectionString, solutionToBuild, localDep.Key, true, installedSolutions);
       }
-    }
-  } 
+  }
 
-  solution = solutionToInstall;
-  RunTarget("PackSolution");
-  XrmImportSolution(connectionString, File($"{SolutionsFolder}/{solution}/bin/Release/{solutionToInstall}{(managed ? "_managed" : "")}.zip"), new SolutionImportSettings());
+  var externalDependencies = dependencies.Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+  foreach (var externalDep in externalDependencies)
+  {
+    if (!installedSolutions.Contains(externalDep.Key))
+    {
+      var solutionZip = GetFiles($"{SolutionsFolder}/{solutionToBuild}/bin/Release/**/{externalDep.Key}{(managed ? "_managed" : "")}.zip").First();
+      XrmImportSolution(connectionString, solutionZip, new SolutionImportSettings());
+      installedSolutions.Add(externalDep.Key);
+    }
+  }
+  
+  XrmImportSolution(connectionString, File($"{SolutionsFolder}/{solutionToBuild}/bin/Release/{solutionToInstall}{(managed ? "_managed" : "")}.zip"), new SolutionImportSettings());
   installedSolutions.Add(solutionToInstall);
+}
+
+void ResolveSolutionDependency(string packageId, string packageVersion, string solution)
+{
+  Information($"Resolving NuGet solution dependency {packageId} {packageVersion} for {solution}.");
+  NuGetInstall(packageId, new NuGetInstallSettings { Version = packageVersion });
+  EnsureDirectoryExists($"{SolutionsFolder}/{solution}/bin/Release");
+  CopyFiles($"{PackagesFolder}/{packageId}.{packageVersion}/**/*_managed.zip", Directory($"{SolutionsFolder}/{solution}/bin/Release"));
 }
 
 // Utilities

@@ -15,7 +15,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum goal_fiscalperiod
 	{
 		
@@ -117,7 +117,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum goal_fiscalyear
 	{
 		
@@ -330,7 +330,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum metric_goaltype
 	{
 		
@@ -345,7 +345,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum componentstate
 	{
 		
@@ -363,7 +363,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum workflowlog_objecttypecode
 	{
 		
@@ -372,43 +372,25 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowSession = 4710,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FlowSession = 4720,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_options
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_qualify_lead_options
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Createalead = 0,
+		Qualifylead = 0,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Converttoanexistinglead = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Createaquoteorderoropportunityforanaccountorcontact = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Closeresponse = 3,
+		Disqualifylead = 1,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum msdyn_upgradestatus
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Started = 100000000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Success = 100000001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Failure = 100000002,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum qooiproduct_propertiesconfigurationstatus
 	{
 		
@@ -423,7 +405,22 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum msdyn_upgradestatus
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Started = 100000000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Success = 100000001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Failure = 100000002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum purchasetimeframe
 	{
 		
@@ -444,25 +441,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_to_lead_disqualify_status
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Lost = 4,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CannotContact = 5,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NoLongerInterested = 6,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Canceled = 7,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum need
 	{
 		
@@ -480,7 +459,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum connectionrole_category
 	{
 		
@@ -510,7 +489,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum isinherited
 	{
 		
@@ -522,7 +501,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum initialcommunication
 	{
 		
@@ -534,7 +513,25 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_options
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Createalead = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Converttoanexistinglead = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Createaquoteorderoropportunityforanaccountorcontact = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Closeresponse = 3,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum orginsightsconfiguration_plotoption
 	{
 		
@@ -573,7 +570,37 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum activity_mailmergetypecode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PhoneCall = 4210,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Appointment = 4201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Letter = 4207,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		LetterviaMailMerge = 42070,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Fax = 4204,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FaxviaMailMerge = 42040,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Email = 4202,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EmailviaMailMerge = 42020,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum servicestage
 	{
 		
@@ -588,7 +615,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum budgetstatus
 	{
 		
@@ -606,7 +633,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum sharepointdocumentlocation_locationtype
 	{
 		
@@ -618,7 +645,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum convert_campaign_response_to_lead_option
 	{
 		
@@ -630,7 +657,97 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum msdyn_playbookactivity_time
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0100AM = 100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0200AM = 200,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0300AM = 300,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0400AM = 400,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0500AM = 500,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0600AM = 600,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0700AM = 700,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0800AM = 800,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0900AM = 900,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1000AM = 1000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1100AM = 1100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1200PM = 1200,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0100PM = 1300,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0200PM = 1400,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0300PM = 1500,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0400PM = 1600,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0500PM = 1700,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0600PM = 1800,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0700PM = 1900,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0800PM = 2000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_0900PM = 2100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1000PM = 2200,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1100PM = 2300,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number_1200AM = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum delete_recurringappointmentmaster
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Allinstances = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Theseriesleavepastappointments = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum msdyn_bookableresourcetype
 	{
 		
@@ -660,7 +777,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum qooidetail_skippricecalculation
 	{
 		
@@ -675,7 +792,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum activitypointer_deliveryprioritycode
 	{
 		
@@ -690,7 +807,19 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum allocationtype
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Numberofcases = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Numberofhours = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum lead_salesstage
 	{
 		
@@ -699,16 +828,34 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_to_lead_qualify_status
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum msdyn_playbookactivity_priority
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Qualified = 3,
+		Low = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Normal = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		High = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum addlistcampaign
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Tothecampaignandallundistributedcampaignactivities = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Tothecampaignonly = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum sla_slaenabledentities
 	{
 		
@@ -717,7 +864,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cascadecaseclosurepreference
 	{
 		
@@ -729,7 +876,16 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum entitytype
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Case = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum componenttype
 	{
 		
@@ -996,22 +1152,16 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		EntityAnalyticsConfiguration = 430,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AttributeImageConfiguration = 431,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		EntityImageConfiguration = 432,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum addlistcampaign
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Tothecampaignandallundistributedcampaignactivities = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Tothecampaignonly = 0,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum activitypointer_activitytypecode
 	{
 		
@@ -1061,14 +1211,14 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		QuoteClose = 4211,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Surveyinvite = 10041,
+		FormsProsurveyinvite = 10063,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Surveyresponse = 10042,
+		FormsProsurveyresponse = 10064,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum workflow_runas
 	{
 		
@@ -1080,7 +1230,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum qooi_pricingerrorcode
 	{
 		
@@ -1203,19 +1353,16 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum msdyn_connectortype
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_to_lead_qualify_status
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CustomConnector = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NotSpecified = 0,
+		Qualified = 3,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum orginsightsconfiguration_lookback
 	{
 		
@@ -1233,7 +1380,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum sharepoint_validationstatus
 	{
 		
@@ -1254,7 +1401,22 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_sales_entity_type
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Opportunity = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Order = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Quote = 3,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum emailserverprofile_authenticationprotocol
 	{
 		
@@ -1272,7 +1434,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum sharepointsite_servicetype
 	{
 		
@@ -1290,55 +1452,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum allocationtype
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Numberofcases = 0,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Numberofhours = 1,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum activity_typecode
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PhoneCall = 4210,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Appointment = 4201,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Letter = 4207,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Fax = 4204,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Email = 4202,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum bulkemail_recipients
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Selectedrecordsoncurrentpage = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Allrecordsoncurrentpage = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Allrecordsonallpages = 3,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum mobileofflineenabledentities
 	{
 		
@@ -1391,6 +1505,21 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		Product = 1024,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PriceList = 1022,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PriceListItem = 1026,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProductRelationship = 1028,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Unit = 1055,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UnitGroup = 1056,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Entitlement = 9700,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1440,10 +1569,31 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Competitor = 123,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Invoice = 1090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		InvoiceProduct = 1091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Quote = 1084,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		QuoteProduct = 1085,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Order = 1088,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OrderProduct = 1089,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Currency = 9105,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum convertrule_channelactivity
 	{
 		
@@ -1466,50 +1616,20 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		ServiceActivity = 4214,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Surveyinvite = 10041,
+		FormsProsurveyinvite = 10063,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Surveyresponse = 10042,
+		FormsProsurveyresponse = 10064,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum activity_mailmergetypecode
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PhoneCall = 4210,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Appointment = 4201,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Letter = 4207,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		LetterviaMailMerge = 42070,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Fax = 4204,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FaxviaMailMerge = 42040,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Email = 4202,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		EmailviaMailMerge = 42020,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum selectedmobileofflineenabledentityrelationships
 	{
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum knowledgearticle_expirationstate
 	{
 		
@@ -1524,7 +1644,22 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum bulkemail_recipients
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Selectedrecordsoncurrentpage = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Allrecordsoncurrentpage = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Allrecordsonallpages = 3,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum socialactivity_postmessagetype
 	{
 		
@@ -1536,85 +1671,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum msdyn_playbookactivity_time
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0100AM = 100,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0200AM = 200,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0300AM = 300,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0400AM = 400,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0500AM = 500,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0600AM = 600,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0700AM = 700,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0800AM = 800,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0900AM = 900,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1000AM = 1000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1100AM = 1100,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1200PM = 1200,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0100PM = 1300,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0200PM = 1400,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0300PM = 1500,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0400PM = 1600,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0500PM = 1700,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0600PM = 1800,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0700PM = 1900,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0800PM = 2000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_0900PM = 2100,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1000PM = 2200,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1100PM = 2300,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Number_1200AM = 0,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum syncattributemapping_syncdirection
 	{
 		
@@ -1632,7 +1689,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum workflow_stage
 	{
 		
@@ -1644,7 +1701,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum convert_campaign_response_option
 	{
 		
@@ -1662,22 +1719,37 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum msdyn_playbookactivity_priority
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum connectortype
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Low = 0,
+		CustomConnector = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Normal = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		High = 2,
+		NotSpecified = 0,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_to_lead_disqualify_status
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Lost = 4,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CannotContact = 5,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NoLongerInterested = 6,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Canceled = 7,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum dependencytype
 	{
 		
@@ -1695,19 +1767,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum connectortype
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CustomConnector = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NotSpecified = 0,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum socialprofile_community
 	{
 		
@@ -1722,19 +1782,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_deactivate_status
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Closed = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Cancelled = 2,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum field_security_permission_type
 	{
 		
@@ -1746,7 +1794,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum purchaseprocess
 	{
 		
@@ -1761,7 +1809,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum opportunity_salesstage
 	{
 		
@@ -1779,7 +1827,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum photo_resolution
 	{
 		
@@ -1803,7 +1851,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum flipswitch_options
 	{
 		
@@ -1815,7 +1863,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum qooiproduct_producttype
 	{
 		
@@ -1836,7 +1884,28 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum activity_typecode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PhoneCall = 4210,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Appointment = 4201,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Letter = 4207,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Fax = 4204,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Email = 4202,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum processstage_category
 	{
 		
@@ -1866,7 +1935,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum qooi_skippricecalculation
 	{
 		
@@ -1878,19 +1947,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum delete_recurringappointmentmaster
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Allinstances = 1,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Theseriesleavepastappointments = 2,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum bookableresourcecharacteristictype
 	{
 		
@@ -1902,19 +1959,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_qualify_lead_options
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Qualifylead = 0,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Disqualifylead = 1,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum sharepoint_validationstatusreason
 	{
 		
@@ -1941,7 +1986,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum incident_caseorigincode
 	{
 		
@@ -1962,7 +2007,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum recurrencerule_monthofyear
 	{
 		
@@ -2007,22 +2052,19 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum convert_campaign_response_sales_entity_type
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public enum convert_campaign_response_deactivate_status
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Opportunity = 1,
+		Closed = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Order = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Quote = 3,
+		Cancelled = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum principalsyncattributemapping_syncdirection
 	{
 		
@@ -2039,21 +2081,12 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		Bidirectional = 3,
 	}
 	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
-	public enum entitytype
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Case = 0,
-	}
-	
 	/// <summary>
 	/// Note that is attached to one or more objects, including other notes.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("annotation")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class Annotation : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -2447,6 +2480,18 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
+		/// Prefix of the file pointer in blob storage.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("prefix")]
+		public string Prefix
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("prefix");
+			}
+		}
+		
+		/// <summary>
 		/// workflow step id associated with the note.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("stepid")]
@@ -2495,6 +2540,25 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
+		/// N:1 cap_solution_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solution_Annotations")]
+		public Capgemini.DevelopmentHub.Develop.Model.cap_solution cap_solution_Annotations
+		{
+			get
+			{
+				return this.GetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solution>("cap_solution_Annotations", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solution_Annotations");
+				this.SetRelatedEntity<Capgemini.DevelopmentHub.Develop.Model.cap_solution>("cap_solution_Annotations", null, value);
+				this.OnPropertyChanged("cap_solution_Annotations");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 cap_solutionmerge_Annotations
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
@@ -2515,7 +2579,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_environmentState
 	{
 		
@@ -2527,7 +2591,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_environment_statuscode
 	{
 		
@@ -2543,7 +2607,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_environment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_environment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -2557,7 +2621,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		public const string EntityLogicalName = "cap_environment";
 		
-		public const int EntityTypeCode = 10046;
+		public const int EntityTypeCode = 10071;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -2987,7 +3051,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_issue_cap_type
 	{
 		
@@ -2999,7 +3063,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_issueState
 	{
 		
@@ -3011,7 +3075,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_issue_statuscode
 	{
 		
@@ -3036,7 +3100,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_issue")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_issue : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -3050,7 +3114,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		public const string EntityLogicalName = "cap_issue";
 		
-		public const int EntityTypeCode = 10045;
+		public const int EntityTypeCode = 10070;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -3549,7 +3613,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_solutionState
 	{
 		
@@ -3561,7 +3625,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_solution_statuscode
 	{
 		
@@ -3577,7 +3641,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_solution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_solution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -3591,7 +3655,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		public const string EntityLogicalName = "cap_solution";
 		
-		public const int EntityTypeCode = 10047;
+		public const int EntityTypeCode = 10072;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -3646,6 +3710,60 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 				this.OnPropertyChanging("cap_displayname");
 				this.SetAttributeValue("cap_displayname", value);
 				this.OnPropertyChanged("cap_displayname");
+			}
+		}
+		
+		/// <summary>
+		/// The major version of the solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_majorversion")]
+		public System.Nullable<int> cap_MajorVersion
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("cap_majorversion");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_MajorVersion");
+				this.SetAttributeValue("cap_majorversion", value);
+				this.OnPropertyChanged("cap_MajorVersion");
+			}
+		}
+		
+		/// <summary>
+		/// The minor version of the solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_minorversion")]
+		public System.Nullable<int> cap_MinorVersion
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("cap_minorversion");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_MinorVersion");
+				this.SetAttributeValue("cap_minorversion", value);
+				this.OnPropertyChanged("cap_MinorVersion");
+			}
+		}
+		
+		/// <summary>
+		/// The patch version of the solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_patchversion")]
+		public System.Nullable<int> cap_PatchVersion
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("cap_patchversion");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_PatchVersion");
+				this.SetAttributeValue("cap_patchversion", value);
+				this.OnPropertyChanged("cap_PatchVersion");
 			}
 		}
 		
@@ -3721,6 +3839,18 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 				this.OnPropertyChanging("cap_UniqueName");
 				this.SetAttributeValue("cap_uniquename", value);
 				this.OnPropertyChanged("cap_UniqueName");
+			}
+		}
+		
+		/// <summary>
+		/// The version of the solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_version")]
+		public string cap_Version
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cap_version");
 			}
 		}
 		
@@ -4001,6 +4131,24 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
+		/// 1:N cap_solution_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solution_Annotations")]
+		public System.Collections.Generic.IEnumerable<Capgemini.DevelopmentHub.Develop.Model.Annotation> cap_solution_Annotations
+		{
+			get
+			{
+				return this.GetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.Annotation>("cap_solution_Annotations", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_solution_Annotations");
+				this.SetRelatedEntities<Capgemini.DevelopmentHub.Develop.Model.Annotation>("cap_solution_Annotations", null, value);
+				this.OnPropertyChanged("cap_solution_Annotations");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N cap_solution_solutionmerge_TargetSolution
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("cap_solution_solutionmerge_TargetSolution")]
@@ -4039,7 +4187,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_solutionmergeState
 	{
 		
@@ -4051,18 +4199,18 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum cap_solutionmerge_statuscode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Queued = 809020004,
+		AwaitingReview = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Merging = 809020003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		AwaitingReview = 1,
+		Queued = 809020004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Approved = 809020000,
@@ -4075,6 +4223,9 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Merged = 809020001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Rejected = 809020005,
 	}
 	
 	/// <summary>
@@ -4082,7 +4233,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("cap_solutionmerge")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_solutionmerge : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -4096,7 +4247,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		
 		public const string EntityLogicalName = "cap_solutionmerge";
 		
-		public const int EntityTypeCode = 10055;
+		public const int EntityTypeCode = 10073;
 		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 		
@@ -4119,7 +4270,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
-		/// The user that approved the solution merge.
+		/// The user that reviewed the solution merge.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_approvedby")]
 		public Microsoft.Xrm.Sdk.EntityReference cap_ApprovedBy
@@ -4137,7 +4288,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 		}
 		
 		/// <summary>
-		/// The date and time that the solution merge was approved.
+		/// The date and time that the solution merge was reviewed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_approvedon")]
 		public System.Nullable<System.DateTime> cap_ApprovedOn
@@ -4226,6 +4377,24 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			set
 			{
 				this.cap_solutionmergeId = value;
+			}
+		}
+		
+		/// <summary>
+		/// The name of the git branch that contains any associated source code for the solution.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("cap_sourcebranch")]
+		public string cap_SourceBranch
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("cap_sourcebranch");
+			}
+			set
+			{
+				this.OnPropertyChanging("cap_SourceBranch");
+				this.SetAttributeValue("cap_sourcebranch", value);
+				this.OnPropertyChanged("cap_SourceBranch");
 			}
 		}
 		
@@ -4617,7 +4786,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum publisher_address1_addresstypecode
 	{
 		
@@ -4626,7 +4795,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum publisher_address1_shippingmethodcode
 	{
 		
@@ -4635,7 +4804,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum publisher_address2_addresstypecode
 	{
 		
@@ -4644,7 +4813,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum publisher_address2_shippingmethodcode
 	{
 		
@@ -4657,7 +4826,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("publisher")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class Publisher : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -5880,7 +6049,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public enum solution_solutiontype
 	{
 		
@@ -5899,7 +6068,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("solution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class Solution : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
 		
@@ -6034,6 +6203,18 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("installedon");
+			}
+		}
+		
+		/// <summary>
+		/// Information about whether the solution is api managed.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("isapimanaged")]
+		public System.Nullable<bool> IsApiManaged
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("isapimanaged");
 			}
 		}
 		
@@ -6391,7 +6572,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	/// <summary>
 	/// Represents a source of entities bound to a CRM service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class DevelopContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		
@@ -6483,7 +6664,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_StartDeveloping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_StartDevelopingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -6515,7 +6696,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_StartDeveloping")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_StartDevelopingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -6541,7 +6722,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_ImportSolution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_ImportSolutionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -6593,7 +6774,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_ImportSolution")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_ImportSolutionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -6634,7 +6815,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_GetLastApprovedSolutionMerge")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_GetLastApprovedSolutionMergeRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -6666,7 +6847,7 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_GetLastApprovedSolutionMerge")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.0.0.9154")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
 	public partial class cap_GetLastApprovedSolutionMergeResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -6687,6 +6868,92 @@ namespace Capgemini.DevelopmentHub.Develop.Model
 					return default(Microsoft.Xrm.Sdk.EntityReference);
 				}
 			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_Reject")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public partial class cap_RejectRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public cap_RejectRequest()
+		{
+			this.RequestName = "cap_Reject";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_Reject")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public partial class cap_RejectResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cap_RejectResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cap_Approve")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public partial class cap_ApproveRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public cap_ApproveRequest()
+		{
+			this.RequestName = "cap_Approve";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/cap/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cap_Approve")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.13")]
+	public partial class cap_ApproveResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cap_ApproveResponse()
+		{
 		}
 	}
 }

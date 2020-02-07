@@ -1,1 +1,11 @@
-<?xml version="1.0" ?><svg height="1024" width="640" xmlns="http://www.w3.org/2000/svg"><path d="M640 320L512 192 320 384 128 192 0 320l192 192L0 704l128 128 192-192 192 192 128-128L448 512 640 320z"/></svg>
+<svg width="640" height="640" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="642" width="642" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m640,128l-128,-128l-192,192l-192,-192l-128,128l192,192l-192,192l128,128l192,-192l192,192l128,-128l-192,-192l192,-192z"/>
+ </g>
+</svg>

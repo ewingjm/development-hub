@@ -23,6 +23,25 @@ var Capgemini;
                 };
                 return ApproveRequest;
             }());
+            var RejectRequest = /** @class */ (function () {
+                function RejectRequest(entity) {
+                    this.entity = entity;
+                }
+                RejectRequest.prototype.getMetadata = function () {
+                    return {
+                        boundParameter: "entity",
+                        operationType: 0,
+                        operationName: "cap_Reject",
+                        parameterTypes: {
+                            entity: {
+                                typeName: "mscrm.cap_solutionmerge",
+                                structuralProperty: 5
+                            }
+                        }
+                    };
+                };
+                return RejectRequest;
+            }());
             function isReviewEnabled(primaryControl) {
                 return primaryControl.getAttribute("statuscode").getValue() === 1 /* AwaitingReview */
                     &&
@@ -35,6 +54,12 @@ var Capgemini;
                     .then(function () { return primaryControl.data.refresh(false); });
             }
             Develop.approve = approve;
+            function reject(primaryControl) {
+                var entity = primaryControl.data.entity.getEntityReference();
+                executeWebApiRequest(new RejectRequest(entity), "Rejecting solution merge.")
+                    .then(function () { return primaryControl.data.refresh(false); });
+            }
+            Develop.reject = reject;
             function executeWebApiRequest(request, progressIndicator) {
                 return new Promise(function (resolve, reject) {
                     Xrm.Utility.showProgressIndicator(progressIndicator);
