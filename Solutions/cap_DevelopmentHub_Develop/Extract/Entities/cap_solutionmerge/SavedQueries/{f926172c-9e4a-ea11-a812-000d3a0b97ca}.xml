@@ -2,11 +2,11 @@
 <savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <savedquery>
     <IsCustomizable>1</IsCustomizable>
-    <CanBeDeleted>0</CanBeDeleted>
+    <CanBeDeleted>1</CanBeDeleted>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
-    <savedqueryid>{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}</savedqueryid>
+    <savedqueryid>{f926172c-9e4a-ea11-a812-000d3a0b97ca}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="cap_name" select="1" icon="1" preview="1">
         <row name="result" id="cap_solutionmergeid">
@@ -43,9 +43,12 @@
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>0.1.12.0</IntroducedVersion>
+    <IntroducedVersion>0.1.20.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Solution Merges" languagecode="1033" />
+      <LocalizedName description="Awaiting Review Solution Merges" languagecode="1033" />
     </LocalizedNames>
+    <Descriptions>
+      <Description description="Solution merges that are awaiting review." languagecode="1033" />
+    </Descriptions>
   </savedquery>
 </savedqueries>
