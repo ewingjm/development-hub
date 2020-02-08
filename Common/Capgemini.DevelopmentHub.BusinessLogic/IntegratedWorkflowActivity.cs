@@ -70,12 +70,13 @@
                 var oDataClient = this.GetODataClient(context, workflowContext, logWriter);
                 this.ExecuteWorkflowActivity(context, workflowContext, oDataClient, logWriter, repositoryFactory);
             }
+            catch (InvalidPluginExecutionException ex)
+            {
+                this.SetError(context, logWriter, ex.Message);
+            }
             catch (AggregateException ex) when (ex.InnerException is WebException)
             {
-                logWriter.Log(Severity.Error, Tag, ex.InnerException.Message);
-                this.Error.Set(context, ex.InnerException.Message);
-                this.IsSuccessful.Set(context, false);
-                return;
+                this.SetError(context, logWriter, ex.InnerException.Message);
             }
         }
 
@@ -96,7 +97,7 @@
         {
             if (!workflowContext.SharedVariables.ContainsKey(SharedVariablesSecureConfigKey))
             {
-                throw new Exception($"Secure configuration not found. Please inject an {nameof(OAuthPasswordGrantRequest)} object with shared variables key '{SharedVariablesSecureConfigKey}'.");
+                throw new InvalidPluginExecutionException($"Secure configuration not found. Please inject an {nameof(OAuthPasswordGrantRequest)} object with shared variables key '{SharedVariablesSecureConfigKey}'.");
             }
 
             var secureConfig = (string)workflowContext.SharedVariables[SharedVariablesSecureConfigKey];
@@ -110,6 +111,14 @@
             }
 
             return passwordGrantRequest;
+        }
+
+        private void SetError(CodeActivityContext context, TracingServiceLogWriter logWriter, string message)
+        {
+            logWriter.Log(Severity.Error, Tag, message);
+
+            this.Error.Set(context, message);
+            this.IsSuccessful.Set(context, false);
         }
 
         private IODataClient GetODataClient(CodeActivityContext context, IWorkflowContext workflowContext, TracingServiceLogWriter logWriter)

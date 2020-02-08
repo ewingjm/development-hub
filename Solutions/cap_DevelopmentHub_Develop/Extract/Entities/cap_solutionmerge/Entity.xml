@@ -131,6 +131,128 @@
             <Description description="The issue this solution merge relates to." languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="cap_ManualMergeActivities">
+          <Type>bit</Type>
+          <Name>cap_manualmergeactivities</Name>
+          <LogicalName>cap_manualmergeactivities</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="cap_solutionmerge_cap_manualmergeactivities">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.0.0</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <displaynames>
+              <displayname description="Manual Merge Activities" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Whether or not manual activities are required in the merge." languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="0" Color="#0000ff">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="1" Color="#0000ff">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Manual Merge Activities" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Whether or not manual activities are required in the merge." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="cap_ManualMergeActivitiesComplete">
+          <Type>bit</Type>
+          <Name>cap_manualmergeactivitiescomplete</Name>
+          <LogicalName>cap_manualmergeactivitiescomplete</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="cap_solutionmerge_cap_manualmergeactivitiescomplete">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.0.0</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <displaynames>
+              <displayname description="Manual Merge Activities Complete" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Whether or not the manual merging activities are complete" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="0" Color="#0000ff">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="1" Color="#0000ff">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Manual Merge Activities Complete" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Whether or not the manual merging activities are complete" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="cap_name">
           <Type>nvarchar</Type>
           <Name>cap_name</Name>
@@ -845,9 +967,9 @@
                   <label description="Awaiting Review" languagecode="1033" />
                 </labels>
               </status>
-              <status value="809020003" state="0" TransitionData="" Color="#0000ff">
+              <status value="809020000" state="0" TransitionData="" Color="#0000ff">
                 <labels>
-                  <label description="Merging" languagecode="1033" />
+                  <label description="Approved" languagecode="1033" />
                 </labels>
               </status>
               <status value="809020004" state="0" TransitionData="" Color="#0000ff">
@@ -855,14 +977,19 @@
                   <label description="Queued" languagecode="1033" />
                 </labels>
               </status>
-              <status value="809020000" state="0" TransitionData="" Color="#0000ff">
+              <status value="809020003" state="0" TransitionData="" Color="#0000ff">
                 <labels>
-                  <label description="Approved" languagecode="1033" />
+                  <label description="Merging" languagecode="1033" />
                 </labels>
               </status>
               <status value="809020002" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Failed" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="809020006" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Awaiting Manual Merge" languagecode="1033" />
                 </labels>
               </status>
               <status value="2" state="1" TransitionData="" Color="#0000ff">
