@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{3e79228e-9084-e911-a97e-0022480186c3}" Name="Lock 'Development Solution' If Status Reason Is 'To Do'" Description="Lock the 'Development Solution' field if the issue is not in progress." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <XamlFileName>/Workflows/LockDevelopmentSolutionIfStatusReasonIsToDo-3E79228E-9084-E911-A97E-0022480186C3.xaml</XamlFileName>
+<Workflow WorkflowId="{3e79228e-9084-e911-a97e-0022480186c3}" Name="Lock 'Development Solution'" Description="Lock the 'Development Solution' field." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/LockDevelopmentSolution-3E79228E-9084-E911-A97E-0022480186C3.xaml</XamlFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>2</Category>
@@ -21,9 +21,9 @@
   <ProcessTriggerScope>1</ProcessTriggerScope>
   <PrimaryEntity>cap_issue</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="Lock 'Development Solution' If Status Reason Is 'To Do'" />
+    <LocalizedName languagecode="1033" description="Lock 'Development Solution'" />
   </LocalizedNames>
   <Descriptions>
-    <Description languagecode="1033" description="Lock the 'Development Solution' field if the issue is not in progress." />
+    <Description languagecode="1033" description="Lock the 'Development Solution' field." />
   </Descriptions>
 </Workflow>
