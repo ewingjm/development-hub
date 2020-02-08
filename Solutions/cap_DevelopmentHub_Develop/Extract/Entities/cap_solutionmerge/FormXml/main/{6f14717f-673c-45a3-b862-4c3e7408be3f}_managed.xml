@@ -70,6 +70,39 @@
                     </row>
                   </rows>
                 </section>
+                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_3" showlabel="false" showbar="false" locklevel="0" id="{62ba406e-8972-6dc3-0062-1924bd19c52c}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{e4c96ee3-3e0c-31d5-5e09-c397883b2d63}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Manual Merge Activities" languagecode="1033" />
+                        </labels>
+                        <control id="cap_manualmergeactivities" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="cap_manualmergeactivities" disabled="false" uniqueid="{ad4b4660-5e53-4402-6c13-c7db2a63bc0e}" />
+                      </cell>
+                      <cell id="{1906ce19-e5ee-dc2e-1bd0-d4677395ce54}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{eb3d0108-2a29-ac33-8c42-e83058c8629a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Manual Merge Activities Complete" languagecode="1033" />
+                        </labels>
+                        <control id="cap_manualmergeactivitiescomplete" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="cap_manualmergeactivitiescomplete" disabled="false" uniqueid="{50ce4710-4c9e-dc05-c03c-41924593c614}" />
+                      </cell>
+                      <cell id="{ac3eadeb-971d-648c-130c-10625c342162}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_2" showlabel="false" showbar="false" locklevel="0" id="{49014417-e9a9-89cb-a712-e08117896db2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
                   <labels>
                     <label description="Section" languagecode="1033" />
@@ -227,7 +260,52 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <controlDescriptions />
+      <controlDescriptions>
+        <controlDescription forControl="{ad4b4660-5e53-4402-6c13-c7db2a63bc0e}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>cap_manualmergeactivities</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivities</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivities</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivities</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{50ce4710-4c9e-dc05-c03c-41924593c614}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>cap_manualmergeactivitiescomplete</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivitiescomplete</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivitiescomplete</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FlipSwitch.FlipSwitchControl">
+            <parameters>
+              <value>cap_manualmergeactivitiescomplete</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

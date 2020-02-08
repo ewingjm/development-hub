@@ -115,9 +115,11 @@ Task("ResolveSolutionDependencies")
     }
 
     var externalDependencies = dependencies.Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+    var noResolveDependencies = GetSolutionConfig(solutionToResolve)["dependencies"]?["noResolve"].ToObject<List<string>>();
+
     foreach (var externalDep in externalDependencies)
     {
-      if (!resolvedSolutions.Contains(externalDep.Key))
+      if (!resolvedSolutions.Contains(externalDep.Key) && (noResolveDependencies == null || !noResolveDependencies.Contains(externalDep.Key)))
       {
         Information($"{externalDep.Key} solution not detected in source. Retrieving external dependency.");
         var packageId = GetNugetPackageIdForExternalSolution(solutionToResolve, externalDep.Key);
@@ -228,7 +230,7 @@ void BuildCSharpProject(FilePath projectPath, NuGetRestoreSettings nugetSettings
 string GetNugetPackageIdForExternalSolution(string dependentSolution, string dependencySolution) 
 {
   Information($"Retrieving NuGet package ID for external dependency {dependencySolution}");
-  return GetSolutionConfig(dependentSolution)["externalDependencies"][dependencySolution]?.Value<string>();
+  return GetSolutionConfig(dependentSolution)["dependencies"]?["nuget"]?[dependencySolution]?.Value<string>();
 }
 
 Dictionary<string, string> GetSolutionDependencies(string solution) 

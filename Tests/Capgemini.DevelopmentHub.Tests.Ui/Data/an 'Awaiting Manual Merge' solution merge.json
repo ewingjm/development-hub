@@ -1,0 +1,15 @@
+{
+  "@alias": "the solution merge",
+  "@logicalName": "cap_solutionmerge",
+  "statuscode": 809020006,
+  "cap_issue": {
+    "@alias": "the issue",
+    "@logicalName": "cap_issue",
+    "cap_name": "Integration test issue"
+  },
+  "cap_targetsolution": {
+    "@alias": "the target solution",
+    "@logicalName": "cap_solution",
+    "cap_displayname": "Integration test solution"
+  }
+}

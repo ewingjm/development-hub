@@ -175,6 +175,7 @@
     <None Include="Data\a %27To Do%27 issue.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\an %27Awaiting Manual Merge%27 solution merge.json" />
     <None Include="Data\an %27Awaiting Review%27 solution merge.json" />
     <None Include="Data\an %27In Progress%27 issue.json" />
     <None Include="Develop\Reject a developed issue.feature">

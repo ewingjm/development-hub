@@ -4,5 +4,13 @@
             "url": "https://dhubdevelop.crm11.dynamics.com/",
             "username": "max@dhubdevelop.onmicrosoft.com"
         }
+    },
+    "dependencies": {
+        "nuget": {
+
+        },
+        "noResolve": [
+         "CustomControlsCore"   
+        ]
     }
 }
