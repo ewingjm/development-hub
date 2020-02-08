@@ -11,7 +11,8 @@
       <grid name="resultset" jump="cap_name" select="1" icon="1" preview="1">
         <row name="result" id="cap_environmentid">
           <cell name="cap_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="cap_url" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="statuscode" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -21,10 +22,11 @@
         <entity name="cap_environment">
           <attribute name="cap_environmentid" />
           <attribute name="cap_name" />
-          <attribute name="createdon" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="1" />
           </filter>
+          <attribute name="cap_url" />
+          <attribute name="statuscode" />
           <order attribute="cap_name" descending="false" />
         </entity>
       </fetch>
