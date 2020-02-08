@@ -40,19 +40,19 @@
                     <row>
                       <cell id="{dd00d516-98ed-38a4-a0ed-68cde87b1703}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Type" languagecode="1033" />
                         </labels>
                         <control id="cap_type" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="cap_type" disabled="false" />
                       </cell>
                       <cell id="{f2255064-d842-4cb4-8d3a-e592615b9b74}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Status Reason" languagecode="1033" />
                         </labels>
                         <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
                       </cell>
                       <cell id="{8a898848-03d6-4951-ae7b-da819364b04a}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" uniqueid="{579ec5ab-b5b7-77de-11c3-68a2db274cbc}" />
                       </cell>
@@ -67,7 +67,7 @@
                     <row>
                       <cell id="{97c1c223-a5d0-4cd1-aab2-a7bf8cc4c167}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Name" languagecode="1033" />
                         </labels>
                         <control id="cap_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="cap_name" disabled="false" />
                       </cell>
@@ -75,7 +75,7 @@
                     <row>
                       <cell id="{9ac18ea5-9dc2-dbdd-699e-769e2a3c93b2}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Description" languagecode="1033" />
                         </labels>
                         <control id="cap_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="cap_description" disabled="false" />
                       </cell>
@@ -90,13 +90,13 @@
                     <row>
                       <cell id="{ec1773a4-0bb2-bd21-24d8-6a79cdca087a}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Created By" languagecode="1033" />
                         </labels>
                         <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
                       </cell>
                       <cell id="{519a7b4f-e48b-4547-bde4-c96f5a51adaa}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Created On" languagecode="1033" />
                         </labels>
                         <control id="createdon" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdon" disabled="false" />
                       </cell>

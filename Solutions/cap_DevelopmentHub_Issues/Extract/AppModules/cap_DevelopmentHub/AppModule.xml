@@ -3,6 +3,7 @@
   <UniqueName>cap_DevelopmentHub</UniqueName>
   <IntroducedVersion>0.0.1.0</IntroducedVersion>
   <WebResourceId>04204eb6-9a76-e911-a819-002248008902</WebResourceId>
+  <OptimizedFor></OptimizedFor>
   <FormFactor>1</FormFactor>
   <ClientType>4</ClientType>
   <NavigationType>0</NavigationType>
