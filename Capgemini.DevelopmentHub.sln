@@ -61,16 +61,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{2b1ef6de-63cc-4b7e-9bf6-5d9b4c0afded}*SharedItemsImports = 13
 		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{56d657e2-2db7-4489-ad26-ca2e147836c6}*SharedItemsImports = 13
-		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{64abb0f7-44df-6117-3387-b2b32bb452ee}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{64abb0f7-44df-6117-3387-b2b32bb452ee}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{64abb0f7-44df-6117-3387-b2b32bb452ee}*SharedItemsImports = 4
 		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{9903c7ab-ff17-4fe6-aa49-f4b429847bca}*SharedItemsImports = 13
-		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{f9924f3a-af7a-408b-bf7e-4833ca103e70}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{f9924f3a-af7a-408b-bf7e-4833ca103e70}*SharedItemsImports = 4
-		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{f9924f3a-af7a-408b-bf7e-4833ca103e70}*SharedItemsImports = 4
 		Common\Capgemini.DevelopmentHub.BusinessLogic\Capgemini.DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
 		Common\Capgemini.DevelopmentHub.Model\Capgemini.DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
 		Common\Capgemini.DevelopmentHub.Repositories\Capgemini.DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
