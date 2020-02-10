@@ -15,9 +15,14 @@
       <FriendlyName>Attach file to note</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
-    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.CreateSolution, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="be5cd61c-5b82-e911-a979-002248010929" Name="CreateSolution">
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.CreateSolution, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="14f44349-884b-ea11-a812-000d3a0b97ca" Name="CreateSolution">
       <Description>Creates a solution.</Description>
       <FriendlyName>Create a solution</FriendlyName>
+      <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.GetEnvironmentVariable, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="d2790e29-884b-ea11-a812-000d3a0b97ca" Name="GetEnvironmentVariable">
+      <Description>Gets an environment variable value.</Description>
+      <FriendlyName>Get Environment Variable</FriendlyName>
       <WorkflowActivityGroupName>Capgemini.DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="Capgemini.DevelopmentHub.Develop.CodeActivities.GetLastApprovedSolutionMerge, Capgemini.DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="f802380c-749a-e911-a97d-002248010929" Name="GetLastApprovedSolutionMerge">

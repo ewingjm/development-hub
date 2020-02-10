@@ -10,7 +10,8 @@
 
         },
         "noResolve": [
-         "CustomControlsCore"   
+         "CustomControlsCore",
+         "EnvironmentVariables"
         ]
     }
 }

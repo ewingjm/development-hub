@@ -8,7 +8,7 @@
   ],
   "earlyboundtypes": [
     {
-      "entities": "publisher, solution, cap_issue, cap_solutionmerge, cap_environment, cap_solution, annotation",
+      "entities": "publisher, solution, cap_issue, cap_solutionmerge, cap_environment, cap_solution, annotation, environmentvariabledefinition, environmentvariablevalue",
       "actions": "cap_StartDeveloping, cap_ImportSolution, cap_GetLastApprovedSolutionMerge, cap_Reject, cap_Approve",
       "generateOptionsetEnums": true,
       "generateStateEnums": true,

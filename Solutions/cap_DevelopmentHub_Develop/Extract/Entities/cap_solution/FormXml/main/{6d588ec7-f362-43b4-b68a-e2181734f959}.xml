@@ -5,7 +5,7 @@
     <IntroducedVersion>0.0.1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" IsUserDefined="1" name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" locklevel="0" expanded="true" showlabel="false">
           <labels>
@@ -206,6 +206,7 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true" />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
