@@ -9,6 +9,8 @@
   <EntityRelationship Name="cap_solutionmerge_environment_LastApprovedSolutionMerge" />
   <EntityRelationship Name="cap_solutionmerge_issue_LastSolutionMerge" />
   <EntityRelationship Name="cap_systemuser_solutionmerge_ApprovedBy" />
+  <EntityRelationship Name="FileAttachment_cap_solutionmerge_cap_PostMergeSolutionManaged" />
+  <EntityRelationship Name="FileAttachment_cap_solutionmerge_cap_PostMergeSolutionUnmanaged" />
   <EntityRelationship Name="lk_cap_environment_createdby" />
   <EntityRelationship Name="lk_cap_environment_modifiedby" />
   <EntityRelationship Name="lk_cap_solution_createdby" />

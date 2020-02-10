@@ -150,6 +150,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Develop\GetEnvironmentVariableTests.cs" />
     <Compile Include="IntegratedWorkflowActivityTests.cs" />
     <Compile Include="Develop\MergeSolutionComponentsTests.cs" />
     <Compile Include="FakedContextTest.cs" />

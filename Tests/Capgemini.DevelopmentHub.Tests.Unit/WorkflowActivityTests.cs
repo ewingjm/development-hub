@@ -2,6 +2,7 @@
 {
     using System;
     using System.Activities;
+    using Capgemini.DevelopmentHub.BusinessLogic;
     using Microsoft.Xrm.Sdk;
     using Microsoft.Xrm.Sdk.Workflow;
     using Moq;
@@ -25,6 +26,7 @@
             this.OrgSvcFactoryMock = new Mock<IOrganizationServiceFactory>();
             this.OrgSvcMock = new Mock<IOrganizationService>();
             this.WorkflowContextMock = new Mock<IWorkflowContext>();
+            this.RepositoryFactoryMock = new Mock<IRepositoryFactory>();
 
             this.OrgSvcFactoryMock.SetReturnsDefault(this.OrgSvcMock.Object);
             this.WorkflowContextMock.Setup(workflowContext => workflowContext.UserId).Returns(Guid.NewGuid());
@@ -34,6 +36,7 @@
             this.WorkflowInvoker.Extensions.Add(this.TracingSvcMock.Object);
             this.WorkflowInvoker.Extensions.Add(this.OrgSvcFactoryMock.Object);
             this.WorkflowInvoker.Extensions.Add(this.OrgSvcMock.Object);
+            this.WorkflowInvoker.Extensions.Add(this.RepositoryFactoryMock.Object);
         }
 
         /// <summary>
@@ -45,6 +48,11 @@
         /// Gets the workflow activity under test.
         /// </summary>
         protected TCodeActivity WorkflowActivity { get; }
+
+        /// <summary>
+        /// Gets mock repository factory.
+        /// </summary>
+        protected Mock<IRepositoryFactory> RepositoryFactoryMock { get; }
 
         /// <summary>
         /// Gets mock workflow context.

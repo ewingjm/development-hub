@@ -50,15 +50,14 @@
         }
 
         /// <summary>
-        /// Tests that executing <see cref="ImportSolutionZip"/> with no injected configuration throws an exception.
+        /// Tests that executing <see cref="ImportSolutionZip"/> with no injected configuration then the error is set.
         /// </summary>
         [Fact]
-        public void ImportSolutionZip_NoInjectedConfig_ThrowsConfigurationException()
+        public void ImportSolutionZip_NoInjectedConfig_SetsError()
         {
-            Assert.Throws<Exception>(() =>
-            {
-                this.WorkflowInvoker.Invoke(this.GetValidInputs());
-            });
+            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+
+            Assert.NotNull(outputs[nameof(ImportSolutionZip.Error)]);
         }
 
         /// <summary>
