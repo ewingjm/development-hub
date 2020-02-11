@@ -16,9 +16,10 @@
     [Trait("Solution", "cap_DevelopmentHub_Develop")]
     public class GetEnvironmentVariableTests : WorkflowActivityTests<GetEnvironmentVariable>
     {
+        private const string EnvironmentVariable = "cap_EnvironmentVariable";
+
         private readonly Mock<ICrmRepository<EnvironmentVariableDefinition>> envVarDefRepoMock;
         private readonly Mock<ICrmRepository<EnvironmentVariableValue>> envVarValueRepoMock;
-        private readonly EntityReference environmentVariable;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetEnvironmentVariableTests"/> class.
@@ -35,18 +36,16 @@
             this.RepositoryFactoryMock
                 .Setup(repoFactory => repoFactory.GetRepository<DevelopContext, EnvironmentVariableValue>())
                 .Returns(this.envVarValueRepoMock.Object);
-
-            this.environmentVariable = new EntityReference(EnvironmentVariableDefinition.EntityLogicalName, Guid.NewGuid());
         }
 
         /// <summary>
-        /// Passing a null environment variable will throw.
+        /// Passing an empty environment variable will throw.
         /// </summary>
         [Fact]
-        public void Execute_NullReference_Throws()
+        public void Execute_EmptyString_Throws()
         {
             Assert.Throws<InvalidPluginExecutionException>(
-                () => this.WorkflowInvoker.Invoke(this.GetInputs(null)));
+                () => this.WorkflowInvoker.Invoke(this.GetInputs(string.Empty)));
         }
 
         /// <summary>
@@ -58,7 +57,7 @@
             var defaultValue = "default";
             this.MockDefaultValue(defaultValue);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(this.environmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
 
             Assert.Equal(defaultValue, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -73,7 +72,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(this.environmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -88,7 +87,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(this.environmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -103,7 +102,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(this.environmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -117,12 +116,12 @@
             this.MockDefaultValue(null);
             this.MockValue(null);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(this.environmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
 
             Assert.Equal(string.Empty, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
 
-        private Dictionary<string, object> GetInputs(EntityReference envVar)
+        private Dictionary<string, object> GetInputs(string envVar)
         {
             return new Dictionary<string, object>
             {
@@ -149,6 +148,7 @@
                 {
                     new EnvironmentVariableDefinition
                     {
+                        EnvironmentVariableDefinitionId = Guid.NewGuid(),
                         DefaultValue = defaultValue,
                     },
                 }.AsQueryable());
