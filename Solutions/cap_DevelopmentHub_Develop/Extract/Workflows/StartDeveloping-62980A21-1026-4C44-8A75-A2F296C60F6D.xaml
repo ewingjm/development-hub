@@ -117,26 +117,15 @@
       <mxswa:ActivityReference.Properties>
         <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
           <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep11_1" />
-          <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep11_2" />
           <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep11_1_converted" />
         </sco:Collection>
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
           <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Guid, "a4df26fa-884b-ea11-a812-000d3a0b97ca", "UniqueIdentifier" }]</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "cap_SolutionPublisher", "String" }]</InArgument>
               <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
-              </InArgument>
-              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[InvokeSdkMessageStep11_2]</OutArgument>
-            </mxswa:ActivityReference.Arguments>
-          </mxswa:ActivityReference>
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-            <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.EntityReference, "environmentvariabledefinition", "cap_SolutionPublisher", InvokeSdkMessageStep11_2, "Lookup" }]</InArgument>
-              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
               </InArgument>
               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[InvokeSdkMessageStep11_1]</OutArgument>
             </mxswa:ActivityReference.Arguments>
@@ -145,20 +134,17 @@
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:Object" x:Key="Value">[InvokeSdkMessageStep11_1]</InArgument>
               <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
               </InArgument>
               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[InvokeSdkMessageStep11_1_converted]</OutArgument>
             </mxswa:ActivityReference.Arguments>
           </mxswa:ActivityReference>
           <mcwa:InvokeSdkMessageActivity SdkMessageEntityName="{x:Null}" DisplayName="InvokeSdkMessageStep11: Get publisher prefix from environment variable" SdkMessageId="2e5de38d-824b-ea11-a812-000d3a0b97ca" SdkMessageName="cap_GetEnvironmentVariable" SdkMessageRequestSuffix="">
             <mcwa:InvokeSdkMessageActivity.Arguments>
-              <InArgument x:TypeArguments="mxs:EntityReference" x:Key="EnvironmentVariable">[DirectCast(InvokeSdkMessageStep11_1_converted, Microsoft.Xrm.Sdk.EntityReference)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="EnvironmentVariable">[DirectCast(InvokeSdkMessageStep11_1_converted, System.String)]</InArgument>
               <OutArgument x:TypeArguments="x:String" x:Key="EnvironmentVariableValue">[InvokeSdkMessageStep11EnvironmentVariableValue_localParameter]</OutArgument>
             </mcwa:InvokeSdkMessageActivity.Arguments>
             <mcwa:InvokeSdkMessageActivity.Properties>
-              <sco:Collection x:TypeArguments="x:String" x:Key="EnvironmentVariable#InArgumentEntityType">
-                <x:String>environmentvariabledefinition</x:String>
-              </sco:Collection>
               <x:String x:Key="EnvironmentVariable#InArgumentRequired">EnvironmentVariable</x:String>
             </mcwa:InvokeSdkMessageActivity.Properties>
           </mcwa:InvokeSdkMessageActivity>
