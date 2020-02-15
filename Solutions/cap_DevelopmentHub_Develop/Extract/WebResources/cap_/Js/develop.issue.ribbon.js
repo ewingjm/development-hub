@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -84,7 +85,7 @@ var Capgemini;
                             case 4:
                                 Xrm.Utility.closeProgressIndicator();
                                 if (result.ok) {
-                                    Xrm.Page.data.refresh(false);
+                                    primaryControl.data.refresh(false);
                                 }
                                 return [2 /*return*/];
                         }

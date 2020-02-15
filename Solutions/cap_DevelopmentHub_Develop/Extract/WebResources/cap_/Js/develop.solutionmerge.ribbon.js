@@ -1,3 +1,4 @@
+"use strict";
 var Capgemini;
 (function (Capgemini) {
     var DevelopmentHub;

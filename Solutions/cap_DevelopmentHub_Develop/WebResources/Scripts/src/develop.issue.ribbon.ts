@@ -39,7 +39,7 @@ namespace Capgemini.DevelopmentHub.Develop {
         Xrm.Utility.closeProgressIndicator();
 
         if (result.ok) {
-            Xrm.Page.data.refresh(false);
+            primaryControl.data.refresh(false);
         }
     }
 
