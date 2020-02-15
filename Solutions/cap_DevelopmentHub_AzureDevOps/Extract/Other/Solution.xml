@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.9023" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.13225" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>cap_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
@@ -78,7 +78,11 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="29" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" behavior="0" />
       <RootComponent type="29" id="{a52d0ab8-54b1-e911-a97b-002248019881}" behavior="0" />
+      <RootComponent type="380" schemaName="cap_AzureDevOpsExtractBuildDefinition" behavior="0" />
+      <RootComponent type="380" schemaName="cap_AzureDevOpsOrganization" behavior="0" />
+      <RootComponent type="380" schemaName="cap_AzureDevOpsProject" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
@@ -88,6 +92,14 @@
       <MissingDependency>
         <Required key="2" type="1" schemaName="cap_solution" displayName="Solution" solution="cap_DevelopmentHub_Develop (0.1.20.0)" />
         <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="3" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.1.9)" />
+        <Dependent key="4" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="5" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.1.9)" />
+        <Dependent key="4" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>
