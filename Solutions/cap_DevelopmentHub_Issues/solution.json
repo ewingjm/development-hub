@@ -4,5 +4,11 @@
             "url": "https://dhubissues.crm11.dynamics.com",
             "username": "max@dhubissues.onmicrosoft.com"
         }
+    },
+    "dependencies": {
+        "noResolve": [
+            "CustomControlsCore",
+            "EnvironmentVariables"
+        ]
     }
 }

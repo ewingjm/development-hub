@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definition IntroducedVersion="1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SchemaName>cap_AzureDevOpsProject</SchemaName>
+  <IsRequired>0</IsRequired>
+  <Type>100000000</Type>
+  <DefaultValue xsi:nil="true"></DefaultValue>
+  <DisplayName>
+    <LocalizedNames>
+      <LocalizedName description="Azure DevOps Project" languagecode="1033" />
+    </LocalizedNames>
+  </DisplayName>
+  <Description>
+    <LocalizedNames>
+      <LocalizedName description="The Azure DevOps project containing the source for the target solutions." languagecode="1033" />
+    </LocalizedNames>
+  </Description>
+</Definition>

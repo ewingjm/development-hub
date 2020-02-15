@@ -6,12 +6,9 @@
         }
     },
     "dependencies": {
-        "nuget": {
-
-        },
         "noResolve": [
-         "CustomControlsCore",
-         "EnvironmentVariables"
+            "CustomControlsCore",
+            "EnvironmentVariables"
         ]
     }
 }

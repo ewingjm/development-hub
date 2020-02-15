@@ -20,6 +20,7 @@ const string TestsFolder = "./Tests";
 
 var target = Argument("target", "Default");
 var solution = Argument("solution", "");
+var packedSolutions = new List<string>();
 
 // Build package
 Task("Default")
@@ -48,7 +49,9 @@ Task("PackAll")
     foreach (var solutionDirectory in GetDirectories($"{SolutionsFolder}/*"))
     {
       solution = solutionDirectory.GetDirectoryName();
-      RunTarget("PackSolution");
+      if (!packedSolutions.Contains(solution)){
+        RunTarget("PackSolution");
+      }
     }
   });
 
@@ -116,7 +119,6 @@ Task("ResolveSolutionDependencies")
 
     var externalDependencies = dependencies.Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
     var noResolveDependencies = GetSolutionConfig(solutionToResolve)["dependencies"]?["noResolve"].ToObject<List<string>>();
-
     foreach (var externalDep in externalDependencies)
     {
       if (!resolvedSolutions.Contains(externalDep.Key) && (noResolveDependencies == null || !noResolveDependencies.Contains(externalDep.Key)))
@@ -164,6 +166,7 @@ Task("PackSolution")
         solutionFolder.Path.Combine("Extract"),
         SolutionPackageType.Both,
         solutionFolder.Path.CombineWithFilePath("MappingFile.xml")));
+    packedSolutions.Add(solution);
   });
 
 // data targets 
@@ -261,9 +264,10 @@ void InstallSolution(string connectionString, string solutionToBuild, string sol
   }
 
   var externalDependencies = dependencies.Where(dep => !DirectoryExists($"{SolutionsFolder}/{dep.Key}"));
+  var noResolveDependencies = GetSolutionConfig(solutionToInstall)["dependencies"]?["noResolve"].ToObject<List<string>>();
   foreach (var externalDep in externalDependencies)
   {
-    if (!installedSolutions.Contains(externalDep.Key))
+    if (!installedSolutions.Contains(externalDep.Key)  && (noResolveDependencies == null || !noResolveDependencies.Contains(externalDep.Key)))
     {
       var solutionZip = GetFiles($"{SolutionsFolder}/{solutionToBuild}/bin/Release/**/{externalDep.Key}{(managed ? "_managed" : "")}.zip").First();
       XrmImportSolution(connectionString, solutionZip, new SolutionImportSettings());
