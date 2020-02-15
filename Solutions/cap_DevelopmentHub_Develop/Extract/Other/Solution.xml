@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.12930" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.13225" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>cap_DevelopmentHub_Develop</UniqueName>
     <LocalizedNames>
@@ -428,7 +428,7 @@
         <Dependent key="39" type="62" schemaName="cap_DevelopmentHub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="40" type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.1.0000.12930)" />
+        <Required key="40" type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.1.0000.13225)" />
         <Dependent key="33" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>

@@ -36,11 +36,11 @@ namespace Capgemini.DevelopmentHub.Repositories
         /// <param name="columnsToRetrieve">The columns to select.</param>
         /// <param name="pageSize">The number of records per page.</param>
         /// <returns>A collection of records meeting the criteria.</returns>
-        public static EntityCollection GetEntitiesByColumn(this IOrganizationService orgService, string entityName, string columnName, object columnValue, string[] columnsToRetrieve = null, int pageSize = 100)
+        public static EntityCollection GetEntitiesByColumn(this IOrganizationService orgService, string entityName, string columnName, object columnValue, ColumnSet columnsToRetrieve, int pageSize = 100)
         {
             var query = new QueryExpression(entityName)
             {
-                ColumnSet = columnsToRetrieve != null ? new ColumnSet(columnsToRetrieve) : new ColumnSet(true),
+                ColumnSet = columnsToRetrieve,
             };
 
             if (!string.IsNullOrWhiteSpace(columnName) && columnValue != null)

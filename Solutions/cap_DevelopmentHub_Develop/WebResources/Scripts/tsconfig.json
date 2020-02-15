@@ -6,6 +6,7 @@
     "outDir": "dist/",
     "rootDir": "src/",
     "sourceMap": true,
+    "alwaysStrict": true,
     "lib": [
       "dom",
       "es2015.promise",
