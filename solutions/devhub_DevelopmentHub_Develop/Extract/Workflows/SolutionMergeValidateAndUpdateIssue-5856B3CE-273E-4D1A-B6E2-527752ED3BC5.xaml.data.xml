@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" Name="Solution Merge: Validate And Update Issue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/SolutionMergeValidateAndUpdateIssue-5856B3CE-273E-4D1A-B6E2-527752ED3BC5.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>0</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.1.12.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Solution Merge: Validate And Update Issue" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{e82456db-ec04-4b93-bedb-21fc113bed40}">
+      <label languagecode="1033" description="Issue does not have an associated development solution. Please set the development solution in the Issue." />
+    </steplabels>
+    <steplabels id="{4cce4867-375f-4dbd-9160-aba9c0cb0b3d}">
+      <label languagecode="1033" description="There is already a solution merge active for this issue." />
+    </steplabels>
+  </labels>
+</Workflow>

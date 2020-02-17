@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="devhub.devhub_solutionmerge.Approve.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="14">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.Alt" Command="devhub.devhub_solutionmerge.Approve.Command" Id="devhub.devhub_solutionmerge.Approve.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.LabelText" Sequence="14" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_approve.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="devhub.devhub_solutionmerge.Reject.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="15">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.Alt" Command="devhub.devhub_solutionmerge.Reject.Command" Id="devhub.devhub_solutionmerge.Reject.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_reject.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="devhub.devhub_solutionmerge.Retry.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.Alt" Command="devhub.devhub_solutionmerge.Retry.Command" Id="devhub.devhub_solutionmerge.Retry.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.LabelText" Sequence="0" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_retry.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="devhub.devhub_solutionmerge.Approve.Command">
+      <EnableRules>
+        <EnableRule Id="devhub.devhub_solutionmerge.Review.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.approve" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="devhub.devhub_solutionmerge.Reject.Command">
+      <EnableRules>
+        <EnableRule Id="devhub.devhub_solutionmerge.Review.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.reject" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="devhub.devhub_solutionmerge.Retry.Command">
+      <EnableRules>
+        <EnableRule Id="devhub.devhub_solutionmerge.Retry.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.executeWorkflow" Library="$webresource:devhub_/Js/develop.common.js">
+          <StringParameter Value="EF05E501-F445-49D9-AB1F-2FDB9CDF972A" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <StringParameter Value="Retrying merge" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules>
+      <EnableRule Id="devhub.devhub_solutionmerge.Retry.EnableRule">
+        <ValueRule Field="statuscode" Value="353400002" />
+      </EnableRule>
+      <EnableRule Id="devhub.devhub_solutionmerge.Review.EnableRule">
+        <CustomRule FunctionName="DevelopmentHub.Develop.isReviewEnabled" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="devhub.devhub_solutionmerge.Approve.Button.Alt">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Approve.Button.LabelText">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Approve.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Approve the solution merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Approve.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Reject.Button.Alt">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Reject.Button.LabelText">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Reject.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Reject the solution merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Reject.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Reject" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Retry.Button.Alt">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Retry.Button.LabelText">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Retry.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Retry the failed merge." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.Retry.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Retry" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

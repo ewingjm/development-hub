@@ -1,0 +1,21 @@
+{
+  "webresources": [],
+  "plugins": [
+    {
+      "assemblypath": "PluginAssemblies\\DevelopmentHub.Issues\\bin\\Deploy\\DevelopmentHub.Issues.dll",
+      "solution": "devhub_DevelopmentHub_Issues"
+    }
+  ],
+  "earlyboundtypes": [
+    {
+      "entities": "devhub_issue",
+      "actions": "",
+      "generateOptionsetEnums": true,
+      "generateStateEnums": true,
+      "generateGlobalOptionsets": true,
+      "filename": "PluginAssemblies/DevelopmentHub.Issues/Model/IssuesContext.cs",
+      "classNamespace": "DevelopmentHub.Issues.Model",
+      "serviceContextName": "IssuesContext"
+    }
+  ]
+}

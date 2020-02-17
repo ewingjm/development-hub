@@ -7,16 +7,14 @@ using System.Linq;
 
 #addin nuget:?package=Cake.Xrm.Sdk&version=0.1.9
 #addin nuget:?package=Cake.Xrm.SolutionPackager&version=0.1.10
-#addin nuget:?package=Cake.Xrm.DataMigration&version=0.1.8
 #addin nuget:?package=Cake.Xrm.Spkl&version=0.1.7
 #addin nuget:?package=Cake.Npm&version=0.17.0
 #addin nuget:?package=Cake.Json&version=3.0.0
 
-const string DataFolder = "./Data";
-const string SolutionsFolder = "./Solutions";
+const string SolutionsFolder = "./solutions";
 const string PackagesFolder = "./packages";
-const string DeployProjectFolder = "./Deploy";
-const string TestsFolder = "./Tests";
+const string DeployProjectFolder = "./deploy";
+const string TestsFolder = "./tests";
 
 var target = Argument("target", "Default");
 var solution = Argument("solution", "");
@@ -30,17 +28,11 @@ Task("Default")
 Task("BuildDeploymentProject")
   .Does(() => {
     BuildCSharpProject(
-      File($"{DeployProjectFolder}/Capgemini.DevelopmentHub.Deployment.csproj"), 
+      File($"{DeployProjectFolder}/DevelopmentHub.Deployment.csproj"), 
       new NuGetRestoreSettings { ConfigFile = "NuGet.config" }, 
       new MSBuildSettings { Configuration = "Release" });
-    DeleteFiles($"{DeployProjectFolder}/bin/Release/PkgFolder/Data/**/*");
     DeleteFiles($"{DeployProjectFolder}/bin/Release/PkgFolder/*.zip");
-    EnsureDirectoryExists($"{DeployProjectFolder}/bin/Release/PkgFolder/Data");
-    EnsureDirectoryExists($"{DeployProjectFolder}/bin/Release/PowerShell");
-    CopyFiles($"{PackagesFolder}/Microsoft.CrmSdk.XrmTooling.PackageDeployment.Wpf.*/tools/**/*", Directory($"{DeployProjectFolder}/bin/Release"), true);
-    CopyFiles($"{PackagesFolder}/Microsoft.CrmSdk.XrmTooling.PackageDeployment.PowerShell.*/tools/**/*", Directory($"{DeployProjectFolder}/bin/Release/PowerShell"), true);
     CopyFiles($"{SolutionsFolder}/**/*.zip", Directory("Deploy/bin/Release/PkgFolder"));
-    CopyDirectory(Directory(DataFolder), Directory($"{DeployProjectFolder}/bin/Release/PkgFolder/Data"));
   });
 
 Task("PackAll")
@@ -168,24 +160,6 @@ Task("PackSolution")
         solutionFolder.Path.CombineWithFilePath("MappingFile.xml")));
     packedSolutions.Add(solution);
   });
-
-// data targets 
-Task("ExportData")
-  .Does(() => {
-    var dataType = Argument<string>("dataType");
-    ExportData(
-      Directory(DataFolder).Path.Combine($"{dataType}\\Extract"),
-      Directory(DataFolder).Path.MakeAbsolute(Context.Environment).CombineWithFilePath($"{dataType}\\{dataType}DataExport.json"));
-  });
-
-Task("StageData")
-  .Does(() => {
-    var dataType = Argument<string>("dataType");
-    XrmImportData(
-      new DataMigrationImportSettings(
-        GetConnectionString(solution, true), 
-        Directory(DataFolder).Path.MakeAbsolute(Context.Environment).CombineWithFilePath($"{dataType}\\{dataType}DataImport.json")));
-  });
   
 // deploy targets
 Task("DeployPlugins")
@@ -260,6 +234,7 @@ void InstallSolution(string connectionString, string solutionToBuild, string sol
       if (!installedSolutions.Contains(localDep.Key))
       {
         InstallSolution(connectionString, solutionToBuild, localDep.Key, true, installedSolutions);
+        installedSolutions.Add(localDep.Key);
       }
   }
 
@@ -270,12 +245,12 @@ void InstallSolution(string connectionString, string solutionToBuild, string sol
     if (!installedSolutions.Contains(externalDep.Key)  && (noResolveDependencies == null || !noResolveDependencies.Contains(externalDep.Key)))
     {
       var solutionZip = GetFiles($"{SolutionsFolder}/{solutionToBuild}/bin/Release/**/{externalDep.Key}{(managed ? "_managed" : "")}.zip").First();
-      XrmImportSolution(connectionString, solutionZip, new SolutionImportSettings());
+      XrmImportSolution(connectionString, solutionZip, new SolutionImportSettings { ActivePlugins = true });
       installedSolutions.Add(externalDep.Key);
     }
   }
   
-  XrmImportSolution(connectionString, File($"{SolutionsFolder}/{solutionToBuild}/bin/Release/{solutionToInstall}{(managed ? "_managed" : "")}.zip"), new SolutionImportSettings());
+  XrmImportSolution(connectionString, File($"{SolutionsFolder}/{solutionToBuild}/bin/Release/{solutionToInstall}{(managed ? "_managed" : "")}.zip"), new SolutionImportSettings { ActivePlugins = true });
   installedSolutions.Add(solutionToInstall);
 }
 
@@ -298,8 +273,8 @@ string GetConnectionString(string solution, bool stagingEnvironment) {
   var targetEnvironment = stagingEnvironment && config["environments"]?["staging"] != null ? "staging" : "development";
   
   var url = config["environments"][targetEnvironment]["url"].ToString();
-  var username = config["environments"][targetEnvironment]["username"].ToString();
-  var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD");
+  var username = config["environments"][targetEnvironment]["username"]?.ToString() ?? EnvironmentVariable("CAKE_DYNAMICS_USERNAME_DEVELOPMENT_HUB");
+  var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD_DEVELOPMENT_HUB");
 
   return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
 }
@@ -309,11 +284,6 @@ void ExtractSolution(string connectionString, string solutionName, DirectoryPath
   XrmExportSolution(connectionString, solutionName, tempDirectory, isManaged: false);
   XrmExportSolution(connectionString, solutionName, tempDirectory, isManaged: true);
   SolutionPackagerExtract(tempDirectory.CombineWithFilePath($"{solutionName}.zip"), outputPath, SolutionPackageType.Both);
-}
-
-void ExportData(DirectoryPath extractFolder, FilePath exportConfigPath) {
-  DeleteFiles($"{extractFolder}/**/*");
-  XrmExportData(new DataMigrationExportSettings(GetConnectionString(solution, false), exportConfigPath));
 }
 
 RunTarget(target);

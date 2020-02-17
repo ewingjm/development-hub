@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{b25b2275-fa83-e911-a97e-0022480186c3}</WebResourceId>
+  <Name>devhub_/Js/develop.issue.ribbon.js</Name>
+  <DisplayName>develop.issue.ribbon.js</DisplayName>
+  <Description>Issue entity ribbon script for the devhub_DevelopmentHub_Develop solution.</Description>
+  <WebResourceType>3</WebResourceType>
+  <IntroducedVersion>0.1.9.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"/&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/devhub_JsdevelopissueribbonjsB25B2275-FA83-E911-A97E-0022480186C3</FileName>
+</WebResource>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.1.0.13529" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>devhub_DevelopmentHub_AzureDevOps</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="Development Hub - Azure DevOps" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>0.1.0.0</Version>
+    <Managed>2</Managed>
+    <Publisher>
+      <UniqueName>developmenthub</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="Development Hub" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description description="The Development Hub is an open-source Power Apps package that provides an improved ALM experience for teams delivering on the Power Platform." languagecode="1033" />
+      </Descriptions>
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl>https://github.com/ewingjm/development-hub</SupportingWebsiteUrl>
+      <CustomizationPrefix>devhub</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>35340</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="29" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" behavior="0" />
+      <RootComponent type="29" id="{a52d0ab8-54b1-e911-a97b-002248019881}" behavior="0" />
+      <RootComponent type="380" schemaName="devhub_AzureDevOpsExtractBuildDefinition" behavior="0" />
+      <RootComponent type="380" schemaName="devhub_AzureDevOpsOrganization" behavior="0" />
+      <RootComponent type="380" schemaName="devhub_AzureDevOpsProject" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required key="0" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.7)" />
+        <Dependent key="1" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="2" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.7)" />
+        <Dependent key="1" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="3" type="1" schemaName="devhub_issue" displayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.0)" />
+        <Dependent key="4" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="5" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.1.20.0)" />
+        <Dependent key="4" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

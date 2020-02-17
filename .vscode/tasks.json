@@ -62,30 +62,6 @@
     },
     {
       "type": "shell",
-      "label": "Export Data",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"ExportData\"",
-        "-ScriptArgs \"--dataType=${input:dataType}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Stage Data",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"StageData\"",
-        "-ScriptArgs \"--dataType=${input:dataType}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
       "label": "Deploy Plugins",
       "command": [
         "powershell",
@@ -119,18 +95,6 @@
         "-ScriptArgs \"--solution=${input:solution}\""
       ],
       "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Resolve Solution Dependencies",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"ResolveSolutionDependencies\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
     }
   ],
   "inputs": [
@@ -139,9 +103,9 @@
       "description": "The solution to execute the task for.",
       "type": "pickString",
       "options": [
-        "cap_DevelopmentHub_Issues",
-        "cap_DevelopmentHub_Develop",
-        "cap_DevelopmentHub_AzureDevOps"
+        "devhub_DevelopmentHub_Issues",
+        "devhub_DevelopmentHub_Develop",
+        "devhub_DevelopmentHub_AzureDevOps"
       ]
     },
     {

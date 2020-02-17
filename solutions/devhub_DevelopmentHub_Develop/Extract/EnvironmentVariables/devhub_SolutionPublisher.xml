@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definition IntroducedVersion="1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SchemaName>devhub_SolutionPublisher</SchemaName>
+  <IsRequired>0</IsRequired>
+  <Type>100000000</Type>
+  <DefaultValue></DefaultValue>
+  <DisplayName>
+    <LocalizedNames>
+      <LocalizedName description="Solution Publisher Prefix" languagecode="1033" />
+    </LocalizedNames>
+  </DisplayName>
+  <Description>
+    <LocalizedNames>
+      <LocalizedName description="The publisher prefix to use for solutions. Must correspond with a publisher that exists in the environment." languagecode="1033" />
+    </LocalizedNames>
+  </Description>
+</Definition>

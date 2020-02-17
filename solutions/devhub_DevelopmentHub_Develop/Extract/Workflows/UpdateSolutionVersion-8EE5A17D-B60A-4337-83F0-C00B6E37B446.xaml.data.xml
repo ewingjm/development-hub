@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{8ee5a17d-b60a-4337-83f0-c00b6e37b446}" Name="Update Solution Version" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/UpdateSolutionVersion-8EE5A17D-B60A-4337-83F0-C00B6E37B446.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>3</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <SdkMessageId>{7046cef7-5c9b-e911-a980-0022480186c3}</SdkMessageId>
+  <UniqueName>UpdateSolutionVersion</UniqueName>
+  <IsTransacted>0</IsTransacted>
+  <IntroducedVersion>0.1.17.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <PrimaryEntity>devhub_solution</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Update Solution Version" />
+  </LocalizedNames>
+</Workflow>

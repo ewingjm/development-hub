@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <EntityRelationship Name="business_unit_cap_issue" />
-  <EntityRelationship Name="lk_cap_issue_createdby" />
-  <EntityRelationship Name="lk_cap_issue_modifiedby" />
-  <EntityRelationship Name="owner_cap_issue" />
-  <EntityRelationship Name="team_cap_issue" />
-  <EntityRelationship Name="user_cap_issue" />
-</EntityRelationships>
