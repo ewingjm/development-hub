@@ -1,142 +1,172 @@
-# DevelopmentHub for Dynamics 365
+# Development Hub for Power Apps ![logo](./docs/images/logo.svg)
 
-## Introduction
+A Power Platform app which aims to provide an improved ALM experience for teams delivering on the Power Platform. 
 
-DevelopmentHub Dynamics 365 package - generated using the [package generator](https://capgeminiuk.visualstudio.com/Capgemini%20Reusable%20IP/_git/generator-cdspackage).
+The Development Hub brings continuous integration to the Power Platform - allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
 
-## What is a Dynamics 365 package?
+## Features
 
-A Dynamics 365 package is comprised of:
+- Peer review
+- Solution merging
+- Automatic semantic versioning
+- Automatic source control
 
-- One or more solutions and associated source code
-- Data
-- A PackageDeployer import config
+## Prerequisites
 
-A greater number of more granular solutions is beneficial when working in shared development environments and having a monolithic repository per package allows for greater productivity and more atomic pull requests.
+Two instances are required to use the Development Hub - a development instance and an 'extract' instance.
 
-Dynamics 365 packages are deployed using the [PackageDeployer](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/admin/deploy-packages-using-package-deployer-windows-powershell)
+## Installation
+
+### Deploy the package
+
+The package can be deployed to your development environment using the Package Deployer. Download the package files from the Releases tab and follow Microsoft's guide to using the Package Deployer [here](https://docs.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell).
+
+### Register an app
+
+Access to the Common Data Service Web API is required in order to merge development solutions with the master solution(s) in the extract environment. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/walkthrough-register-app-azure-active-directory).
+
+Once registered: 
+
+- Grant admin consent for the tenant for the Dynamics CRM API permissions
+- Navigate to _Authentication_ and set _Treat application as a public client_ to _Yes_.
+- Make a note of the client ID and tenant ID
+
+### Configure plug-in steps
+
+Use the plug-in registration tool to set the secure configuration parameters necessary for authentication for the Web API. The steps to set the secure configuration for are under the InjectSecureConfig plug-in within the DevelopmentHub.Develop assembly.
+
+The secure configuration is a JSON object with the client ID, tenant ID, and user credentials:
+
+```json
+{
+  "ClientId": "<from app registration>",
+  "TenantId": "<from app registration>",
+  "Username": "<service account email>",
+  "Password": "<service account password>"
+}
+```
+
+**Note: the user must have admin permissions in the extract instance.**
+
+### Configure Azure DevOps
+
+The Development Hub currently relies on integration with Azure DevOps to provide automated source-control functionality. 
+
+Navigate to _Project Settings -> Repositories_ in the Azure DevOps project that contains repository. Select the relevant repository and assign the following privilges to the project Build Service user:
+
+- Bypass policies when pushing
+- Contribute
+- Create branch 
+
+A build definition capable of extracting solutions is required. Refer to the [samples](./samples) folder for a possible build configuration. The _build.cake_ file will probably require tweaking to the `outputPath` variable based on your existing folder structure.
+
+You will need [Cake](https://cakebuild.net/) installed in your repository to use the sample build files. You can do this easily within VS Code by installing the Cake extension and running the _Cake: Install to workspace_ task. If no _build.ps1_ bootstrapper file has been created in the root of the repository, you can create this using the _Cake: Install a bootstrapper_ task. The sample _build.cake_ file can then be used.
+
+**Note: the Common Data Service package Yeoman generator will scaffold a build and repository compatible with the Development Hub.**
+
+### Set environment variables
+
+There are four environment variables to set.
+
+- Solution Publisher Prefix
+- Azure DevOps Organization
+- Azure DevOps Project
+- Azure DevOps Extract Build Definition ID
+
+The build definition ID is the numeric ID given to the build definition by Azure DevOps. This is the extract build created either by modifying the sample in this repository or by the Yeoman generator.
+
+## Configuration
+
+Ensure you have created or imported your unmanaged, master solution(s) for extraction in the extract environment. Once this is done, they can be registered within the Development Hub app. 
+
+The first step is to create an environment record for the extract environment:
+
+![Environment](./docs/images/environment.png)
+
+Then create a solution record for each master solution in the extract environment:
+
+![Solution](./docs/images/solution.png)
+
+Do not change the version numbers if the solution is new. If it is an existing solution, update the version numbers to match the solution in the extract instance. The version will from then on be managed by the Development Hub when merging changes.
+
+## Usage
+
+### Create an issue
+
+Issues must be created within the Development Hub in order for a developer to begin working on a new feature or bug fix. 
+
+The issue records in the Development Hub are used to group solution merge records and aid in applying semantic versioning to solutions. The Development Hub is not intended to replace a more conventional issue tracking system (e.g Azure Boards).
+
+It is suggested to either create issue records on-the-fly, at the beginning of a sprint, or by integrating Azure DevOps through a tool such as Power Automate.
+
+![Issue](./docs/images/issue.png)
+
+An issue with a 'To Do' status will have a *Develop* button in the ribbon. Clicking this will create a development solution and transition the issue to 'In Progress'. The *Development* tab will show details about the development solutions and solution merge history.
+
+![Issue - Development](./docs/images/development.png)
+
+### Develop an issue
+
+The developer must add any new components or components to be modified into their development solution. It is important that only one developer makes changes to a component at a time. If a component appears in more than one development solution, it will result in either incomplete work being merged or solution merges failing due to missing dependencies. 
+
+Development solutions should contain just the components created or updated for that issue and no more. Adding all assets to a development solution will add all assets to the target solution when merged.
+
+### Merge a solution
+
+Once the issue has been developed, a solution merge record can be created. This will transition the issue to 'Developed'. The solution merge is created in an 'Awaiting Review' status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
+
+Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an 'Approved' solution merge will transition to either a 'Merging' or 'Queued' status.
+
+A successful solution merge will transition to an inactive 'Merged' status. The 'Version History' tab on the target solution record will also contain two new attachments with the post-merge unmanaged and managed solution zips. The new solution version is based on the type of issue merged. A feature issue will increment the minor version and a bug issue will increment the patch version. Major version changes must be done manually. 
+
+
+![Solution merge](./docs/images/solutionmerge.png)
+
+### Merge source code
+
+If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies or web resources) then you must specify the source branch. Ensure that you perform any manual merging required in Git on your source branch before creating the solution merge. This branch will be merged automatically.
+
+### Perform manual merge activities
+
+Specifying that there are manual merge activities on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the master solution. 
+
+When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an 'Awaiting Manual Merge Activities' status. If you are deleting components from the solution in the extract instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
+
+### Handle a failed merge
+
+If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a 'Failed' status. A *Retry* button is available after the necessary steps have been taken. Failure reason will be attached as a note to the solution merge record.
 
 ## Contributing
 
-Please ensure that pull requests are atomic and do not contain partially built functionality. This allows for holistic code reviews, cleaner git history and a more stable package. The repository contains all of the dependencies required to develop Dynamics 365 functionality.
+### Build a development environment
 
-### Create environment variables
+A VS Code/Cake task has been defined which will allow you to recreate a development instance for a given solution. If you wanted to contribute to the devhub_DevelopmentHub_Develop solution, you would open the command palette within VS Code (_ctrl + shift + p_) and select _Tasks: Run Task_ followed by _Build Development Environment_ and _devhub_DevelopmentHub_Develop_. This task requires that you have first configured the development environment url _solution.json_ file in the corresponding solution folder and set up your environment variables (see below).
+
+If you do not have an existing instance, you can create one for free with the [Power Apps Community Plan](https://docs.microsoft.com/en-us/powerapps/maker/dev-community-plan) or by signing up for a [trial](https://trials.dynamics.com/).
+
+### Set environment variables
 
 Two environment variables are required to enable you to authenticate with the development and staging environments:
 
-- CAKE_CONN_DEV: `Url=https://<org>.<region>.dynamics.com; Username=<email>; Password=<password>; AuthType=Office365;`
-- CAKE_CONN_STAGING: `Url=https://<org>.<region>.dynamics.com; Username=<email>; Password=<password>; AuthType=Office365;`
+- CAKE_DYNAMICS_USERNAME_DEVELOPMENT_HUB
+- CAKE_DYNAMICS_PASSWORD_DEVELOPMENT_HUB
 
-Ensure you have replaced `<email>` and `<password>` with your own details.
+The username in the environment variable is used unless overridden by the username set in the corresponding _solution.json_ file. This is useful where the username for each solution is different (e.g. where you have multiple trials).
 
-### Create a git branch
+### Run build tasks
 
-Create a git branch from master using the following naming convention:
+A number of Cake build tasks have been defined to make development easier. It is recommended to call these via the command palette (_ctrl + shift + p_) and selecting _Tasks: Run Task_.
 
-`<category>/<key>-<description>`
+The following tasks are available: 
 
-- All characters should be lowercase and spaces should be separated by hyphens.
-- Category should be either: `feature` for new functionality, `bug` for bug fixes, or `tech` for any technical changes (e.g. updating builds etc.).
-- Key will be the numeric portion of the story, bug, or task's key/ID (e.g. 1722).
-- Description will be a summary of the story, bug or task. This will possibly be the same as the Jira issue name but it may have to be made more succinct.
+- Build Development Environment
+- Extract Solution
+- Pack Solution
+- Build Package
+- Deploy Plugins
+- Deploy Workflow Activities
+- Generate Model
 
-For example, `feature/1722-view-and-maintain-accounts`.
+### Extract to source control
 
-### Create a development solution
-
-A development solution should be created in the development environment which will exist until your branch is merged with master. The solution should be created with the following convention:
-
-- Unique Name: `ds_<key>_<description>`
-- Display Name: `<description>`
-
-Using the above branch as an example, we would create a solution with the following values:
-
-- Unique Name: `ds_1722_ViewAndMaintainAccounts`
-- Display Name: `View and Maintain Accounts`
-
-The following rules need to be adhered to when working in your development solution:
-
-- Only one development solution can make changes to a component (e.g. relationship, field, view, form, assembly or process) at a time. Check other development solutions if you are unsure. Multiple development solutions modifying the same components will mean that either:
-  - Unfinished customisations will be added to the build
-  - Developent solutions cannot be merged because of dependencies added by other development solutions
-- Avoid locking out shared components by modifying them last if possible (e.g. add your components to the app as the last step in your story)
-- Add only the components that you require to your solution. Do not check 'Add all assets' or 'Include entity metadata' when adding entities.
-- Do not add dependencies when prompted. These should already exist in the target system (the staging environment).
-- Avoid changes to managed components where possible. There may be a couple of exceptions.
-
-### Processes and plugins
-
-- Workflows should generally be created with scope set to Parent: Child Business Units. This allows us to isolate our processes to DevelopmentHub - especially important when dealing with out-of-the-box entities.
-- Plugin steps can't be scoped so alternatives should be considered when dealing with out-of-the-box entities and messsages.
-
-### Deleting components
-
-To delete a component:
-
-- Ensure that any dependencies are removed in your development solution (e.g. remove a field from any forms or views that reference it)
-- Delete any dependent components if no longer required and make a note of these components
-- Delete the component
-- Import the development solution into the staging environment when ready
-- Delete the component from the staging environment
-
-## Tools
-
-Visual Studio is recommended for .NET development (i.e. plugins assemblies) while Visual Studio Code is recommended for most other tasks.
-
-- Visual Studio
-
-  - NPM Task Runner
-  - Cake for Visual Studio
-  - SpecFlow for Visual Studio
-
-- Visual Studio Code
-
-  - Cake
-  - npm
-  - Azure Repos
-
-- Fiddler
-
-## Cake
-
-Cake is a build automation tool that can be integrated with Visual Studio and Visual Studio code through extensions. An add-in for Cake has been developed by the Capgemini Dynamics team which automates many of the day-to-day tasks of Dynamics 365 developers. A Cake build script (_build.cake_) and bootstrapper (_build.ps1_) are present in the root of this repository.
-
-It is not recommended to call the Cake build executable directly. The _build.ps1_ bootstrapper script should be used instead. The bootstrapper script handle dependency resolution, negating the need to store Cake dependencies in source control.
-
-**Note:** The Cake extension for Visual Studio does not use the _build.ps1_ bootstrapper. It is recommended that you run your first Cake task through Visual Studio Code to resolve dependencies first.
-
-### Extracting a solution
-
-Solutions can be extracted using the `Extract Solution` task.
-
-### Packing a solution
-
-Solutions can be packed into managed and unmanaged solution zip files using the `Pack Solution` task.
-
-_Note: it is unlikely that developers will need to pack the solutions themselves. This is typically done via CI build_
-
-### Extracting data
-
-Data can be exported using the `ExportData` task.
-
-The data is exported using the [Capgemini Data Migration Engine](https://capgeminiuk.visualstudio.com/Capgemini%20Reusable%20IP/_git/Capgemini.Xrm.DataMigration) and the export config file located in the relevant data folder.
-
-### Deploying web resources
-
-In most instances, developers should [configure Fiddler AutoResponder rules](https://docs.microsoft.com/en-us/dynamics365/customer-engagement/developer/streamline-javascript-development-fiddler-autoresponder) and deploy their web resource via Dynamics 365 UI.
-
-### Deploying plugins
-
-Plugins can be deployed using the `Deploy Plugins` task. This deploys all steps declared via the Spkl attribute.
-
-### Deploying workflow activities
-
-Worklow activities can be deployed using the `Deploy Workflow Activities` task. This deploys all workflow activities declared via the Spkl attribute.
-
-### Generating the early-bound model classes
-
-The early-bound model classes can be generated using the `Generate Model` Cake task. It will use the configuration file located at _Common\Client.Package.Model\DLaB.EarlyBoundGenerator.DefaultSettings.xml_. It is recommended to use the early-bound generator XrmToolbox plugin to update this configuration file.
-
-### Building the package
-
-The entire package can be built using the `Build Package` task. This will pack all solutions and copy them to the _Package_ folder. The PackageDeployer import configuration and reference/configuration data and associated import configurations will also be copied to this folder.
+Before creating a pull request containing your changes, you must extract the solutions into source control. This can be done using the _Extract Solution_ task and specifying which solution(s) to extract.

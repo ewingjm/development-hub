@@ -1,4 +1,4 @@
-name: $(packageVersion)$(rev:.r).0
+name: $(packageVersion)$(rev:.r)
 trigger: none
 steps:
   - powershell: >-

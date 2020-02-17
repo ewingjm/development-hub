@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{18d3f675-bf02-4b2d-bffb-3c674eca5054}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="devhub_name" select="1" icon="1" preview="1">
+        <row name="devhub_solutionmerge" id="devhub_solutionmergeid">
+          <cell name="devhub_issue" width="100" />
+          <cell name="a_866722318e84e911a97e0022480186c3.devhub_developmentsolution" width="100" disableSorting="1" />
+          <cell name="devhub_targetsolution" width="100" />
+          <cell name="statuscode" width="100" />
+          <cell name="createdby" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="a_866722318e84e911a97e0022480186c3.devhub_type" width="100" disableSorting="1" />
+          <cell name="a_866722318e84e911a97e0022480186c3.devhub_description" width="100" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="devhub_solutionmerge">
+          <attribute name="createdon" />
+          <attribute name="devhub_targetsolution" />
+          <attribute name="statuscode" />
+          <attribute name="createdby" />
+          <order attribute="createdon" descending="false" />
+          <link-entity name="devhub_issue" from="devhub_issueid" to="devhub_issue" visible="false" link-type="outer" alias="a_866722318e84e911a97e0022480186c3">
+            <attribute name="devhub_type" />
+            <attribute name="devhub_developmentsolution" />
+            <attribute name="devhub_description" />
+          </link-entity>
+          <attribute name="devhub_issue" />
+          <attribute name="devhub_solutionmergeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.1.12.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Solution Merge Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

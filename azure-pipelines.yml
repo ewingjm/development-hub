@@ -12,7 +12,7 @@ steps:
    
        foreach ($_ in $resultArray)
        {
-           if ($_.StartsWith("Solutions") -and $_.Contains("Extract")) 
+           if ($_.StartsWith("solutions") -and $_.Contains("Extract")) 
            {
              $solutionName = $_.Split("/")[1]
 
@@ -45,7 +45,7 @@ steps:
   - task: CopyFiles@2
     displayName: "Copy package to artifact staging directory"
     inputs:
-      SourceFolder: Deploy/bin/Release
+      SourceFolder: deploy/bin/Release
       TargetFolder: "$(Build.ArtifactStagingDirectory)"
   - task: PublishBuildArtifacts@1
     inputs:
@@ -60,8 +60,8 @@ trigger:
     include: [
       "Data/Configuration/*",
       "Data/Reference/*",
-      "Deploy/*",
-      "Solutions/*",
+      "deploy/*",
+      "solutions/*",
       "*.yml",
       "*.cake",
       "*.ps1"

@@ -1,0 +1,21 @@
+{
+  "webresources": [],
+  "plugins": [
+    {
+      "assemblypath": "PluginAssemblies\\DevelopmentHub.Develop\\bin\\Deploy\\DevelopmentHub.Develop.dll",
+      "solution": "devhub_DevelopmentHub_Develop"
+    }
+  ],
+  "earlyboundtypes": [
+    {
+      "entities": "publisher, solution, devhub_issue, devhub_solutionmerge, devhub_environment, devhub_solution, annotation, environmentvariabledefinition, environmentvariablevalue",
+      "actions": "devhub_StartDeveloping, devhub_ImportSolution, devhub_GetLastApprovedSolutionMerge, devhub_Reject, devhub_Approve",
+      "generateOptionsetEnums": true,
+      "generateStateEnums": true,
+      "generateGlobalOptionsets": true,
+      "filename": "PluginAssemblies/DevelopmentHub.Develop/Model/DevelopContext.cs",
+      "classNamespace": "DevelopmentHub.Develop.Model",
+      "serviceContextName": "DevelopContext"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebResource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebResourceId>{84951c9a-e850-ea11-a813-000d3a7f128d}</WebResourceId>
+  <Name>devhub_/Images/devhub_Logo.svg</Name>
+  <DisplayName>Logo.svg</DisplayName>
+  <Description>The Development Hub logo</Description>
+  <WebResourceType>11</WebResourceType>
+  <IntroducedVersion>0.1.11.0</IntroducedVersion>
+  <IsEnabledForMobileClient>0</IsEnabledForMobileClient>
+  <IsAvailableForMobileOffline>0</IsAvailableForMobileOffline>
+  <DependencyXml>&lt;Dependencies&gt;&lt;Dependency componentType="WebResource"/&gt;&lt;/Dependencies&gt;</DependencyXml>
+  <IsCustomizable>1</IsCustomizable>
+  <CanBeDeleted>1</CanBeDeleted>
+  <IsHidden>0</IsHidden>
+  <FileName>/WebResources/devhub_Imagesdevhub_Logosvg84951C9A-E850-EA11-A813-000D3A7F128D</FileName>
+</WebResource>

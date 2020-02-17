@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Definition IntroducedVersion="1.0.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SchemaName>devhub_AzureDevOpsExtractBuildDefinition</SchemaName>
+  <IsRequired>0</IsRequired>
+  <Type>100000000</Type>
+  <DefaultValue></DefaultValue>
+  <DisplayName>
+    <LocalizedNames>
+      <LocalizedName description="Azure DevOps Extract Build Definition ID" languagecode="1033" />
+    </LocalizedNames>
+  </DisplayName>
+  <Description>
+    <LocalizedNames>
+      <LocalizedName description="The Azure DevOps build definition responsible for performing extracts of the target solutions into source control." languagecode="1033" />
+    </LocalizedNames>
+  </Description>
+</Definition>

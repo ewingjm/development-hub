@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{ee9bc39c-ffb2-e911-a97b-002248019881}" Name="Fields Are Locked After Approval" Description="Updates are not allowed after an approval" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/FieldsAreLockedAfterApproval-EE9BC39C-FFB2-E911-A97B-002248019881.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>2</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.1.17.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Fields Are Locked After Approval" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="Updates are not allowed after an approval" />
+  </Descriptions>
+</Workflow>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{43ab3c69-507c-4866-9e1f-581084068d48}" Name="Reject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/Reject-43AB3C69-507C-4866-9E1F-581084068D48.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>3</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <SdkMessageId>{6f6c2a5c-3a47-ea11-a812-000d3a0b97ca}</SdkMessageId>
+  <UniqueName>Reject</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.1.20.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="Reject" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{fb92717a-4e4b-4aa2-8303-a2c07964b0da}">
+      <label languagecode="1033" description="You cannot reject a solution merge that is not awaiting review." />
+    </steplabels>
+  </labels>
+</Workflow>

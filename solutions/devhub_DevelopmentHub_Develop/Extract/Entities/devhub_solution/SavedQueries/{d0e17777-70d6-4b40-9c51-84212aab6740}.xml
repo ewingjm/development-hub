@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d0e17777-70d6-4b40-9c51-84212aab6740}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="devhub_displayname" select="1" icon="1" preview="1">
+        <row name="result" id="devhub_solutionid">
+          <cell name="devhub_displayname" width="300" />
+          <cell name="devhub_uniquename" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_description" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_stagingenvironment" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="devhub_solution">
+          <attribute name="devhub_solutionid" />
+          <attribute name="devhub_displayname" />
+          <attribute name="devhub_uniquename" />
+          <attribute name="devhub_stagingenvironment" />
+          <attribute name="devhub_description" />
+          <order attribute="devhub_displayname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Solution Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

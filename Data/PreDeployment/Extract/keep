@@ -1,1 +1,0 @@
-The data import task fails if the extract folder is not found. This file should not be deleted to ensure that the folder always exists.
