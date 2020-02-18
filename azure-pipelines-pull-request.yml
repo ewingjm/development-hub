@@ -1,4 +1,6 @@
 name: $(packageVersion)$(rev:.r)
+pool:
+  vmImage: windows-2019
 trigger: none
 steps:
   - powershell: >-

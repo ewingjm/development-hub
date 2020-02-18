@@ -1,9 +1,7 @@
 name: $(packageVersion)$(rev:.r).0
 pool:
-    demands:
-    - msbuild
-    - visualstudio
-    - vstest
+  vmImage: windows-2019
+pr: none
 steps:
   - powershell: |
        $comparisonType = "CurrentCultureIgnoreCase"
