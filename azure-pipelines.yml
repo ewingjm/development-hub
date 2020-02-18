@@ -28,12 +28,9 @@ steps:
   - powershell: >-
       Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 
       -Target Default 
-      -ScriptArgs `"--solutionVersion=$(Build.BuildNumber)`",`"--solutions=$(solutionList)`"      
+      -ScriptArgs `"--solutionVersion=$(Build.BuildNumber)`"      
       -Verbosity Diagnostic"
     displayName: Cake - Build Package
-    env:
-      CAKE_CONN_STAGING: $(ConnectionString)
-      CAKE_DYNAMICS_PASSWORD: $(DynamicsPassword)
   - task: VSTest@2
     displayName: 'Test Assemblies'
     inputs:
@@ -69,5 +66,4 @@ trigger:
 variables:
   - name: solutionList
     value: ''
-  - group: Package - DevelopmentHub
-  - group: Environment - Common
+  - group: Development Hub
