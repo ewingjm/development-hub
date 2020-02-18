@@ -13,7 +13,9 @@ The Development Hub brings continuous integration to the Power Platform - allowi
 
 ## Prerequisites
 
-Two instances are required to use the Development Hub - a development instance and an 'extract' instance.
+Two instances are required to use the Development Hub - a development instance and a 'master' instance.
+
+For more information on the purpose of the master instance, refer to the [Solution Lifecycle Management](https://www.microsoft.com/en-us/download/details.aspx?id=57777) document published by Microsoft. The relevant information can be found in the _Instance topologies for development approaches_ table.
 
 ## Installation
 
@@ -23,7 +25,7 @@ The package can be deployed to your development environment using the Package De
 
 ### Register an app
 
-Access to the Common Data Service Web API is required in order to merge development solutions with the master solution(s) in the extract environment. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/walkthrough-register-app-azure-active-directory).
+Access to the Common Data Service Web API is required in order to merge development solutions with the solution(s) in the master instance. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/walkthrough-register-app-azure-active-directory).
 
 Once registered: 
 
@@ -46,7 +48,7 @@ The secure configuration is a JSON object with the client ID, tenant ID, and use
 }
 ```
 
-**Note: the user must have admin permissions in the extract instance.**
+**Note: the user must have admin permissions in the master instance.**
 
 ### Configure Azure DevOps
 
@@ -60,7 +62,10 @@ Navigate to _Project Settings -> Repositories_ in the Azure DevOps project that 
 
 A build definition capable of extracting solutions is required. Refer to the [samples](./samples) folder for a possible build configuration. The _build.cake_ file will probably require tweaking to the `outputPath` variable based on your existing folder structure.
 
-You will need [Cake](https://cakebuild.net/) installed in your repository to use the sample build files. You can do this easily within VS Code by installing the Cake extension and running the _Cake: Install to workspace_ task. If no _build.ps1_ bootstrapper file has been created in the root of the repository, you can create this using the _Cake: Install a bootstrapper_ task. The sample _build.cake_ file can then be used.
+You will need [Cake](https://cakebuild.net/) installed in your repository to use the sample build files. You can do this easily within VS Code by installing the Cake extension and running the _Cake: Install to workspace_ task. If no _build.ps1_ bootstrapper file has been created in the root of the repository, you can create this using the _Cake: Install a bootstrapper_ task. 
+The sample _build.cake_ file can then be used.
+
+The sample build requires that a variable group named 'Cake' exists and that it contains two variables - _dynamicsUsername_ and _dynamicsPassword_. These will be used by the build to connect to the development instance when extracting the post-merge solution zip.
 
 **Note: the Common Data Service package Yeoman generator will scaffold a build and repository compatible with the Development Hub.**
 
@@ -77,17 +82,17 @@ The build definition ID is the numeric ID given to the build definition by Azure
 
 ## Configuration
 
-Ensure you have created or imported your unmanaged, master solution(s) for extraction in the extract environment. Once this is done, they can be registered within the Development Hub app. 
+Ensure you have created or imported your unmanaged solution(s) for extraction in the master instance. Once this is done, they can be registered within the Development Hub app. 
 
-The first step is to create an environment record for the extract environment:
+The first step is to create an environment record for the master instance:
 
 ![Environment](./docs/images/environment.png)
 
-Then create a solution record for each master solution in the extract environment:
+Then create a solution record for each solution in the master instance:
 
 ![Solution](./docs/images/solution.png)
 
-Do not change the version numbers if the solution is new. If it is an existing solution, update the version numbers to match the solution in the extract instance. The version will from then on be managed by the Development Hub when merging changes.
+Do not change the version numbers if the solution is new. If it is an existing solution, update the version numbers to match the solution in the master instance. The version will from then on be managed by the Development Hub when merging changes.
 
 ## Usage
 
@@ -128,9 +133,9 @@ If the solution to be merged has associated source code (e.g. you have made chan
 
 ### Perform manual merge activities
 
-Specifying that there are manual merge activities on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the master solution. 
+Specifying that there are manual merge activities on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the solution. 
 
-When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an 'Awaiting Manual Merge Activities' status. If you are deleting components from the solution in the extract instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
+When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an 'Awaiting Manual Merge Activities' status. If you are deleting components from the solution in the master instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
 
 ### Handle a failed merge
 
