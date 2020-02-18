@@ -1,4 +1,6 @@
 name: $(packageVersion)$(rev:.r)
+pool:
+  vmImage: windows-2019
 trigger: none
 steps:
   - powershell: >-
@@ -15,4 +17,4 @@ steps:
         !**\obj\**
       codeCoverageEnabled: true
 variables:
-  - group: Package - DevelopmentHub
+  - group: Development Hub
