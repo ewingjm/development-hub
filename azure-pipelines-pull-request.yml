@@ -15,4 +15,4 @@ steps:
         !**\obj\**
       codeCoverageEnabled: true
 variables:
-  - group: Package - DevelopmentHub
+  - group: Development Hub
