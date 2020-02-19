@@ -101,7 +101,10 @@ Task("ResolveSolutionDependencies")
         {
           Information($"Detected the {localDep.Key} solution in source. Building local dependency.");
           solution = localDep.Key;
-          RunTarget("PackSolution");
+          if (!packedSolutions.Contains(solution))
+          {
+            RunTarget("PackSolution");
+          }
           EnsureDirectoryExists($"{SolutionsFolder}/{solutionToResolve}/bin/Release");
           CopyFiles($"{SolutionsFolder}/{solution}/bin/Release/**/*_managed.zip", Directory($"{SolutionsFolder}/{solutionToResolve}/bin/Release"));
           resolvedSolutions.Add(localDep.Key);
