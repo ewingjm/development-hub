@@ -1,8 +1,6 @@
 # Development Hub for Power Apps ![logo](./docs/images/logo.svg)
 
-A Power Platform app which aims to provide an improved ALM experience for teams delivering on the Power Platform. 
-
-The Development Hub brings continuous integration to the Power Platform - allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
+The Development Hub brings continuous integration to Power Apps development by allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
 
 ## Table of contents
 
