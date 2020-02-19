@@ -4,6 +4,30 @@ A Power Platform app which aims to provide an improved ALM experience for teams 
 
 The Development Hub brings continuous integration to the Power Platform - allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
 
+## Table of contents
+
+* [Features](#features)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+  * [Deploy the package](#deploy-the-package)
+  * [Register an app](#register-an-app)
+  * [Configure plug-in steps](#configure-plug-in-steps)
+  * [Configure Azure DevOps](#configure-azure-devops)
+  * [Set solution environment variables](#set-solution-environment-variables)
+  * [Set flow connections](#set-flow-connections)
+* [Configuration](#configuration)
+* [Usage](#usage)
+  * [Create an issue](#create-an-issue)
+  * [Develop a solution](#develop-a-solution)
+  * [Merge a solution](#merge-a-solution)
+  * [Merge source code](#merge-source-code)
+  * [Perform manual merge activities](#perform-manual-merge-activities)
+  * [Handle a failed merge](#handle-a-failed-merge)
+* [Contributing](#contributing)
+  * [Build a development environment](#build-a-development-environment)
+  * [Set environment variables](#set-environment-variables)
+  * [Run build tasks](#run-build-tasks)
+
 ## Features
 
 - Peer review
@@ -69,9 +93,9 @@ The sample build requires that a variable group named 'Cake' exists and that it 
 
 **Note: the Common Data Service package Yeoman generator will scaffold a build and repository compatible with the Development Hub.**
 
-### Set environment variables
+### Set solution environment variables
 
-There are four environment variables to set.
+There are four environment variables to set:
 
 - Solution Publisher Prefix
 - Azure DevOps Organization
@@ -79,6 +103,13 @@ There are four environment variables to set.
 - Azure DevOps Extract Build Definition ID
 
 The build definition ID is the numeric ID given to the build definition by Azure DevOps. This is the extract build created either by modifying the sample in this repository or by the Yeoman generator.
+
+### Set flow connections
+
+There are two flows located in the _devhub_DevelopmentHub_AzureDevOps_ solution that must be set in order to trigger extract builds. The flows to set the connections on are:
+
+- Environment Variable Key -> Environment Variable Value
+- When a solution is merged - Commit changes to source control
 
 ## Configuration
 
@@ -110,7 +141,7 @@ An issue with a 'To Do' status will have a *Develop* button in the ribbon. Click
 
 ![Issue - Development](./docs/images/development.png)
 
-### Develop an issue
+### Develop a solution
 
 The developer must add any new components or components to be modified into their development solution. It is important that only one developer makes changes to a component at a time. If a component appears in more than one development solution, it will result in either incomplete work being merged or solution merges failing due to missing dependencies. 
 
