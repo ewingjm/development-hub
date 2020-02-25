@@ -1,0 +1,7 @@
+{
+    "environments": {
+        "development": {
+            "url": "https://environment.region.dynamics.com/"
+        }
+    }
+}
