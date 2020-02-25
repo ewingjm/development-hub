@@ -7,18 +7,23 @@ var target = Argument("target", "Default");
 var solution = Argument<string>("solution", "");
 
 Task("ExtractSolutionFromDevelopmentHub")
-  .Does(() => {
+  .Does(() => 
+  {
     var connectionString = GetConnectionString(solution, false);
     var tempDirectory = Directory(EnvironmentVariable("TEMP"));
+    
     var unmanagedSolution = XrmDownloadAttachment(connectionString, Guid.Parse(Argument<string>("unmanagedNoteId")), tempDirectory);
     var managedSolution = XrmDownloadAttachment(connectionString, Guid.Parse(Argument<string>("managedNoteId")), tempDirectory);
+    
     var outputPath = Directory($"{SolutionsFolder}/{solution}").Path.Combine("Extract");
     
     SolutionPackagerExtract(unmanagedSolution, outputPath, SolutionPackageType.Both);
   });
 
-string GetConnectionString(string solution, bool stagingEnvironment) {
-  var envConfig = ParseJsonFromFile(File($"{SolutionsFolder}/{solution}/env.json"));
+string GetConnectionString(string solution, bool stagingEnvironment) 
+{
+  var envConfig = ParseJsonFromFile(File($"{SolutionsFolder}/{solution}/solution.json"));
+  
   var targetEnvironment = stagingEnvironment && envConfig["stagingEnvironment"] != null ? "stagingEnvironment" : "environment";
   var url = envConfig[targetEnvironment].ToString();
   var username = envConfig["username"] ?? EnvironmentVariable("CAKE_DYNAMICS_USERNAME");

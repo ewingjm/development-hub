@@ -82,7 +82,9 @@ Navigate to _Project Settings -> Repositories_ in the Azure DevOps project that 
 - Contribute
 - Create branch 
 
-A build definition capable of extracting solutions is required. Refer to the [samples](./samples) folder for a possible build configuration. The _build.cake_ file will probably require tweaking to the `outputPath` variable based on your existing folder structure.
+A build definition capable of extracting solutions is required. Refer to the [samples](./samples) folder for a possible build configuration. If you use the sample files as is, the Cake build script assumes that your folder structure is similar to that of this repository i.e. you have a _solutions_ folder at the root, folders within this that match your solutions' unique names, a _solution.json_ within each of these that provides the development environment URL, and an _Extract_ folder alongside it to contain the unpacked solution zip file fragments. 
+
+If you have an existing folder structure which is different, the _build.cake_ file will probably require tweaking to how the `outputPath` variable is assigned as well as the path used to retrieve the _solution.json_ file within `GetConnectionString`. The _azure-pipelines-extract.yml_ file shouldn't need to be changed.
 
 You will need [Cake](https://cakebuild.net/) installed in your repository to use the sample build files. You can do this easily within VS Code by installing the Cake extension and running the _Cake: Install to workspace_ task. If no _build.ps1_ bootstrapper file has been created in the root of the repository, you can create this using the _Cake: Install a bootstrapper_ task. 
 The sample _build.cake_ file can then be used.
