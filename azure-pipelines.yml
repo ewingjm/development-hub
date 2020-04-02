@@ -23,12 +23,12 @@ steps:
        }
        Write-Host "##vso[task.setvariable variable=solutionList;]$solutionList"
     displayName: 'Configure Build Orchestration'
-  - powershell: >-
-      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 
-      -Target Default 
-      -ScriptArgs `"--solutionVersion=$(Build.BuildNumber)`"      
-      -Verbosity Diagnostic"
-    displayName: Cake - Build Package
+  - task: PowerShell@2
+    displayName: 'Run Default Cake target via bootstrapper'
+    inputs:
+      targetType: filePath
+      filePath: ./build.ps1
+      arguments: '-Target Default -Verbosity Quiet'
   - task: VSTest@2
     displayName: 'Test Assemblies'
     inputs:
