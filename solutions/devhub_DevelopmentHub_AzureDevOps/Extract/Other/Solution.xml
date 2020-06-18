@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.13529" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.18645" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>devhub_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
@@ -88,20 +88,28 @@
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
-        <Required key="0" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.7)" />
-        <Dependent key="1" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+        <Required key="0" type="1" schemaName="devhub_issue" displayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="2" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.7)" />
-        <Dependent key="1" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+        <Required key="2" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.1.20.0)" />
+        <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="3" type="1" schemaName="devhub_issue" displayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.0)" />
-        <Dependent key="4" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+        <Required key="3" type="1" schemaName="devhub_solutionmerge" displayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.1.20.0)" />
+        <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="5" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.1.20.0)" />
-        <Dependent key="4" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+        <Required key="4" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.1.20.0)" />
+        <Dependent key="1" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="5" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.7)" />
+        <Dependent key="6" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="7" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.7)" />
+        <Dependent key="6" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>
