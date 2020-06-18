@@ -1,8 +1,7 @@
 {
     "environments": {
         "development": {
-            "url": "https://dhubissues.crm11.dynamics.com",
-            "username": "max@dhubissues.onmicrosoft.com"
+            "url": "https://devhubtrial.crm11.dynamics.com"
         }
     },
     "dependencies": {
