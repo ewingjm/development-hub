@@ -17,6 +17,11 @@ steps:
       Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 -Target ExtractSolutionFromDevelopmentHub -ScriptArgs `"--solution=$(solution)`",`"--unmanagedNoteId=$(unmanagedNoteId)`",`"--managedNoteId=$(managedNoteId)`" -Verbosity Diagnostic";
       git add .;
       git reset -- NuGet.config;
+      $commitMessage = "$(commitMessage)"
+      if ("$(workItemId)") 
+      {
+        $commitMessage += " #(workItemId)"
+      }
       git commit -m "$(commitMessage)";
       git push origin;
     displayName: Extract and commit solution
