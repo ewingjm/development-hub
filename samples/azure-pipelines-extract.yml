@@ -20,7 +20,7 @@ steps:
       $commitMessage = "$(commitMessage)"
       if ("$(workItemId)") 
       {
-        $commitMessage += " #(workItemId)"
+        $commitMessage += " #$(workItemId)"
       }
       git commit -m "$(commitMessage)";
       git push origin;
