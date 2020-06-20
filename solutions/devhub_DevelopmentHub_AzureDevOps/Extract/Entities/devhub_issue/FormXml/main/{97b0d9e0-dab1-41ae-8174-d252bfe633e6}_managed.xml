@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{97b0d9e0-dab1-41ae-8174-d252bfe633e6}</formid>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" solutionaction="Modified">
+      <tabs>
+        <tab name="tab_AzureDevOps" id="6c28b2e6-2a0a-4432-9530-b907eaf645b3" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
+          <labels>
+            <label description="Azure DevOps" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_AzureDevOps_section_Details" id="52666d58-5f9c-4ee8-a3f9-e3d95522c26b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{513a8081-f942-4a9f-b77a-7b891a388b6f}" showlabel="true" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Work Item ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_azuredevopsworkitemid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_azuredevopsworkitemid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar />
+      </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true" solutionaction="Added">
+        <Everyone />
+      </DisplayConditions>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

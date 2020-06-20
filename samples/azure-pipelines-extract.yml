@@ -7,17 +7,22 @@ steps:
     persistCredentials: true
   - powershell: >-
       $env:GIT_REDIRECT_STDERR = '2>&1';
-      git config --global user.email "$(triggeredByEmail)";
-      git config --global user.name "$(triggeredBy)";
+      git config --global user.email $env:TRIGGEREDBYEMAIL;
+      git config --global user.name $env:TRIGGEREDBY;
       git checkout master;
       if ($env:SOURCEBRANCH)
       {
         git merge origin/$env:SOURCEBRANCH --no-commit;
       }
-      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 -Target ExtractSolutionFromDevelopmentHub -ScriptArgs `"--solution=$(solution)`",`"--unmanagedNoteId=$(unmanagedNoteId)`",`"--managedNoteId=$(managedNoteId)`" -Verbosity Diagnostic";
+      Invoke-Expression "&$(Build.SourcesDirectory)\build.ps1 -Target ExtractSolutionFromDevelopmentHub -ScriptArgs `"--solution=$env:SOLUTION`",`"--unmanagedNoteId=$env:UNMANAGEDNOTEID`",`"--managedNoteId=$env:MANAGEDNOTEDID`" -Verbosity Diagnostic";
       git add .;
       git reset -- NuGet.config;
-      git commit -m "$(commitMessage)";
+      $commitMessage = $env:COMMITMESSAGE;
+      if ($env:WORKITEMID) 
+      {
+        $commitMessage += " #$env:WORKITEMID";
+      }
+      git commit -m $commitMessage;
       git push origin;
     displayName: Extract and commit solution
     env:
@@ -25,3 +30,5 @@ steps:
       CAKE_DYNAMICS_USERNAME: $(dynamicsUsername)
 variables:
   - group: Cake
+  - name: workItemId
+    value: ""
