@@ -29,5 +29,6 @@ steps:
       CAKE_DYNAMICS_PASSWORD: $(dynamicsPassword)
       CAKE_DYNAMICS_USERNAME: $(dynamicsUsername)
 variables:
+  - group: Cake
   - name: workItemId
     value: ""
