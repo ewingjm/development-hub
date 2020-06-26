@@ -159,6 +159,12 @@
             await this.solutionRepository.UpdateAsync(solution).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
+        public Task PublishAllAsync()
+        {
+            return this.oDataClient.PostAsync("PublishAllXml", Array.Empty<byte>());
+        }
+
         private Task GetTaskForComponent(SolutionComponent sourceComponent, IEnumerable<SolutionComponent> targetSolutionComponents, string targetSolutionUniqueName)
         {
             this.logWriter.Log(Severity.Info, Tag, $"Getting task for solution component {sourceComponent.ObjectId}.");
