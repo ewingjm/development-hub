@@ -175,7 +175,7 @@
             {
                 return this.AddSolutionComponent(sourceComponent, targetSolutionUniqueName);
             }
-            else if (targetComponent.RootComponentBehavior != sourceComponent.RootComponentBehavior && sourceComponent.RootComponentBehavior != 2)
+            else if (targetComponent.RootComponentBehavior.HasValue && targetComponent.RootComponentBehavior != sourceComponent.RootComponentBehavior && targetComponent.RootComponentBehavior != 0)
             {
                 return this.UpdateSolutionComponent(sourceComponent, targetComponent, targetSolutionUniqueName);
             }

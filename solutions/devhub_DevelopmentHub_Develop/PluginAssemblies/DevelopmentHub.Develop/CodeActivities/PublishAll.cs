@@ -39,6 +39,8 @@
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
             oDataSolutionService.PublishAllAsync().Wait();
+
+            this.IsSuccessful.Set(context, true);
         }
     }
 }
