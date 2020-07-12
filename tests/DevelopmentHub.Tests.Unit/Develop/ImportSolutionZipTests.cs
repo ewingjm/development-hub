@@ -61,7 +61,7 @@
         }
 
         /// <summary>
-        /// Tests that the target instance URL is used when making the <see cref="OAuthPasswordGrantRequest"/>.
+        /// Tests that the target instance URL is used when making the <see cref="OAuthClientCredentialsGrantRequest"/>.
         /// </summary>
         [Fact]
         public void ImportSolutionZip_PasswordGrantRequest_ResourceSetToTargetInstanceUrl()
@@ -70,7 +70,7 @@
             this.MockAccessTokenResult();
             var expectedResource = "https://targetinstance.crm11.dynamics.com";
             this.OAuthTokenRepositoryMock
-                .Setup(o => o.GetAccessToken(It.Is<OAuthPasswordGrantRequest>(req => req.Resource == new Uri(expectedResource))))
+                .Setup(o => o.GetAccessToken(It.Is<OAuthClientCredentialsGrantRequest>(req => req.Resource == new Uri(expectedResource))))
                 .ReturnsAsync(new OAuthToken { AccessToken = "ACCESS TOKEN" })
                 .Verifiable();
             this.oDataSolutionServiceMock.SetReturnsDefault(Task.FromResult(new ImportJobData()));

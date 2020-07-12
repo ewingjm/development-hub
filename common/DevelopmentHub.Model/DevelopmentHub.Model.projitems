@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ODataClientResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ODataEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ODataHeaders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Requests\OAuthClientCredentialsGrantRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Requests\OAuthPasswordGrantRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuthToken.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ODataError.cs" />
@@ -22,6 +23,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Responses\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Requests\" />
   </ItemGroup>
 </Project>

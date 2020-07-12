@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="request">The password grant request parameters.</param>
         /// <returns>The OAuth token.</returns>
-        public async Task<OAuthToken> GetAccessToken(OAuthPasswordGrantRequest request)
+        public async Task<OAuthToken> GetAccessToken(OAuthClientCredentialsGrantRequest request)
         {
             byte[] response;
 
@@ -31,9 +31,8 @@
                 {
                     { "resource", request.Resource.ToString() },
                     { "client_id", request.ClientId.ToString() },
-                    { "grant_type", OAuthPasswordGrantRequest.GrantType },
-                    { "username", request.Username },
-                    { "password", request.Password },
+                    { "grant_type", OAuthClientCredentialsGrantRequest.GrantType },
+                    { "client_secret", request.ClientSecret },
                 };
 
                 response = await client.UploadValuesTaskAsync(tokenEndpoint, data).ConfigureAwait(false);
