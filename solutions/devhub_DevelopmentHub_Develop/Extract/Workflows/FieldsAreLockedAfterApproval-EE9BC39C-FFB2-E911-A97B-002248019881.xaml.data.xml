@@ -18,6 +18,7 @@
   <IntroducedVersion>0.1.17.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <ProcessTriggerScope>1</ProcessTriggerScope>
   <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
   <LocalizedNames>

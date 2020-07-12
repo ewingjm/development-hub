@@ -19,6 +19,7 @@
   <IsTransacted>1</IsTransacted>
   <IntroducedVersion>0.1.12.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Solution Merge: Set Name" />

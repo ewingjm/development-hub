@@ -20,6 +20,7 @@
   <IsTransacted>1</IsTransacted>
   <IntroducedVersion>0.1.17.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>devhub_solution</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Solution: Reset Patch Version On Update Of Minor Version" />
