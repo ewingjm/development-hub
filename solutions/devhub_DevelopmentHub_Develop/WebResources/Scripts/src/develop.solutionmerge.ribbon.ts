@@ -53,7 +53,13 @@ namespace DevelopmentHub.Develop {
         const entity = primaryControl.data.entity.getEntityReference();
 
         executeWebApiRequest(new ApproveRequest(entity), "Approving solution merge.")
-            .then(() => primaryControl.data.refresh(false));
+            .then(async () => {
+                // Flows don't trigger for updates done within actions/workflows.
+                // Setting the statuscode here as a workaround
+                primaryControl.getAttribute("statuscode").setValue(353400000);
+                await primaryControl.data.save();
+                primaryControl.data.refresh(false);
+            });
     }
 
     export function reject(primaryControl: Xrm.FormContext): void {
@@ -62,7 +68,7 @@ namespace DevelopmentHub.Develop {
         executeWebApiRequest(new RejectRequest(entity), "Rejecting solution merge.")
             .then(() => primaryControl.data.refresh(false));
     }
-    
+
     function executeWebApiRequest(request: any, progressIndicator: string): Promise<void> {
         return new Promise((resolve, reject) => {
             Xrm.Utility.showProgressIndicator(progressIndicator);
