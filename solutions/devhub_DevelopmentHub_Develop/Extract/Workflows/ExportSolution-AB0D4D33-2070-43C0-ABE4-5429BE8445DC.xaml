@@ -179,19 +179,19 @@
     <Sequence DisplayName="AssignOutputArgumentStep2: Assign 'IsSuccesful'">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep2_1" />
-        <Variable x:TypeArguments="x:String" Default="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Name="TypeName" />
+        <Variable x:TypeArguments="x:String" Default="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Name="TypeName" />
       </Sequence.Variables>
       <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
         <mxswa:ActivityReference.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
           <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { CustomActivityStep1IsSuccessful_localParameter }]</InArgument>
           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
           </InArgument>
           <OutArgument x:TypeArguments="x:Object" x:Key="Result">[AssignOutputArgumentStep2_1]</OutArgument>
         </mxswa:ActivityReference.Arguments>
       </mxswa:ActivityReference>
-      <Assign x:TypeArguments="x:String" To="[SolutionZip]" Value="[AssignOutputArgumentStep2_1.ToString()]" />
+      <Assign x:TypeArguments="x:Boolean" To="[IsSuccessful]" Value="[CBool(AssignOutputArgumentStep2_1)]" />
     </Sequence>
     <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep3: If IsSuccesful">
       <mxswa:ActivityReference.Arguments>
