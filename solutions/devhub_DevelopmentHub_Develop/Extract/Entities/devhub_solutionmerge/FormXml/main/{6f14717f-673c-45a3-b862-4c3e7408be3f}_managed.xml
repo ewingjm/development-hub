@@ -5,9 +5,9 @@
     <IntroducedVersion>0.1.12.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
-        <tab verticallayout="true" id="{ff981c83-7418-4010-a4d9-13f804c35a90}" IsUserDefined="1">
+        <tab verticallayout="true" id="{ff981c83-7418-4010-a4d9-13f804c35a90}" IsUserDefined="1" name="tab_General">
           <labels>
             <label description="General" languagecode="1033" />
           </labels>
@@ -49,10 +49,11 @@
                         </labels>
                         <control id="devhub_targetsolution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_targetsolution" disabled="false" />
                       </cell>
-                      <cell id="{d159c4c7-ecad-15cb-1a64-a57562831b06}" showlabel="false">
+                      <cell id="{787e02ac-63a2-4f02-a496-baca1a4579bd}" showlabel="true" locklevel="0" visible="false">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Development Solution" languagecode="1033" />
                         </labels>
+                        <control id="devhub_developmentsolution" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="devhub_developmentsolution" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -62,10 +63,11 @@
                         </labels>
                         <control id="devhub_sourcebranch" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_sourcebranch" disabled="false" />
                       </cell>
-                      <cell id="{1ceaeaca-9d78-4ba1-3d54-7bbc39d81a63}" showlabel="false">
+                      <cell id="{c11860bb-72f3-4b60-8abc-588f16a6da49}" showlabel="true" locklevel="0" visible="false">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Solution Version" languagecode="1033" />
                         </labels>
+                        <control id="devhub_solutionversion" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_solutionversion" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -89,11 +91,10 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{eb3d0108-2a29-ac33-8c42-e83058c8629a}" showlabel="true" locklevel="0">
+                      <cell showlabel="true" locklevel="0" id="{9ce811a3-77b2-4a67-bc20-5754b5a905d2}">
                         <labels>
-                          <label description="Manual Merge Activities Complete" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="devhub_manualmergeactivitiescomplete" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="devhub_manualmergeactivitiescomplete" disabled="false" uniqueid="{50ce4710-4c9e-dc05-c03c-41924593c614}" />
                       </cell>
                       <cell id="{ac3eadeb-971d-648c-130c-10625c342162}" showlabel="false">
                         <labels>
@@ -136,9 +137,9 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_Review" id="{b1902b46-61d0-25b6-d38d-9bb1e60c63b1}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+        <tab name="tab_AdditionalInfo" id="{b1902b46-61d0-25b6-d38d-9bb1e60c63b1}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
-            <label description="Review" languagecode="1033" />
+            <label description="Additional Info" languagecode="1033" />
           </labels>
           <columns>
             <column width="100%">
@@ -153,7 +154,7 @@
                         <labels>
                           <label description="Reviewed By" languagecode="1033" />
                         </labels>
-                        <control id="devhub_approvedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_approvedby" disabled="false" uniqueid="{99c17865-7714-2274-9e33-362e60a5ce96}">
+                        <control id="devhub_approvedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_approvedby" disabled="true" uniqueid="{99c17865-7714-2274-9e33-362e60a5ce96}">
                           <parameters>
                             <AutoResolve>true</AutoResolve>
                             <DisableMru>false</DisableMru>
@@ -164,11 +165,60 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell showlabel="true" locklevel="0" id="{2301751a-7fb6-4b1f-9311-8828ec2c2f23}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{85e76cd8-3c75-3631-2a4c-955840917519}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Reviewed On" languagecode="1033" />
                         </labels>
-                        <control id="devhub_approvedon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="devhub_approvedon" disabled="false" uniqueid="{ce9a8a47-17a3-e165-2531-844982da42ea}" />
+                        <control id="devhub_approvedon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="devhub_approvedon" disabled="true" uniqueid="{ce9a8a47-17a3-e165-2531-844982da42ea}" />
+                      </cell>
+                      <cell showlabel="true" locklevel="0" id="{3369e438-f3fc-454d-882a-ef6caf523275}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fd7cff3b-3cc5-4b03-a583-44aed4c8f9f6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Queued On" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_queuedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="devhub_queuedon" disabled="true" />
+                      </cell>
+                      <cell showlabel="true" locklevel="0" id="{cf1165db-311d-4d2e-8b28-8afb6e1b6055}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell showlabel="true" locklevel="0" id="{363d52d8-b814-4497-b7b9-443f79af7854}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="true" locklevel="0" id="{13f0e0ef-631f-4490-bdea-3e2da12ade7a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell showlabel="true" locklevel="0" id="{bd430119-0ec1-4c11-a56a-010e61780df6}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="true" locklevel="0" id="{32e9f9ac-bb9c-4550-8cab-668a7e012a1b}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -283,29 +333,10 @@
             </parameters>
           </customControl>
         </controlDescription>
-        <controlDescription forControl="{50ce4710-4c9e-dc05-c03c-41924593c614}">
-          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
-            <parameters>
-              <datafieldname>devhub_manualmergeactivitiescomplete</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="0" name="MscrmControls.FlipSwitch.FlipSwitchControl">
-            <parameters>
-              <value>devhub_manualmergeactivitiescomplete</value>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.FlipSwitch.FlipSwitchControl">
-            <parameters>
-              <value>devhub_manualmergeactivitiescomplete</value>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.FlipSwitch.FlipSwitchControl">
-            <parameters>
-              <value>devhub_manualmergeactivitiescomplete</value>
-            </parameters>
-          </customControl>
-        </controlDescription>
       </controlDescriptions>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
