@@ -36,13 +36,13 @@ Install-Module ADAL.PS -Scope CurrentUser -Force
 nuget install  Microsoft.CrmSdk.CoreTools
 $solutionPackager = Get-ChildItem -Filter "SolutionPackager.exe" -Path packages -Recurse
 
-$env:GIT_REDIRECT_STDERR = '2>&1';
-git config --global user.email $CommitUserEmailAddress;
-git config --global user.name $CommitUserName;
-git checkout master;
+$env:GIT_REDIRECT_STDERR = '2>&1'
+git config --global user.email $CommitUserEmailAddress
+git config --global user.name $CommitUserName
+git checkout master
 if ($SourceBranch)
 {
-  git merge origin/$SourceBranch --no-commit;
+  git merge --squash origin/$SourceBranch --no-commit
 }
 
 $solutionFolder = Get-ChildItem -Filter $Solution -Path "./src/solutions" -Directory -Recurse
