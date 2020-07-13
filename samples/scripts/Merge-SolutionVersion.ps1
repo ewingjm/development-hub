@@ -68,7 +68,7 @@ $managedZipFilePath = "$env:TEMP/$Solution" + "_managed.zip"
 [IO.File]::WriteAllBytes($unmanagedZipFilePath, $unmanagedZip);
 [IO.File]::WriteAllBytes($managedZipFilePath, $managedZip);
 
-$extractFolder = Join-Path -Path $solutionFolder.FullName -ChildPath "Extract"
+$extractFolder = Join-Path -Path $solutionFolder.FullName -ChildPath "extract"
 $solutionPackagerPath = $solutionPackager.FullName
 & $solutionPackagerPath /action:Extract /zipfile:$unmanagedZipFilePath /folder:$extractFolder /packagetype:Both /allowWrite:Yes /allowDelete:Yes
 
