@@ -49,6 +49,11 @@ namespace DevelopmentHub.Develop {
             primaryControl.ui.getFormType() !== XrmEnum.FormType.Create;
     }
 
+    export function retry(primaryControl: Xrm.FormContext): void {
+        primaryControl.getAttribute("statuscode").setValue(353400000);
+        primaryControl.data.save();
+    }
+
     export function approve(primaryControl: Xrm.FormContext): void {
         const entity = primaryControl.data.entity.getEntityReference();
 
