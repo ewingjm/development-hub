@@ -1,7 +1,3 @@
 {
-    "environments": {
-        "development": {
-            "url": "https://environment.region.dynamics.com/"
-        }
-    }
+    "environment": "https://environment.region.dynamics.com"
 }
