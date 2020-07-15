@@ -88,17 +88,17 @@
         [ExcludeFromCodeCoverage]
         private static IODataClient GetNewODataClient(Uri targetInstance, CodeActivityContext context, IWorkflowContext workflowContext, ILogWriter logWriter)
         {
-            var passwordGrantRequest = GetPasswordGrantRequest(workflowContext, logWriter);
-            passwordGrantRequest.Resource = targetInstance;
+            var oAuthGrantRequest = GetOAuthGrantRequest(workflowContext, logWriter);
+            oAuthGrantRequest.Resource = targetInstance;
 
-            logWriter.Log(Severity.Info, Tag, $"Making password grant OAuth request for {passwordGrantRequest.Resource} as {passwordGrantRequest.Username}");
+            logWriter.Log(Severity.Info, Tag, $"Making client credentials grant OAuth request for {oAuthGrantRequest.Resource}.");
 
-            var token = (context.GetExtension<IOAuthTokenRepository>() ?? new OAuthTokenRepository()).GetAccessToken(passwordGrantRequest).Result;
+            var token = (context.GetExtension<IOAuthTokenRepository>() ?? new OAuthTokenRepository()).GetAccessToken(oAuthGrantRequest).Result;
 
             return new ODataClient(targetInstance, token);
         }
 
-        private static OAuthPasswordGrantRequest GetPasswordGrantRequest(IWorkflowContext workflowContext, ILogWriter logWriter)
+        private static OAuthClientCredentialsGrantRequest GetOAuthGrantRequest(IWorkflowContext workflowContext, ILogWriter logWriter)
         {
             if (!workflowContext.SharedVariables.ContainsKey(SharedVariablesSecureConfigKey))
             {
@@ -109,13 +109,13 @@
 
             logWriter.Log(Severity.Info, Tag, $"Deserializing password grant request from secure configuration.");
 
-            OAuthPasswordGrantRequest passwordGrantRequest;
+            OAuthClientCredentialsGrantRequest clientCredentialsGrantRequest;
             using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(secureConfig)))
             {
-                passwordGrantRequest = (OAuthPasswordGrantRequest)new DataContractJsonSerializer(typeof(OAuthPasswordGrantRequest)).ReadObject(ms);
+                clientCredentialsGrantRequest = (OAuthClientCredentialsGrantRequest)new DataContractJsonSerializer(typeof(OAuthClientCredentialsGrantRequest)).ReadObject(ms);
             }
 
-            return passwordGrantRequest;
+            return clientCredentialsGrantRequest;
         }
 
         private void SetError(CodeActivityContext context, TracingServiceLogWriter logWriter, string message)

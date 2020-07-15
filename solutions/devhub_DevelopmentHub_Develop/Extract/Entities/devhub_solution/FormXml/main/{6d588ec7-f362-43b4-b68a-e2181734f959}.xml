@@ -101,27 +101,21 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{3cab915c-69ce-3985-ad36-85da57c43a07}" showlabel="true" rowspan="15" auto="false" colspan="1">
+                      <cell showlabel="false" locklevel="0" id="{1f0e8768-74d5-4e00-a0f4-3aa026b15877}" rowspan="1" colspan="1">
                         <labels>
-                          <label description="Note Text" languagecode="1033" />
+                          <label description="Solution Versions" languagecode="1033" />
                         </labels>
-                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                        <control id="subgrid_SolutionVersions" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>devhub_solutionversion</TargetEntityType>
+                            <ViewId>{8A73DCFA-5D50-4090-A788-44AF43EF1C93}</ViewId>
+                            <ViewIds>{8A73DCFA-5D50-4090-A788-44AF43EF1C93}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>devhub_SolutionVersion_Solution_devhub_solution</RelationshipName>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
                   </rows>
                 </section>
               </sections>
@@ -176,7 +170,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

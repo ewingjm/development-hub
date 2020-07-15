@@ -28,10 +28,10 @@ The Development Hub brings continuous integration to Power Apps development by a
 
 ## Features
 
-- Peer review
-- Solution merging
-- Automatic semantic versioning
-- Automatic source control
+- Peer review for configuration
+- Merging for individual bugs and features
+- Automated semantic versioning
+- Automated source control
 
 ## Prerequisites
 
@@ -47,30 +47,23 @@ The package can be deployed to your development environment using the Package De
 
 ### Register an app
 
-Access to the Common Data Service Web API is required in order to merge development solutions with the solution(s) in the master instance. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/walkthrough-register-app-azure-active-directory).
-
-Once registered: 
-
-- Grant admin consent for the tenant for the Dynamics CRM API permissions
-- Navigate to _Authentication_ and set _Treat application as a public client_ to _Yes_.
-- Make a note of the client ID and tenant ID
+Access to the Common Data Service Web API is required in order to merge development solutions with the solution(s) in the master instance. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/use-single-tenant-server-server-authentication#azure-application-registration). You will need to use the client ID, tenant ID, and a client secret for the app you register in later steps.
 
 ### Configure plug-in steps
 
 Use the plug-in registration tool to set the secure configuration parameters necessary for authentication for the Web API. The steps to set the secure configuration for are under the InjectSecureConfig plug-in within the DevelopmentHub.Develop assembly.
 
-The secure configuration is a JSON object with the client ID, tenant ID, and user credentials:
+The secure configuration is a JSON object with the client ID, tenant ID, and client secret:
 
 ```json
 {
   "ClientId": "<from app registration>",
   "TenantId": "<from app registration>",
-  "Username": "<service account email>",
-  "Password": "<service account password>"
+  "ClientSecret": "<from app registration>",
 }
 ```
 
-**Note: the user must have admin permissions in the master instance.**
+**Note: the application user must should have admin permissions in both the master instance and the development instance.**
 
 ### Configure Azure DevOps
 
@@ -82,16 +75,9 @@ Navigate to _Project Settings -> Repositories_ in the Azure DevOps project that 
 - Contribute
 - Create branch 
 
-A build definition capable of extracting solutions is required. Refer to the [samples](./samples) folder for a possible build configuration. If you use the sample files as is, the Cake build script assumes that your folder structure is similar to that of this repository i.e. you have a _solutions_ folder at the root, folders within this that match your solutions' unique names, a _solution.json_ within each of these that provides the development environment URL, and an _Extract_ folder alongside it to contain the unpacked solution zip file fragments. 
+A build definition capable of extracting solutions is required. There are several files in the [samples](./samples) folder to help you with this. If you use the sample files as is, copy the _scripts_ folder and _azure-pipelines-extract.yml_ file into your repository. The sample build script assumes that your repository structure is that you have a _src_ folder at the root, a _solutions_ folder within, and then folders that match your solutions' unique names. In addition, it expects a _solution.json_ within each of these solution folders that provides the development environment URL (see the _solution.json_ in the samples folder), and an _extract_ folder alongside it to contain the unpacked solution zip file fragments. You will also need to create a _Development Hub_ variable group that contains three variables - `Client ID`, `Tenant ID`, and `Client Secret`. These should be taken from the app registration created earlier.
 
-If you have an existing folder structure which is different, the _build.cake_ file will probably require tweaking to how the `outputPath` variable is assigned as well as the path used to retrieve the _solution.json_ file within `GetConnectionString`. The _azure-pipelines-extract.yml_ file shouldn't need to be changed.
-
-You will need [Cake](https://cakebuild.net/) installed in your repository to use the sample build files. You can do this easily within VS Code by installing the Cake extension and running the _Cake: Install to workspace_ task. If no _build.ps1_ bootstrapper file has been created in the root of the repository, you can create this using the _Cake: Install a bootstrapper_ task. 
-The sample _build.cake_ file can then be used.
-
-The sample build requires that a variable group named 'Cake' exists and that it contains two variables - _dynamicsUsername_ and _dynamicsPassword_. These will be used by the build to connect to the development instance when extracting the post-merge solution zip.
-
-**Note: the Common Data Service package Yeoman generator will scaffold a build and repository compatible with the Development Hub.**
+If you have an existing folder structure which is different, the _Merge-SolutionVersion.ps1_ script will require tweaking - but the _azure-pipelines-extract.yml_ file shouldn't need to be changed.
 
 ### Set solution environment variables
 
@@ -106,10 +92,12 @@ The build definition ID is the numeric ID given to the build definition by Azure
 
 ### Set flow connections
 
-There are two flows located in the _devhub_DevelopmentHub_AzureDevOps_ solution that must be set in order to trigger extract builds. The flows to set the connections on are:
+There are four flows located in the _devhub_DevelopmentHub_Develop_ and _devhub_DevelopmentHub_AzureDevOps_ solutions that must be set. The flows to set the connections on are:
 
+- When a solution merge is approved -> Merge the solution
+- When a solution merge is merged -> Approve the first queued solution merge
 - Environment Variable Key -> Environment Variable Value
-- When a solution is merged - Commit changes to source control
+- When a solution is merged -> Commit changes to source control
 
 ## Configuration
 
@@ -153,7 +141,7 @@ Once the issue has been developed, a solution merge record can be created. This 
 
 Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an 'Approved' solution merge will transition to either a 'Merging' or 'Queued' status.
 
-A successful solution merge will transition to an inactive 'Merged' status. The 'Version History' tab on the target solution record will also contain two new attachments with the post-merge unmanaged and managed solution zips. The new solution version is based on the type of issue merged. A feature issue will increment the minor version and a bug issue will increment the patch version. Major version changes must be done manually. 
+A successful solution merge will transition to an inactive 'Merged' status. The 'Version History' tab on the target solution record will also contain a new record with the post-merge unmanaged and managed solution zips available. The new solution version is based on the type of issue merged. A feature issue will increment the minor version and a bug issue will increment the patch version. Major version changes must be done manually. 
 
 
 ![Solution merge](./docs/images/solutionmerge.png)
@@ -167,6 +155,8 @@ If the solution to be merged has associated source code (e.g. you have made chan
 Specifying that there are manual merge activities on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the solution. 
 
 When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an 'Awaiting Manual Merge Activities' status. If you are deleting components from the solution in the master instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
+
+To notify the flow that the manual merge activities are complete, navigate to _Action items -> Approvals_ within Power Automate and set the approval status to merged.
 
 ### Handle a failed merge
 

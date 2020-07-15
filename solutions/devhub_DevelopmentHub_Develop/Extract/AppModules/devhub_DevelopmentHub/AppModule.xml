@@ -17,10 +17,11 @@
     <AppModuleComponent type="59" id="{4f470eb3-9576-e911-a819-002248008902}" />
     <AppModuleComponent type="1" schemaName="devhub_solution" />
     <AppModuleComponent type="1" schemaName="devhub_solutionmerge" />
+    <AppModuleComponent type="1" schemaName="devhub_solutionversion" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
-    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
     <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
   </AppModuleRoleMaps>
   <LocalizedNames>
     <LocalizedName description="Development Hub" languagecode="1033" />

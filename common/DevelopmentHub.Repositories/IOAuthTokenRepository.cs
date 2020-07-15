@@ -10,10 +10,10 @@
     public interface IOAuthTokenRepository
     {
         /// <summary>
-        /// Get an OAuth access token using the password grant.
+        /// Gets an access token for a resource using client credentials.
         /// </summary>
-        /// <param name="request">The password grant request.</param>
-        /// <returns>An OAuth token./returns>.
-        Task<OAuthToken> GetAccessToken(OAuthPasswordGrantRequest request);
+        /// <param name="request">The password grant request parameters.</param>
+        /// <returns>The OAuth token.</returns>
+        Task<OAuthToken> GetAccessToken(OAuthClientCredentialsGrantRequest request);
     }
 }

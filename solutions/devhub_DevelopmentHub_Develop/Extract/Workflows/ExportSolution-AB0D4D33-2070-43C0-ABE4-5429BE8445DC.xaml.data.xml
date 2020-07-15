@@ -21,6 +21,7 @@
   <IntroducedVersion>0.1.17.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>devhub_solution</PrimaryEntity>
   <LocalizedNames>
     <LocalizedName languagecode="1033" description="Export Solution" />

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="Inject OAuth password grant for export solution" SdkMessageProcessingStepId="{b4b94739-609b-e911-a97d-002248010929}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="Inject OAuth request for export solution" SdkMessageProcessingStepId="{b4b94739-609b-e911-a97d-002248010929}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SdkMessageId>4f8a0bf3-5e9b-e911-a980-0022480186c3</SdkMessageId>
   <PluginTypeName>DevelopmentHub.Develop.Plugins.InjectSecureConfig, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4</PluginTypeName>
   <PluginTypeId>fdb0db23-769a-e911-a97d-002248010929</PluginTypeId>
   <PrimaryEntity>devhub_solution</PrimaryEntity>
@@ -8,7 +9,6 @@
   <InvocationSource>0</InvocationSource>
   <Mode>0</Mode>
   <Rank>0</Rank>
-  <SdkMessageId>{4f8a0bf3-5e9b-e911-a980-0022480186c3}</SdkMessageId>
   <EventHandlerTypeCode>4602</EventHandlerTypeCode>
   <Stage>20</Stage>
   <IsCustomizable>1</IsCustomizable>

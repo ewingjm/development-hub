@@ -159,6 +159,12 @@
             await this.solutionRepository.UpdateAsync(solution).ConfigureAwait(false);
         }
 
+        /// <inheritdoc/>
+        public Task PublishAllAsync()
+        {
+            return this.oDataClient.PostAsync("PublishAllXml", Array.Empty<byte>());
+        }
+
         private Task GetTaskForComponent(SolutionComponent sourceComponent, IEnumerable<SolutionComponent> targetSolutionComponents, string targetSolutionUniqueName)
         {
             this.logWriter.Log(Severity.Info, Tag, $"Getting task for solution component {sourceComponent.ObjectId}.");
@@ -169,7 +175,7 @@
             {
                 return this.AddSolutionComponent(sourceComponent, targetSolutionUniqueName);
             }
-            else if (targetComponent.RootComponentBehavior != sourceComponent.RootComponentBehavior && sourceComponent.RootComponentBehavior != 2)
+            else if (targetComponent.RootComponentBehavior.HasValue && targetComponent.RootComponentBehavior != sourceComponent.RootComponentBehavior && targetComponent.RootComponentBehavior != 0)
             {
                 return this.UpdateSolutionComponent(sourceComponent, targetComponent, targetSolutionUniqueName);
             }

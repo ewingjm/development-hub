@@ -50,6 +50,11 @@
       <FriendlyName>Merge solution components</FriendlyName>
       <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
+    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.PublishAll, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="33e835ea-b0b6-ea11-a812-000d3a86ad99" Name="PublishAll">
+      <Description>Publishes all solution components in a target environment.</Description>
+      <FriendlyName>Publish all</FriendlyName>
+      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
+    </PluginType>
     <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.UpdateSolutionVersion, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="b2831985-559b-e911-a97d-002248010929" Name="UpdateSolutionVersion">
       <Description>Updates the version of a solution.</Description>
       <FriendlyName>Update solution version</FriendlyName>

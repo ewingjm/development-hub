@@ -47,5 +47,11 @@
         /// <param name="solutionVersion">The version.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task UpdateSolutionVersionAsync(string solutionUniqueName, string solutionVersion);
+
+        /// <summary>
+        /// Publishes all solution components.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        Task PublishAllAsync();
     }
 }

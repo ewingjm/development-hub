@@ -105,6 +105,7 @@
     <Compile Include="CodeActivities\GetSolutionZipFromInstance.cs" />
     <Compile Include="CodeActivities\GetLastApprovedSolutionMerge.cs" />
     <Compile Include="CodeActivities\MergeSolutionComponents.cs" />
+    <Compile Include="CodeActivities\PublishAll.cs" />
     <Compile Include="CodeActivities\UpdateSolutionVersion.cs" />
     <Compile Include="Model\ImportJobData.cs" />
     <Compile Include="Model\ImportResult.cs" />

@@ -49,10 +49,7 @@
       </EnableRules>
       <DisplayRules />
       <Actions>
-        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.executeWorkflow" Library="$webresource:devhub_/Js/develop.common.js">
-          <StringParameter Value="EF05E501-F445-49D9-AB1F-2FDB9CDF972A" />
-          <CrmParameter Value="FirstPrimaryItemId" />
-          <StringParameter Value="Retrying merge" />
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.retry" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
           <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>

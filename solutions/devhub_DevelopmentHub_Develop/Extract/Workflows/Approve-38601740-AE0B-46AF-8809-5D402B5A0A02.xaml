@@ -23,22 +23,6 @@
   </this:XrmWorkflow38601740ae0b46af88095d402b5a0a02.Target>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
-    <mxswa:SetState DisplayName="SetStateStep2: Set status to 'Approved'" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityId="[InputEntities(&quot;primaryEntity&quot;).Id]" EntityName="devhub_solutionmerge">
-      <mxswa:SetState.State>
-        <InArgument x:TypeArguments="mxs:OptionSetValue">
-          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
-            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="0" />
-          </mxswa:ReferenceLiteral>
-        </InArgument>
-      </mxswa:SetState.State>
-      <mxswa:SetState.Status>
-        <InArgument x:TypeArguments="mxs:OptionSetValue">
-          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
-            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="353400000" />
-          </mxswa:ReferenceLiteral>
-        </InArgument>
-      </mxswa:SetState.Status>
-    </mxswa:SetState>
     <Sequence DisplayName="UpdateStep3: Set 'Approved By' and 'Approved On'">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Object" Name="UpdateStep3_1" />
@@ -101,12 +85,6 @@
       </mxswa:SetEntityProperty>
       <mxswa:UpdateEntity DisplayName="UpdateStep3" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="devhub_solutionmerge" />
       <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
-    </Sequence>
-    <Sequence DisplayName="ChildWorkflowStep1: Start merge workflow">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Default="[New Dictionary(Of System.String, System.Object)]" Name="ChildWorkflowStep1_1" />
-      </Sequence.Variables>
-      <mxswa:StartChildWorkflow DisplayName="ChildWorkflowStep1: Start merge workflow" EntityId="[InputEntities(&quot;primaryEntity&quot;).Id]" EntityName="devhub_solutionmerge" InputParameters="[ChildWorkflowStep1_1]" WorkflowId="ef05e501-f445-49d9-ab1f-2fdb9cdf972a" />
     </Sequence>
   </mxswa:Workflow>
 </Activity>
