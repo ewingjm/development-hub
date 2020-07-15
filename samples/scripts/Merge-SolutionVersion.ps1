@@ -42,7 +42,7 @@ git config --global user.name $CommitUserName
 git checkout master
 if ($SourceBranch)
 {
-  git merge --squash origin/$SourceBranch --no-commit
+  git merge origin/$SourceBranch --squash --no-commit;
 }
 
 $solutionFolder = Get-ChildItem -Filter $Solution -Path "./src/solutions" -Directory -Recurse
