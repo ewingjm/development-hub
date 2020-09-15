@@ -90,6 +90,8 @@ There are four environment variables to set:
 
 The build definition ID is the numeric ID given to the build definition by Azure DevOps. This is the extract build created either by modifying the sample in this repository or by the Yeoman generator.
 
+For more information on environment see this [link](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/environmentvariables).
+
 ### Set flow connections
 
 There are four flows located in the _devhub_DevelopmentHub_Develop_ and _devhub_DevelopmentHub_AzureDevOps_ solutions that must be set. The flows to set the connections on are:
