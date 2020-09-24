@@ -101,6 +101,10 @@ There are four flows located in the _devhub_DevelopmentHub_Develop_ and _devhub_
 - Environment Variable Key -> Environment Variable Value
 - When a solution is merged -> Commit changes to source control
 
+### Video Demo
+
+[![Development Hub - Setup](https://img.youtube.com/vi/5jQkCPtvr-E/0.jpg)](https://www.youtube.com/watch?v=5jQkCPtvr-E)
+
 ## Configuration
 
 Ensure you have created or imported your unmanaged solution(s) for extraction in the master instance. Once this is done, they can be registered within the Development Hub app. 
@@ -163,6 +167,10 @@ To notify the flow that the manual merge activities are complete, navigate to _A
 ### Handle a failed merge
 
 If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a 'Failed' status. A *Retry* button is available after the necessary steps have been taken. Failure reason will be attached as a note to the solution merge record.
+
+### Video Demo
+
+[![Development Hub - Usage](https://img.youtube.com/vi/co1zCvureiM/0.jpg)](https://www.youtube.com/watch?v=co1zCvureiM)
 
 ## Contributing
 
