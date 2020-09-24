@@ -5,6 +5,7 @@ The Development Hub brings continuous integration to Power Apps development by a
 ## Table of contents
 
 * [Features](#features)
+* [Video Demos](#video-demos)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
   * [Deploy the package](#deploy-the-package)
@@ -32,6 +33,11 @@ The Development Hub brings continuous integration to Power Apps development by a
 - Merging for individual bugs and features
 - Automated semantic versioning
 - Automated source control
+
+## Video Demos
+
+[![Development Hub - Setup](https://img.youtube.com/vi/5jQkCPtvr-E/0.jpg)](https://www.youtube.com/watch?v=5jQkCPtvr-E)
+[![Development Hub - Usage](https://img.youtube.com/vi/co1zCvureiM/0.jpg)](https://www.youtube.com/watch?v=co1zCvureiM)
 
 ## Prerequisites
 
