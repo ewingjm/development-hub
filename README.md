@@ -33,6 +33,10 @@ The Development Hub brings continuous integration to Power Apps development by a
 - Automated semantic versioning
 - Automated source control
 
+### Video Introduction
+
+[![Development Hub - Setup](https://img.youtube.com/vi/p-z1iTxtaag/0.jpg)](https://youtu.be/p-z1iTxtaag)
+
 ## Prerequisites
 
 Two instances are required to use the Development Hub - a development instance and a 'master' instance.
