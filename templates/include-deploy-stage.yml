@@ -6,7 +6,7 @@ parameters:
     type: string
     displayName: 'The service connection'
 stages:
-  - stage: ResetEnvironment
+  - stage: Deploy
     displayName: 'Reset environment'
     jobs:
       - deployment: Deployment
