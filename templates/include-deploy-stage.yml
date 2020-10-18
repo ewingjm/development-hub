@@ -26,6 +26,6 @@ stages:
                 - task: PowerPlatformDeployPackage@0
                   displayName: 'Deploy package'
                   inputs:
-                    authenticationType: 'PowerPlatformEnvironment'
-                    PowerPlatformEnvironment: '${{ parameters.serviceConnection }}'
+                    authenticationType: 'PowerPlatformSPN'
+                    PowerPlatformSPN: '${{ parameters.serviceConnection }}'
                     PackageFile: '$(Pipeline.Workspace)/Development Hub/DevelopmentHub.Deployment.dll'
