@@ -52,7 +52,7 @@ namespace DevelopmentHub.Repositories
         public virtual TObject Retrieve<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector)
             where TObject : class
         {
-            this.EnsureParametersAreValid(selector);
+            EnsureParametersAreValid(selector);
 
             var list = this.CurrentContext.CreateQuery<TEntity>()
                                      .Where(filter)
@@ -65,7 +65,7 @@ namespace DevelopmentHub.Repositories
         public virtual IQueryable<TObject> Find<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector)
             where TObject : class
         {
-            this.EnsureParametersAreValid(selector);
+            EnsureParametersAreValid(selector);
 
             var list = this.CurrentContext.CreateQuery<TEntity>()
                                      .Where(filter)
@@ -78,7 +78,7 @@ namespace DevelopmentHub.Repositories
         public virtual IQueryable<TObject> Find<TObject>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TObject>> selector, int resultStart, int numberofRowsToRetrieve)
             where TObject : class
         {
-            this.EnsureParametersAreValid(selector);
+            EnsureParametersAreValid(selector);
 
             var list = this.CurrentContext.CreateQuery<TEntity>()
                                      .Where(filter).Select(selector)
@@ -216,7 +216,7 @@ namespace DevelopmentHub.Repositories
             return detected;
         }
 
-        private void EnsureParametersAreValid<TObject>(Expression<Func<TEntity, TObject>> selector)
+        private static void EnsureParametersAreValid<TObject>(Expression<Func<TEntity, TObject>> selector)
             where TObject : class
         {
             if (selector == null)

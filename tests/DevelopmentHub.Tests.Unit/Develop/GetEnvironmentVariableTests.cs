@@ -45,7 +45,7 @@
         public void Execute_EmptyString_Throws()
         {
             Assert.Throws<InvalidPluginExecutionException>(
-                () => this.WorkflowInvoker.Invoke(this.GetInputs(string.Empty)));
+                () => this.WorkflowInvoker.Invoke(GetInputs(string.Empty)));
         }
 
         /// <summary>
@@ -57,7 +57,7 @@
             var defaultValue = "default";
             this.MockDefaultValue(defaultValue);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(GetInputs(EnvironmentVariable));
 
             Assert.Equal(defaultValue, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -72,7 +72,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -87,7 +87,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -102,7 +102,7 @@
             var value = "value";
             this.MockValue(value);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(GetInputs(EnvironmentVariable));
 
             Assert.Equal(value, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
@@ -116,12 +116,12 @@
             this.MockDefaultValue(null);
             this.MockValue(null);
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetInputs(EnvironmentVariable));
+            var outputs = this.WorkflowInvoker.Invoke(GetInputs(EnvironmentVariable));
 
             Assert.Equal(string.Empty, outputs[nameof(GetEnvironmentVariable.Value)]);
         }
 
-        private Dictionary<string, object> GetInputs(string envVar)
+        private static Dictionary<string, object> GetInputs(string envVar)
         {
             return new Dictionary<string, object>
             {

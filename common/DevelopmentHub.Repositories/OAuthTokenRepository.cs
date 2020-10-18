@@ -31,7 +31,7 @@
             {
                 client.Headers.Add(HttpRequestHeader.Accept, "application/json");
 
-                var tokenEndpoint = $"https://login.microsoftonline.com/{request.TenantId.ToString()}/oauth2/token";
+                var tokenEndpoint = $"https://login.microsoftonline.com/{request.TenantId}/oauth2/token";
                 var data = new NameValueCollection
                 {
                     { "resource", request.Resource.ToString() },

@@ -20,7 +20,7 @@
         /// <param name="expectedError">The error message expected on the fields.</param>
         /// <param name="table">The fields that should display a mandatory field error.</param>
         [Then(@"the field error '(.*)' is displayed on the following fields")]
-        public void ThenAMandatoryFieldErrorIsDisplayedOnTheFollowingFields(string expectedError, Table table)
+        public static void ThenAMandatoryFieldErrorIsDisplayedOnTheFollowingFields(string expectedError, Table table)
         {
             if (string.IsNullOrEmpty(expectedError))
             {

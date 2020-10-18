@@ -161,7 +161,7 @@ namespace DevelopmentHub.Tests.Integration
 
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                throw new ConfigurationException("Environment variables required for integration tests haven't set.");
+                throw new Exception("Environment variables required for integration tests haven't set.");
             }
 
             //return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";

@@ -56,7 +56,7 @@
         [Fact]
         public void ImportSolutionZip_NoInjectedConfig_SetsError()
         {
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.NotNull(outputs[nameof(ImportSolutionZip.Error)]);
         }
@@ -100,7 +100,7 @@
                 .Returns(Task.FromResult(new ImportJobData()))
                 .Verifiable();
 
-            this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            this.WorkflowInvoker.Invoke(GetValidInputs());
 
             this.oDataSolutionServiceMock.VerifyAll();
         }
@@ -117,7 +117,7 @@
             var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"failure\" errortext=\"{error}\"></result></solutionManifest>");
             this.oDataSolutionServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.Equal(error, outputs[nameof(ImportSolutionZip.Error)]);
         }
@@ -133,7 +133,7 @@
             var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"failure\" errortext=\"\"></result></solutionManifest>");
             this.oDataSolutionServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.Equal(false, outputs[nameof(ImportSolutionZip.IsSuccessful)]);
         }
@@ -149,7 +149,7 @@
             var failedImportJobData = ImportJobData.ParseXml($"<solutionManifest><result result=\"success\" errortext=\"\"></result></solutionManifest>");
             this.oDataSolutionServiceMock.SetReturnsDefault(Task.FromResult(failedImportJobData));
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.Equal(true, outputs[nameof(ImportSolutionZip.IsSuccessful)]);
         }
@@ -166,7 +166,7 @@
                 .Setup(s => s.ImportSolutionZipAsync(It.IsAny<byte[]>()))
                 .Throws(new AggregateException(new WebException("Missing dependencies")));
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.Equal(false, outputs[nameof(ImportSolutionZip.IsSuccessful)]);
         }
@@ -184,12 +184,12 @@
                 .Setup(s => s.ImportSolutionZipAsync(It.IsAny<byte[]>()))
                 .Throws(new AggregateException(new WebException(error)));
 
-            var outputs = this.WorkflowInvoker.Invoke(this.GetValidInputs());
+            var outputs = this.WorkflowInvoker.Invoke(GetValidInputs());
 
             Assert.Equal(error, outputs[nameof(ImportSolutionZip.Error)]);
         }
 
-        private Dictionary<string, object> GetValidInputs()
+        private static Dictionary<string, object> GetValidInputs()
         {
             return new Dictionary<string, object>
                 {
