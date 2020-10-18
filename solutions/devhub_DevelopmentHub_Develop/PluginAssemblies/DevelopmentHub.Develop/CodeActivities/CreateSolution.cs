@@ -1,7 +1,6 @@
 ﻿namespace DevelopmentHub.Develop.CodeActivities
 {
     using System.Activities;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using DevelopmentHub.BusinessLogic;
@@ -38,23 +37,11 @@
         /// </summary>
         public const string Description = "Creates a solution.";
 
-        private readonly ISolutionService solutionService;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSolution"/> class.
         /// </summary>
         public CreateSolution()
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSolution"/> class.
-        /// This constructor is used for unit testing only.
-        /// </summary>
-        /// <param name="solutionService">The solution facade.</param>
-        public CreateSolution(ISolutionService solutionService)
-        {
-            this.solutionService = solutionService;
         }
 
         /// <summary>
@@ -87,17 +74,22 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
             var uniqueName = this.SolutionUniqueName.GetRequired(context, nameof(this.SolutionUniqueName));
             var displayName = this.SolutionDisplayName.GetRequired(context, nameof(this.SolutionDisplayName));
             var description = this.SolutionDescription.Get(context);
 
-            var createdSolution = this.GetSolutionService(repoFactory, logWriter)
-                .Create(this.SanitizeUniqueName(uniqueName), displayName, description);
+            var createdSolution = this.GetSolutionService(context, repoFactory, logWriter)
+                .Create(SanitizeUniqueName(uniqueName), displayName, description);
 
             this.CreatedSolution.Set(context, createdSolution);
         }
 
-        private string SanitizeUniqueName(string uniqueName)
+        private static string SanitizeUniqueName(string uniqueName)
         {
             var titleCase = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(uniqueName);
             var titleCaseTrimmed = string.Concat(titleCase.Where(c => !char.IsWhiteSpace(c)));
@@ -106,10 +98,9 @@
             return titleCaseTrimmedFirstCharLower;
         }
 
-        [ExcludeFromCodeCoverage]
-        private ISolutionService GetSolutionService(IRepositoryFactory repoFactory, ILogWriter logWriter)
+        private ISolutionService GetSolutionService(CodeActivityContext context, IRepositoryFactory repoFactory, ILogWriter logWriter)
         {
-            return this.solutionService ?? new SolutionService(repoFactory, logWriter);
+            return context.GetExtension<ISolutionService>() ?? new SolutionService(repoFactory, logWriter);
         }
     }
 }

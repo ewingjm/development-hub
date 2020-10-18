@@ -50,6 +50,11 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IODataClient oDataClient, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);
 
             var version = $"{this.MajorVersion.Get(context)}.{this.MinorVersion.Get(context)}.{this.PatchVersion.Get(context)}";

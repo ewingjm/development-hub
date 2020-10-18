@@ -51,6 +51,16 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (logWriter is null)
+            {
+                throw new System.ArgumentNullException(nameof(logWriter));
+            }
+
+            if (repoFactory is null)
+            {
+                throw new System.ArgumentNullException(nameof(repoFactory));
+            }
+
             var documentBody = this.Attachment.GetRequired(context, nameof(this.Attachment));
             logWriter.Log(Severity.Info, nameof(AttachFileToNote), $"{documentBody}");
             repoFactory.GetRepository<DevelopContext, Annotation>().Update(new Annotation

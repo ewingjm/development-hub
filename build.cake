@@ -277,8 +277,8 @@ string GetConnectionString(string solution, bool stagingEnvironment) {
   var targetEnvironment = stagingEnvironment && config["environments"]?["staging"] != null ? "staging" : "development";
   
   var url = config["environments"][targetEnvironment]["url"].ToString();
-  var username = config["environments"][targetEnvironment]["username"]?.ToString() ?? EnvironmentVariable("CAKE_DYNAMICS_USERNAME_DEVELOPMENT_HUB");
-  var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD_DEVELOPMENT_HUB");
+  var username = config["environments"][targetEnvironment]["username"]?.ToString() ?? EnvironmentVariable("CAKE_DEVELOPMENTHUB_USERNAME");
+  var password = EnvironmentVariable("CAKE_DEVELOPMENTHUB_PASSWORD");
 
   return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
 }

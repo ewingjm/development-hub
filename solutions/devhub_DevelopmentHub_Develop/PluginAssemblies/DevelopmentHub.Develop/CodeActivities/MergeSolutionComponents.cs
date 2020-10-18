@@ -66,6 +66,11 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IODataClient oDataClient, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
             var sourceSolutionUniqueName = this.SourceSolutionUniqueName.GetRequired(context, nameof(this.SourceSolutionUniqueName));
             var targetSolutionUniqueName = this.TargetSolutionUniqueName.GetRequired(context, nameof(this.TargetSolutionUniqueName));
             var deleteSourceSolutionAfterMerge = this.DeleteSourceSolutionAfterMerge.Get(context);

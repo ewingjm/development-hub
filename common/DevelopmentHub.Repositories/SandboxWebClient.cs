@@ -4,7 +4,7 @@
     using System.Net;
 
     /// <summary>
-    /// Web client optimised for use in the Dynamics 365 sandbox.
+    /// Web client optimised for use in the Common Data Service sandbox.
     /// <see href="https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/best-practices/business-logic/set-keepalive-false-interacting-external-hosts-plugin"/>.
     /// </summary>
     public class SandboxWebClient : WebClient

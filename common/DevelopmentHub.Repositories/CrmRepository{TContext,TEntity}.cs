@@ -146,6 +146,11 @@ namespace DevelopmentHub.Repositories
         /// <inheritdoc/>
         public virtual void BulkDelete(List<TEntity> entityList, int batchSize = 100)
         {
+            if (entityList is null)
+            {
+                throw new ArgumentNullException(nameof(entityList));
+            }
+
             var multipleRequest = new ExecuteMultipleRequest()
             {
                 Settings = new ExecuteMultipleSettings()

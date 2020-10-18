@@ -20,6 +20,11 @@
         /// <returns>The OAuth token.</returns>
         public async Task<OAuthToken> GetAccessToken(OAuthClientCredentialsGrantRequest request)
         {
+            if (request is null)
+            {
+                throw new System.ArgumentNullException(nameof(request));
+            }
+
             byte[] response;
 
             using (var client = new SandboxWebClient())

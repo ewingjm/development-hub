@@ -30,12 +30,12 @@
         /// <param name="oAuthToken">OAuth token.</param>
         public ODataClient(Uri api, OAuthToken oAuthToken)
         {
-            if (api.AbsolutePath != "/api/data/v9.1/")
+            this.api = api ?? throw new ArgumentNullException(nameof(api));
+            if (this.api.AbsolutePath != "/api/data/v9.1/")
             {
-                api = new Uri(new Uri(api.GetLeftPart(UriPartial.Authority)), "api/data/v9.1/");
+                this.api = new Uri(new Uri(api.GetLeftPart(UriPartial.Authority)), "api/data/v9.1/");
             }
 
-            this.api = api;
             this.oAuthToken = oAuthToken;
         }
 

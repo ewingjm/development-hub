@@ -5,7 +5,7 @@
     using DevelopmentHub.Model;
 
     /// <summary>
-    /// A Dynamics 365 solution component.
+    /// A Common Data Service solution component.
     /// </summary>
     [DataContract]
     public class SolutionComponent : ODataEntity

@@ -42,11 +42,16 @@
         /// <inheritdoc/>
         public void Execute(IServiceProvider serviceProvider)
         {
+            if (serviceProvider is null)
+            {
+                throw new ArgumentNullException(nameof(serviceProvider));
+            }
+
             var tracingSvc = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
             var context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
             var serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
             var orgSvc = serviceFactory.CreateOrganizationService(Guid.Empty);
-            var repositoryFactory = new RepositoryFactory(orgSvc);
+            var repositoryFactory = (IRepositoryFactory)serviceProvider.GetService(typeof(IRepositoryFactory)) ?? new RepositoryFactory(orgSvc);
             var logWriter = new TracingServiceLogWriter(tracingSvc, true);
 
             this.Execute(context, orgSvc, logWriter, repositoryFactory);
@@ -59,6 +64,6 @@
         /// <param name="orgSvc">The organization service.</param>
         /// <param name="logWriter">The log writer.</param>
         /// <param name="repositoryFactory">The repository factory.</param>
-        protected abstract void Execute(IPluginExecutionContext context, IOrganizationService orgSvc, TracingServiceLogWriter logWriter, RepositoryFactory repositoryFactory);
+        protected abstract void Execute(IPluginExecutionContext context, IOrganizationService orgSvc, TracingServiceLogWriter logWriter, IRepositoryFactory repositoryFactory);
     }
 }

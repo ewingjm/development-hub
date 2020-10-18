@@ -37,6 +37,11 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (orgSvc is null)
+            {
+                throw new System.ArgumentNullException(nameof(orgSvc));
+            }
+
             var response = (devhub_GetLastApprovedSolutionMergeResponse)orgSvc.Execute(new devhub_GetLastApprovedSolutionMergeRequest
             {
                 Target = this.Environment.GetRequired(context, nameof(this.Environment)),

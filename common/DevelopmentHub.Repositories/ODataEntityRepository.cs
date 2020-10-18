@@ -58,6 +58,11 @@
         /// <inheritdoc/>
         public Task UpdateAsync(TEntity entity)
         {
+            if (entity is null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return this.oDataClient.PatchAsync($"{this.entitySet}({entity.EntityId})", entity);
         }
     }

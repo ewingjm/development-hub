@@ -35,23 +35,11 @@
         /// </summary>
         public const string Description = "Gets a solution zip file as a Base64 encoded string.";
 
-        private readonly ISolutionService solutionService;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GetSolutionZip"/> class.
         /// </summary>
         public GetSolutionZip()
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GetSolutionZip"/> class.
-        /// </summary>
-        /// This constructor is used for unit testing only.
-        /// <param name="solutionService">Solution service.</param>
-        public GetSolutionZip(ISolutionService solutionService)
-        {
-            this.solutionService = solutionService;
         }
 
         /// <summary>
@@ -76,18 +64,22 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
-            var solutionUniqueName = this.SolutionUniqueName.GetRequired<string>(context, nameof(this.SolutionUniqueName));
-            var managed = this.Managed.Get(context);
-            var solutionService = this.GetSolutionService(repoFactory, logWriter);
+            if (context is null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
 
-            var solutionZip = solutionService.GetSolutionZip(solutionUniqueName, managed);
+            var solutionUniqueName = this.SolutionUniqueName.GetRequired(context, nameof(this.SolutionUniqueName));
+            var managed = this.Managed.Get(context);
+
+            var solutionZip = GetSolutionService(context, logWriter, repoFactory).GetSolutionZip(solutionUniqueName, managed);
 
             this.SolutionZip.Set(context, Convert.ToBase64String(solutionZip));
         }
 
-        private ISolutionService GetSolutionService(IRepositoryFactory repositoryFactory, ILogWriter logWriter)
+        private static ISolutionService GetSolutionService(CodeActivityContext context, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
-            return this.solutionService ?? new SolutionService(repositoryFactory, logWriter);
+            return context.GetExtension<ISolutionService>() ?? new SolutionService(repoFactory, logWriter);
         }
     }
 }

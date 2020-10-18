@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="error">The serialized ODataError.</param>
         public ODataException(ODataError error)
-            : base(error.Message)
+            : base(error?.Message)
         {
         }
 

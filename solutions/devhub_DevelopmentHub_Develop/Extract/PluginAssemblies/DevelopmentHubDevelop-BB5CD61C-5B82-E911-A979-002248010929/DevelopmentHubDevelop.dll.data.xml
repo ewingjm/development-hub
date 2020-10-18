@@ -36,7 +36,7 @@
       <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
     <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.GetSolutionZipFromInstance, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="6a7d8ccb-c89a-e911-a97d-002248010929" Name="GetSolutionZipFromInstance">
-      <Description>Gets a solution zip from another Dynamics 365 instance</Description>
+      <Description>Gets a solution zip from another Common Data Service instance</Description>
       <FriendlyName>Get solution zip from instance</FriendlyName>
       <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>

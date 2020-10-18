@@ -10,7 +10,7 @@
         <LocalizedCollectionName description="Environments" languagecode="1033" />
       </LocalizedCollectionNames>
       <Descriptions>
-        <Description description="A Dynamics 365 environment." languagecode="1033" />
+        <Description description="A Common Data Service environment." languagecode="1033" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">

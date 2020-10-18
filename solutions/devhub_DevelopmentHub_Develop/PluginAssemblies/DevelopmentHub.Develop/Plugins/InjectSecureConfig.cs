@@ -66,8 +66,18 @@
         }
 
         /// <inheritdoc/>
-        protected override void Execute(IPluginExecutionContext context, IOrganizationService orgSvc, TracingServiceLogWriter logWriter, RepositoryFactory repositoryFactory)
+        protected override void Execute(IPluginExecutionContext context, IOrganizationService orgSvc, TracingServiceLogWriter logWriter, IRepositoryFactory repositoryFactory)
         {
+            if (context is null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (logWriter is null)
+            {
+                throw new ArgumentNullException(nameof(logWriter));
+            }
+
             logWriter.Log(Severity.Info, Tag, "Injecting secure configuration into shared variables.");
 
             if (string.IsNullOrEmpty(this.SecureConfig))

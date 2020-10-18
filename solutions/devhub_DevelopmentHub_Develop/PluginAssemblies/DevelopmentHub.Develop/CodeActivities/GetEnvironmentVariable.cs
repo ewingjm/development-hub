@@ -37,6 +37,11 @@
         /// <inheritdoc />
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IOrganizationService orgSvc, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (repoFactory is null)
+            {
+                throw new ArgumentNullException(nameof(repoFactory));
+            }
+
             var key = this.EnvironmentVariable.Get(context);
 
             if (string.IsNullOrEmpty(key))

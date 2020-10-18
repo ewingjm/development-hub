@@ -9,12 +9,12 @@
     using Microsoft.Xrm.Sdk.Workflow;
 
     /// <summary>
-    /// Gets a solution zip from another Dynamics 365 instance.
+    /// Gets a solution zip from another Common Data Service instance.
     /// </summary>
     [CrmPluginRegistration(
         nameof(GetSolutionZipFromInstance),
         "Get solution zip from instance",
-        "Gets a solution zip from another Dynamics 365 instance",
+        "Gets a solution zip from another Common Data Service instance",
         "DevelopmentHub.Develop",
         IsolationModeEnum.Sandbox)]
     public class GetSolutionZipFromInstance : IntegratedWorkflowActivity
@@ -41,6 +41,16 @@
         /// <inheritdoc/>
         protected override void ExecuteWorkflowActivity(CodeActivityContext context, IWorkflowContext workflowContext, IODataClient oDataClient, ILogWriter logWriter, IRepositoryFactory repoFactory)
         {
+            if (context is null)
+            {
+                throw new System.ArgumentNullException(nameof(context));
+            }
+
+            if (logWriter is null)
+            {
+                throw new System.ArgumentNullException(nameof(logWriter));
+            }
+
             var solutionUniqueName = this.SolutionUniqueName.GetRequired(context, nameof(this.SolutionUniqueName));
             var isManaged = this.IsManaged.Get(context);
             var oDataSolutionService = context.GetExtension<IODataSolutionService>() ?? new ODataSolutionService(new ODataRepositoryFactory(oDataClient), logWriter);

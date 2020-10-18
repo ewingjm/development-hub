@@ -130,6 +130,11 @@ namespace DevelopmentHub.Repositories
         /// <inheritdoc/>
         public virtual void BulkDelete(IEnumerable<Entity> entities, int batchSize = 100)
         {
+            if (entities is null)
+            {
+                throw new ArgumentNullException(nameof(entities));
+            }
+
             var multipleRequest = new ExecuteMultipleRequest()
             {
                 Settings = new ExecuteMultipleSettings()
@@ -148,13 +153,16 @@ namespace DevelopmentHub.Repositories
                 if (multipleRequest.Requests.Count == batchSize)
                 {
                     var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
-                    multipleRequest.Requests.Clear();
                 }
             }
 
             if (multipleRequest.Requests.Count > 0)
             {
                 var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
+                if (multipleResponse.IsFaulted)
+                {
+                    throw new InvalidPluginExecutionException(string.Join("\n", multipleResponse.Responses.Where(r => r.Fault != null).Select(r => r.Fault.Message)));
+                }
             }
         }
 

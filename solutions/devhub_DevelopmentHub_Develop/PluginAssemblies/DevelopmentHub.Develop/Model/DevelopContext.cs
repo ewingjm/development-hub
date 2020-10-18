@@ -2603,7 +2603,7 @@ namespace DevelopmentHub.Develop.Model
 	}
 	
 	/// <summary>
-	/// A Dynamics 365 environment.
+	/// A Common Data Service environment.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("devhub_environment")]
@@ -3637,7 +3637,7 @@ namespace DevelopmentHub.Develop.Model
 	}
 	
 	/// <summary>
-	/// Describes a Dynamics 365 solution.
+	/// Describes a Common Data Service solution.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("devhub_solution")]

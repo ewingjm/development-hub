@@ -18,6 +18,11 @@
         /// <returns>The argument value.</returns>
         public static T GetRequired<T>(this InArgument<T> inArgument, ActivityContext context, string argumentName)
         {
+            if (inArgument is null)
+            {
+                throw new ArgumentNullException(nameof(inArgument));
+            }
+
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
