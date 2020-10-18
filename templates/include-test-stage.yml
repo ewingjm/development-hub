@@ -14,9 +14,9 @@ stages:
           - task: VSTest@2
             displayName: Run integration tests
             env:
-              CDS_TEST_URL: $(url)
-              CDS_TEST_ADMIN_USERNAME: $(adminUserEmail)
-              CDS_TEST_ADMIN_PASSWORD: $(adminUserPassword)
+              DEVELOPMENTHUB_TEST_URL: $(url)
+              DEVELOPMENTHUB_ADMIN_USERNAME: $(adminUserEmail)
+              DEVELOPMENTHUB_ADMIN_PASSWORD: $(adminUserPassword)
             inputs:
               runInParallel: true
               testAssemblyVer2: |
@@ -34,9 +34,9 @@ stages:
           - task: VSTest@2
             displayName: Run UI tests
             env:
-              CDS_TEST_URL: $(url)
-              CDS_TEST_ADMIN_USERNAME: $(adminUserEmail)
-              CDS_TEST_ADMIN_PASSWORD: $(adminUserPassword)
+              DEVELOPMENTHUB_TEST_URL: $(url)
+              DEVELOPMENTHUB_ADMIN_USERNAME: $(adminUserEmail)
+              DEVELOPMENTHUB_ADMIN_PASSWORD: $(adminUserPassword)
             inputs:
               runInParallel: true
               testAssemblyVer2: |
