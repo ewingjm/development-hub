@@ -22,6 +22,7 @@ var packedSolutions = new List<string>();
 
 // Build package
 Task("Default")
+  .IsDependentOn('BuildTestProjects')
   .IsDependentOn("PackAll")
   .IsDependentOn("BuildDeploymentProject");
 
@@ -83,7 +84,7 @@ Task("BuildTestProjects")
     var nugetSettings = new NuGetRestoreSettings { ConfigFile = "NuGet.config" };
     foreach (var testProject in GetFiles($"{TestsFolder}/**/*.csproj")) 
     {
-      BuildCSharpProject(testProject.FullPath, nugetSettings, new MSBuildSettings { Configuration = "Debug" });
+      BuildCSharpProject(testProject.FullPath, nugetSettings, new MSBuildSettings { Configuration = "Release" });
     }
   });
 

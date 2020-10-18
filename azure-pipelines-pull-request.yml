@@ -1,21 +1,22 @@
-name: $(packageVersion)$(rev:.r)
+name: $(GITVERSION_FullSemVer)
 pool:
-  vmImage: windows-2019
+  vmImage: 'windows-latest'
 trigger: none
-steps:
-  - task: PowerShell@2
-    displayName: 'Run Default Cake target via bootstrapper'
-    inputs:
-      targetType: filePath
-      filePath: ./build.ps1
-      arguments: '-Target Default -Verbosity Quiet'
-  - task: VSTest@2
-    displayName: 'Test Assemblies'
-    inputs:
-      testAssemblyVer2: |
-        **\*Tests.Unit*.dll
-        !**\*TestAdapter.dll
-        !**\obj\**
-      codeCoverageEnabled: true
-variables:
-  - group: Development Hub
+stages:
+  - template: templates/include-build-and-test-stage.yml
+  - template: templates/include-solution-checker-stage.yml
+    parameters:
+      environment: 'test'
+      serviceConnection: 'Development Hub - Test (adminuser)'
+  - template: templates/include-reset-environment-stage.yml
+    parameters:
+      environment: 'test'
+      serviceConnection: 'Development Hub - Test (adminuser)'
+      environmentVariableGroup: 'Environment - Test'
+  - template: templates/include-deploy-stage.yml
+    parameters:
+      environment: 'test'
+      serviceConnection: 'Development Hub - Test (adminuser)'
+  - template: templates/include-test-stage.yml
+    parameters:
+      environmentVariableGroup: 'Environment - Test'

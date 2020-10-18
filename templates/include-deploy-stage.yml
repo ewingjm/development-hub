@@ -1,0 +1,32 @@
+parameters:
+  - name: environment
+    type: string
+    displayName: 'The deployment job environment'
+  - name: serviceConnection
+    type: string
+    displayName: 'The service connection'
+stages:
+  - stage: ResetEnvironment
+    displayName: 'Reset environment'
+    jobs:
+      - deployment: Deployment
+        displayName: Deploy
+        environment: '${{ parameters.environment }}'
+        dependsOn: ExternalDependenciesDeployment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  displayName: 'Download package artifact'
+                  artifact: 'Development Hub'
+                - task: PowerPlatformToolInstaller@0
+                  displayName: 'Install Power Platform Build Tools'
+                  inputs:
+                    DefaultVersion: true
+                - task: PowerPlatformDeployPackage@0
+                  displayName: 'Deploy package'
+                  inputs:
+                    authenticationType: 'PowerPlatformEnvironment'
+                    PowerPlatformEnvironment: '${{ parameters.serviceConnection }}'
+                    PackageFile: '$(Pipeline.Workspace)/Development Hub/DevelopmentHub.Deployment.dll'

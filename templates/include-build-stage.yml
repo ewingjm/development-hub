@@ -1,0 +1,92 @@
+stages:
+  - stage: Build
+    displayName: 'Build'
+    pool:
+      vmImage: 'windows-latest'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build'
+        variables:
+          - name: 'GitVersion.SemVer'
+            value: ''
+          - group: 'Environment - Test'
+        steps:
+          - task: PowerShell@2
+            displayName: 'Add build tag for each updated solution'
+            inputs:
+              targetType: 'filePath'
+              errorActionPreference: 'stop'
+              filePath: 'scripts/Add-BuildTagForEachUpdatedSolution.ps1'
+          - task: gitversion/setup@0
+            displayName: 'Install GitVersion'
+            inputs:
+              versionSpec: '5.x'
+          - task: gitversion/execute@0
+            displayName: 'Execute GitVersion'
+            inputs:
+              useConfigFile: true
+              configFilePath: '$(Build.SourcesDirectory)\GitVersion.yml'
+          - pwsh: Write-Host "##vso[task.setvariable variable=SemVer;isOutput=true]$(GitVersion.SemVer)"
+            displayName: 'Output SemVer variable'
+            name: OutputSemVerTask
+          - task: SonarCloudPrepare@1
+            displayName: 'Prepare SonarCloud'
+            inputs:
+              SonarCloud: 'SonarCloud (ewingjm)'
+              organization: 'ewingjm'
+              scannerMode: 'MSBuild'
+              projectKey: 'ewingjm_development-hub'
+              projectName: 'Development Hub'
+              projectVersion: '$(GitVersion.SemVer)'
+          - task: PowerShell@2
+            displayName: 'Run Cake build'
+            inputs:
+              targetType: 'filePath'
+              filePath: './build.ps1'
+              arguments: '-Target Default -Verbosity Quiet'
+          - task: VSTest@2
+            displayName: Run unit tests
+            inputs:
+              runInParallel: true
+              codeCoverageEnabled: true
+              runSettingsFile: tests/DevelopmentHub.Tests.Unit/unit.runsettings
+              testAssemblyVer2: |
+                **\*Tests.Unit.dll
+                !**\*TestAdapter.dll
+                !**\obj\**
+              searchFolder: tests
+          - task: SonarCloudAnalyze@1
+            displayName: Analyse with SonarCloud
+          - task: SonarCloudPublish@1
+            displayName: Publish SonarCloud results
+            inputs:
+              pollingTimeoutSec: '300'
+          - task: WhiteSource Bolt@20
+            displayName: Detect security and licence issues
+            inputs:
+              cwd: '$(Build.SourcesDirectory)'
+          - task: CopyFiles@2
+            displayName: 'Copy package to artifact staging directory'
+            inputs:
+              SourceFolder: 'deploy/bin/Release'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/package'
+          - task: CopyFiles@2
+            displayName: 'Copy integration tests to artifact staging directory'
+            inputs:
+              SourceFolder: 'tests\DevelopmentHub.Tests.Integration\bin\Release'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/tests/integration'
+          - task: CopyFiles@2
+            displayName: 'Copy UI tests to artifact staging directory'
+            inputs:
+              SourceFolder: 'tests\DevelopmentHub.Tests.Ui\bin\Release'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)/tests/ui'
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish package artifact'
+            inputs:
+                pathtoPublish: '$(Build.ArtifactStagingDirectory)/package'
+                artifactName: 'Development Hub'
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish tests artifact'
+            inputs:
+                pathtoPublish: '$(Build.ArtifactStagingDirectory)/tests'
+                artifactName: 'Tests'

@@ -1,0 +1,20 @@
+parameters:
+  - name: serviceConnection
+    type: string
+    displayName: 'The service connection'
+stages:
+  - stage: SolutionChecker
+    displayName: 'Solution checker'
+    jobs:
+      - job: SolutionCheckerJob
+        displayName: Solution checker
+        steps:
+          - checkout: none
+          - download: current
+            artifact: 'Development Hub'
+            displayName: 'Download package'
+          - task: PowerPlatformChecker@0
+            displayName: 'Run Solution Checker'
+            inputs:
+              PowerPlatformSPN: '${{ parameters.serviceConnection }}'
+              RuleSet: '0ad12346-e108-40b8-a956-9a8f95ea18c9'

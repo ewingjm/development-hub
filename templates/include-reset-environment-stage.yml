@@ -1,0 +1,43 @@
+parameters:
+  - name: environment
+    type: string
+    displayName: 'The deployment job environment'
+  - name: serviceConnection
+    type: string
+    displayName: 'The service connection'
+  - name: environmentVariableGroup
+    displayName: 'The variable group containing the environment details'
+    type: string
+stages:
+  - stage: ResetEnvironment
+    displayName: 'Reset environment'
+    jobs:
+      - deployment: ResetEnvironment
+        displayName: Reset environment
+        environment: '${{ parameters.environment }}'
+        variables:
+          - group: '${{ parameters.environmentVariableGroup }}'
+        dependsOn: ExternalDependenciesDeployment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: PowerPlatformToolInstaller@0
+                  displayName: 'Install Power Platform Build Tools'
+                  inputs:
+                    DefaultVersion: true
+                - task: PowerPlatformResetEnvironment@0
+                  displayName: Reset environment
+                  inputs:
+                    authenticationType: 'PowerPlatformEnvironment'
+                    PowerPlatformEnvironment: '${{ parameters.serviceConnection }}'
+                    TargetRelease: 'Dynamics 365, version 9.0'
+                    BaseLanguage: '1033'
+                - task: PowerShell@2
+                  displayName: 'Create admin application user'
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/Add-AdminApplicationUser.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -ClientId $(serviceConnectionClientId) -FirstName Azure -LastName DevOps -Domain $(domain) -Url $(url) -OrganizationName $(organizationName)'
