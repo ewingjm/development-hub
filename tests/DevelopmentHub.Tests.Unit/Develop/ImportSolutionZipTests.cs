@@ -16,6 +16,7 @@
     /// <summary>
     /// Tests for the <see cref="ImportSolutionZip"/> custom workflow activity.
     /// </summary>
+    [Trait("Solution", "devhub_DevelopmentHub_Develop")]
     public class ImportSolutionZipTests : IntegratedWorkflowActivityTests<ImportSolutionZip>
     {
         private readonly Mock<IODataSolutionService> oDataSolutionServiceMock;

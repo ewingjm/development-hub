@@ -1,7 +1,7 @@
 url: DEVELOPMENTHUB_TEST_URL
 browserOptions: 
   browserType: Chrome
-  headless: false
+  headless: true
   width: 1920
   height: 1080
   startMaximized: false

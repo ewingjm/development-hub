@@ -17,10 +17,21 @@
         /// <summary>
         /// Then a mandatory field error is displayed on the following fields.
         /// </summary>
+        /// <param name="expectedError">The error message expected on the fields.</param>
         /// <param name="table">The fields that should display a mandatory field error.</param>
-        [Then(@"a mandatory field error is displayed on the following fields")]
-        public void ThenAMandatoryFieldErrorIsDisplayedOnTheFollowingFields(Table table)
+        [Then(@"the field error '(.*)' is displayed on the following fields")]
+        public void ThenAMandatoryFieldErrorIsDisplayedOnTheFollowingFields(string expectedError, Table table)
         {
+            if (string.IsNullOrEmpty(expectedError))
+            {
+                throw new System.ArgumentException("Expected error must not be empty.", nameof(expectedError));
+            }
+
+            if (table is null)
+            {
+                throw new System.ArgumentNullException(nameof(table));
+            }
+
             var fields = table.Rows.Select((row) => row.Values.First());
 
             foreach (var field in fields)
@@ -33,7 +44,7 @@
                     .FindElement(By.XPath($"//*[contains(@data-id, \'{field}-error-message\')]"))
                     .Text;
 
-                errorMessage.Should().Be("A required field cannot be empty.");
+                errorMessage.Should().Be(expectedError);
             }
         }
     }

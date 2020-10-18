@@ -7,7 +7,8 @@
     /// <summary>
     /// Unit tests for the <see cref="InjectSecureConfig"/> plugin.
     /// </summary>
-    public class InjectSecureConfigTests : FakedContextTest
+    [Trait("Solution", "devhub_DevelopmentHub_Develop")]
+    public class InjectSecureConfigTests : PluginTests
     {
         /// <summary>
         /// Tests that an exception is thrown for steps that have an empty secure configuration.
@@ -17,7 +18,7 @@
         {
             Assert.Throws<Exception>(() =>
             {
-                this.FakedContext.ExecutePluginWith(this.FakedContext.GetDefaultPluginContext(), new InjectSecureConfig(null, null));
+                this.Execute(new InjectSecureConfig(null, null));
             });
         }
 
@@ -27,14 +28,11 @@
         [Fact]
         public void InjectSecureConfig_SecureConfig_AddedToSharedVariables()
         {
-            var context = this.FakedContext.GetDefaultPluginContext();
             var secureConfig = "this is my secure configuration";
 
-            this.FakedContext.ExecutePluginWith(
-                context,
-                new InjectSecureConfig(string.Empty, secureConfig));
+            this.Execute(new InjectSecureConfig(string.Empty, secureConfig));
 
-            Assert.Equal(secureConfig, context.SharedVariables[InjectSecureConfig.SharedVariablesKeySecureConfig]);
+            Assert.Equal(secureConfig, this.PluginExecutionContextMock.Object.SharedVariables[InjectSecureConfig.SharedVariablesKeySecureConfig]);
         }
     }
 }

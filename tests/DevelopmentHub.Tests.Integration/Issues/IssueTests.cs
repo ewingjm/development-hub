@@ -15,7 +15,7 @@
         /// Initializes a new instance of the <see cref="IssueTests"/> class.
         /// </summary>
         public IssueTests()
-            : base(new Uri("https://devhubdev.crm11.dynamics.com"), "max@devhubdev.onmicrosoft.com")
+            : base()
         {
         }
 
@@ -33,7 +33,7 @@
                 devhub_Type = devhub_issue_devhub_type.Feature,
             });
 
-            var issue = this.OrgService
+            var issue = this.CrmServiceClient
                 .Retrieve(devhub_issue.EntityLogicalName, issueReference[0].Id, new ColumnSet("statuscode"))
                 .ToEntity<devhub_issue>();
 
