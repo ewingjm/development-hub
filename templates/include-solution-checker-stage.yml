@@ -15,7 +15,9 @@ stages:
             displayName: 'Download package'
           - task: PowerPlatformChecker@0
             displayName: 'Run Solution Checker'
+            continueOnError: true
             inputs:
               PowerPlatformSPN: '${{ parameters.serviceConnection }}'
               FilesToAnalyze: '$(Pipeline.Workspace)/Development Hub/**/*.zip'
               RuleSet: '0ad12346-e108-40b8-a956-9a8f95ea18c9'
+          - pwsh: 'Get-Content -Path "D:\a\_tasks\PowerPlatformChecker_54b4d3aa-732f-436b-9996-2a96a6715191\0.0.13\RunChecker.ps1"'
