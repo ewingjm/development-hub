@@ -8,7 +8,7 @@ trigger:
     include:
       - master
 stages:
-  - template: templates/include-build-and-test-stage.yml
+  - template: templates/include-build-stage.yml
   - template: templates/include-solution-checker-stage.yml
     parameters:
       environment: 'test'
