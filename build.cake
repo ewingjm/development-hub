@@ -22,7 +22,7 @@ var packedSolutions = new List<string>();
 
 // Build package
 Task("Default")
-  .IsDependentOn('BuildTestProjects')
+  .IsDependentOn("BuildTestProjects")
   .IsDependentOn("PackAll")
   .IsDependentOn("BuildDeploymentProject");
 
