@@ -12,7 +12,6 @@ stages:
       - deployment: Deployment
         displayName: Deploy
         environment: '${{ parameters.environment }}'
-        dependsOn: ExternalDependenciesDeployment
         strategy:
           runOnce:
             deploy:

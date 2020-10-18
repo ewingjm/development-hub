@@ -17,7 +17,6 @@ stages:
         environment: '${{ parameters.environment }}'
         variables:
           - group: '${{ parameters.environmentVariableGroup }}'
-        dependsOn: ExternalDependenciesDeployment
         strategy:
           runOnce:
             deploy:
