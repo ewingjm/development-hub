@@ -30,7 +30,7 @@ stages:
           - checkout: none
           - download: current
             displayName: 'Download tests'
-            artifact: tests
+            artifact: Tests
           - task: VSTest@2
             displayName: Run UI tests
             env:
