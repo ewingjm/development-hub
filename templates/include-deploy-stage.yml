@@ -16,6 +16,7 @@ stages:
     displayName: 'Deploy package'
     jobs:
       - deployment: ResetEnvironment
+        condition: and(succeeded(), eq(variables['resetEnvironment'], true))
         displayName: Reset environment
         environment: '${{ parameters.environment }}'
         variables:
