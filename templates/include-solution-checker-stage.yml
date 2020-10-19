@@ -13,6 +13,10 @@ stages:
           - download: current
             artifact: 'Development Hub'
             displayName: 'Download package'
+          - task: PowerPlatformToolInstaller@0
+            displayName: 'Install Power Platform Build Tools'
+            inputs:
+              DefaultVersion: true
           - task: PowerPlatformChecker@0
             displayName: 'Run Solution Checker'
             continueOnError: true
