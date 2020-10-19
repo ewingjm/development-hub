@@ -11,6 +11,7 @@ stages:
     parameters:
       environment: 'test'
       serviceConnection: 'Development Hub - Test'
+      environmentVariableGroup: 'Environment - Test'
   - template: templates/include-test-stage.yml
     parameters:
       environmentVariableGroup: 'Environment - Test'
