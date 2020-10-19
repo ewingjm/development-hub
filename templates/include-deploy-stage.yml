@@ -2,9 +2,12 @@ parameters:
   - name: environment
     type: string
     displayName: 'The deployment job environment'
-  - name: serviceConnection
+  - name: resetServiceConnection
     type: string
-    displayName: 'The service connection'
+    displayName: 'The reset service connection (needs to be an admin user)'
+  - name: deployServiceConnection
+    type: string
+    displayName: 'The deployment service connection'
   - name: environmentVariableGroup
     displayName: 'The variable group containing the environment details'
     type: string
