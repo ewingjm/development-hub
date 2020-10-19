@@ -33,7 +33,7 @@ stages:
                   displayName: Reset environment
                   inputs:
                     authenticationType: 'PowerPlatformEnvironment'
-                    PowerPlatformEnvironment: '${{ parameters.serviceConnection }}'
+                    PowerPlatformEnvironment: '${{ parameters.resetServiceConnection }}'
                     TargetRelease: 'Dynamics 365, version 9.0'
                     BaseLanguage: '1033'
                 - task: PowerShell@2
@@ -63,5 +63,5 @@ stages:
                   displayName: 'Deploy package'
                   inputs:
                     authenticationType: 'PowerPlatformSPN'
-                    PowerPlatformSPN: '${{ parameters.serviceConnection }}'
+                    PowerPlatformSPN: '${{ parameters.deployServiceConnection }}'
                     PackageFile: '$(Pipeline.Workspace)/Development Hub/DevelopmentHub.Deployment.dll'
