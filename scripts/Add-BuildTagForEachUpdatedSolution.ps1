@@ -1,15 +1,16 @@
 $resultArray = git show --name-only
-$solutionList = ""
+[System.Collections.ArrayList]$changedSolutions = @()
 
 foreach ($_ in $resultArray) {
   if ($_.StartsWith("solutions") -and $_.Contains("Extract")) {
     $solutionName = $_.Split("/")[1]
 
     if (!$solutionList.Contains($solutionName)) {
-      $solutionList += $solutionName + ";"
+      $changedSolutions.Add($solutionName)
       Write-Host "##vso[build.addbuildtag]$solutionName" 
     }
   }
 }
+$output = $changedSolutions -Join ','  
 
-Write-Host "##vso[task.setvariable variable=solutionList;]$solutionList"
+Write-Host "##vso[task.setvariable variable=solutionList;]$output"

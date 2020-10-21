@@ -9,7 +9,6 @@ stages:
         variables:
           - name: 'GitVersion.SemVer'
             value: ''
-          - group: 'Environment - Test'
         steps:
           - task: PowerShell@2
             displayName: 'Add build tag for each updated solution'
@@ -29,6 +28,15 @@ stages:
           - pwsh: Write-Host "##vso[task.setvariable variable=SemVer;isOutput=true]$(GitVersion.SemVer)"
             displayName: 'Output SemVer variable'
             name: OutputSemVerTask
+          - task: PowerShell@2
+            displayName: 'Set solution version for changed solutions'
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(length(variables['solutionsList']), 0))
+            inputs:
+              errorActionPreference: 'stop'
+              failOnStderr: true
+              filePath: 'scripts/Set-SolutionVersion.ps1'
+              targetType: 'filePath'
+              arguments: '-Solutions "$(solutionList)"'
           - task: SonarCloudPrepare@1
             displayName: 'Prepare SonarCloud'
             inputs:
