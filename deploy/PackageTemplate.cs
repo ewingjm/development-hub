@@ -77,13 +77,33 @@ namespace DevelopmentHub.Deployment
             }
         }
 
-        private T GetSetting<T>(string key)
+        /// <summary>
+        /// Gets a setting either from runtime arguments or an environment variable (in that order). Environment variables should be prefixed with 'PACKAGEDEPLOYER_SETTINGS_'.
+        /// </summary>
+        /// <typeparam name="T">The type of argument.</typeparam>
+        /// <param name="key">The key.</param>
+        /// <returns>The setting value (if found).</returns>
+        protected T GetSetting<T>(string key)
         {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentException("Key cannot be empty", nameof(key));
+            }
+
             string value = null;
 
-            if (this.RuntimeSettings.ContainsKey(key))
+            if (this.RuntimeSettings != null && this.RuntimeSettings.ContainsKey(key))
             {
-                value = (string)this.RuntimeSettings[key];
+                var obj = this.RuntimeSettings[key];
+
+                if (obj is T t)
+                {
+                    return t;
+                }
+                else if (obj is string s)
+                {
+                    value = s;
+                }
             }
 
             if (value == null)
@@ -91,7 +111,12 @@ namespace DevelopmentHub.Deployment
                 value = Environment.GetEnvironmentVariable($"PACKAGEDEPLOYER_SETTINGS_{key.ToUpperInvariant()}");
             }
 
-            return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
+            if (value != null)
+            {
+                return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
+            }
+
+            return default;
         }
     }
 }
