@@ -38,6 +38,8 @@ stages:
               DEVELOPMENTHUB_ADMIN_USERNAME: $(adminUserEmail)
               DEVELOPMENTHUB_ADMIN_PASSWORD: $(adminUserPassword)
             inputs:
+              publishRunAttachments: true
+              uiTests: true
               runInParallel: true
               testAssemblyVer2: |
                 **\*Tests.Ui.dll
