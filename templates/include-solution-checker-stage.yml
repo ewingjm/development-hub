@@ -19,7 +19,6 @@ stages:
               DefaultVersion: true
           - task: PowerPlatformChecker@0
             displayName: 'Run Solution Checker'
-            continueOnError: true
             inputs:
               PowerPlatformSPN: '${{ parameters.serviceConnection }}'
               FilesToAnalyze: '$(Pipeline.Workspace)/Development Hub/**/*.zip'
