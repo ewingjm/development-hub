@@ -176,6 +176,13 @@ namespace DevelopmentHub.Repositories
             if (multipleRequest.Requests.Count > 0)
             {
                 var multipleResponse = (ExecuteMultipleResponse)this.OrgService.Execute(multipleRequest);
+
+                if (multipleResponse.IsFaulted)
+                {
+                    throw new InvalidPluginExecutionException(
+                        OperationStatus.Failed,
+                        string.Join("\n", multipleResponse.Responses.Where(r => r.Fault != null).Select(r => r.Fault)));
+                }
             }
         }
 

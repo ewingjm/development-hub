@@ -23,7 +23,7 @@ namespace DevelopmentHub.Tests.Integration
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             this.CreatedEntities = new List<EntityReference>();
-            this.CrmServiceClient = new CrmServiceClient(this.GetConnectionString());
+            this.CrmServiceClient = new CrmServiceClient(GetConnectionString());
             this.RepositoryFactory = new RepositoryFactory(this.CrmServiceClient);
         }
 
@@ -130,6 +130,20 @@ namespace DevelopmentHub.Tests.Integration
             return entityReferences.ToArray();
         }
 
+        private static string GetConnectionString()
+        {
+            var url = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_TEST_URL");
+            var username = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_USERNAME");
+            var password = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_PASSWORD");
+
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                throw new Exception("Environment variables required for integration tests haven't set.");
+            }
+
+            return $"AuthType=OAuth;Username={username}; Password={password};Url={url};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never";
+        }
+
         private void DeleteTestData()
         {
             var deleteRequests = new OrganizationRequestCollection();
@@ -151,21 +165,6 @@ namespace DevelopmentHub.Tests.Integration
                 },
                 Requests = deleteRequests,
             });
-        }
-
-        private string GetConnectionString()
-        {
-            var url = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_TEST_URL");
-            var username = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_USERNAME");
-            var password = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_PASSWORD");
-
-            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                throw new Exception("Environment variables required for integration tests haven't set.");
-            }
-
-            //return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
-            return $"AuthType=OAuth;Username={username}; Password={password};Url={url};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never";
         }
     }
 }

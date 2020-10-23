@@ -83,7 +83,7 @@
             var displayName = this.SolutionDisplayName.GetRequired(context, nameof(this.SolutionDisplayName));
             var description = this.SolutionDescription.Get(context);
 
-            var createdSolution = this.GetSolutionService(context, repoFactory, logWriter)
+            var createdSolution = GetSolutionService(context, repoFactory, logWriter)
                 .Create(SanitizeUniqueName(uniqueName), displayName, description);
 
             this.CreatedSolution.Set(context, createdSolution);
@@ -98,7 +98,7 @@
             return titleCaseTrimmedFirstCharLower;
         }
 
-        private ISolutionService GetSolutionService(CodeActivityContext context, IRepositoryFactory repoFactory, ILogWriter logWriter)
+        private static ISolutionService GetSolutionService(CodeActivityContext context, IRepositoryFactory repoFactory, ILogWriter logWriter)
         {
             return context.GetExtension<ISolutionService>() ?? new SolutionService(repoFactory, logWriter);
         }
