@@ -88,7 +88,6 @@
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -163,12 +162,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
+    <ProjectReference Include="..\..\src\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
       <Project>{F9E5EF62-5BDF-4E36-8027-D265754B56C7}</Project>
       <Name>DevelopmentHub.Container</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj">
-      <Project>{AF4354C4-16BE-A48C-ABE4-08960B527EF4}</Project>
+    <ProjectReference Include="..\..\src\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj">
+      <Project>{af4354c4-16be-a48c-abe4-08960b527ef4}</Project>
       <Name>DevelopmentHub.Develop</Name>
     </ProjectReference>
   </ItemGroup>
@@ -188,9 +187,9 @@
     <Analyzer Include="..\..\packages\Text.Analyzers.2.6.4\analyzers\dotnet\cs\Text.CSharp.Analyzers.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
-  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
-  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems" Label="Shared" />
-  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'=='Deploy'" Project="..\..\src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

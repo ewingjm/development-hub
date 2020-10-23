@@ -10,6 +10,7 @@
 
 #if !SCRIPTSHARP
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -18,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace DevelopmentHub.BusinessLogic
 {
+#pragma warning disable 1591
     [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
     public class CrmPluginRegistrationAttribute : Attribute
@@ -81,6 +83,7 @@ namespace DevelopmentHub.BusinessLogic
         /// <param name="friendlyName">Friendly name</param>
         /// <param name="description">Description</param>
         /// <param name="groupName">Group Name</param>
+        /// <param name="isolationModel">Isolation model.</param>
         public CrmPluginRegistrationAttribute(
             string name,
             string friendlyName,
@@ -247,3 +250,4 @@ namespace DevelopmentHub.BusinessLogic
 
 #endif
 }
+#pragma warning restore 1591

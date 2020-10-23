@@ -13,7 +13,7 @@
       "generateOptionsetEnums": true,
       "generateStateEnums": true,
       "generateGlobalOptionsets": true,
-      "filename": "PluginAssemblies/DevelopmentHub.Issues/Model/IssuesContext.cs",
+      "filename": "PluginAssemblies/DevelopmentHub.Issues/Model/IssuesContext.generated.cs",
       "classNamespace": "DevelopmentHub.Issues.Model",
       "serviceContextName": "IssuesContext"
     }

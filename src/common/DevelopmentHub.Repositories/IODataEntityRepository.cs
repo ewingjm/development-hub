@@ -23,7 +23,6 @@
         /// <summary>
         /// Retrieve records using the provided predicate.
         /// </summary>
-        /// <typeparam name="TObject">The type of object to select.</typeparam>
         /// <param name="filter">The filter.</param>
         /// <param name="fields">The fields to select.</param>
         /// <returns>Selected records matching the given predicate.</returns>

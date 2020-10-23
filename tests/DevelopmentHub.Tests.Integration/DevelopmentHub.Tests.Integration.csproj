@@ -125,15 +125,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
+    <ProjectReference Include="..\..\src\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
       <Project>{F9E5EF62-5BDF-4E36-8027-D265754B56C7}</Project>
       <Name>DevelopmentHub.Container</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj">
+    <ProjectReference Include="..\..\src\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj">
       <Project>{af4354c4-16be-a48c-abe4-08960b527ef4}</Project>
       <Name>DevelopmentHub.Develop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj">
+    <ProjectReference Include="..\..\src\solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj">
       <Project>{64abb0f7-44df-6117-3387-b2b32bb452ee}</Project>
       <Name>DevelopmentHub.Issues</Name>
     </ProjectReference>

@@ -11,7 +11,7 @@ using System.Linq;
 #addin nuget:?package=Cake.Npm&version=0.17.0
 #addin nuget:?package=Cake.Json&version=3.0.0
 
-const string SolutionsFolder = "./solutions";
+const string SolutionsFolder = "./src/solutions";
 const string PackagesFolder = "./packages";
 const string DeployProjectFolder = "./deploy";
 const string TestsFolder = "./tests";

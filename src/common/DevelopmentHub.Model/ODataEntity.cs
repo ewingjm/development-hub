@@ -5,7 +5,7 @@
 
     /// <summary>
     /// Base class for OData entities.
-    /// </summary
+    /// </summary>
     [DataContract]
     public abstract class ODataEntity
     {

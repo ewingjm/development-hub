@@ -12,14 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Ui", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66632694-4D0C-4007-B7AC-059E9BCC5932}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		build.cake = build.cake
 		build.ps1 = build.ps1
 		cake.config = cake.config
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.BusinessLogic", "common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.shproj", "{2B1EF6DE-63CC-4B7E-9BF6-5D9B4C0AFDED}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.BusinessLogic", "src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.shproj", "{2B1EF6DE-63CC-4B7E-9BF6-5D9B4C0AFDED}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Repositories", "common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.shproj", "{56D657E2-2DB7-4489-AD26-CA2E147836C6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Repositories", "src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.shproj", "{56D657E2-2DB7-4489-AD26-CA2E147836C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{D0CD09F0-8603-4099-B6E1-A65C77BC7459}"
 EndProject
@@ -29,22 +30,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Unit",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Integration", "tests\DevelopmentHub.Tests.Integration\DevelopmentHub.Tests.Integration.csproj", "{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Develop", "solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj", "{AF4354C4-16BE-A48C-ABE4-08960B527EF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Container", "src\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj", "{F9E5EF62-5BDF-4E36-8027-D265754B56C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Container", "common\DevelopmentHub.Container\DevelopmentHub.Container.csproj", "{F9E5EF62-5BDF-4E36-8027-D265754B56C7}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Model", "src\common\DevelopmentHub.Model\DevelopmentHub.Model.shproj", "{9903C7AB-FF17-4FE6-AA49-F4B429847BCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Issues", "solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj", "{64ABB0F7-44DF-6117-3387-B2B32BB452EE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{03372F36-58D1-40DB-984D-71C06C19E093}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Model", "common\DevelopmentHub.Model\DevelopmentHub.Model.shproj", "{9903C7AB-FF17-4FE6-AA49-F4B429847BCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Issues", "src\solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj", "{64ABB0F7-44DF-6117-3387-B2B32BB452EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Develop", "src\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj", "{AF4354C4-16BE-A48C-ABE4-08960B527EF4}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{2b1ef6de-63cc-4b7e-9bf6-5d9b4c0afded}*SharedItemsImports = 13
-		common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{56d657e2-2db7-4489-ad26-ca2e147836c6}*SharedItemsImports = 13
-		common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{9903c7ab-ff17-4fe6-aa49-f4b429847bca}*SharedItemsImports = 13
-		common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
-		common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
-		common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
+		src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{2b1ef6de-63cc-4b7e-9bf6-5d9b4c0afded}*SharedItemsImports = 13
+		src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{56d657e2-2db7-4489-ad26-ca2e147836c6}*SharedItemsImports = 13
+		src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{9903c7ab-ff17-4fe6-aa49-f4b429847bca}*SharedItemsImports = 13
+		src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
+		src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
+		src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,12 +77,6 @@ Global
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}.Deploy|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Deploy|Any CPU.ActiveCfg = Debug|Any CPU
@@ -92,21 +89,29 @@ Global
 		{64ABB0F7-44DF-6117-3387-B2B32BB452EE}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
 		{64ABB0F7-44DF-6117-3387-B2B32BB452EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64ABB0F7-44DF-6117-3387-B2B32BB452EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{0F585759-A22A-4564-AD05-11924B6B1DDF} = {03372F36-58D1-40DB-984D-71C06C19E093}
+		{2AD54360-54F9-4CCD-8261-2ED80D5E8F4C} = {03372F36-58D1-40DB-984D-71C06C19E093}
 		{D4F155F1-411E-4C63-95F6-F0F9D9D450DA} = {FD3CAA3F-296C-4ECB-A6E9-A4A8CA3E15B6}
 		{2B1EF6DE-63CC-4B7E-9BF6-5D9B4C0AFDED} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
 		{56D657E2-2DB7-4489-AD26-CA2E147836C6} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
 		{4E0FEC5A-48CA-423F-B581-86B12F3A0E7B} = {D0CD09F0-8603-4099-B6E1-A65C77BC7459}
 		{F9924F3A-AF7A-408B-BF7E-4833CA103E70} = {FD3CAA3F-296C-4ECB-A6E9-A4A8CA3E15B6}
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57} = {FD3CAA3F-296C-4ECB-A6E9-A4A8CA3E15B6}
-		{AF4354C4-16BE-A48C-ABE4-08960B527EF4} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
-		{64ABB0F7-44DF-6117-3387-B2B32BB452EE} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
 		{9903C7AB-FF17-4FE6-AA49-F4B429847BCA} = {2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}
+		{64ABB0F7-44DF-6117-3387-B2B32BB452EE} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
+		{AF4354C4-16BE-A48C-ABE4-08960B527EF4} = {0F585759-A22A-4564-AD05-11924B6B1DDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D6A7645-2C64-4610-BC84-6AD17AA98B71}

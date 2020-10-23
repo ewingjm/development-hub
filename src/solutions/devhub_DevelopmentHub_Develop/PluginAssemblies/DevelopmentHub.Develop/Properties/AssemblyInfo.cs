@@ -1,7 +1,3 @@
-// <copyright file="AssemblyInfo.cs" company="Scottish Water">
-// Copyright (c) Scottish Water. All rights reserved.
-// </copyright>
-
 using System.Reflection;
 using System.Runtime.InteropServices;
 
