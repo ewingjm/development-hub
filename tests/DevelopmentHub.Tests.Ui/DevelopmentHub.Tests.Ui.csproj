@@ -54,7 +54,7 @@
       <HintPath>..\..\packages\BoDi.1.4.1\lib\net45\BoDi.dll</HintPath>
     </Reference>
     <Reference Include="Capgemini.PowerApps.SpecFlowBindings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.12\lib\net462\Capgemini.PowerApps.SpecFlowBindings.dll</HintPath>
+      <HintPath>..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.14\lib\net462\Capgemini.PowerApps.SpecFlowBindings.dll</HintPath>
     </Reference>
     <Reference Include="Cucumber.Messages, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b10c5988214f940c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Cucumber.Messages.6.0.1\lib\net45\Cucumber.Messages.dll</HintPath>
@@ -223,19 +223,19 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.NetCore.Analyzers.3.0.0\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetCore.Analyzers.3.0.0\build\Microsoft.NetCore.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.NetFramework.Analyzers.3.0.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetFramework.Analyzers.3.0.0\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.0.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.0.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
-    <Error Condition="!Exists('..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.12\build\Capgemini.PowerApps.SpecFlowBindings.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.12\build\Capgemini.PowerApps.SpecFlowBindings.targets'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.3.4.14\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.3.4.14\build\SpecFlow.targets'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.props'))" />
     <Error Condition="!Exists('..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.targets'))" />
     <Error Condition="!Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.14\build\Capgemini.PowerApps.SpecFlowBindings.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.14\build\Capgemini.PowerApps.SpecFlowBindings.targets'))" />
   </Target>
   <Import Project="..\..\packages\Selenium.Chrome.WebDriver.85.0.0\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\..\packages\Selenium.Chrome.WebDriver.85.0.0\build\Selenium.Chrome.WebDriver.targets')" />
-  <Import Project="..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.12\build\Capgemini.PowerApps.SpecFlowBindings.targets" Condition="Exists('..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.12\build\Capgemini.PowerApps.SpecFlowBindings.targets')" />
   <Import Project="..\..\packages\SpecFlow.3.4.14\build\SpecFlow.targets" Condition="Exists('..\..\packages\SpecFlow.3.4.14\build\SpecFlow.targets')" />
   <Import Project="..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\..\packages\SpecFlow.Tools.MsBuild.Generation.3.4.14\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <Import Project="..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.targets" Condition="Exists('..\..\packages\SpecFlow.NUnit.3.4.14\build\SpecFlow.NUnit.targets')" />
+  <Import Project="..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.14\build\Capgemini.PowerApps.SpecFlowBindings.targets" Condition="Exists('..\..\packages\Capgemini.PowerApps.SpecFlowBindings.0.9.14\build\Capgemini.PowerApps.SpecFlowBindings.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
