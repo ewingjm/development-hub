@@ -41,7 +41,7 @@
         /// <returns>A list of configured plugin steps.</returns>
         public IEnumerable<Entity> GetPluginStepsForHandler(Guid handlerId, ColumnSet columnSet)
         {
-            this.PackageLog.Log($"Getting plugin steps for plugin handlder {handlerId}.");
+            this.PackageLog.Log($"Getting plugin steps for plugin handler {handlerId}.");
 
             var query = new QueryExpression("sdkmessageprocessingstep")
             {
@@ -74,7 +74,7 @@
             };
 
             var result = new EntityReference("sdkmessageprocessingstepsecureconfig", this.CrmSvc.Create(entity));
-            this.PackageLog.Log($"Created plugin step secure configuration {result}.");
+            this.PackageLog.Log($"Created plugin step secure configuration {result.Id}.");
 
             return result;
         }
@@ -92,7 +92,7 @@
             }
 
             this.PackageLog.Log($"Setting secure configuration {secureConfiguration.Id} for plugin step {sdkMessageProcessingStepId}.");
-            var step = new Entity("sdkmessageprocessingstepsecureconfigid", sdkMessageProcessingStepId)
+            var step = new Entity("sdkmessageprocessingstep", sdkMessageProcessingStepId)
             {
                 Attributes = new AttributeCollection
                 {

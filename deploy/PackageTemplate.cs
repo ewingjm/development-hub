@@ -131,7 +131,10 @@ namespace DevelopmentHub.Deployment
             {
                 if (!this.servicePrincipalClientId.HasValue)
                 {
-                    this.servicePrincipalClientId = this.GetSetting<Guid?>(nameof(this.ServicePrincipalClientId));
+                    if (Guid.TryParse(this.GetSetting<string>(nameof(this.ServicePrincipalClientId)), out var guid))
+                    {
+                        this.servicePrincipalClientId = guid;
+                    }
                 }
 
                 return this.servicePrincipalClientId;
@@ -200,7 +203,7 @@ namespace DevelopmentHub.Deployment
 
                     if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                     {
-                        this.licensedCrmSvc = new CrmServiceClient($"Username={username}; Password={password}; Url={this.CrmSvc.ConnectedOrgPublishedEndpoints.First().Value}; AuthType=Office365; RequireNewInstance=True;");
+                        this.licensedCrmSvc = new CrmServiceClient($"AuthType=OAuth;Username={username};Password={password};Url={this.CrmSvc.ConnectedOrgPublishedEndpoints.First().Value};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d;RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never");
                     }
                 }
 
@@ -333,15 +336,21 @@ namespace DevelopmentHub.Deployment
         protected void ActivateFlowsInSolution(string solution)
         {
             var solutionId = this.SolutionDeploymentSvc.GetSolutionIdByUniqueName(solution);
-
-            if (solutionId.HasValue)
+            if (!solutionId.HasValue)
             {
-                var solutionWorkflowIds = this.SolutionDeploymentSvc.GetSolutionComponentIdsByType(solutionId.Value, 29);
-                var solutionFlowIds = this.FlowDeploymentSvc.GetDeployedFlows(solutionWorkflowIds, new ColumnSet(false)).Select(f => f.Id);
-                foreach (var flowId in solutionFlowIds)
-                {
-                    this.FlowDeploymentSvc.ActivateFlow(flowId);
-                }
+                return;
+            }
+
+            var solutionWorkflowIds = this.SolutionDeploymentSvc.GetSolutionComponentObjectIdsByType(solutionId.Value, 29);
+            if (!solutionWorkflowIds.Any())
+            {
+                return;
+            }
+
+            var solutionFlowIds = this.FlowDeploymentSvc.GetDeployedFlows(solutionWorkflowIds, new ColumnSet(false)).Select(f => f.Id);
+            foreach (var flowId in solutionFlowIds)
+            {
+                this.FlowDeploymentSvc.ActivateFlow(flowId);
             }
         }
 
@@ -406,7 +415,7 @@ namespace DevelopmentHub.Deployment
 
             if (!string.IsNullOrEmpty(this.AzureDevOpsConnectionName))
             {
-                this.FlowDeploymentSvc.SetFlowConnection(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices", this.AzureDevOpsConnectionName);
+                this.FlowDeploymentSvc.SetFlowConnection(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices_1", this.AzureDevOpsConnectionName);
             }
 
             this.ActivateFlowsInSolution("devhub_DevelopmentHub_Issues");
@@ -416,12 +425,12 @@ namespace DevelopmentHub.Deployment
 
         private void SetDevelopmentHubPluginStepConfigurations()
         {
-            var secureConfiguration = this.pluginStepDeploymentSvc.CreateSdkMessageProcessingStepSecureConfig(this.GetInjectSecureConfigSecureConfiguration());
-            var injectConfigPluginSteps = this.pluginStepDeploymentSvc.GetPluginStepsForHandler(new Guid("fdb0db23-769a-e911-a97d-002248010929"), new ColumnSet(false));
+            var secureConfiguration = this.PluginStepDeploymentSvc.CreateSdkMessageProcessingStepSecureConfig(this.GetInjectSecureConfigSecureConfiguration());
+            var injectConfigPluginSteps = this.PluginStepDeploymentSvc.GetPluginStepsForHandler(new Guid("fdb0db23-769a-e911-a97d-002248010929"), new ColumnSet(false));
 
             foreach (var step in injectConfigPluginSteps)
             {
-                this.pluginStepDeploymentSvc.SetPluginSecureConfiguration(step.Id, secureConfiguration);
+                this.PluginStepDeploymentSvc.SetPluginSecureConfiguration(step.Id, secureConfiguration);
             }
         }
 
@@ -430,7 +439,7 @@ namespace DevelopmentHub.Deployment
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsOrganization", this.AzureDevOpsOrganisation);
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsProject", this.AzureDevOpsProject);
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsExtractBuildDefinition", this.AzureDevOpsPipelineId);
-            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_SolutionPublisher", this.solutionPublisherPrefix);
+            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_SolutionPublisher", this.SolutionPublisherPrefix);
         }
     }
 }

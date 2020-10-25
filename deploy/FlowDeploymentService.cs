@@ -55,6 +55,8 @@ public class FlowDeploymentService
 
         var flow = this.CrmSvc.Retrieve("workflow", workflowId, new ColumnSet("clientdata"));
         flow["clientdata"] = this.GetClientDataWithConnectionName(flow.GetAttributeValue<string>("clientdata"), apiName, connectionName);
+
+        this.CrmSvc.Update(flow);
     }
 
     /// <summary>
@@ -115,7 +117,7 @@ public class FlowDeploymentService
             this.PackageLog.Log($"Unable to set connection name for {apiName}. No connections matching {apiName} were found in the flow.");
         }
 
-        var connection = connectionReferences.Value<JObject>("connection");
+        var connection = connectionReferences[apiName].Value<JObject>("connection");
         if (connection.ContainsKey("name") && connection["name"].ToString() != connectionName)
         {
             this.PackageLog.Log($"Updating existing connection name for {apiName}.");

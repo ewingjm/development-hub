@@ -43,31 +43,68 @@
         {
             this.PackageLog.Log($"Setting {key} environment variable to {value}.");
 
-            var definitionQuery = new QueryExpression("environmentvariabledefinition")
-            {
-                ColumnSet = new ColumnSet(false),
-                Criteria = new FilterExpression(),
-            };
-            definitionQuery.Criteria.AddCondition("schemaname", ConditionOperator.Equal, key);
-
-            var definition = this.CrmSvc.RetrieveMultiple(definitionQuery).Entities.FirstOrDefault();
+            var definition = this.GetDefinitionByKey(key, new ColumnSet(false));
             if (definition == null)
             {
                 throw new ArgumentException($"Environment variable {key} not found on target instance.");
             }
 
+            var definitionReference = definition.ToEntityReference();
             this.PackageLog.Log($"Found environment variable on target instance: {definition.Id}", TraceEventType.Verbose);
 
+            this.UpsertEnvironmentVariableValue(value, definitionReference);
+        }
+
+        private void UpsertEnvironmentVariableValue(string value, EntityReference definitionReference)
+        {
+            var existingValue = this.GetValueByDefinitionId(definitionReference, new ColumnSet("value"));
+            if (existingValue != null)
+            {
+                existingValue["value"] = value;
+                this.CrmSvc.Update(existingValue);
+            }
+            else
+            {
+                this.SetValue(value, definitionReference);
+            }
+        }
+
+        private Entity GetValueByDefinitionId(EntityReference definitionReference, ColumnSet columnSet)
+        {
+            var definitionQuery = new QueryExpression("environmentvariablevalue")
+            {
+                ColumnSet = columnSet,
+                Criteria = new FilterExpression(),
+            };
+            definitionQuery.Criteria.AddCondition("environmentvariabledefinitionid", ConditionOperator.Equal, definitionReference.Id);
+
+            return this.CrmSvc.RetrieveMultiple(definitionQuery).Entities.FirstOrDefault();
+        }
+
+        private void SetValue(string value, EntityReference definition)
+        {
             var val = new Entity("environmentvariablevalue")
             {
                 Attributes = new AttributeCollection
                 {
                     { "value", value },
-                    { "environmentvariabledefinitionid", definition.ToEntityReference() },
+                    { "environmentvariabledefinitionid", definition },
                 },
             };
 
             this.CrmSvc.Create(val);
+        }
+
+        private Entity GetDefinitionByKey(string key, ColumnSet columnSet)
+        {
+            var definitionQuery = new QueryExpression("environmentvariabledefinition")
+            {
+                ColumnSet = columnSet,
+                Criteria = new FilterExpression(),
+            };
+            definitionQuery.Criteria.AddCondition("schemaname", ConditionOperator.Equal, key);
+
+            return this.CrmSvc.RetrieveMultiple(definitionQuery).Entities.FirstOrDefault();
         }
     }
 }

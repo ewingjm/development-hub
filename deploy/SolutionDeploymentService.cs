@@ -39,13 +39,13 @@
         /// <param name="solutionId">The ID of the solution.</param>
         /// <param name="componentType">The type of component.</param>
         /// <returns>A collection of solution component IDs.</returns>
-        public IEnumerable<Guid> GetSolutionComponentIdsByType(Guid solutionId, int componentType)
+        public IEnumerable<Guid> GetSolutionComponentObjectIdsByType(Guid solutionId, int componentType)
         {
             this.PackageLog.Log($"Getting solution components of type {componentType} for solution {solutionId}.");
 
             var queryExpression = new QueryExpression("solutioncomponent")
             {
-                ColumnSet = new ColumnSet(false),
+                ColumnSet = new ColumnSet("objectid"),
                 Criteria = new FilterExpression(LogicalOperator.And),
             };
             queryExpression.Criteria.AddCondition("componenttype", ConditionOperator.Equal, componentType);
@@ -55,7 +55,7 @@
 
             this.PackageLog.Log($"Found {results.Entities.Count} matching components.");
 
-            return results.Entities.Select(e => e.Id).ToArray();
+            return results.Entities.Select(e => Guid.Parse(e.GetAttributeValue<string>("objectid"))).ToArray();
         }
 
         /// <summary>
