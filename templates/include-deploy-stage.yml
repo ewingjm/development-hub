@@ -38,13 +38,21 @@ stages:
                     TargetRelease: 'Dynamics 365, version 9.0'
                     BaseLanguage: '1033'
                 - task: PowerShell@2
-                  displayName: 'Create admin application user'
+                  displayName: 'Create admin application user for Azure DevOps'
                   inputs:
                     targetType: 'filePath'
                     filePath: 'scripts/Add-AdminApplicationUser.ps1'
                     failOnStderr: true
                     errorActionPreference: 'stop'
                     arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -ClientId $(serviceConnectionClientId) -FirstName Azure -LastName DevOps -Domain $(domain) -Url $(url) -OrganizationName $(organizationName)'
+                - task: PowerShell@2
+                  displayName: 'Create admin application user for Development Hub'
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/Add-AdminApplicationUser.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -ClientId $(PACKAGEDEPLOYER_SETTINGS_SERVICEPRINCIPALCLIENTID) -FirstName Development -LastName Hub -Domain $(domain) -Url $(url) -OrganizationName $(organizationName)'
       - deployment: Deployment
         displayName: Deploy
         condition: not(failed('ResetEnvironment'))
@@ -66,3 +74,8 @@ stages:
                     authenticationType: 'PowerPlatformSPN'
                     PowerPlatformSPN: '${{ parameters.deployServiceConnection }}'
                     PackageFile: '$(Pipeline.Workspace)/Development Hub/DevelopmentHub.Deployment.dll'
+                  env:
+                    PACKAGEDEPLOYER_SETTINGS_SERVICEPRINCIPALCLIENTSECRET: $(PACKAGEDEPLOYER_SETTINGS_SERVICEPRINCIPALCLIENTSECRET_SECRET)
+                    PACKAGEDEPLOYER_SETTINGS_LICENSEDUSERPASSWORD: $(PACKAGEDEPLOYER_SETTINGS_LICENSEDUSERPASSWORD_SECRET)
+                    PACKAGEDEPLOYER_SETTINGS_AZUREDEVOPSCONNECTIONNAME: $(PACKAGEDEPLOYER_SETTINGS_AZUREDEVOPSCONNECTIONNAME_SECRET)
+                    PACKAGEDEPLOYER_SETTINGS_APPROVALSCONNECTIONNAME: $(PACKAGEDEPLOYER_SETTINGS_APPROVALSCONNECTIONNAME_SECRET)

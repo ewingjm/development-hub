@@ -93,13 +93,13 @@ namespace DevelopmentHub.Deployment
         /// <summary>
         /// Gets a value for the target Azure DevOps extract build definition ID environment variable (if found).
         /// </summary>
-        protected string AzureDevOpsExtractBuildDefinitionId
+        protected string AzureDevOpsPipelineId
         {
             get
             {
                 if (string.IsNullOrEmpty(this.azureDevOpsExtractBuildDefinitionId))
                 {
-                    this.azureDevOpsExtractBuildDefinitionId = this.GetSetting<string>(nameof(this.AzureDevOpsExtractBuildDefinitionId));
+                    this.azureDevOpsExtractBuildDefinitionId = this.GetSetting<string>(nameof(this.AzureDevOpsPipelineId));
                 }
 
                 return this.azureDevOpsExtractBuildDefinitionId;
@@ -429,7 +429,7 @@ namespace DevelopmentHub.Deployment
         {
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsOrganization", this.AzureDevOpsOrganisation);
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsProject", this.AzureDevOpsProject);
-            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsExtractBuildDefinition", this.AzureDevOpsExtractBuildDefinitionId);
+            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsExtractBuildDefinition", this.AzureDevOpsPipelineId);
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_SolutionPublisher", this.solutionPublisherPrefix);
         }
     }
