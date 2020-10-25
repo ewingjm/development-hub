@@ -30,7 +30,7 @@ stages:
             name: OutputSemVerTask
           - task: PowerShell@2
             displayName: 'Set solution version for changed solutions'
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(length(variables['solutionsList']), 0))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), gt(length(variables['solutionList']), 0))
             inputs:
               errorActionPreference: 'stop'
               failOnStderr: true
