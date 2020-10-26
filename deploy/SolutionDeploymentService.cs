@@ -55,7 +55,7 @@
 
             this.PackageLog.Log($"Found {results.Entities.Count} matching components.");
 
-            return results.Entities.Select(e => Guid.Parse(e.GetAttributeValue<string>("objectid"))).ToArray();
+            return results.Entities.Select(e => e.GetAttributeValue<Guid>("objectid")).ToArray();
         }
 
         /// <summary>
