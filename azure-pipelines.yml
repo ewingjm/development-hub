@@ -11,12 +11,12 @@ stages:
   - template: templates/include-build-stage.yml
   - template: templates/include-solution-checker-stage.yml
     parameters:
-      serviceConnection: 'Development Hub - Test'
+      serviceConnection: 'Developer Instance'
   - template: templates/include-deploy-stage.yml
     parameters:
       environment: 'test'
-      resetServiceConnection: 'Development Hub - Test (adminuser)'
-      deployServiceConnection: 'Development Hub - Test'
+      resetServiceConnection: 'Developer Instance (adminuser)'
+      deployServiceConnection: 'Developer Instance'
       environmentVariableGroup: 'Environment - Test'
   - template: templates/include-test-stage.yml
     parameters:
