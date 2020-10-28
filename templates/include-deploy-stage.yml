@@ -53,6 +53,14 @@ stages:
                     failOnStderr: true
                     errorActionPreference: 'stop'
                     arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -ClientId $(PACKAGEDEPLOYER_SETTINGS_SERVICEPRINCIPALCLIENTID) -FirstName Development -LastName Hub -Domain $(domain) -Url $(url) -OrganizationName $(organizationName)'
+                - task: PowerShell@2
+                  displayName: 'Create solution publisher'
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/New-SolutionPublisher.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -DisplayName "Test Publisher" -UniqueName "testpublisher" -Prefix "test"'  
       - deployment: Deployment
         displayName: Deploy
         condition: not(failed('ResetEnvironment'))
