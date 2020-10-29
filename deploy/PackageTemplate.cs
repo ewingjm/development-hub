@@ -129,12 +129,9 @@ namespace DevelopmentHub.Deployment
         {
             get
             {
-                if (!this.servicePrincipalClientId.HasValue)
+                if (!this.servicePrincipalClientId.HasValue && Guid.TryParse(this.GetSetting<string>(nameof(this.ServicePrincipalClientId)), out var guid))
                 {
-                    if (Guid.TryParse(this.GetSetting<string>(nameof(this.ServicePrincipalClientId)), out var guid))
-                    {
-                        this.servicePrincipalClientId = guid;
-                    }
+                    this.servicePrincipalClientId = guid;
                 }
 
                 return this.servicePrincipalClientId;
