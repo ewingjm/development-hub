@@ -94,6 +94,8 @@ Do not change the version numbers if the solution is new. If it is an existing s
 
 ## Usage
 
+This section details the usage of the Development Hub's core functionality. 
+
 ### Create an issue
 
 Issues must be created within the Development Hub in order for a developer to begin working on a new feature or bug fix. 
@@ -140,10 +142,11 @@ To notify the flow that the manual merge activities are complete, navigate to _A
 
 If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a 'Failed' status. A *Retry* button is available after the necessary steps have been taken. Failure reason will be attached as a note to the solution merge record.
 
-### Video Demo
+## Resources
 
-[![Development Hub - Usage](https://img.youtube.com/vi/co1zCvureiM/0.jpg)](https://www.youtube.com/watch?v=co1zCvureiM)
-
+- [Blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd)
+- [Introduction video](https://youtu.be/p-z1iTxtaag)
+- [Usage video](https://www.youtube.com/watch?v=co1zCvureiM)
 ## Contributing
 
 Refer to the contributing [guide](./CONTRIBUTING.md).
