@@ -166,7 +166,7 @@ namespace DevelopmentHub.Deployment
             {
                 if (string.IsNullOrEmpty(this.azureDevOpsConnectionName))
                 {
-                    this.azureDevOpsConnectionName = this.GetSetting<string>(nameof(this.azureDevOpsConnectionName));
+                    this.azureDevOpsConnectionName = this.GetSetting<string>(nameof(this.AzureDevOpsConnectionName));
                 }
 
                 return this.azureDevOpsConnectionName;
@@ -182,7 +182,7 @@ namespace DevelopmentHub.Deployment
             {
                 if (string.IsNullOrEmpty(this.approvalsConnectionName))
                 {
-                    this.approvalsConnectionName = this.GetSetting<string>(nameof(this.approvalsConnectionName));
+                    this.approvalsConnectionName = this.GetSetting<string>(nameof(this.ApprovalsConnectionName));
                 }
 
                 return this.approvalsConnectionName;
