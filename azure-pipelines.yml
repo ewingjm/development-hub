@@ -33,19 +33,22 @@ stages:
         variables: 
           SemVer: $[ stageDependencies.Build.BuildJob.outputs['OutputSemVerTask.SemVer'] ]
         steps:
-        - task: GitHubRelease@1
-          displayName: Create GitHub release
-          inputs:
-            gitHubConnection: 'GitHub (ewingjm)'
-            repositoryName: '$(Build.Repository.Name)'
-            action: 'create'
-            target: '$(Build.SourceVersion)'
-            tagSource: 'userSpecifiedTag'
-            tag: 'v$(SemVer)'
-            releaseNotesSource: 'inline'
-            assets: |
-              $(Pipeline.Workspace)/Development Hub/*.zip
-              $(Pipeline.Workspace)/Development Hub/*.md
-            isPreRelease: true
-            changeLogCompareToRelease: 'lastNonDraftRelease'
-            changeLogType: 'commitBased'
+          - download: current
+            displayName: 'Download package artifact'
+            artifact: 'Development Hub'
+          - task: GitHubRelease@1
+            displayName: Create GitHub release
+            inputs:
+              gitHubConnection: 'GitHub (ewingjm)'
+              repositoryName: '$(Build.Repository.Name)'
+              action: 'create'
+              target: '$(Build.SourceVersion)'
+              tagSource: 'userSpecifiedTag'
+              tag: 'v$(SemVer)'
+              releaseNotesSource: 'inline'
+              assets: |
+                $(Pipeline.Workspace)/Development Hub/**/*.zip
+                $(Pipeline.Workspace)/Development Hub/**/*.md
+              isPreRelease: true
+              changeLogCompareToRelease: 'lastNonDraftRelease'
+              changeLogType: 'commitBased'
