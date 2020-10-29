@@ -23,13 +23,13 @@ stages:
       environmentVariableGroup: 'Environment - Test'
   - stage: CreateRelease
     displayName: 'Create release'
+    dependsOn:
+      - 'Build'
+      - 'Test'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
       - job: CreateReleaseJob
         displayName: 'Create release'
-        dependsOn:
-          - 'Build'
-          - 'Test'
         variables: 
           SemVer: $[ stageDependencies.Build.BuildJob.outputs['OutputSemVerTask.SemVer'] ]
         steps:
