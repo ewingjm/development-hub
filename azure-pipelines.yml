@@ -36,6 +36,14 @@ stages:
           - download: current
             displayName: 'Download package artifact'
             artifact: 'Development Hub'
+          - task: ArchiveFiles@2
+            displayName: 'Zip package artifact'
+            inputs:
+              rootFolderOrFile: '$(Pipeline.Workspace)/Development Hub'
+              includeRootFolder: true
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              replaceExistingArchive: true
           - task: GitHubRelease@1
             displayName: Create GitHub release
             inputs:
@@ -46,9 +54,7 @@ stages:
               tagSource: 'userSpecifiedTag'
               tag: 'v$(SemVer)'
               releaseNotesSource: 'inline'
-              assets: |
-                $(Pipeline.Workspace)/Development Hub/**/*.zip
-                $(Pipeline.Workspace)/Development Hub/**/*.md
+              assets: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
               isPreRelease: true
               changeLogCompareToRelease: 'lastNonDraftRelease'
               changeLogType: 'commitBased'
