@@ -1,37 +1,27 @@
-# Development Hub for Power Apps ![logo](./docs/images/logo.svg)
+# Development Hub for Power Apps  ![logo](./docs/images/logo.svg)
 
 The Development Hub brings continuous integration to Power Apps development by allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
 
 ## Table of contents
 
-* [Features](#features)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
-  * [Deploy the package](#deploy-the-package)
-  * [Register an app](#register-an-app)
-  * [Configure plug-in steps](#configure-plug-in-steps)
-  * [Configure Azure DevOps](#configure-azure-devops)
-  * [Set solution environment variables](#set-solution-environment-variables)
-  * [Set flow connections](#set-flow-connections)
+  + [Register an app](#register-an-app)
+  + [Configure Azure DevOps](#configure-azure-devops)
+  + [Create flow connections](#create-flow-connections)
+  + [Deploy the package](#deploy-the-package)
 * [Configuration](#configuration)
 * [Usage](#usage)
-  * [Create an issue](#create-an-issue)
-  * [Develop a solution](#develop-a-solution)
-  * [Merge a solution](#merge-a-solution)
-  * [Merge source code](#merge-source-code)
-  * [Perform manual merge activities](#perform-manual-merge-activities)
-  * [Handle a failed merge](#handle-a-failed-merge)
+  + [Create an issue](#create-an-issue)
+  + [Develop a solution](#develop-a-solution)
+  + [Merge a solution](#merge-a-solution)
+  + [Merge source code](#merge-source-code)
+  + [Perform manual merge activities](#perform-manual-merge-activities)
+  + [Handle a failed merge](#handle-a-failed-merge)
 * [Contributing](#contributing)
-  * [Build a development environment](#build-a-development-environment)
-  * [Set environment variables](#set-environment-variables)
-  * [Run build tasks](#run-build-tasks)
-
-## Features
-
-- Peer review for configuration
-- Merging for individual bugs and features
-- Automated semantic versioning
-- Automated source control
+  + [Build a development environment](#build-a-development-environment)
+  + [Set environment variables](#set-environment-variables)
+  + [Run build tasks](#run-build-tasks)
 
 ## Prerequisites
 
@@ -41,69 +31,52 @@ For more information on the purpose of the master instance, refer to the [Soluti
 
 ## Installation
 
-### Deploy the package
-
-The package can be deployed to your development environment using the Package Deployer. Download the package files from the Releases tab and follow Microsoft's guide to using the Package Deployer [here](https://docs.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell).
-
 ### Register an app
 
-Access to the Common Data Service Web API is required in order to merge development solutions with the solution(s) in the master instance. Follow Microsoft's guide on registering an app with access to the Common Data Service Web API [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/use-single-tenant-server-server-authentication#azure-application-registration). You will need to use the client ID, tenant ID, and a client secret for the app you register in later steps.
-
-### Configure plug-in steps
-
-Use the plug-in registration tool to set the secure configuration parameters necessary for authentication for the Web API. The steps to set the secure configuration for are under the InjectSecureConfig plug-in within the DevelopmentHub.Develop assembly.
-
-The secure configuration is a JSON object with the client ID, tenant ID, and client secret:
-
-```json
-{
-  "ClientId": "<from app registration>",
-  "TenantId": "<from app registration>",
-  "ClientSecret": "<from app registration>",
-}
-```
-
-**Note: the application user must should have admin permissions in both the master instance and the development instance.**
+An app (and associated application users in the development and master instances with the 'System Administrator' role) must be registered to use the Development Hub. Follow Microsoft's guide on registering an app with access to the Common Data Service [here](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/use-single-tenant-server-server-authentication#azure-application-registration).
 
 ### Configure Azure DevOps
 
 The Development Hub currently relies on integration with Azure DevOps to provide automated source-control functionality. 
 
-Navigate to _Project Settings -> Repositories_ in the Azure DevOps project that contains repository. Select the relevant repository and assign the following privilges to the project Build Service user:
+Navigate to _Project Settings -> Repositories_ in your Azure DevOps project. Select the relevant repository and assign the following privilges to the project Build Service user:
 
-- Bypass policies when pushing
-- Contribute
-- Create branch 
+* Bypass policies when pushing
+* Contribute
+* Create branch 
 
-A build definition capable of extracting solutions is required. There are several files in the [samples](./samples) folder to help you with this. If you use the sample files as is, copy the _scripts_ folder and _azure-pipelines-extract.yml_ file into your repository. The sample build script assumes that your repository structure is that you have a _src_ folder at the root, a _solutions_ folder within, and then folders that match your solutions' unique names. In addition, it expects a _solution.json_ within each of these solution folders that provides the development environment URL (see the _solution.json_ in the samples folder), and an _extract_ folder alongside it to contain the unpacked solution zip file fragments. You will also need to create a _Development Hub_ variable group that contains three variables - `Client ID`, `Tenant ID`, and `Client Secret`. These should be taken from the app registration created earlier.
+A build definition capable of extracting solutions is required. There are several files in the [samples](./samples) folder to help you with this. 
+
+If you use the sample files as is, copy the _scripts_ folder and _azure-pipelines-extract.yml_ file into your repository. The sample build script assumes that your repository structure is that you have a _src_ folder at the root containing a _solutions_ folder, which then contains folders that match your solutions' unique names. Within each solution folder, you should have a _solution.json_ file that provides the development environment URL (see the _solution.json_ in the samples folder), and an _extract_ folder alongside it to contain the unpacked solution zip file fragments. 
+
+Lastly, you must create a _Development Hub_ variable group on Azure DevOps that contains three variables - `Client ID` , `Tenant ID` , and `Client Secret` . These should be taken from the app registration created earlier.
 
 If you have an existing folder structure which is different, the _Merge-SolutionVersion.ps1_ script will require tweaking - but the _azure-pipelines-extract.yml_ file shouldn't need to be changed.
 
-### Set solution environment variables
+### Create flow connections
 
-There are four environment variables to set:
+You will need to create two flow connections in your target environment. Within the [Power Apps Maker Portal](https://make.powerapps.com), go to your environment and navigate to _Data -> Connections_. Create a new _Approvals_ connection and a new _Azure DevOps_ connection. Make sure that the Azure DevOps connection is signed in as a user with access to the Azure DevOps project. Make a note of the connection names for both of the created connections. You can find this by opening the connection and taking it from the URL, which should be in the format _environments/<environmentid>/connections/<apiname>/<connectionname>/details
 
-- Solution Publisher Prefix
-- Azure DevOps Organization
-- Azure DevOps Project
-- Azure DevOps Extract Build Definition ID
+### Deploy the package
 
-The build definition ID is the numeric ID given to the build definition by Azure DevOps. This is the extract build created either by modifying the sample in this repository or by the Yeoman generator.
+The package can be deployed to your development environment using the Package Deployer. Download the package files from the Releases tab and follow Microsoft's guide to using the Package Deployer [here](https://docs.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell). You must provide several package deployer settings parameters:
 
-For more information on environment see this [link](https://docs.microsoft.com/en-us/powerapps/maker/common-data-service/environmentvariables).
+```powershell
+$settings = [PSCustomObject]@{
+  ApprovalsConnectionName = '<the connection name of the Approvals connection>'
+  AzureDevOpsConnectionName = '<the connection name of the Azure DevOps connection>'
+  AzureDevOpsOrganisation = '<the name of the Azure DevOps organisation>'
+  AzureDevOpsPipelineId = '<the ID of the Azure DevOps extract pipeline>'
+  AzureDevOpsProject = '<the name of the Azure DevOps project>'
+  ServicePrincipalClientId = '<the client ID of the Development Hub service principal>'
+  ServicePrincipalClientSecret = '<a client secret for the Development Hub service principal>'
+  SolutionPublisherPrefix = '<the prefix of the publisher (without leading underscore)>'
+}
+$settingsArray = $obj.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
+$runtimePackageSettings = [string]::Join("|", $settingsArray)
 
-### Set flow connections
-
-There are four flows located in the _devhub_DevelopmentHub_Develop_ and _devhub_DevelopmentHub_AzureDevOps_ solutions that must be set. The flows to set the connections on are:
-
-- When a solution merge is approved -> Merge the solution
-- When a solution merge is merged -> Approve the first queued solution merge
-- Environment Variable Key -> Environment Variable Value
-- When a solution is merged -> Commit changes to source control
-
-### Video Demo
-
-[![Development Hub - Setup](https://img.youtube.com/vi/5jQkCPtvr-E/0.jpg)](https://www.youtube.com/watch?v=5jQkCPtvr-E)
+Import-CrmPackage -PackageInformation $packages[0] -CrmConnection $conn -RuntimePackageSettings $runtimePackageSettings
+```
 
 ## Configuration
 
@@ -148,7 +121,6 @@ Once the issue has been developed, a solution merge record can be created. This 
 Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an 'Approved' solution merge will transition to either a 'Merging' or 'Queued' status.
 
 A successful solution merge will transition to an inactive 'Merged' status. The 'Version History' tab on the target solution record will also contain a new record with the post-merge unmanaged and managed solution zips available. The new solution version is based on the type of issue merged. A feature issue will increment the minor version and a bug issue will increment the patch version. Major version changes must be done manually. 
-
 
 ![Solution merge](./docs/images/solutionmerge.png)
 
