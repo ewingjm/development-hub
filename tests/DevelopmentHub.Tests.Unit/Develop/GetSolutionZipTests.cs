@@ -11,9 +11,9 @@
     /// <summary>
     /// Tests for the <see cref="GetSolutionZip"/> custom workflow activity.
     /// </summary>
-    public class GetSolutionZipTests : FakedContextTest
+    [Trait("Solution", "devhub_DevelopmentHub_Develop")]
+    public class GetSolutionZipTests : WorkflowActivityTests<GetSolutionZip>
     {
-        private readonly GetSolutionZip getSolutionZip;
         private readonly Mock<ISolutionService> solutionServiceMock;
 
         /// <summary>
@@ -22,7 +22,7 @@
         public GetSolutionZipTests()
         {
             this.solutionServiceMock = new Mock<ISolutionService>();
-            this.getSolutionZip = new GetSolutionZip(this.solutionServiceMock.Object);
+            this.WorkflowInvoker.Extensions.Add(this.solutionServiceMock.Object);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                this.FakedContext.ExecuteCodeActivity<GetSolutionZip>(new Dictionary<string, object>
+                this.WorkflowInvoker.Invoke(new Dictionary<string, object>
                 {
                     { nameof(GetSolutionZip.SolutionUniqueName), string.Empty },
                 });
@@ -59,7 +59,7 @@
                 .Setup(solutionService => solutionService.GetSolutionZip(solutionUniqueName, managed))
                 .Returns(solutionZip);
 
-            var outputs = this.FakedContext.ExecuteCodeActivity(inputs, this.getSolutionZip);
+            var outputs = this.WorkflowInvoker.Invoke(inputs);
 
             Assert.Equal(expectedResponse, outputs[nameof(GetSolutionZip.SolutionZip)]);
         }

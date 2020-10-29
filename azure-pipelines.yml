@@ -1,67 +1,51 @@
-name: $(packageVersion)$(rev:.r).0
+name: $(GITVERSION_FullSemVer)
 pool:
-  vmImage: windows-2019
+  vmImage: 'windows-latest'
 pr: none
-steps:
-  - powershell: |
-       $comparisonType = "CurrentCultureIgnoreCase"
-       $resultArray = git show --name-only
-       $solutionList = ""
-   
-       foreach ($_ in $resultArray)
-       {
-           if ($_.StartsWith("solutions") -and $_.Contains("Extract")) 
-           {
-             $solutionName = $_.Split("/")[1]
-
-             if (!$solutionList.Contains($solutionName)) 
-             {
-               $solutionList += $solutionName + ";"
-               Write-Host "##vso[build.addbuildtag]$solutionName" 
-             }
-           }
-       }
-       Write-Host "##vso[task.setvariable variable=solutionList;]$solutionList"
-    displayName: 'Configure Build Orchestration'
-  - task: PowerShell@2
-    displayName: 'Run Default Cake target via bootstrapper'
-    inputs:
-      targetType: filePath
-      filePath: ./build.ps1
-      arguments: '-Target Default -Verbosity Quiet'
-  - task: VSTest@2
-    displayName: 'Test Assemblies'
-    inputs:
-      testAssemblyVer2: |
-        **\*Tests.Unit*.dll
-        !**\*TestAdapter.dll
-        !**\obj\**
-      codeCoverageEnabled: true
-  - task: CopyFiles@2
-    displayName: "Copy package to artifact staging directory"
-    inputs:
-      SourceFolder: deploy/bin/Release
-      TargetFolder: "$(Build.ArtifactStagingDirectory)"
-  - task: PublishBuildArtifacts@1
-    inputs:
-        pathtoPublish: "$(Build.ArtifactStagingDirectory)"
-        artifactName: "DevelopmentHub"
-    condition: succeeded()
 trigger:
   batch: true
   branches:
-    include: ["master"]
-  paths:
-    include: [
-      "Data/Configuration/*",
-      "Data/Reference/*",
-      "deploy/*",
-      "solutions/*",
-      "*.yml",
-      "*.cake",
-      "*.ps1"
-      ]
-variables:
-  - name: solutionList
-    value: ''
-  - group: Development Hub
+    include:
+      - master
+stages:
+  - template: templates/include-build-stage.yml
+  - template: templates/include-solution-checker-stage.yml
+    parameters:
+      serviceConnection: 'Developer Instance'
+  - template: templates/include-deploy-stage.yml
+    parameters:
+      environment: 'test'
+      resetServiceConnection: 'Developer Instance (adminuser)'
+      deployServiceConnection: 'Developer Instance'
+      environmentVariableGroup: 'Environment - Test'
+  - template: templates/include-test-stage.yml
+    parameters:
+      environmentVariableGroup: 'Environment - Test'
+  - stage: CreateRelease
+    displayName: 'Create release'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - job: CreateReleaseJob
+        displayName: 'Create release'
+        dependsOn:
+          - 'Build'
+          - 'Test'
+        variables: 
+          SemVer: $[ stageDependencies.Build.BuildJob.outputs['OutputSemVerTask.SemVer'] ]
+        steps:
+        - task: GitHubRelease@1
+          displayName: Create GitHub release
+          inputs:
+            gitHubConnection: 'GitHub (ewingjm)'
+            repositoryName: '$(Build.Repository.Name)'
+            action: 'create'
+            target: '$(Build.SourceVersion)'
+            tagSource: 'userSpecifiedTag'
+            tag: 'v$(SemVer)'
+            releaseNotesSource: 'inline'
+            assets: |
+              $(Pipeline.Workspace)/Development Hub/*.zip
+              $(Pipeline.Workspace)/Development Hub/*.md
+            isPreRelease: true
+            changeLogCompareToRelease: 'lastNonDraftRelease'
+            changeLogType: 'commitBased'

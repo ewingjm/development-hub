@@ -260,3 +260,6 @@ Log*.txt
 
 # Include Data Release Folder
 !Data/Release
+
+# Ignore generated SpecFlow feature files
+**/*.feature.cs

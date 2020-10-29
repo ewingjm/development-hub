@@ -2,6 +2,7 @@ namespace DevelopmentHub.Tests.Integration
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net;
@@ -13,20 +14,17 @@ namespace DevelopmentHub.Tests.Integration
     /// <summary>
     /// Base integration test class.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public abstract class IntegrationTest : IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationTest"/> class.
         /// </summary>
-        /// <param name="developmentUrl">The URL of the development environment.</param>
-        /// <param name="username">Username used to log in to the development environment.</param>
-        public IntegrationTest(Uri developmentUrl, string username = null)
+        public IntegrationTest()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             this.CreatedEntities = new List<EntityReference>();
-            this.CrmServiceClient = new CrmServiceClient(this.GetConnectionString(developmentUrl, username));
-            this.RepositoryFactory = new RepositoryFactory(this.OrgService);
+            this.CrmServiceClient = new CrmServiceClient(GetConnectionString());
+            this.RepositoryFactory = new RepositoryFactory(this.CrmServiceClient);
         }
 
         /// <summary>
@@ -38,11 +36,6 @@ namespace DevelopmentHub.Tests.Integration
         /// Gets the service client.
         /// </summary>
         protected CrmServiceClient CrmServiceClient { get; private set; }
-
-        /// <summary>
-        /// Gets the Organization Service.
-        /// </summary>
-        protected IOrganizationService OrgService => this.CrmServiceClient.OrganizationServiceProxy;
 
         /// <summary>
         /// Gets the repository factory.
@@ -86,6 +79,11 @@ namespace DevelopmentHub.Tests.Integration
         /// <returns>A reference to the created record.</returns>
         protected EntityReference CreateTestRecord(Entity record)
         {
+            if (record is null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+
             record.Id = this.CrmServiceClient.Create(record);
             var reference = record.ToEntityReference();
             this.CreatedEntities.Add(reference);
@@ -132,6 +130,20 @@ namespace DevelopmentHub.Tests.Integration
             return entityReferences.ToArray();
         }
 
+        private static string GetConnectionString()
+        {
+            var url = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_TEST_URL");
+            var username = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_USERNAME");
+            var password = Environment.GetEnvironmentVariable("DEVELOPMENTHUB_ADMIN_PASSWORD");
+
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                throw new Exception("Environment variables required for integration tests haven't set.");
+            }
+
+            return $"AuthType=OAuth;Username={username}; Password={password};Url={url};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d; RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never";
+        }
+
         private void DeleteTestData()
         {
             var deleteRequests = new OrganizationRequestCollection();
@@ -153,13 +165,6 @@ namespace DevelopmentHub.Tests.Integration
                 },
                 Requests = deleteRequests,
             });
-        }
-
-        private string GetConnectionString(Uri developmentUrl, string username = null)
-        {
-            var targetEnvironment = Environment.GetEnvironmentVariable("CAKE_DYNAMICS_URL_CI");
-
-            return $"Url={targetEnvironment ?? developmentUrl.ToString()}; Username={username ?? Environment.GetEnvironmentVariable("CAKE_DYNAMICS_USERNAME")}; Password={Environment.GetEnvironmentVariable("CAKE_DYNAMICS_PASSWORD")}; AuthType=Office365;";
         }
     }
 }

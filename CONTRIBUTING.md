@@ -16,8 +16,8 @@ If you do not have an existing instance, you can create one for free with the [P
 
 Two environment variables are required to enable you to authenticate with the development and staging environments:
 
-- CAKE_DYNAMICS_USERNAME_DEVELOPMENT_HUB
-- CAKE_DYNAMICS_PASSWORD_DEVELOPMENT_HUB
+- CAKE_DEVELOPMENTHUB_USERNAME
+- CAKE_DEVELOPMENTHUB_PASSWORD
 
 The username in the environment variable is used unless overridden by the username set in the corresponding _solution.json_ file. This is useful where the username for each solution is different (e.g. where you have multiple trials).
 

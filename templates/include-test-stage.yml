@@ -1,0 +1,48 @@
+stages:
+  - stage: 'Test'
+    displayName: 'Test'
+    variables:
+      - group: '${{ parameters.environmentVariableGroup }}'
+    jobs:
+      - job: IntegrationTest
+        displayName: Integration tests
+        steps:
+          - checkout: none
+          - download: current
+            displayName: 'Download tests'
+            artifact: Tests
+          - task: VSTest@2
+            displayName: Run integration tests
+            env:
+              DEVELOPMENTHUB_TEST_URL: $(url)
+              DEVELOPMENTHUB_ADMIN_USERNAME: $(adminUserEmail)
+              DEVELOPMENTHUB_ADMIN_PASSWORD: $(adminUserPassword)
+            inputs:
+              runInParallel: true
+              testAssemblyVer2: |
+                **\*Tests.Integration.dll
+                !**\*TestAdapter.dll
+                !**\obj\**
+              searchFolder: $(Pipeline.Workspace)/tests/integration
+      - job: UiTest
+        displayName: UI test
+        steps:
+          - checkout: none
+          - download: current
+            displayName: 'Download tests'
+            artifact: Tests
+          - task: VSTest@2
+            displayName: Run UI tests
+            env:
+              DEVELOPMENTHUB_TEST_URL: $(url)
+              DEVELOPMENTHUB_ADMIN_USERNAME: $(adminUserEmail)
+              DEVELOPMENTHUB_ADMIN_PASSWORD: $(adminUserPassword)
+            inputs:
+              publishRunAttachments: true
+              uiTests: true
+              runInParallel: true
+              testAssemblyVer2: |
+                **\*Tests.Ui.dll
+                !**\*TestAdapter.dll
+                !**\obj\**
+              searchFolder: $(Pipeline.Workspace)/tests/ui

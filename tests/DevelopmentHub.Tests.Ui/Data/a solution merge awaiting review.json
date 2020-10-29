@@ -1,0 +1,15 @@
+{
+  "@alias": "the solution merge",
+  "@logicalName": "devhub_solutionmerge",
+  "statuscode": 1,
+  "devhub_Issue": {
+    "@alias": "the issue",
+    "devhub_name": "Issue A",
+    "devhub_developmentsolution": "devhub_issuea",
+    "statuscode": 353400000
+  },
+  "devhub_TargetSolution": {
+    "@alias": "the target solution",
+    "devhub_displayname": "Solution A"
+  }
+}

@@ -11,7 +11,7 @@ using System.Linq;
 #addin nuget:?package=Cake.Npm&version=0.17.0
 #addin nuget:?package=Cake.Json&version=3.0.0
 
-const string SolutionsFolder = "./solutions";
+const string SolutionsFolder = "./src/solutions";
 const string PackagesFolder = "./packages";
 const string DeployProjectFolder = "./deploy";
 const string TestsFolder = "./tests";
@@ -22,6 +22,7 @@ var packedSolutions = new List<string>();
 
 // Build package
 Task("Default")
+  .IsDependentOn("BuildTestProjects")
   .IsDependentOn("PackAll")
   .IsDependentOn("BuildDeploymentProject");
 
@@ -83,7 +84,7 @@ Task("BuildTestProjects")
     var nugetSettings = new NuGetRestoreSettings { ConfigFile = "NuGet.config" };
     foreach (var testProject in GetFiles($"{TestsFolder}/**/*.csproj")) 
     {
-      BuildCSharpProject(testProject.FullPath, nugetSettings, new MSBuildSettings { Configuration = "Debug" });
+      BuildCSharpProject(testProject.FullPath, nugetSettings, new MSBuildSettings { Configuration = "Release" });
     }
   });
 
@@ -276,8 +277,8 @@ string GetConnectionString(string solution, bool stagingEnvironment) {
   var targetEnvironment = stagingEnvironment && config["environments"]?["staging"] != null ? "staging" : "development";
   
   var url = config["environments"][targetEnvironment]["url"].ToString();
-  var username = config["environments"][targetEnvironment]["username"]?.ToString() ?? EnvironmentVariable("CAKE_DYNAMICS_USERNAME_DEVELOPMENT_HUB");
-  var password = EnvironmentVariable("CAKE_DYNAMICS_PASSWORD_DEVELOPMENT_HUB");
+  var username = config["environments"][targetEnvironment]["username"]?.ToString() ?? EnvironmentVariable("CAKE_DEVELOPMENTHUB_USERNAME");
+  var password = EnvironmentVariable("CAKE_DEVELOPMENTHUB_PASSWORD");
 
   return $"Url={url}; Username={username}; Password={password}; AuthType=Office365;";
 }

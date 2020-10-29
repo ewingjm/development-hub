@@ -13,10 +13,9 @@
     /// Tests for the <see cref="CreateSolution"/> workflow activity.
     /// </summary>
     [Trait("Solution", "devhub_DevelopmentHub_Develop")]
-    public class CreateSolutionTests : FakedContextTest
+    public class CreateSolutionTests : WorkflowActivityTests<CreateSolution>
     {
         private readonly Mock<ISolutionService> solutionServiceMock;
-        private readonly CreateSolution codeActivity;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSolutionTests"/> class.
@@ -24,22 +23,22 @@
         public CreateSolutionTests()
         {
             this.solutionServiceMock = new Mock<ISolutionService>();
-            this.codeActivity = new CreateSolution(this.solutionServiceMock.Object);
+            this.WorkflowInvoker.Extensions.Add(this.solutionServiceMock.Object);
         }
 
         /// <summary>
-        /// Tests that invoking the workflow activity with no unique name throws an exception.
+        /// Tests that invoking the workflow activity with no devhub_uniquename throws an exception.
         /// </summary>
         [Fact]
         public void CreateSolution_NoUniqueName_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => this.FakedContext.ExecuteCodeActivity(
+            Assert.Throws<ArgumentNullException>(() => this.WorkflowInvoker.Invoke(
                 new Dictionary<string, object>
                 {
                     { nameof(CreateSolution.SolutionDescription), "Description" },
                     { nameof(CreateSolution.SolutionDisplayName), "Display Name" },
                     { nameof(CreateSolution.SolutionUniqueName), string.Empty },
-                }, this.codeActivity));
+                }));
         }
 
         /// <summary>
@@ -48,13 +47,13 @@
         [Fact]
         public void CreateSolution_NoDisplayName_Throws()
         {
-            Assert.Throws<ArgumentNullException>(() => this.FakedContext.ExecuteCodeActivity(
+            Assert.Throws<ArgumentNullException>(() => this.WorkflowInvoker.Invoke(
                 new Dictionary<string, object>
                 {
                     { nameof(CreateSolution.SolutionDescription), "Description" },
                     { nameof(CreateSolution.SolutionDisplayName), string.Empty },
-                    { nameof(CreateSolution.SolutionUniqueName), "Unique Name" },
-                }, this.codeActivity));
+                    { nameof(CreateSolution.SolutionUniqueName), "devhub_uniquename" },
+                }));
         }
 
         /// <summary>
@@ -63,13 +62,13 @@
         [Fact]
         public void CreateSolution_NoDescription_DoesNotThrow()
         {
-            this.FakedContext.ExecuteCodeActivity(
+            this.WorkflowInvoker.Invoke(
                 new Dictionary<string, object>
                 {
                     { nameof(CreateSolution.SolutionDescription), string.Empty },
                     { nameof(CreateSolution.SolutionDisplayName), "Display Name" },
-                    { nameof(CreateSolution.SolutionUniqueName), "Unique Name" },
-                }, this.codeActivity);
+                    { nameof(CreateSolution.SolutionUniqueName), "devhub_uniquename" },
+                });
         }
 
         /// <summary>
@@ -81,19 +80,19 @@
             var expectedReference = new EntityReference(Solution.EntityLogicalName, Guid.NewGuid());
             this.solutionServiceMock.SetReturnsDefault(expectedReference);
 
-            var outputs = this.FakedContext.ExecuteCodeActivity(
+            var outputs = this.WorkflowInvoker.Invoke(
                 new Dictionary<string, object>
                 {
                     { nameof(CreateSolution.SolutionDescription), string.Empty },
                     { nameof(CreateSolution.SolutionDisplayName), "Display Name" },
-                    { nameof(CreateSolution.SolutionUniqueName), "Unique Name" },
-                }, this.codeActivity);
+                    { nameof(CreateSolution.SolutionUniqueName), "devhub_uniquename" },
+                });
 
             Assert.Equal(expectedReference, outputs[nameof(CreateSolution.CreatedSolution)]);
         }
 
         /// <summary>
-        /// Tests that a unique name without title case and with whitespace is converted to title case without whitespace.
+        /// Tests that a devhub_uniquename without title case and with whitespace is converted to title case without whitespace.
         /// </summary>
         [Fact]
         public void CreateSolution_UniqueNameNotTitleCase_ConvertsUniqueNameToTitleCase()
@@ -102,13 +101,13 @@
             var uniqueName = "Devhub_Unique name";
             this.solutionServiceMock.SetReturnsDefault(new EntityReference());
 
-            var outputs = this.FakedContext.ExecuteCodeActivity(
+            var outputs = this.WorkflowInvoker.Invoke(
                 new Dictionary<string, object>
                 {
                     { nameof(CreateSolution.SolutionDescription), string.Empty },
                     { nameof(CreateSolution.SolutionDisplayName), displayName },
                     { nameof(CreateSolution.SolutionUniqueName), uniqueName },
-                }, this.codeActivity);
+                });
 
             this.solutionServiceMock
                 .Verify((solutionService) => solutionService.Create("devhub_UniqueName", displayName, string.Empty));

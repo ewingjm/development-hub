@@ -1,0 +1,25 @@
+parameters:
+  - name: serviceConnection
+    type: string
+    displayName: 'The service connection'
+stages:
+  - stage: SolutionChecker
+    displayName: 'Solution checker'
+    jobs:
+      - job: SolutionCheckerJob
+        displayName: Solution checker
+        steps:
+          - checkout: none
+          - download: current
+            artifact: 'Development Hub'
+            displayName: 'Download package'
+          - task: PowerPlatformToolInstaller@0
+            displayName: 'Install Power Platform Build Tools'
+            inputs:
+              DefaultVersion: true
+          - task: PowerPlatformChecker@0
+            displayName: 'Run Solution Checker'
+            inputs:
+              PowerPlatformSPN: '${{ parameters.serviceConnection }}'
+              FilesToAnalyze: '$(Pipeline.Workspace)/Development Hub/**/*.zip'
+              RuleSet: '0ad12346-e108-40b8-a956-9a8f95ea18c9'

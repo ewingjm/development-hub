@@ -12,6 +12,7 @@
     /// <summary>
     /// Tests for the <see cref="MergeSolutionComponents"/> custom workflow activity.
     /// </summary>
+    [Trait("Solution", "devhub_DevelopmentHub_Develop")]
     public class MergeSolutionComponentsTests : IntegratedWorkflowActivityTests<MergeSolutionComponents>
     {
         private readonly Mock<IODataSolutionService> oDataSolutionServiceMock;

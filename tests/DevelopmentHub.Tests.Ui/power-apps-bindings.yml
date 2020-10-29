@@ -1,0 +1,11 @@
+url: DEVELOPMENTHUB_TEST_URL
+browserOptions: 
+  browserType: Chrome
+  headless: true
+  width: 1920
+  height: 1080
+  startMaximized: false
+users: 
+  - username: DEVELOPMENTHUB_ADMIN_USERNAME
+    password: DEVELOPMENTHUB_ADMIN_PASSWORD
+    alias: "an admin"

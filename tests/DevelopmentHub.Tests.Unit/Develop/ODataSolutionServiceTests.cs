@@ -20,6 +20,7 @@
     /// <summary>
     /// Tests for the <see cref="ODataSolutionService"/>.
     /// </summary>
+    [Trait("Solution", "devhub_DevelopmentHub_Develop")]
     public class ODataSolutionServiceTests
     {
         private const string ImportJobDataString = "<solutionManifest><result result=\"success\" errortext=\"\"></result></solutionManifest>";
@@ -69,7 +70,7 @@
         {
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await this.oDataSolutionService.ImportSolutionZipAsync(null);
+                await this.oDataSolutionService.ImportSolutionZipAsync(null).ConfigureAwait(false);
             });
         }
 

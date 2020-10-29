@@ -1,6 +1,5 @@
 ﻿namespace DevelopmentHub.Tests.Integration.Develop
 {
-    using System;
     using System.ServiceModel;
     using DevelopmentHub.Develop.Model;
     using DevelopmentHub.Repositories;
@@ -20,7 +19,7 @@
         /// Initializes a new instance of the <see cref="SolutionMergeTests"/> class.
         /// </summary>
         public SolutionMergeTests()
-            : base(new Uri("https://dhubdevelop.crm11.dynamics.com"), "max@dhubdevelop.onmicrosoft.com")
+            : base()
         {
             this.issueRepo = this.RepositoryFactory.GetRepository<DevelopContext, devhub_issue>();
             this.solutionMergeRepo = this.RepositoryFactory.GetRepository<DevelopContext, devhub_solutionmerge>();
@@ -183,7 +182,7 @@
             {
                 devhub_Issue = issueReference,
             });
-            this.OrgService.Execute(new devhub_RejectRequest { Target = solutionMergeReference });
+            this.CrmServiceClient.Execute(new devhub_RejectRequest { Target = solutionMergeReference });
 
             var updatedIssue = this.issueRepo.Retrieve(issueReference.Id, new string[] { "statuscode" });
 
@@ -209,7 +208,7 @@
             {
                 devhub_Issue = issueReference,
             });
-            this.OrgService.Execute(new devhub_RejectRequest { Target = solutionMergeReference });
+            this.CrmServiceClient.Execute(new devhub_RejectRequest { Target = solutionMergeReference });
 
             var updatedSolutionMerge = this.solutionMergeRepo.Retrieve(solutionMergeReference.Id, new string[] { "devhub_approvedby", "devhub_approvedon" });
 

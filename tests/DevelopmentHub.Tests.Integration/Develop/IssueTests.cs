@@ -19,7 +19,7 @@
         /// Initializes a new instance of the <see cref="IssueTests"/> class.
         /// </summary>
         public IssueTests()
-            : base(new Uri("https://devhubdevelop.crm11.dynamics.com"), "max@devhubdevelop.onmicrosoft.com")
+            : base()
         {
             this.issueRepo = this.RepositoryFactory.GetRepository<DevelopContext, devhub_issue>();
         }
@@ -39,7 +39,7 @@
 
             Assert.Throws<FaultException<OrganizationServiceFault>>(() =>
             {
-                var response = (devhub_StartDevelopingResponse)this.OrgService.Execute(
+                var response = (devhub_StartDevelopingResponse)this.CrmServiceClient.Execute(
                     new devhub_StartDevelopingRequest { Target = issueReference });
             });
         }
@@ -58,7 +58,7 @@
             };
             var issueReference = this.CreateTestRecord(issue);
 
-            var response = (devhub_StartDevelopingResponse)this.OrgService.Execute(
+            var response = (devhub_StartDevelopingResponse)this.CrmServiceClient.Execute(
                 new devhub_StartDevelopingRequest { Target = issueReference });
             this.CreatedEntities.Add(response.Solution);
 
@@ -71,7 +71,7 @@
         [Fact]
         public void StartDeveloping_IssueToDo_UpdatesDevelopmentSolutionOnIssue()
         {
-            var expectedDevelopmentSolution = "devhub_StartDevelopingABug";
+            var expectedDevelopmentSolution = "test_StartDevelopingABug";
             var issue = new devhub_issue
             {
                 devhub_Description = "Allow users to start developing a bug.",
@@ -80,7 +80,7 @@
             };
             var issueReference = this.CreateTestRecord(issue);
 
-            var response = (devhub_StartDevelopingResponse)this.OrgService.Execute(
+            var response = (devhub_StartDevelopingResponse)this.CrmServiceClient.Execute(
                 new devhub_StartDevelopingRequest { Target = issueReference });
             this.CreatedEntities.Add(response.Solution);
 
