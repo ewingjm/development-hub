@@ -2,6 +2,8 @@
 
 The Development Hub brings continuous integration to Power Apps development by allowing developers to easily submit their Power Apps configuration/customisation for review and automated merging to source control.
 
+I recommend reading [this]((https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9)) introductory blog post which explains the reasons behind this project.
+
 ## Table of contents
 
 * [Prerequisites](#prerequisites)
