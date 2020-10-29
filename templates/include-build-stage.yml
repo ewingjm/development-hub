@@ -46,6 +46,8 @@ stages:
               projectKey: 'ewingjm_development-hub'
               projectName: 'Development Hub'
               projectVersion: '$(GitVersion.SemVer)'
+              extraProperties: |
+                sonar.eslint.reportPaths=$(Build.SourcesDirectory)/src/solutions/devhub_DevelopmentHub_Develop/WebResources/Scripts/test_results/analysis/eslint.json
           - task: PowerShell@2
             displayName: 'Run Cake build'
             inputs:
