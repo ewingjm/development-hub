@@ -57,7 +57,7 @@ If you have an existing folder structure which is different, the _Merge-Solution
 
 ### Create flow connections
 
-You will need to create two flow connections in your target environment. Within the [Power Apps Maker Portal](https://make.powerapps.com), go to your environment and navigate to _Data -> Connections_. Create a new _Approvals_ connection and a new _Azure DevOps_ connection. Make sure that the Azure DevOps connection is signed in as a user with access to the Azure DevOps project. Make a note of the connection names for both of the created connections. You can find this by opening the connection and taking it from the URL, which should be in the format _environments/<environmentid>/connections/<apiname>/<connectionname>/details
+You will need to create two flow connections in your target environment. Within the [Power Apps Maker Portal](https://make.powerapps.com), go to your environment and navigate to _Data -> Connections_. Create a new _Approvals_ connection and a new _Azure DevOps_ connection. Make sure that the Azure DevOps connection is signed in as a user with access to the Azure DevOps project. Make a note of the connection names for both of the created connections. You can find this by opening the connection and taking it from the URL, which should be in the format 'environments/environmentid/connections/apiname/_connectionname_/details'.
 
 ### Deploy the package
 
