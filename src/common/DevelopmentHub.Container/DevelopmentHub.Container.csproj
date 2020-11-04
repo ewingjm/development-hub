@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>DevelopmentHub.Container1.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>DevelopmentHub.Container.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Debug\DevelopmentHub.Container.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -39,7 +39,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>DevelopmentHub.Container1.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>DevelopmentHub.Container.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -86,7 +88,6 @@
   <ItemGroup>
     <None Include="DevelopmentHub.Container.ruleset" />
     <None Include="DevelopmentHub.Container.snk" />
-    <None Include="DevelopmentHub.Container1.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
