@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
@@ -36,7 +37,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Model", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{03372F36-58D1-40DB-984D-71C06C19E093}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Issues", "src\solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj", "{64ABB0F7-44DF-6117-3387-B2B32BB452EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Issues", "src\solutions\devhub_DevelopmentHub_Issues\PluginAssemblies\DevelopmentHub.Issues\DevelopmentHub.Issues.csproj", "{64ABB0F7-44DF-6117-3387-B2B32BB452EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Develop", "src\solutions\devhub_DevelopmentHub_Develop\PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj", "{AF4354C4-16BE-A48C-ABE4-08960B527EF4}"
 EndProject
@@ -95,6 +96,10 @@ Global
 		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
 		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF4354C4-16BE-A48C-ABE4-08960B527EF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41659723-9D86-4028-89F4-D923EB4AD027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41659723-9D86-4028-89F4-D923EB4AD027}.Deploy|Any CPU.ActiveCfg = Debug|Any CPU
+		{41659723-9D86-4028-89F4-D923EB4AD027}.Deploy|Any CPU.Build.0 = Debug|Any CPU
+		{41659723-9D86-4028-89F4-D923EB4AD027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
