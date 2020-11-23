@@ -1,11 +1,7 @@
 {
-    "environments": {
-        "development": {
-            "url": "https://devhubtrial.crm11.dynamics.com"
-        }
-    },
-    "dependencies": {
-        "noResolve": [
+    "DevelopmentProfile": "cplan1",
+    "Dependencies": {
+        "NoResolve": [
             "CustomControlsCore",
             "EnvironmentVariables"
         ]
