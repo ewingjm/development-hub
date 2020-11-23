@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Mapping>
-  <FileToPath map="WebResources\**\*.*" to="..\..\..\WebResources\**"/>
-  <FileToFile map="DevelopmentHubIssues.dll" to="..\..\..\PluginAssemblies\DevelopmentHub.Issues\bin\Deploy\DevelopmentHub.Issues.dll"/>
+  <FileToPath map="WebResources\**\*.*" to="..\WebResources\**"/>
+  <FileToFile map="DevelopmentHubIssues.dll" to="..\PluginAssemblies\DevelopmentHub.Issues\bin\Release\DevelopmentHub.Issues.dll"/>
 </Mapping>
