@@ -1,131 +1,169 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "shell",
-      "label": "Build Package",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"Default\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Build Solution",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"BuildSolution\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Generate Model",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"GenerateModel\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Extract Solution",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"ExtractSolution\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Pack Solution",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"PackSolution\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Deploy Plugins",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"DeployPlugins\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Deploy Workflow Activities",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"DeployWorkflowActivities\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
-      "label": "Build Development Environment",
-      "command": [
-        "powershell",
-        "-ExecutionPolicy ByPass",
-        "-File build.ps1",
-        "-Target \"BuildDevelopmentEnvironment\"",
-        "-ScriptArgs \"--solution=${input:solution}\""
-      ],
-      "problemMatcher": []
-    }
-  ],
-  "inputs": [
-    {
-      "id": "solution",
-      "description": "The solution to execute the task for.",
-      "type": "pickString",
-      "options": [
-        "devhub_DevelopmentHub_Issues",
-        "devhub_DevelopmentHub_Develop",
-        "devhub_DevelopmentHub_AzureDevOps"
-      ]
-    },
-    {
-      "id": "dataType",
-      "description": "Type of data.",
-      "type": "pickString",
-      "options": [
-        "PreDeployment",
-        "PostDeployment"
-      ]
-    },
-    {
-      "id": "url",
-      "type": "promptString",
-      "description": "Environment URL."
-    },
-    {
-      "id": "username",
-      "type": "promptString",
-      "description": "Environment usename."
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/build/_build.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/build/_build.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/build/_build.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "shell",
+            "label": "Build Package",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"Default\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Build Solution",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"BuildSolution\"",
+                "-ScriptArgs \"--solution=${input:solution}\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Generate Model",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"GenerateModel\"",
+                "-ScriptArgs \"--solution=${input:solution}\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Extract solution",
+            "detail": "Exports a solution and extracts its metadata into source control",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "--target ExtractSolution",
+                "--DataverseSolution ${input:solution}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Build solution",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "--target BuildSolution",
+                "--DataverseSolution ${input:solution}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Deploy Plugins",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"DeployPlugins\"",
+                "-ScriptArgs \"--solution=${input:solution}\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Deploy Workflow Activities",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"DeployWorkflowActivities\"",
+                "-ScriptArgs \"--solution=${input:solution}\""
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Build Development Environment",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"BuildDevelopmentEnvironment\"",
+                "-ScriptArgs \"--solution=${input:solution}\""
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "solution",
+            "description": "The solution to execute the task for.",
+            "type": "pickString",
+            "options": [
+                "devhub_DevelopmentHub_Issues",
+                "devhub_DevelopmentHub_Develop",
+                "devhub_DevelopmentHub_AzureDevOps"
+            ]
+        },
+        {
+            "id": "dataType",
+            "description": "Type of data.",
+            "type": "pickString",
+            "options": [
+                "PreDeployment",
+                "PostDeployment"
+            ]
+        },
+        {
+            "id": "url",
+            "type": "promptString",
+            "description": "Environment URL."
+        },
+        {
+            "id": "username",
+            "type": "promptString",
+            "description": "Environment usename."
+        }
+    ]
 }
