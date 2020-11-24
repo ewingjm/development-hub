@@ -262,3 +262,5 @@ Log*.txt
 
 # Ignore generated SpecFlow feature files
 **/*.feature.cs
+
+**/eslint.json
