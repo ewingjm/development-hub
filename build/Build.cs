@@ -101,8 +101,8 @@ class Build : NukeBuild
            Pac($"solution export -p { managedSolutionPath } -n { DataverseSolution } -a -m");
            Pac($"solution export -p { unmanagedSolutionPath } -n { DataverseSolution } -a");
 
-           var metadataFolder = SolutionsDirectory / DataverseSolution / "src";
-           var mappingFilePath = SolutionsDirectory / DataverseSolution / "MappingFile.xml";
+           var metadataFolder = SolutionsDirectory / DataverseSolution / "Extract";
+           var mappingFilePath = SolutionsDirectory / DataverseSolution / "ExtractMappingFile.xml";
            SolutionPackager($"/action:Extract /zipfile:{unmanagedSolutionPath} /folder:{ metadataFolder } /packagetype:Both  /allowdelete:Yes /map:{ mappingFilePath }");
 
            DeleteDirectory(outputDirectory);
