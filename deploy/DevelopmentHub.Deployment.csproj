@@ -7,12 +7,7 @@
     <Copyright>Copyright ©  2020</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <CodeAnalysisRuleSet>DevelopmentHub.Deployment.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <DocumentationFile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Configurations>Debug;Release;Test</Configurations>
     <DebugType>portable</DebugType>
   </PropertyGroup>
   <PropertyGroup>
@@ -22,7 +17,7 @@
     <SolutionProjectsToBuild Include="../src/**/*.cdsproj" Visible="false" />
     <SolutionsToPack Include="../src/**/$(Configuration)/*.zip" Visible="false" />
   </ItemGroup>
-  <Target Name="PackSolutions" BeforeTargets="Build">
+  <Target Condition="'$(Configuration)'!='Test'" Name="PackSolutions" BeforeTargets="Build">
     <MSBuild BuildInParallel="true" Projects="@(SolutionProjectsToBuild)" Targets="Restore" />
     <MSBuild BuildInParallel="true" Projects="@(SolutionProjectsToBuild)" Targets="Build" />
     <Copy DestinationFolder="$(OutputPath)PkgFolder" SourceFiles="@(SolutionsToPack)" />

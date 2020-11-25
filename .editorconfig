@@ -1,2 +1,6 @@
 [*.generated.cs]
 generated_code = true
+[*.cs]
+
+# SA0001: XML comment analysis disabled
+dotnet_diagnostic.SA0001.severity = none

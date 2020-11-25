@@ -6,10 +6,12 @@
     <AssemblyOriginatorKeyFile>DevelopmentHub.Issues.snk</AssemblyOriginatorKeyFile>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <CodeAnalysisRuleSet>DevelopmentHub.Issues.ruleset</CodeAnalysisRuleSet>
+    <Configurations>Debug;Release;Test</Configurations>
   </PropertyGroup>
- 
+
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props')" />
- 
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -24,16 +26,21 @@
     </PackageReference>
   </ItemGroup>
 
-    <ItemGroup>
-    <ProjectReference Condition="'$(Configuration)'=='UnitTest'" Include="..\..\..\..\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
+  <ItemGroup>
+    <ProjectReference Condition="'$(Configuration)'=='Test'" Include="..\..\..\..\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj">
       <Project>{f9e5ef62-5bdf-4e36-8027-d265754b56c7}</Project>
       <Name>DevelopmentHub.Container</Name>
+      <SetConfiguration>Configuration=Debug</SetConfiguration>
     </ProjectReference>
   </ItemGroup>
 
-  <Import Condition="'$(Configuration)'!='UnitTest'" Project="..\..\..\..\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
-  <Import Condition="'$(Configuration)'!='UnitTest'" Project="..\..\..\..\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems" Label="Shared" />
-  <Import Condition="'$(Configuration)'!='UnitTest'" Project="..\..\..\..\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems" Label="Shared" />
+  <ItemGroup>
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <Import Condition="'$(Configuration)'!='Test'" Project="..\..\..\..\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'!='Test'" Project="..\..\..\..\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems" Label="Shared" />
+  <Import Condition="'$(Configuration)'!='Test'" Project="..\..\..\..\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems" Label="Shared" />
 
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.targets')" />
 </Project>
