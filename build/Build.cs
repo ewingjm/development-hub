@@ -116,7 +116,7 @@ class Build : NukeBuild
     private SolutionConfiguration GetSolutionConfig(string dataverseSolution)
     {
         return JsonSerializer.Deserialize<SolutionConfiguration>(
-            File.ReadAllText(SolutionsDirectory / DataverseSolution / "solution.json"),
+            File.ReadAllText(SolutionsDirectory / dataverseSolution / "solution.json"),
             new JsonSerializerOptions()
             {
                 PropertyNameCaseInsensitive = true
