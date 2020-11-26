@@ -1,27 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{4E0FEC5A-48CA-423F-B581-86B12F3A0E7B}</ProjectGuid>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>DevelopmentHub.Deployment</AssemblyTitle>
     <Product>DevelopmentHub.Deployment</Product>
     <Copyright>Copyright ©  2020</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <CodeAnalysisRuleSet>DevelopmentHub.Deployment.ruleset</CodeAnalysisRuleSet>
     <Configurations>Debug;Release;Test</Configurations>
-    <DebugType>portable</DebugType>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
+  <Target Condition="'$(Configuration)'!='Test'" Name="PackSolutions" BeforeTargets="Build">
+    <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Restore" />
+    <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Build" />
+    <Copy DestinationFolder="$(OutputPath)PkgFolder" SourceFiles="@(SolutionsToPack)" />
+  </Target>
   <ItemGroup>
     <SolutionProjectsToBuild Include="../src/**/*.cdsproj" Visible="false" />
     <SolutionsToPack Include="../src/**/$(Configuration)/*.zip" Visible="false" />
   </ItemGroup>
-  <Target Condition="'$(Configuration)'!='Test'" Name="PackSolutions" BeforeTargets="Build">
-    <MSBuild BuildInParallel="true" Projects="@(SolutionProjectsToBuild)" Targets="Restore" />
-    <MSBuild BuildInParallel="true" Projects="@(SolutionProjectsToBuild)" Targets="Build" />
-    <Copy DestinationFolder="$(OutputPath)PkgFolder" SourceFiles="@(SolutionsToPack)" />
-  </Target>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>

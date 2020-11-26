@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutions", "solutions", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{2AD54360-54F9-4CCD-8261-2ED80D5E8F4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Ui", "tests\DevelopmentHub.Tests.Ui\DevelopmentHub.Tests.Ui.csproj", "{D4F155F1-411E-4C63-95F6-F0F9D9D450DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Tests.Ui", "tests\DevelopmentHub.Tests.Ui\DevelopmentHub.Tests.Ui.csproj", "{D4F155F1-411E-4C63-95F6-F0F9D9D450DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66632694-4D0C-4007-B7AC-059E9BCC5932}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,11 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{D0CD09
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Deployment", "deploy\DevelopmentHub.Deployment.csproj", "{4E0FEC5A-48CA-423F-B581-86B12F3A0E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Unit", "tests\DevelopmentHub.Tests.Unit\DevelopmentHub.Tests.Unit.csproj", "{F9924F3A-AF7A-408B-BF7E-4833CA103E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Tests.Unit", "tests\DevelopmentHub.Tests.Unit\DevelopmentHub.Tests.Unit.csproj", "{F9924F3A-AF7A-408B-BF7E-4833CA103E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Tests.Integration", "tests\DevelopmentHub.Tests.Integration\DevelopmentHub.Tests.Integration.csproj", "{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Tests.Integration", "tests\DevelopmentHub.Tests.Integration\DevelopmentHub.Tests.Integration.csproj", "{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevelopmentHub.Container", "src\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj", "{F9E5EF62-5BDF-4E36-8027-D265754B56C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevelopmentHub.Container", "src\common\DevelopmentHub.Container\DevelopmentHub.Container.csproj", "{F9E5EF62-5BDF-4E36-8027-D265754B56C7}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DevelopmentHub.Model", "src\common\DevelopmentHub.Model\DevelopmentHub.Model.shproj", "{9903C7AB-FF17-4FE6-AA49-F4B429847BCA}"
 EndProject
@@ -52,9 +52,9 @@ Global
 		src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 5
 		src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 5
 		src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{af4354c4-16be-a48c-abe4-08960b527ef4}*SharedItemsImports = 5
-		src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
-		src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
-		src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 4
+		src\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 5
+		src\common\DevelopmentHub.Model\DevelopmentHub.Model.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 5
+		src\common\DevelopmentHub.Repositories\DevelopmentHub.Repositories.projitems*{f9e5ef62-5bdf-4e36-8027-d265754b56c7}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,9 +81,7 @@ Global
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD08C829-9610-4141-8C8F-0CDB7DCDDB57}.Test|Any CPU.Build.0 = Debug|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Test|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9E5EF62-5BDF-4E36-8027-D265754B56C7}.Test|Any CPU.Build.0 = Debug|Any CPU
 		{64ABB0F7-44DF-6117-3387-B2B32BB452EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
