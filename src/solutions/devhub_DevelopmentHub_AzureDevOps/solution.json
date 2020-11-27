@@ -1,9 +1,3 @@
 {
-  "DevelopmentProfile": "cplan2",
-  "Dependencies": {
-      "NoResolve": [
-          "CustomControlsCore",
-          "EnvironmentVariables"
-      ]
-  }
+  "DevelopmentProfile": "cplan2"
 }

@@ -2,78 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/build/_build.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/build/_build.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/build/_build.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "type": "shell",
-            "label": "Build Package",
-            "command": [
-                "powershell",
-                "-ExecutionPolicy ByPass",
-                "-File build.ps1",
-                "-Target \"Default\""
-            ],
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "Build Solution",
-            "command": [
-                "powershell",
-                "-ExecutionPolicy ByPass",
-                "-File build.ps1",
-                "-Target \"BuildSolution\"",
-                "-ScriptArgs \"--solution=${input:solution}\""
-            ],
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "Generate Model",
-            "command": [
-                "powershell",
-                "-ExecutionPolicy ByPass",
-                "-File build.ps1",
-                "-Target \"GenerateModel\"",
-                "-ScriptArgs \"--solution=${input:solution}\""
-            ],
-            "problemMatcher": []
-        },
-        {
             "type": "shell",
             "label": "Extract solution",
             "detail": "Exports a solution and extracts its metadata into source control",
@@ -88,49 +16,77 @@
         },
         {
             "type": "shell",
-            "label": "Build solution",
+            "label": "Pack solution",
+            "detail": "Packs a managed or unmanaged solution zip file.",
             "command": [
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target BuildSolution",
-                "--DataverseSolution ${input:solution}"
+                "--target PackSolution",
+                "--DataverseSolution ${input:solution}",
+                "--SolutionType ${input:solutionType}"
             ],
             "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "Deploy Plugins",
+            "label": "Clean",
+            "detail": "Deletes all build outputs.",
             "command": [
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "-Target \"DeployPlugins\"",
-                "-ScriptArgs \"--solution=${input:solution}\""
+                "--target Clean",
             ],
             "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "Deploy Workflow Activities",
+            "label": "Restore",
+            "detail": "Restores all package references.",
             "command": [
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "-Target \"DeployWorkflowActivities\"",
-                "-ScriptArgs \"--solution=${input:solution}\""
+                "--target Restore",
             ],
             "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "Build Development Environment",
+            "label": "Compile",
+            "detail": "Builds a managed or unmanaged Package Deployer package.",
             "command": [
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "-Target \"BuildDevelopmentEnvironment\"",
-                "-ScriptArgs \"--solution=${input:solution}\""
+                "--target Compile",
+                "--SolutionType ${input:solutionType}"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Prepare development environment",
+            "detail": "Prepares a development environment for the selected solution.",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"PrepareDevelopmentEnvironment\"",
+                "--DataverseSolution ${input:solution}",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Open Plug-in Registration Tool",
+            "detail": "Opens the Plug-in Regstration Tool.",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"OpenPluginRegistrationTool\"",
             ],
             "problemMatcher": []
         }
@@ -147,23 +103,13 @@
             ]
         },
         {
-            "id": "dataType",
-            "description": "Type of data.",
+            "id": "solutionType",
+            "description": "Type of solution.",
             "type": "pickString",
             "options": [
-                "PreDeployment",
-                "PostDeployment"
+                "Managed",
+                "Unmanaged"
             ]
-        },
-        {
-            "id": "url",
-            "type": "promptString",
-            "description": "Environment URL."
-        },
-        {
-            "id": "username",
-            "type": "promptString",
-            "description": "Environment usename."
         }
     ]
 }

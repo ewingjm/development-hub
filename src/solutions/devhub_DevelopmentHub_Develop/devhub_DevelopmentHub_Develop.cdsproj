@@ -48,6 +48,7 @@
     <ProjectReference Include="PluginAssemblies\DevelopmentHub.Develop\DevelopmentHub.Develop.csproj" />
   </ItemGroup>
 
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Solution.targets" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Solution.targets')" />
 

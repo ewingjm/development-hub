@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CrmSdk.CoreTools" Version="9.1.0.64" />
     <PackageReference Include="Nuke.Common" Version="5.0.0" />
-    <PackageReference Include="spkl" Version="1.0.431" />
+    <PackageDownload Include="Microsoft.CrmSdk.XrmTooling.PluginRegistrationTool" Version="[9.1.0.20]" />
+    <PackageDownload Include="Microsoft.CrmSdk.CoreTools" Version="[9.1.0.64]" />
     <PackageDownload Include="GitVersion.Tool" Version="[5.1.1]" />
   </ItemGroup>
 
