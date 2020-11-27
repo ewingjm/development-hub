@@ -92,7 +92,7 @@
         },
         {
             "type": "shell",
-            "label": "Ope plug-ins",
+            "label": "Deploy plug-ins",
             "detail": "Deploys plug-ins for a solution using spkl.",
             "command": [
                 "powershell",
