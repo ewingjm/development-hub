@@ -67,6 +67,18 @@
         },
         {
             "type": "shell",
+            "label": "Compile tests",
+            "detail": "Compiles the test projects.",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "--target CompileTests",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
             "label": "Prepare development environment",
             "detail": "Prepares a development environment for the selected solution.",
             "command": [

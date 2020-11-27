@@ -105,6 +105,14 @@ class Build : NukeBuild
                 .EnableNoRestore());
         });
 
+    Target CompileTests => _ => _
+        .Executes(() =>
+        {
+            DotNetBuild(s => s
+                .SetProjectFile(Solution)
+                .SetConfiguration(Configuration.Test));
+        });
+
     Target ExtractSolution => _ => _
         .Executes(() =>
        {
