@@ -46,7 +46,6 @@ class Build : NukeBuild
 
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
-    [GitVersion] readonly GitVersion GitVersion;
 
     [PathExecutable]
     readonly Tool Pac;
@@ -56,11 +55,9 @@ class Build : NukeBuild
         "SolutionPackager.exe")]
     readonly Tool SolutionPackager;
 
-    [PackageExecutable(
-        "Microsoft.CrmSdk.XrmTooling.PluginRegistrationTool",
-        "PluginRegistration.exe"
-    )]
-    readonly Tool PluginRegistration;
+    // using local executable rather than package due to an issue with spkl location CrmSvcUtil within SDK-style package cache
+    [LocalExecutable(".tmp/spkl/spkl.exe")]
+    readonly Tool Spkl;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath TestsDirectory => RootDirectory / "tests";
@@ -150,13 +147,39 @@ class Build : NukeBuild
             InstallSolutionAndDependencies(DataverseSolution, SolutionType.Unmanaged);
         });
 
-    Target OpenPluginRegistrationTool => _ => _
+    Target CopySpklToTempFolder => _ => _
         .Executes(() =>
         {
-            ProcessTasks.StartProcess(
-                ToolPathResolver.GetPackageExecutable(
-                    "Microsoft.CrmSdk.XrmTooling.PluginRegistrationTool",
-                    "PluginRegistration.exe"));
+            var spklDirectory = ((AbsolutePath)ToolPathResolver.GetPackageExecutable("spkl", "spkl.exe")).Parent;
+            var targetSpklDirectory = TemporaryDirectory / "spkl";
+            DeleteDirectory(targetSpklDirectory);
+            CopyDirectoryRecursively(spklDirectory, targetSpklDirectory);
+
+            var coreToolsDirectory = ((AbsolutePath)ToolPathResolver.GetPackageExecutable("Microsoft.CrmSdk.CoreTools", "CrmSvcUtil.exe")).Parent;
+            var targetCoreToolsDirectory = TemporaryDirectory / "coretools";
+            DeleteDirectory(targetCoreToolsDirectory);
+            CopyDirectoryRecursively(coreToolsDirectory, targetCoreToolsDirectory);
+        });
+
+    Target DeployPlugins => _ => _
+        .DependsOn(CopySpklToTempFolder)
+        .Executes(() =>
+        {
+            Spkl($"plugins { SolutionDirectory / "spkl.json" }");
+        });
+
+    Target DeployWorkflowActivities => _ => _
+        .DependsOn(CopySpklToTempFolder)
+        .Executes(() =>
+        {
+            Spkl($"workflow { SolutionDirectory / "spkl.json" }");
+        });
+
+    Target GenerateModel => _ => _
+        .DependsOn(CopySpklToTempFolder)
+        .Executes(() =>
+        {
+            Spkl($"earlybound { SolutionDirectory / "spkl.json" }");
         });
 
     void SetActivePacProfile(string profile)

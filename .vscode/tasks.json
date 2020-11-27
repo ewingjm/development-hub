@@ -9,7 +9,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target ExtractSolution",
+                "--target extract-solution",
                 "--DataverseSolution ${input:solution}"
             ],
             "problemMatcher": []
@@ -22,7 +22,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target PackSolution",
+                "--target packs-solution",
                 "--DataverseSolution ${input:solution}",
                 "--SolutionType ${input:solutionType}"
             ],
@@ -36,7 +36,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target Clean",
+                "--target clean",
             ],
             "problemMatcher": []
         },
@@ -48,7 +48,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target Restore",
+                "--target restore",
             ],
             "problemMatcher": []
         },
@@ -60,7 +60,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target Compile",
+                "--target compile",
                 "--SolutionType ${input:solutionType}"
             ],
             "problemMatcher": []
@@ -73,7 +73,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target CompileTests",
+                "--target compile-tests",
             ],
             "problemMatcher": []
         },
@@ -85,20 +85,47 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "-Target \"PrepareDevelopmentEnvironment\"",
+                "-Target \"prepare-development-environment\"",
                 "--DataverseSolution ${input:solution}",
             ],
             "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "Open Plug-in Registration Tool",
-            "detail": "Opens the Plug-in Regstration Tool.",
+            "label": "Ope plug-ins",
+            "detail": "Deploys plug-ins for a solution using spkl.",
             "command": [
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "-Target \"OpenPluginRegistrationTool\"",
+                "-Target \"deploy-plugins\"",
+                "--DataverseSolution ${input:solution}",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Deploy workflow activities",
+            "detail": "Deploys workflow activities for a solution using spkl.",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"deploy-workflow-activities\"",
+                "--DataverseSolution ${input:solution}",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Generate early-bound model",
+            "detail": "Generates an early-bound model for a solution using spkl.",
+            "command": [
+                "powershell",
+                "-ExecutionPolicy ByPass",
+                "-File build.ps1",
+                "-Target \"generate-model\"",
+                "--DataverseSolution ${input:solution}",
             ],
             "problemMatcher": []
         }
