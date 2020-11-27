@@ -1,6 +1,7 @@
 ﻿namespace DevelopmentHub.Tests.Ui.Steps
 {
     using System.Linq;
+    using System.Text.RegularExpressions;
     using Capgemini.PowerApps.SpecFlowBindings;
     using FluentAssertions;
     using Microsoft.Dynamics365.UIAutomation.Api.UCI;
@@ -40,9 +41,10 @@
                     By.XPath(
                         AppElements.Xpath[AppReference.Entity.TextFieldContainer].Replace("[NAME]", field)));
 
-                var errorMessage = fieldContainer
+                var errorMessageWithDisplayName = fieldContainer
                     .FindElement(By.XPath($"//*[contains(@data-id, \'{field}-error-message\')]"))
                     .Text;
+                var errorMessage = Regex.Match(errorMessageWithDisplayName, @".*:\s(.*)").Groups[1].Value;
 
                 errorMessage.Should().Be(expectedError);
             }
