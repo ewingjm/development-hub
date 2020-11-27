@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <AssemblyTitle>DevelopmentHub.Deployment</AssemblyTitle>
     <Product>DevelopmentHub.Deployment</Product>
     <Copyright>Copyright ©  2020</Copyright>
