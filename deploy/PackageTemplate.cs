@@ -405,7 +405,7 @@ namespace DevelopmentHub.Deployment
 
         private void SetDevelopmentHubFlowConnections()
         {
-            this.flowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
+            this.FlowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
 
             if (!string.IsNullOrEmpty(this.ApprovalsConnectionName))
             {
