@@ -405,19 +405,17 @@ namespace DevelopmentHub.Deployment
 
         private void SetDevelopmentHubFlowConnections()
         {
+            this.flowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
+
             if (!string.IsNullOrEmpty(this.ApprovalsConnectionName))
             {
-                this.FlowDeploymentSvc.SetFlowConnection(new Guid("5004652f-f9b3-ea11-a812-000d3a86ad99"), "shared_approvals", this.ApprovalsConnectionName);
+                this.FlowDeploymentSvc.SetConnectionAndActivateFlow(new Guid("5004652f-f9b3-ea11-a812-000d3a86ad99"), "shared_approvals", this.ApprovalsConnectionName);
             }
 
             if (!string.IsNullOrEmpty(this.AzureDevOpsConnectionName))
             {
-                this.FlowDeploymentSvc.SetFlowConnection(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices_1", this.AzureDevOpsConnectionName);
+                this.FlowDeploymentSvc.SetConnectionAndActivateFlow(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices_1", this.AzureDevOpsConnectionName);
             }
-
-            this.ActivateFlowsInSolution("devhub_DevelopmentHub_Issues");
-            this.ActivateFlowsInSolution("devhub_DevelopmentHub_Develop");
-            this.ActivateFlowsInSolution("devhub_DevelopmentHub_AzureDevOps");
         }
 
         private void SetDevelopmentHubPluginStepConfigurations()
