@@ -11,17 +11,21 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
+  <ItemGroup>
+    <SolutionProjectsToBuild Include="../src/**/*.cdsproj" Visible="false" />
+  </ItemGroup>
   <Target Condition="'$(Configuration)'!='Test'" Name="PackSolutions" BeforeTargets="Build">
     <Exec Command="dotnet build %(SolutionProjectsToBuild.FullPath) --configuration $(Configuration)" />
     <!-- Using Exec as the MSBuild task was failing from a clean build.
     <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Restore" />
     <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Build" /> -->
+  </Target>
+  <Target Condition="'$(Configuration)'!='Test'" Name="CopySolutionsToPackageFolder" AfterTargets="Build">
+    <ItemGroup>
+      <SolutionsToPack Include="../src/**/$(Configuration)/*.zip" Visible="false" />
+    </ItemGroup>
     <Copy DestinationFolder="$(OutputPath)PkgFolder" SourceFiles="@(SolutionsToPack)" />
   </Target>
-  <ItemGroup>
-    <SolutionProjectsToBuild Include="../src/**/*.cdsproj" Visible="false" />
-    <SolutionsToPack Include="../src/**/$(Configuration)/*.zip" Visible="false" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
