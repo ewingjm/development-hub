@@ -61,7 +61,7 @@ namespace DevelopmentHub.Deployment
 
             this.CrmSvc.Update(flow);
 
-            if (activate == true)
+            if (activate)
             {
                 this.ActivateFlow(flow.Id);
             }
