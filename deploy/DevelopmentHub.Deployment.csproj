@@ -12,8 +12,10 @@
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
   <Target Condition="'$(Configuration)'!='Test'" Name="PackSolutions" BeforeTargets="Build">
+    <Exec Command="dotnet build %(SolutionProjectsToBuild.FullPath) --configuration $(Configuration)" />
+    <!-- Using Exec as the MSBuild task was failing from a clean build.
     <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Restore" />
-    <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Build" />
+    <MSBuild Projects="@(SolutionProjectsToBuild)" Targets="Build" /> -->
     <Copy DestinationFolder="$(OutputPath)PkgFolder" SourceFiles="@(SolutionsToPack)" />
   </Target>
   <ItemGroup>
