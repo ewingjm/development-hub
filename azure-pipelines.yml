@@ -23,13 +23,13 @@ stages:
       environmentVariableGroup: 'Environment - Test'
   - stage: CreateRelease
     displayName: 'Create release'
+    dependsOn:
+      - 'Build'
+      - 'Test'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
       - job: CreateReleaseJob
         displayName: 'Create release'
-        dependsOn:
-          - 'Build'
-          - 'Test'
         variables: 
           SemVer: $[ stageDependencies.Build.BuildJob.outputs['OutputSemVerTask.SemVer'] ]
         steps:
@@ -42,7 +42,7 @@ stages:
               rootFolderOrFile: '$(Pipeline.Workspace)/Development Hub'
               includeRootFolder: true
               archiveType: 'zip'
-              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/Development Hub v$(SemVer).zip'
               replaceExistingArchive: true
           - task: GitHubRelease@1
             displayName: Create GitHub release
@@ -54,7 +54,7 @@ stages:
               tagSource: 'userSpecifiedTag'
               tag: 'v$(SemVer)'
               releaseNotesSource: 'inline'
-              assets: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              assets: '$(Build.ArtifactStagingDirectory)/Development Hub v$(SemVer).zip'
               isPreRelease: true
               changeLogCompareToRelease: 'lastNonDraftRelease'
               changeLogType: 'commitBased'

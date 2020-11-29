@@ -49,11 +49,17 @@ stages:
               extraProperties: |
                 sonar.eslint.reportPaths=$(Build.SourcesDirectory)/src/solutions/devhub_DevelopmentHub_Develop/WebResources/Scripts/test_results/analysis/eslint.json
           - task: PowerShell@2
-            displayName: 'Run Cake build'
+            displayName: 'Build package'
             inputs:
               targetType: 'filePath'
               filePath: './build.ps1'
-              arguments: '-Target Default -Verbosity Quiet'
+              arguments: '--target compile --solution-type managed'
+          - task: PowerShell@2
+            displayName: 'Build tests'
+            inputs:
+              targetType: 'filePath'
+              filePath: './build.ps1'
+              arguments: '--target compile-tests'
           - task: VSTest@2
             displayName: Run unit tests
             inputs:
@@ -78,17 +84,17 @@ stages:
           - task: CopyFiles@2
             displayName: 'Copy package to artifact staging directory'
             inputs:
-              SourceFolder: 'deploy/bin/Release'
+              SourceFolder: 'deploy/bin/Release/net462'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/package'
           - task: CopyFiles@2
             displayName: 'Copy integration tests to artifact staging directory'
             inputs:
-              SourceFolder: 'tests\DevelopmentHub.Tests.Integration\bin\Release'
+              SourceFolder: 'tests\DevelopmentHub.Tests.Integration\bin\Debug\net48'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/tests/integration'
           - task: CopyFiles@2
             displayName: 'Copy UI tests to artifact staging directory'
             inputs:
-              SourceFolder: 'tests\DevelopmentHub.Tests.Ui\bin\Release'
+              SourceFolder: 'tests\DevelopmentHub.Tests.Ui\bin\Debug\net48'
               TargetFolder: '$(Build.ArtifactStagingDirectory)/tests/ui'
           - task: PublishBuildArtifacts@1
             displayName: 'Publish package artifact'

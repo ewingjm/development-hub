@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<configdatastorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" installsampledata="false" waitforsampledatatoinstall="true" agentdesktopzipfile="" agentdesktopexename="" crmmigdataimportfile="" skipCustomDeployment="false" dontUseHoldingSolution="false" useNewApi="true" useAsyncImport="true" useAsyncUpgrade="true" asyncSleepIntervalMiliseconds="10000" asyncTimeoutSeconds="3600" disableSlaBeforeImport="false" enableSlaAfterImport="false" defaultSlaNames="" skipPostDeploymentActions="true">
+<configdatastorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" installsampledata="false" waitforsampledatatoinstall="true" agentdesktopzipfile="" agentdesktopexename="" crmmigdataimportfile="" asyncSleepIntervalMiliseconds="10000" asyncTimeoutSeconds="3600" >
   <solutions>
-    <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_Issues_managed.zip" useAsync="true"/>
-    <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_Develop_managed.zip" useAsync="true"/>
-    <configsolutionfile deleteonly="false" forceUpgrade="false" overwriteunmanagedcustomizations="true" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_AzureDevOps_managed.zip" useAsync="true"/>
+    <configsolutionfile overwriteunmanagedcustomizations="false" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_Issues.zip" />
+    <configsolutionfile overwriteunmanagedcustomizations="false" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_Develop.zip" />
+    <configsolutionfile overwriteunmanagedcustomizations="false" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_AzureDevOps.zip" />
   </solutions>
   <filestoimport/>
   <filesmapstoimport/>
