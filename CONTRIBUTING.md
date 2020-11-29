@@ -4,40 +4,41 @@ Please first discuss the change you wish to make via an issue before making a ch
 
 ## Development environment
 
-You will need to setup a development environment before you can start making changes to the Development Hub app.
+You will need to setup a development environment before you can start making changes to the Development Hub app. If you do not have an existing instance, you can create one for free with the [Power Apps Community Plan](https://docs.microsoft.com/en-us/powerapps/maker/dev-community-plan) or signing up for a [trial](https://trials.dynamics.com/).
+
+
+### Power Apps CLI
+
+You must have the [Power Apps CLI](https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/powerapps-cli) installed to use some of the Visual Studio Code build tasks. The _solution.json_ in each solution folder has a `developmentProfile` property - this is the Power Apps CLI authenication profile that maps to the development environment for that solution. You must create these authentication profiles using `pac auth create`.
 
 ### Power Apps
 
-A Visual Studio Code task has been defined which will allow you to recreate a development instance for a given solution. If you wanted to contribute to the devhub_DevelopmentHub_Develop solution, you would open the command palette within VS Code (_ctrl + shift + p_) and select _Tasks: Run Task_ followed by _Build Development Environment_ and _devhub_DevelopmentHub_Develop_. This task requires that you have first configured the development environment URL _solution.json_ file in the corresponding solution folder and set up your environment variables (see below).
-
-If you do not have an existing instance, you can create one for free with the [Power Apps Community Plan](https://docs.microsoft.com/en-us/powerapps/maker/dev-community-plan) or by signing up for a [trial](https://trials.dynamics.com/).
-
-### Environment variables
-
-Two environment variables are required to enable you to authenticate with the development and staging environments:
-
-- CAKE_DEVELOPMENTHUB_USERNAME
-- CAKE_DEVELOPMENTHUB_PASSWORD
-
-The username in the environment variable is used unless overridden by the username set in the corresponding _solution.json_ file. This is useful where the username for each solution is different (e.g. where you have multiple trials).
+A Visual Studio Code task has been defined which will allow you to provision a development instance for a given solution. For example, if you wanted to contribute to the devhub_DevelopmentHub_Develop solution, you would open the command palette within VS Code (_ctrl + shift + p_) and select _Tasks: Run Task_ followed by _Prepare Development Environment_ and _devhub_DevelopmentHub_Develop_. This task requires that you have first configured the authentication profile for the solution (as explained above).
 
 ### Build tasks
 
-A number of Cake build tasks have been defined to make development easier. It is recommended to call these via the command palette (_ctrl + shift + p_) and selecting _Tasks: Run Task_.
+Build tasks have been defined to make development easier. Call these in Visual Studio Code via the command palette (_ctrl + shift + p_) and selecting _Tasks: Run Task_.
 
 The following tasks are available: 
 
-- Build Development Environment
-- Extract Solution
-- Pack Solution
-- Build Package
-- Deploy Plugins
-- Deploy Workflow Activities
-- Generate Model
+- Clean
+- Restore
+- Compile
+- Compile tests
+- Prepare development environment
+- Generate early-bound model
+- Deploy workflow activities
+- Deploy plug-ins
+- Extract solution
+- Pack solution
 
+A description will be shown for each.
+
+> ⚠ **Building outside of the tasks is not recommended!**. If you are building the solution in Visual Studio, you should set the following environment variable:
+`MSBUILDDISABLENODEREUSE=1`. This is a workaround for an apparent bug in the MSBuild tasks used by solutions created with the Power Apps CLI. If you do not disable parallel builds or node reuse using the environment variable above, plug-in assembly files become locked afte a build and subsequent builds will fail.
 ### Extract to source control
 
-Before creating a pull request containing your changes, you must extract the solutions into source control. This can be done using the _Extract Solution_ task and specifying which solution(s) to extract.
+Before creating a pull request containing your changes, you must extract the solutions into source control. This can be done using the _Extract solution_ task and specifying which solution(s) to extract.
 
 ## Pull requests
 

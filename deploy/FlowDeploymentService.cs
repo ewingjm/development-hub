@@ -41,7 +41,8 @@ namespace DevelopmentHub.Deployment
         /// <param name="workflowId">The ID of the flow.</param>
         /// <param name="apiName">The API name (e.g. shared_sharepointonline).</param>
         /// <param name="connectionName">The connection name.</param>
-        public void SetFlowConnection(Guid workflowId, string apiName, string connectionName)
+        /// <param name="activate">Whether to activate after setting the connection.</param>
+        public void SetFlowConnection(Guid workflowId, string apiName, string connectionName, bool activate = true)
         {
             if (string.IsNullOrEmpty(apiName))
             {
@@ -55,10 +56,15 @@ namespace DevelopmentHub.Deployment
 
             this.PackageLog.Log($"Setting connection name for {apiName} on flow {workflowId}.");
 
-            var flow = this.CrmSvc.Retrieve("workflow", workflowId, new ColumnSet("clientdata"));
+            var flow = this.CrmSvc.Retrieve("workflow", workflowId, new ColumnSet("clientdata", "statecode", "statuscode"));
             flow["clientdata"] = this.GetClientDataWithConnectionName(flow.GetAttributeValue<string>("clientdata"), apiName, connectionName);
 
             this.CrmSvc.Update(flow);
+
+            if (activate)
+            {
+                this.ActivateFlow(flow.Id);
+            }
         }
 
         /// <summary>

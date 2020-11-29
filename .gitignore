@@ -17,7 +17,6 @@
 [Rr]eleases/
 [Xx]64/
 [Xx]86/
-[Bb]uild/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -263,3 +262,5 @@ Log*.txt
 
 # Ignore generated SpecFlow feature files
 **/*.feature.cs
+
+**/eslint.json
