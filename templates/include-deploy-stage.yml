@@ -31,12 +31,37 @@ stages:
                   inputs:
                     DefaultVersion: true
                 - task: PowerPlatformResetEnvironment@0
-                  displayName: Reset environment
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], false))
+                  displayName: Reset environment (sandbox)
                   inputs:
                     authenticationType: 'PowerPlatformEnvironment'
                     PowerPlatformEnvironment: '${{ parameters.resetServiceConnection }}'
                     TargetRelease: 'Dynamics 365, version 9.0'
                     BaseLanguage: '1033'
+                - task: PowerPlatformDeleteEnvironment@0
+                  displayName: 'Delete environment (community plan)'
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
+                  inputs:
+                    authenticationType: 'PowerPlatformEnvironment'
+                    PowerPlatformEnvironment: 'Developer Instance (adminuser)'
+                - task: PowerShell@2
+                  displayName: 'Open Maker Portal (community plan)'
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/Open-PowerAppsMakerPortal.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force)' 
+                - task: PowerShell@2
+                  displayName: 'Create new database (community plan)'
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/New-CommunityPlanCdsDatabase.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -CurrencyName GBP -LanguageCode 1033' 
                 - task: PowerShell@2
                   displayName: 'Create admin application user for Azure DevOps'
                   inputs:
