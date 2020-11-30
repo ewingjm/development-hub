@@ -26,6 +26,7 @@ stages:
             deploy:
               steps:
                 - download: none
+                - checkout: self
                 - task: PowerPlatformToolInstaller@0
                   displayName: 'Install Power Platform Build Tools'
                   inputs:
