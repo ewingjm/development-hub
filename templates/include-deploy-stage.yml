@@ -89,7 +89,6 @@ stages:
                     arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -DisplayName "Test Publisher" -UniqueName "testpublisher" -Prefix "test"'  
       - deployment: Deployment
         displayName: Deploy
-        condition: not(failed('ResetEnvironment'))
         environment: '${{ parameters.environment }}'
         variables:
           - group: '${{ parameters.environmentVariableGroup }}'
