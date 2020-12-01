@@ -10,6 +10,9 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
+Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force
+Install-Module -Name Microsoft.PowerApps.PowerShell -AllowClobber -Force 
+
 $ie = New-Object -Com 'InternetExplorer.Application'
 $ie.visible = $true
 $ie.Navigate('https://make.powerapps.com')
@@ -55,3 +58,20 @@ $nextButton.click()
 
 $backButton = Get-ElementByIdWhenAvailable('idBtn_Back')
 $backButton.click()
+
+Add-PowerAppsAccount -Username $Username -Password $Password
+
+$time = 0
+$interval = 5000
+$timeout = 120000
+do {
+    $env = Get-AdminPowerAppEnvironment
+    if ($null -eq $env) {
+        Start-Sleep -Milliseconds $interval
+        $time += $interval
+    }
+} while ($null -eq $env -and $time -lt $timeout)
+
+if ($null -eq $env) {
+    throw "Environment wasn't provisioned within $($timeout)ms timeout"
+}
