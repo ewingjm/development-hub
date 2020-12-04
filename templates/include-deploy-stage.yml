@@ -90,6 +90,7 @@ stages:
       - deployment: Deployment
         displayName: Deploy
         environment: '${{ parameters.environment }}'
+        dependsOn: ResetEnvironment
         variables:
           - group: '${{ parameters.environmentVariableGroup }}'
         strategy:
