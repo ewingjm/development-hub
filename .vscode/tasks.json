@@ -22,7 +22,7 @@
                 "powershell",
                 "-ExecutionPolicy ByPass",
                 "-File build.ps1",
-                "--target packs-solution",
+                "--target pack-solution",
                 "--DataverseSolution ${input:solution}",
                 "--SolutionType ${input:solutionType}"
             ],
