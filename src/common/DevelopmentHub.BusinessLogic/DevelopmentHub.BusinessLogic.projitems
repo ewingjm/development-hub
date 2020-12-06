@@ -11,14 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CrmPluginRegistrationAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\InArgumentExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IntegratedWorkflowActivity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IODataRepositoryFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IRepositoryFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logging\ConsoleLogWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logging\ILogWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logging\Severity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logging\TracingServiceLogWriter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataRepositoryFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Plugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RepositoryFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WorkflowActivity.cs" />

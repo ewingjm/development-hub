@@ -8,20 +8,4 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>DevelopmentHub.Model</Import_RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ODataClientResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataHeaders.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Requests\OAuthClientCredentialsGrantRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Requests\OAuthPasswordGrantRequest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OAuthToken.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataError.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Responses\ODataErrorResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ODataInnerError.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Responses\RetrieveMultipleResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Responses\" />
-  </ItemGroup>
 </Project>
