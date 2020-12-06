@@ -5,18 +5,18 @@
     <IntroducedVersion>0.0.1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
-        <tab verticallayout="true" id="{d8919516-dae4-4d1a-b066-1cd73b6316c7}" IsUserDefined="1">
+        <tab verticallayout="true" id="{d8919516-dae4-4d1a-b066-1cd73b6316c7}" IsUserDefined="1" name="tab_geneal">
           <labels>
             <label description="General" languagecode="1033" />
           </labels>
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{2d27e888-4bf1-48a7-b489-dd78e5cb3ce0}">
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{2d27e888-4bf1-48a7-b489-dd78e5cb3ce0}" name="tab_general_section_details" columns="1">
                   <labels>
-                    <label description="General" languagecode="1033" />
+                    <label description="Details" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
@@ -33,6 +33,44 @@
                           <label description="URL" languagecode="1033" />
                         </labels>
                         <control id="devhub_url" classid="{71716B6C-711E-476c-8AB8-5D11542BFB47}" datafieldname="devhub_url" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{f9925bc6-a4cc-4f8c-bfee-bcd320a6c46d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_geneal_section_auth" id="e1d86fd7-8117-4c2b-a194-eb8a2b13f8ed" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Auth" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c8f500bc-c64d-4cd2-99a3-ab91ffdb5c76}" locklevel="0">
+                        <labels>
+                          <label description="Client ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5fdefa8e-b2ee-4c40-b319-7e0e36af08c7}" locklevel="0">
+                        <labels>
+                          <label description="Tenant ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_tenantid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_tenantid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{de94194b-a577-4947-8369-f81f64e992d3}" locklevel="0">
+                        <labels>
+                          <label description="Client Secret" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_clientsecret" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientsecret" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -89,7 +127,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -118,6 +156,9 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

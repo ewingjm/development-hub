@@ -25,43 +25,5 @@
       <FriendlyName>Get Environment Variable</FriendlyName>
       <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
     </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.GetLastApprovedSolutionMerge, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="f802380c-749a-e911-a97d-002248010929" Name="GetLastApprovedSolutionMerge">
-      <Description>Gets the last approved solution merge for an environment</Description>
-      <FriendlyName>Get last approved solution merge</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.GetSolutionZip, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="7d58ac9f-0a8a-e911-a97b-002248010929" Name="GetSolutionZip">
-      <Description>Gets a solution zip file as a Base64 encoded string.</Description>
-      <FriendlyName>Get solution zip</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.GetSolutionZipFromInstance, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="6a7d8ccb-c89a-e911-a97d-002248010929" Name="GetSolutionZipFromInstance">
-      <Description>Gets a solution zip from another Common Data Service instance</Description>
-      <FriendlyName>Get solution zip from instance</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.ImportSolutionZip, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="7e58ac9f-0a8a-e911-a97b-002248010929" Name="ImportSolutionZip">
-      <Description>Imports a solution zip file as a Base64 encoded string.</Description>
-      <FriendlyName>Import solution zip</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.MergeSolutionComponents, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="d8117b3c-4395-e911-a97d-002248010929" Name="MergeSolutionComponents">
-      <Description>Merges from a source solution into a target solution</Description>
-      <FriendlyName>Merge solution components</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.PublishAll, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="33e835ea-b0b6-ea11-a812-000d3a86ad99" Name="PublishAll">
-      <Description>Publishes all solution components in a target environment.</Description>
-      <FriendlyName>Publish all</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.UpdateSolutionVersion, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="b2831985-559b-e911-a97d-002248010929" Name="UpdateSolutionVersion">
-      <Description>Updates the version of a solution.</Description>
-      <FriendlyName>Update solution version</FriendlyName>
-      <WorkflowActivityGroupName>DevelopmentHub.Develop</WorkflowActivityGroupName>
-    </PluginType>
-    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.Plugins.InjectSecureConfig, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="fdb0db23-769a-e911-a97d-002248010929" Name="DevelopmentHub.Develop.Plugins.InjectSecureConfig">
-      <FriendlyName>DevelopmentHub.Develop.Plugins.InjectSecureConfig</FriendlyName>
-    </PluginType>
   </PluginTypes>
 </PluginAssembly>

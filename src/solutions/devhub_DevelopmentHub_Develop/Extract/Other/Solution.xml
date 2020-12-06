@@ -90,32 +90,25 @@
       <RootComponent type="29" id="{154fbb6c-7784-e911-a97e-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" behavior="0" />
       <RootComponent type="29" id="{20af6fb0-4bb9-ea11-a812-000d3a86ad99}" behavior="0" />
-      <RootComponent type="29" id="{21aca484-99bb-406f-bbd0-9a2db41cff4e}" behavior="0" />
       <RootComponent type="29" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" behavior="0" />
-      <RootComponent type="29" id="{3321de58-d1e6-4f3c-bc21-e31a834c8d9b}" behavior="0" />
       <RootComponent type="29" id="{38601740-ae0b-46af-8809-5d402b5a0a02}" behavior="0" />
       <RootComponent type="29" id="{3e79228e-9084-e911-a97e-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{43ab3c69-507c-4866-9e1f-581084068d48}" behavior="0" />
       <RootComponent type="29" id="{5004652f-f9b3-ea11-a812-000d3a86ad99}" behavior="0" />
-      <RootComponent type="29" id="{57fef689-633c-4c90-a847-0f5ad84f7ebd}" behavior="0" />
       <RootComponent type="29" id="{5856b3ce-273e-4d1a-b6e2-527752ed3bc5}" behavior="0" />
       <RootComponent type="29" id="{5a7f778d-9c71-4bfd-8a35-79489d5a5377}" behavior="0" />
       <RootComponent type="29" id="{62980a21-1026-4c44-8a75-a2f296c60f6d}" behavior="0" />
-      <RootComponent type="29" id="{6f2f4a7e-33fd-482f-81a6-4d4e3542674d}" behavior="0" />
       <RootComponent type="29" id="{7859f1df-de44-4b3e-854f-bf25345a700a}" behavior="0" />
       <RootComponent type="29" id="{7df170c4-df25-4f70-b60f-c06ece00761f}" behavior="0" />
       <RootComponent type="29" id="{891d73b3-529b-e911-a980-0022480186c3}" behavior="0" />
-      <RootComponent type="29" id="{89dc07f3-97df-456e-8c2d-7427234b4237}" behavior="0" />
-      <RootComponent type="29" id="{8ee5a17d-b60a-4337-83f0-c00b6e37b446}" behavior="0" />
-      <RootComponent type="29" id="{ab0d4d33-2070-43c0-abe4-5429be8445dc}" behavior="0" />
       <RootComponent type="29" id="{adbc4ed7-87c3-ea11-a812-000d3a86ad99}" behavior="0" />
       <RootComponent type="29" id="{b7817b8e-529b-e911-a980-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{bacc52a9-3469-4105-bbc8-269a62670429}" behavior="0" />
       <RootComponent type="29" id="{c976585f-06b4-ea11-a812-000d3a86ad99}" behavior="0" />
+      <RootComponent type="29" id="{db657a26-1d37-eb11-a813-000d3a0b97ca}" behavior="0" />
       <RootComponent type="29" id="{e0d0cd69-529b-e911-a980-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{ee9bc39c-ffb2-e911-a97b-002248019881}" behavior="0" />
       <RootComponent type="29" id="{f087a8f0-963d-45b3-b9a4-2baa2a1abd39}" behavior="0" />
-      <RootComponent type="29" id="{f2a7d25f-69a3-4023-bf9d-74d02eeb9a76}" behavior="0" />
       <RootComponent type="60" id="{1b475352-66bb-428d-ab0e-f307114bd3f7}" behavior="0" />
       <RootComponent type="60" id="{58ce527f-825b-4e2c-8029-4373ba3b653b}" behavior="0" />
       <RootComponent type="60" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" behavior="0" />
@@ -140,11 +133,6 @@
       <RootComponent type="62" schemaName="devhub_DevelopmentHub" behavior="0" />
       <RootComponent type="80" schemaName="devhub_DevelopmentHub" behavior="0" />
       <RootComponent type="91" id="{bb5cd61c-5b82-e911-a979-002248010929}" schemaName="DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" behavior="0" />
-      <RootComponent type="92" id="{01b1db23-769a-e911-a97d-002248010929}" behavior="0" />
-      <RootComponent type="92" id="{535e9af8-5ec4-ea11-a812-000d3a86d535}" behavior="0" />
-      <RootComponent type="92" id="{b1b94739-609b-e911-a97d-002248010929}" behavior="0" />
-      <RootComponent type="92" id="{b4b94739-609b-e911-a97d-002248010929}" behavior="0" />
-      <RootComponent type="92" id="{feb0db23-769a-e911-a97d-002248010929}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
@@ -416,15 +404,15 @@
         <Dependent key="33" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="35" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
+        <Required key="35" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="37" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
+        <Required key="37" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="38" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
+        <Required key="38" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
