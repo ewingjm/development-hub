@@ -31,7 +31,6 @@ namespace DevelopmentHub.Deployment
         private SolutionDeploymentService solutionDeploymentSvc;
         private FlowDeploymentService flowDeploymentSvc;
         private EnvironmentVariableDeploymentService environmentVariableDeploymentSvc;
-        private PluginStepDeploymentService pluginStepDeploymentSvc;
 
         /// <inheritdoc/>
         public override string GetImportPackageDataFolderName => "PkgFolder";
@@ -256,27 +255,10 @@ namespace DevelopmentHub.Deployment
             }
         }
 
-        /// <summary>
-        /// Gets an <see cref="PluginStepDeploymentService"/>.
-        /// </summary>
-        protected PluginStepDeploymentService PluginStepDeploymentSvc
-        {
-            get
-            {
-                if (this.pluginStepDeploymentSvc == null)
-                {
-                    this.pluginStepDeploymentSvc = new PluginStepDeploymentService(this.CrmSvc, this.PackageLog);
-                }
-
-                return this.pluginStepDeploymentSvc;
-            }
-        }
-
         /// <inheritdoc/>
         public override bool AfterPrimaryImport()
         {
             this.SetDevelopmentHubEnvironmentVariables();
-            this.SetDevelopmentHubPluginStepConfigurations();
             this.SetDevelopmentHubFlowConnections();
 
             return true;
@@ -393,16 +375,6 @@ namespace DevelopmentHub.Deployment
             return default;
         }
 
-        private string GetInjectSecureConfigSecureConfiguration()
-        {
-            return JsonConvert.SerializeObject(new Dictionary<string, object>
-            {
-                { "ClientId", this.ServicePrincipalClientId },
-                { "ClientSecret", this.ServicePrincipalClientSecret },
-                { "TenantId", this.CrmSvc.TenantId },
-            });
-        }
-
         private void SetDevelopmentHubFlowConnections()
         {
             this.FlowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
@@ -415,17 +387,6 @@ namespace DevelopmentHub.Deployment
             if (!string.IsNullOrEmpty(this.AzureDevOpsConnectionName))
             {
                 this.FlowDeploymentSvc.SetFlowConnection(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices_1", this.AzureDevOpsConnectionName);
-            }
-        }
-
-        private void SetDevelopmentHubPluginStepConfigurations()
-        {
-            var secureConfiguration = this.PluginStepDeploymentSvc.CreateSdkMessageProcessingStepSecureConfig(this.GetInjectSecureConfigSecureConfiguration());
-            var injectConfigPluginSteps = this.PluginStepDeploymentSvc.GetPluginStepsForHandler(new Guid("fdb0db23-769a-e911-a97d-002248010929"), new ColumnSet(false));
-
-            foreach (var step in injectConfigPluginSteps)
-            {
-                this.PluginStepDeploymentSvc.SetPluginSecureConfiguration(step.Id, secureConfiguration);
             }
         }
 
