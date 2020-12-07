@@ -8,7 +8,6 @@
   <EntityRelationship Name="devhub_environment_solution_StagingEnvironment" />
   <EntityRelationship Name="devhub_issue_solutionmerge_Issue" />
   <EntityRelationship Name="devhub_solution_solutionmerge_TargetSolution" />
-  <EntityRelationship Name="devhub_solutionmerge_environment_LastApprovedSolutionMerge" />
   <EntityRelationship Name="devhub_solutionmerge_issue_LastSolutionMerge" />
   <EntityRelationship Name="devhub_SolutionVersion_Solution_devhub_solution" />
   <EntityRelationship Name="devhub_systemuser_solutionmerge_ApprovedBy" />

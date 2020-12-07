@@ -404,15 +404,15 @@
         <Dependent key="33" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="35" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
+        <Required key="35" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="37" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
+        <Required key="37" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="38" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
+        <Required key="38" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
