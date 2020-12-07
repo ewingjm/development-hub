@@ -13,6 +13,8 @@ I recommend reading [this](https://medium.com/capgemini-microsoft-team/continuou
   + [Create flow connections](#create-flow-connections)
   + [Deploy the package](#deploy-the-package)
 * [Configuration](#configuration)
+  + [Environments](#environments)
+  + [Solutions](#solutions)
 * [Usage](#usage)
   + [Create an issue](#create-an-issue)
   + [Develop a solution](#develop-a-solution)
@@ -70,8 +72,6 @@ $settings = [PSCustomObject]@{
   AzureDevOpsOrganisation = '<the name of the Azure DevOps organisation>'
   AzureDevOpsPipelineId = '<the ID of the Azure DevOps extract pipeline>'
   AzureDevOpsProject = '<the name of the Azure DevOps project>'
-  ServicePrincipalClientId = '<the client ID of the Development Hub service principal>'
-  ServicePrincipalClientSecret = '<a client secret for the Development Hub service principal>'
   SolutionPublisherPrefix = '<the prefix of the publisher (without leading underscore)>'
 }
 $settingsArray = $obj.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
@@ -82,15 +82,15 @@ Import-CrmPackage -PackageInformation $packages[0] -CrmConnection $conn -Runtime
 
 ## Configuration
 
-Ensure you have created or imported your unmanaged solution(s) for extraction in the master instance. Once this is done, they can be registered within the Development Hub app. 
+The following section explains the configuration tables present in the Development Hub app.
 
-The first step is to create an environment record for the master instance:
+### Environments
 
-![Environment](./docs/images/environment.png)
+Master instances details must be entered by creating an `Environment` record. You must enter a URL and name for the environment as well as details about the app registration used to authenticate.
 
-Then create a solution record for each solution in the master instance:
+### Solutions
 
-![Solution](./docs/images/solution.png)
+Ensure you have created or imported your unmanaged solution(s) for extraction in the master instance. Once this is done, they can be registered within the Development Hub app by creating a `Solution` record. 
 
 Do not change the version numbers if the solution is new. If it is an existing solution, update the version numbers to match the solution in the master instance. The version will from then on be managed by the Development Hub when merging changes.
 
@@ -100,17 +100,13 @@ This section details the usage of the Development Hub's core functionality.
 
 ### Create an issue
 
-Issues must be created within the Development Hub in order for a developer to begin working on a new feature or bug fix. 
+`Issue`s must be created within the Development Hub in order for a developer to begin working on a new feature or bug fix. 
 
 The issue records in the Development Hub are used to group solution merge records and aid in applying semantic versioning to solutions. The Development Hub is not intended to replace a more conventional issue tracking system (e.g Azure Boards). It is suggested to either create issue records on-the-fly, at the beginning of a sprint, or by integrating Azure DevOps through a tool such as Power Automate. 
 
 If your issues are on Azure Boards, you can set the `Work Item ID` field on the corresponding Development Hub issue. The commit will then be linked with the Azure DevOps work item. 
 
-![Issue](./docs/images/issue.png)
-
-An issue with a 'To Do' status will have a *Develop* button in the ribbon. Clicking this will create a development solution and transition the issue to 'In Progress'. The *Development* tab will show details about the development solutions and solution merge history.
-
-![Issue - Development](./docs/images/development.png)
+An issue with a 'To Do' status will have a `Develop` button in the ribbon. Clicking this will create a development solution and transition the issue to `In Progress`. The `Development` tab will show details about the development solutions and solution merge history.
 
 ### Develop a solution
 
@@ -120,35 +116,34 @@ Development solutions should contain just the components created or updated for 
 
 ### Merge a solution
 
-Once the issue has been developed, a solution merge record can be created. This will transition the issue to 'Developed'. The solution merge is created in an 'Awaiting Review' status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
+Once the issue has been developed, a `Solution Merge` record can be created. This will transition the issue to `Developed`. The solution merge is created in an `Awaiting Review` status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
 
-Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an 'Approved' solution merge will transition to either a 'Merging' or 'Queued' status.
+Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an `Approved` solution merge will transition to either a `Merging` or `Queued` status.
 
-A successful solution merge will transition to an inactive 'Merged' status. The 'Version History' tab on the target solution record will also contain a new record with the post-merge unmanaged and managed solution zips available. The new solution version is based on the type of issue merged. A feature issue will increment the minor version and a bug issue will increment the patch version. Major version changes must be done manually. 
-
-![Solution merge](./docs/images/solutionmerge.png)
+A successful solution merge will transition to an inactive `Merged` status. The `Version History` tab on the target solution record will also contain a new record with the post-merge unmanaged and managed solution zips available. The new solution version is based on the type of issue merged. A `Feature` issue will increment the minor version and a `Bug` issue will increment the patch version. Major version changes must be done manually. 
 
 ### Merge source code
 
-If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies or web resources) then you must specify the source branch. Ensure that you perform any manual merging required in Git on your source branch before creating the solution merge. This branch will be merged automatically.
+If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies or web resources) then you must specify the `Source Branch`. Ensure that you perform any manual merging required in Git on your source branch before creating the solution merge. This branch will be merged automatically.
 
 ### Perform manual merge activities
 
-Specifying that there are manual merge activities on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the solution. 
+Specifying that there are `Manual Merge Activities` on the solution merge record will cause the merging process to pause before extracting to source control. This is useful where you are merging changes by hand e.g. components that need to be updated frequently by multiple developers or where you need to delete components from the solution. 
 
-When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an 'Awaiting Manual Merge Activities' status. If you are deleting components from the solution in the master instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
+When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an `Awaiting Manual Merge Activities` status. If you are deleting components from the solution in the master instance, it is recommended to update the major version of the solution record in the Development Hub during this period.
 
 To notify the flow that the manual merge activities are complete, navigate to _Action items -> Approvals_ within Power Automate and set the approval status to merged.
 
 ### Handle a failed merge
 
-If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a 'Failed' status. A *Retry* button is available after the necessary steps have been taken. Failure reason will be attached as a note to the solution merge record.
+If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a `Failed` status. A note will be attached with a link to the failed flow run which can be used to diagnose the failure reason. A `Retry` button is available to retry the merge after the necessary steps have been taken.
 
 ## Resources
 
 - [Blog post](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd)
 - [Introduction video](https://youtu.be/p-z1iTxtaag)
 - [Usage video](https://www.youtube.com/watch?v=co1zCvureiM)
+
 ## Contributing
 
 Refer to the contributing [guide](./CONTRIBUTING.md).
