@@ -377,6 +377,7 @@ namespace DevelopmentHub.Deployment
 
         private void SetDevelopmentHubFlowConnections()
         {
+            this.FlowDeploymentSvc.ActivateFlow(new Guid("db657a26-1d37-eb11-a813-000d3a0b97ca"));
             this.FlowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
 
             if (!string.IsNullOrEmpty(this.ApprovalsConnectionName))
