@@ -21,8 +21,6 @@ namespace DevelopmentHub.Deployment
         private string azureDevOpsProject;
         private string azureDevOpsExtractBuildDefinitionId;
         private string solutionPublisherPrefix;
-        private Guid? servicePrincipalClientId;
-        private string servicePrincipalClientSecret;
         private string azureDevOpsConnectionName;
         private string approvalsConnectionName;
 
@@ -118,38 +116,6 @@ namespace DevelopmentHub.Deployment
                 }
 
                 return this.solutionPublisherPrefix;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value for the service principal ID used for the Development Hub (if found).
-        /// </summary>
-        protected Guid? ServicePrincipalClientId
-        {
-            get
-            {
-                if (!this.servicePrincipalClientId.HasValue && Guid.TryParse(this.GetSetting<string>(nameof(this.ServicePrincipalClientId)), out var guid))
-                {
-                    this.servicePrincipalClientId = guid;
-                }
-
-                return this.servicePrincipalClientId;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value for the service principal client secret used for the Development Hub (if found).
-        /// </summary>
-        protected string ServicePrincipalClientSecret
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.servicePrincipalClientSecret))
-                {
-                    this.servicePrincipalClientSecret = this.GetSetting<string>(nameof(this.ServicePrincipalClientSecret));
-                }
-
-                return this.servicePrincipalClientSecret;
             }
         }
 
