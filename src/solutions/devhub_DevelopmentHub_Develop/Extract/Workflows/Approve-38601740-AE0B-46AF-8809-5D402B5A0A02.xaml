@@ -23,6 +23,22 @@
   </this:XrmWorkflow38601740ae0b46af88095d402b5a0a02.Target>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
+    <mxswa:SetState DisplayName="SetStateStep4: Set status reason to 'Approved'" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityId="[InputEntities(&quot;primaryEntity&quot;).Id]" EntityName="devhub_solutionmerge">
+      <mxswa:SetState.State>
+        <InArgument x:TypeArguments="mxs:OptionSetValue">
+          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
+            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="0" />
+          </mxswa:ReferenceLiteral>
+        </InArgument>
+      </mxswa:SetState.State>
+      <mxswa:SetState.Status>
+        <InArgument x:TypeArguments="mxs:OptionSetValue">
+          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
+            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="353400000" />
+          </mxswa:ReferenceLiteral>
+        </InArgument>
+      </mxswa:SetState.Status>
+    </mxswa:SetState>
     <Sequence DisplayName="UpdateStep3: Set 'Approved By' and 'Approved On'">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Object" Name="UpdateStep3_1" />
