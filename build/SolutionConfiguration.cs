@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 /// <summary>
 /// Configuration for a Dataverse solution.
 /// </summary>

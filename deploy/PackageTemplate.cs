@@ -1,14 +1,12 @@
 namespace DevelopmentHub.Deployment
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.Globalization;
     using System.Linq;
     using Microsoft.Xrm.Sdk.Query;
     using Microsoft.Xrm.Tooling.Connector;
     using Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Import package starter frame.
@@ -242,7 +240,6 @@ namespace DevelopmentHub.Deployment
         /// <inheritdoc/>
         public override void InitializeCustomExtension()
         {
-            return;
         }
 
         /// <inheritdoc />

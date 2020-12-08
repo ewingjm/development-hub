@@ -2,8 +2,6 @@ namespace DevelopmentHub.Tests.Integration
 {
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Net;
     using DevelopmentHub.BusinessLogic;
