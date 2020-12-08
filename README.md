@@ -131,8 +131,6 @@ A **Solution Merge** record should be created when development is complete on an
 
 ![Solution Merge](./docs/images/solutionmerge.png)
 
-
-
 Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an _Approved_ solution merge will transition to either a _Merging_ or _Queued_ status.
 
 A successful solution merge will transition to an inactive _Merged_ status. The _Version History_ tab on the target solution record will contain a new **Solution Version** record with the unmanaged and managed solution zips attached. 
@@ -158,7 +156,13 @@ To notify the flow that the manual merge activities are complete, navigate to _A
 
 #### Handle a failed merge
 
-If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a _Failed_ status. A note will be attached with a link to the failed flow run which can be used to diagnose the failure reason. A _Retry_ button is available to retry the merge after the necessary steps have been taken.
+If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a _Failed_ status. 
+
+A note will be attached with a link to the failed flow run which can be used to diagnose the failure reason. A _Retry_ button is available to retry the merge after the necessary steps have been taken.
+
+In the example below, a dependency was missing from the target environment:
+
+![Failed Merge](./docs/images/failedimport.png)
 
 ## Resources
 
