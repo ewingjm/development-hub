@@ -1,6 +1,6 @@
 # Development Hub ![logo](./docs/images/logo.svg)
 
-The Development Hub provides an enhanced development workflow for teams building Power Apps. Enables continuous integration by allowing developers to submit their changes for review and automated merging to source control.
+The Development Hub is a model-driven app that provides an enhanced development workflow for teams building Power Apps. It enables continuous integration by providing the ability to submit changes for review and automatically merge them to source control.
 
 For more context, read [this](https://medium.com/capgemini-microsoft-team/continuous-integration-for-power-apps-the-development-hub-7f1b4320ecfd?source=friends_link&sk=c5034f278e70bfd9aa2dce502dd490d9) introductory blog post.
 
