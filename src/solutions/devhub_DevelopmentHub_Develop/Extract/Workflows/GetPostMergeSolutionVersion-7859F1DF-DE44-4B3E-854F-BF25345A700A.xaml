@@ -156,7 +156,7 @@
                               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep3_3_converted]</OutArgument>
                             </mxswa:ActivityReference.Arguments>
                           </mxswa:ActivityReference>
-                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep3: Get incremented minor version">
+                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep3: Get incremented minor version">
                             <mxswa:ActivityReference.Arguments>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Left">[DirectCast(CustomActivityStep3_1_converted, System.Int32)]</InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Right">[DirectCast(CustomActivityStep3_3_converted, System.Int32)]</InArgument>
@@ -271,7 +271,7 @@
                               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep5_3_converted]</OutArgument>
                             </mxswa:ActivityReference.Arguments>
                           </mxswa:ActivityReference>
-                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep5: Get incremented patch version">
+                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep5: Get incremented patch version">
                             <mxswa:ActivityReference.Arguments>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Left">[DirectCast(CustomActivityStep5_1_converted, System.Int32)]</InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Right">[DirectCast(CustomActivityStep5_3_converted, System.Int32)]</InArgument>

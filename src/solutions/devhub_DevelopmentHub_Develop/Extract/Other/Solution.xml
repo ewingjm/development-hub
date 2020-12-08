@@ -133,7 +133,7 @@
       <RootComponent type="61" schemaName="devhub_/Js/develop.solutionmerge.ribbon.js" behavior="0" />
       <RootComponent type="62" schemaName="devhub_DevelopmentHub" behavior="0" />
       <RootComponent type="80" schemaName="devhub_DevelopmentHub" behavior="0" />
-      <RootComponent type="91" id="{bb5cd61c-5b82-e911-a979-002248010929}" schemaName="DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" behavior="0" />
+      <RootComponent type="91" id="{0608ef8c-a8ac-4f36-840f-7c7bcb196b2d}" schemaName="DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
