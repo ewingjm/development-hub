@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PluginAssembly FullName="DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginAssemblyId="0608ef8c-a8ac-4f36-840f-7c7bcb196b2d" CustomizationLevel="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsolationMode>2</IsolationMode>
+  <SourceType>0</SourceType>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <FileName>/PluginAssemblies/DevelopmentHubDevelop-0608EF8C-A8AC-4F36-840F-7C7BCB196B2D/DevelopmentHubDevelop.dll</FileName>
+  <PluginTypes>
+    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="9936370c-0b23-4447-a39a-f54669936eb0" Name="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers">
+      <FriendlyName>4adca8c4-d4ba-43ff-b77a-72c68fd77dee</FriendlyName>
+      <WorkflowActivityGroupName>DevelopmentHub.Develop (2.0.0.0)</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AttachFileToNote, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="2766cb83-edf0-40e0-bb0d-1091f042723c" Name="DevelopmentHub.Develop.CodeActivities.AttachFileToNote">
+      <FriendlyName>7061922e-7d3b-416b-a118-0768f7cdec28</FriendlyName>
+      <WorkflowActivityGroupName>DevelopmentHub.Develop (2.0.0.0)</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.CreateSolution, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="ea469ec1-7c6d-410b-8fc4-04767ca3c01f" Name="DevelopmentHub.Develop.CodeActivities.CreateSolution">
+      <FriendlyName>41565697-6f2a-42f2-bbcc-c3fe6d24b8ee</FriendlyName>
+      <WorkflowActivityGroupName>DevelopmentHub.Develop (2.0.0.0)</WorkflowActivityGroupName>
+    </PluginType>
+    <PluginType AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.GetEnvironmentVariable, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" PluginTypeId="f50beeff-d297-4617-ac93-1b058ef86f97" Name="DevelopmentHub.Develop.CodeActivities.GetEnvironmentVariable">
+      <FriendlyName>3e49249d-b826-488a-860c-ae4d4391869d</FriendlyName>
+      <WorkflowActivityGroupName>DevelopmentHub.Develop (2.0.0.0)</WorkflowActivityGroupName>
+    </PluginType>
+  </PluginTypes>
+</PluginAssembly>

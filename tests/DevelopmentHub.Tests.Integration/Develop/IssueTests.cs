@@ -1,6 +1,5 @@
 ﻿namespace DevelopmentHub.Tests.Integration.Develop
 {
-    using System;
     using System.ServiceModel;
     using DevelopmentHub.Develop.Model;
     using DevelopmentHub.Repositories;

@@ -12,7 +12,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Plugin"/> class.
         /// </summary>
-        public Plugin()
+        protected Plugin()
             : base()
         {
         }
@@ -22,7 +22,7 @@
         /// </summary>
         /// <param name="unsecureConfig">The unsecure configuration.</param>
         /// <param name="secureConfig">The secure configuration.</param>
-        public Plugin(string unsecureConfig, string secureConfig)
+        protected Plugin(string unsecureConfig, string secureConfig)
             : this()
         {
             this.UnsecureConfig = unsecureConfig;

@@ -6,6 +6,7 @@
     <AssemblyOriginatorKeyFile>DevelopmentHub.Develop.snk</AssemblyOriginatorKeyFile>
     <CodeAnalysisRuleSet>DevelopmentHub.Develop.ruleset</CodeAnalysisRuleSet>
     <Configurations>Debug;Release;Test</Configurations>
+    <Version>2.0.0</Version>
   </PropertyGroup>
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Plugin.props')" />
   <Import Condition="'$(Configuration)'!='Test'" Project="..\..\..\..\common\DevelopmentHub.BusinessLogic\DevelopmentHub.BusinessLogic.projitems" Label="Shared" />
@@ -55,5 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BusinessLogic\" />
   </ItemGroup>
 </Project>

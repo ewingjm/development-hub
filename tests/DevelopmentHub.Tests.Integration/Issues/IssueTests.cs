@@ -1,6 +1,5 @@
 ﻿namespace DevelopmentHub.Tests.Integration.Issues
 {
-    using System;
     using DevelopmentHub.Issues.Model;
     using Microsoft.Xrm.Sdk.Query;
     using Xunit;
