@@ -91,52 +91,59 @@ Import-CrmPackage -PackageInformation $packages[0] -CrmConnection $conn -Runtime
 
 ### Environments
 
-![Environment](./docs/images/environment.png)
-
 Master environments are configured with **Environment** records. Enter a URL and name for the environment as well as details about the app registration used to authenticate.
+
+![Environment](./docs/images/environment.png)
 
 ### Solutions
 
-![Environment](./docs/images/solution.png)
-
 Create (or import) your unmanaged solutions in the master environment and register them by creating **Solution** records. 
 
-Do not change the version numbers if the solution is new. If it is an existing solution, update the version numbers to match the solution in the master environment. The version will from then on be managed by the Development Hub when merging changes.
+![Environment](./docs/images/solution.png)
+
+> ℹ Update the version numbers to match the solution in the master environment if you are migrating to the Development Hub with an existing solution.
 
 ## Usage
 
 ### Create an issue
 
-![Issue](./docs/images/issue.png)
-
 **Issue** records must be created to begin working on a new feature or bug fix. The Development Hub does not replace a conventional issue tracker (e.g Azure Boards). These records are instead used to group related development and aid in applying semantic versioning to solutions. 
 
-Set the _Work Item ID_ field (in the _Azure DevOps_ tab) and the commit will be linked to the work item. 
+![Issue](./docs/images/issue.png)
+
+> ℹ Set the _Work Item ID_ field (in the _Azure DevOps_ tab) and the commit will be linked to the work item. 
 
 ### Develop a solution
 
-![Development](./docs/images/development.png)
-
 An issue with a _To Do_ status will have a _Develop_ button in the ribbon. Clicking this will create a development solution and transition the issue to _In Progress_. The _Development_ tab will show details about the development solutions and solution merge history.
 
-The developer must add any new components or components to be modified into their development solution. It is important that only one developer makes changes to a component at a time. If a component appears in more than one development solution, it will result in either incomplete work being merged or solution merges failing due to missing dependencies. 
+![Development](./docs/images/development.png)
 
-Development solutions should contain just the components created or updated for that issue and no more. Adding all assets to a development solution will add all assets to the target solution when merged.
+The developer must add any new components or components to be modified into their development solution. 
+
+> ⚠ It is important that only one developer makes changes to a component at a time. If a component appears in more than one development solution, it will result in either incomplete work being merged or solution merges failing due to missing dependencies. 
+
+> ⚠ Development solutions should contain just the components created or updated for that issue and no more. Adding all assets to a development solution will add all assets to the target solution when merged.
 
 ### Merge a solution
+
+A **Solution Merge** record should be created when development is complete on an issue. This will transition the issue status reason to _Developed_. The solution merge is created in an _Awaiting Review_ status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
 
 ![Solution Merge](./docs/images/solutionmerge.png)
 
 
-A **Solution Merge** record should be created when development is complete on an issue. This will transition the issue status reason to _Developed_. The solution merge is created in an _Awaiting Review_ status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
 
 Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an _Approved_ solution merge will transition to either a _Merging_ or _Queued_ status.
 
-A successful solution merge will transition to an inactive _Merged_ status. The _Version History_ tab on the target solution record will contain a new **Solution Version** record with the unmanaged and managed solution zips attached. The version is based on the type of issue merged. A _Feature_ issue will increment the minor version and a _Bug_ issue will increment the patch version. Major version increments must be done manually. 
+A successful solution merge will transition to an inactive _Merged_ status. The _Version History_ tab on the target solution record will contain a new **Solution Version** record with the unmanaged and managed solution zips attached. 
+
+> ℹ The version number of a new solution version is based on the type of issue merged. A _Feature_ issue will increment the minor version and a _Bug_ issue will increment the patch version. Major version increments must be done manually. 
 
 #### Merge source code
 
-If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in the _Source Branch_ field. Ensure that you perform any manual merging required in Git on your source branch before creating the solution merge. This branch will be merged automatically.
+If the solution to be merged has associated source code (e.g. you have made changes to plugin assemblies, web resources, tests or deployment logic) then you must provide the branch to be merged in the _Source Branch_ field. This branch will be merged automatically.
+
+> ⚠ Ensure that you perform any manual merging required in Git on your source branch before creating the solution merge.
 
 #### Perform manual merge activities
 
@@ -144,9 +151,10 @@ Enabling the _Manual Merge Activities_ field on the solution merge record will c
 
 When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an _Awaiting Manual Merge Activities_ status. 
 
-> ⚠ If you are deleting components from the solution in the master environment, it is recommended to update the major version of the solution record during the manual merge activities.
-
 To notify the flow that the manual merge activities are complete, navigate to _Action items -> Approvals_ within Power Automate and set the approval status to merged.
+
+
+> ⚠ If you are deleting components from the solution in the master environment, it is recommended to update the major version of the solution record during the manual merge activities.
 
 #### Handle a failed merge
 
