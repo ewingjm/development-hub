@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{6d588ec7-f362-43b4-b68a-e2181734f959}</formid>
+    <IntroducedVersion>0.0.1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+      <tabs>
+        <tab name="tab_2" id="{ecc66872-531e-37d5-cdd2-36047e2a27ea}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="2" solutionaction="Modified" />
+        <tab name="tab_azuredevops" id="061cc0d8-1fac-4421-bde2-98acb8971229" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
+          <labels>
+            <label description="Azure DevOps" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_azuredevops_section_details" id="ee8da8ae-227e-4137-ad1e-93f255165759" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b6c21b1d-dad4-4335-8c77-f6a32f7b8571}" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="Azure DevOps Project" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_azuredevopsproject" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_azuredevopsproject" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c4bc12b8-abfa-4c4d-b98d-0dd96df0e95d}" locklevel="0" ordinalvalue="10001">
+                        <labels>
+                          <label description="Azure DevOps Extract Build Definition ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_azuredevopsextractbuilddefinitionid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_azuredevopsextractbuilddefinitionid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
