@@ -1,5 +1,6 @@
 ﻿namespace DevelopmentHub.Tests.Ui.Steps
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using Capgemini.PowerApps.SpecFlowBindings;
@@ -16,6 +17,24 @@
     public class EntitySteps : PowerAppsStepDefiner
     {
         /// <summary>
+        /// Asserts that the following error notifications are shown.
+        /// </summary>
+        /// <param name="table">The error notification messages.</param>
+        [Then("I can see error form notifications stating the following")]
+        public static void ThenICanSeeErrorFormNotificationsStatingTheFollowing(Table table)
+        {
+            if (table is null)
+            {
+                throw new ArgumentNullException(nameof(table));
+            }
+
+            foreach (var row in table.Rows)
+            {
+                Capgemini.PowerApps.SpecFlowBindings.Steps.EntitySteps.ThenICanSeeAnErrorFormNotificationStating(row[0]);
+            }
+        }
+
+        /// <summary>
         /// Then a mandatory field error is displayed on the following fields.
         /// </summary>
         /// <param name="expectedError">The error message expected on the fields.</param>
@@ -25,12 +44,12 @@
         {
             if (string.IsNullOrEmpty(expectedError))
             {
-                throw new System.ArgumentException("Expected error must not be empty.", nameof(expectedError));
+                throw new ArgumentException("Expected error must not be empty.", nameof(expectedError));
             }
 
             if (table is null)
             {
-                throw new System.ArgumentNullException(nameof(table));
+                throw new ArgumentNullException(nameof(table));
             }
 
             var fields = table.Rows.Select((row) => row.Values.First());
