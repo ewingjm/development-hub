@@ -44,7 +44,7 @@ Follow Microsoft's guide [here](https://docs.microsoft.com/en-us/powerapps/devel
 
 ### Configure Azure DevOps
 
-Navigate to _Project Settings -> Repositories_ in your Azure DevOps project. Select the relevant repository and assign the following privilges to the project Build Service user:
+Navigate to _Project Settings -> Repositories_ in your Azure DevOps project. Select the relevant repository and assign the following privileges to the project Build Service user:
 
 * Bypass policies when pushing
 * Contribute
@@ -77,8 +77,6 @@ $settings = [PSCustomObject]@{
   ApprovalsConnectionName = '<the connection name of the Approvals connection>'
   AzureDevOpsConnectionName = '<the connection name of the Azure DevOps connection>'
   AzureDevOpsOrganisation = '<the name of the Azure DevOps organisation>'
-  AzureDevOpsPipelineId = '<the ID of the Azure DevOps extract pipeline>'
-  AzureDevOpsProject = '<the name of the Azure DevOps project>'
   SolutionPublisherPrefix = '<the prefix of the publisher (without leading underscore)>'
 }
 $settingsArray = $obj.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
@@ -99,7 +97,9 @@ Master environments are configured with **Environment** records. Enter a URL and
 
 Create (or import) your unmanaged solutions in the master environment and register them by creating **Solution** records. 
 
-![Environment](./docs/images/solution.png)
+You will need to specify the Azure DevOps project and extract build definition ID that correspond to this solution within the _Azure DevOps_ tab.
+
+![Solution](./docs/images/solution.png)
 
 > ℹ Update the version numbers to match the solution in the master environment if you are migrating to the Development Hub with an existing solution.
 
