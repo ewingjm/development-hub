@@ -87,6 +87,12 @@ stages:
                     failOnStderr: true
                     errorActionPreference: 'stop'
                     arguments: '-Username $(adminUserEmail) -Password (ConvertTo-SecureString -String "$(adminUserPassword)" -AsPlainText -Force) -DisplayName "Test Publisher" -UniqueName "testpublisher" -Prefix "test"'  
+                - template: include-azure-devops-cli-install-steps.yml
+                  parameters:
+                    organizationName: ewingjm 
+                    project: github 
+                - script: |
+                    az pipelines variable-group variable update --group-id 65 --name organizationName --value $(newOrganizationName)
       - deployment: Deployment
         displayName: Deploy
         environment: '${{ parameters.environment }}'

@@ -18,4 +18,7 @@ Install-Module -Name Microsoft.PowerApps.PowerShell -AllowClobber -Force
 
 Add-PowerAppsAccount -Username $Username -Password $Password
 $environment = Get-AdminPowerAppEnvironment
-New-AdminPowerAppCdsDatabase -EnvironmentName $environment.EnvironmentName -CurrencyName $CurrencyName -LanguageName $LanguageCode
+$environment = New-AdminPowerAppCdsDatabase -EnvironmentName $environment.EnvironmentName -CurrencyName $CurrencyName -LanguageName $LanguageCode
+$newOrganizationName = $environment.DisplayName.Substring($environment.DisplayName.IndexOf('(') + 1, 11)
+
+Write-Output "##vso[task.setvariable variable=newOrganizationName]$newOrganizationName"
