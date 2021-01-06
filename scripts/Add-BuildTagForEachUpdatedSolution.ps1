@@ -2,10 +2,10 @@ $resultArray = git show --name-only
 [System.Collections.ArrayList]$changedSolutions = @()
 
 foreach ($_ in $resultArray) {
-  if ($_.StartsWith("solutions") -and $_.Contains("Extract")) {
-    $solutionName = $_.Split("/")[1]
+  if ($_.StartsWith("src/solutions") -and $_.Contains("Extract")) {
+    $solutionName = $_.Split("/")[2]
 
-    if (!$solutionList.Contains($solutionName)) {
+    if (!$changedSolutions.Contains($solutionName)) {
       $changedSolutions.Add($solutionName)
       Write-Host "##vso[build.addbuildtag]$solutionName" 
     }
