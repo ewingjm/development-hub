@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.25547" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.26437" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>devhub_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
@@ -81,8 +81,10 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="devhub_issue" behavior="2" />
+      <RootComponent type="1" schemaName="devhub_solution" behavior="2" />
       <RootComponent type="29" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" behavior="0" />
       <RootComponent type="29" id="{a52d0ab8-54b1-e911-a97b-002248019881}" behavior="0" />
+      <RootComponent type="60" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
       <RootComponent type="60" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
@@ -95,76 +97,148 @@
         <Dependent key="0" type="1" schemaName="devhub_issue" displayName="Issue" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="2" type="1" schemaName="devhub_solutionmerge" displayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="3" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+        <Required key="2" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="2" type="1" schemaName="devhub_solution" displayName="Solution" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="4" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="3" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+        <Required key="2" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="3" type="2" schemaName="devhub_azuredevopsproject" displayName="Azure DevOps Project" parentSchemaName="devhub_solution" parentDisplayName="Solution" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="5" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="3" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
+        <Required key="2" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="4" type="2" schemaName="devhub_azuredevopsextractbuilddefinitionid" displayName="Azure DevOps Extract Build Definition ID" parentSchemaName="devhub_solution" parentDisplayName="Solution" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="6" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.50)" />
-        <Dependent key="7" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+        <Required key="2" type="1" schemaName="devhub_solution" displayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="5" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="8" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.50)" />
-        <Dependent key="7" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+        <Required key="6" type="1" schemaName="devhub_solutionmerge" displayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="5" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="2" type="1" schemaName="devhub_solutionmerge" displayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="7" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="5" type="29" displayName="When a solution is merged -&gt; Commit changes to source control" id="{a52d0ab8-54b1-e911-a97b-002248019881}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="10" type="2" schemaName="createdon" displayName="Created On" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="8" type="1" schemaName="environmentvariabledefinition" displayName="Environment Variable Definition" solution="EnvironmentVariables (1.0.2.51)" />
+        <Dependent key="9" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="11" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="10" type="1" schemaName="environmentvariablevalue" displayName="Environment Variable Value" solution="EnvironmentVariables (1.0.2.51)" />
+        <Dependent key="9" type="29" displayName="Environment Variable Key -&gt; Environment Variable Value" id="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="6" type="1" schemaName="devhub_solutionmerge" displayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
         <Required key="12" type="2" schemaName="devhub_developmentsolution" displayName="Development Solution" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="13" type="2" schemaName="devhub_type" displayName="Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="13" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="14" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="14" type="2" schemaName="devhub_name" displayName="Name" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="15" type="2" schemaName="devhub_name" displayName="Name" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="15" type="2" schemaName="devhub_url" displayName="URL" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="16" type="2" schemaName="devhub_description" displayName="Description" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="16" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="17" type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="Active" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="17" type="2" schemaName="devhub_type" displayName="Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="18" type="2" schemaName="devhub_url" displayName="URL" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="18" type="2" schemaName="createdon" displayName="Created On" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="19" type="10" schemaName="devhub_issue_solutionmerge_Issue" displayName="devhub_issue_solutionmerge_Issue" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="19" type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="Active" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="20" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="20" type="2" schemaName="devhub_description" displayName="Description" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="21" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
-        <Dependent key="9" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+        <Required key="21" type="10" schemaName="devhub_issue_solutionmerge_Issue" displayName="devhub_issue_solutionmerge_Issue" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="22" type="26" schemaName="All Solution Merges" displayName="All Solution Merges" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" id="{bcabbfd7-a184-e911-a97e-0022480186c3}" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="23" type="26" schemaName="Active Solution Merges" displayName="Active Solution Merges" parentSchemaName="devhub_solutionmerge" parentDisplayName="Solution Merge" solution="devhub_DevelopmentHub_Develop (0.2.0)" id="{c3ae2ff7-0bef-4f99-a9f5-55130a4a6790}" />
+        <Dependent key="11" type="60" displayName="Information" parentDisplayName="Issue" id="{97b0d9e0-dab1-41ae-8174-d252bfe633e6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="24" type="1" schemaName="devhub_solutionversion" displayName="Solution Version" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="26" type="2" schemaName="devhub_stagingenvironment" displayName="Staging Environment" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="27" type="2" schemaName="devhub_uniquename" displayName="Unique Name" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="28" type="2" schemaName="devhub_minorversion" displayName="Minor Version" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="29" type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="Active" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="30" type="2" schemaName="devhub_description" displayName="Description" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="31" type="2" schemaName="devhub_patchversion" displayName="Patch Version" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="32" type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="33" type="2" schemaName="devhub_displayname" displayName="Display Name" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="34" type="2" schemaName="createdon" displayName="Created On" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="35" type="2" schemaName="devhub_majorversion" displayName="Major Version" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="36" type="2" schemaName="createdby" displayName="Created By" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="Active" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="37" type="10" schemaName="devhub_SolutionVersion_Solution_devhub_solution" displayName="devhub_SolutionVersion_Solution_devhub_solution" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="38" type="10" schemaName="devhub_environment_solution_StagingEnvironment" displayName="devhub_environment_solution_StagingEnvironment" parentSchemaName="devhub_environment" parentDisplayName="Environment" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="39" type="26" schemaName="Active Solution Versions" displayName="Active Solution Versions" parentSchemaName="devhub_solutionversion" parentDisplayName="Solution Version" solution="devhub_DevelopmentHub_Develop (0.2.0)" id="{8a73dcfa-5d50-4090-a788-44af43ef1c93}" />
+        <Dependent key="25" type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>

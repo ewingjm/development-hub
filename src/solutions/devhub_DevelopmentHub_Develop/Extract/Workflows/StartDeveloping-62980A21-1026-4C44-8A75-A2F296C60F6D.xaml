@@ -328,7 +328,7 @@
               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep12_8_converted]</OutArgument>
             </mxswa:ActivityReference.Arguments>
           </mxswa:ActivityReference>
-          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.CreateSolution, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep12: Create a development solution.">
+          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.CreateSolution, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep12: Create a development solution.">
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="SolutionUniqueName">[DirectCast(CustomActivityStep12_1_converted, System.String)]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="SolutionDisplayName">[DirectCast(CustomActivityStep12_6_converted, System.String)]</InArgument>

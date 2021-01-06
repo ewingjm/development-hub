@@ -156,7 +156,7 @@
                               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep3_3_converted]</OutArgument>
                             </mxswa:ActivityReference.Arguments>
                           </mxswa:ActivityReference>
-                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep3: Get incremented minor version">
+                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep3: Get incremented minor version">
                             <mxswa:ActivityReference.Arguments>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Left">[DirectCast(CustomActivityStep3_1_converted, System.Int32)]</InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Right">[DirectCast(CustomActivityStep3_3_converted, System.Int32)]</InArgument>
@@ -186,20 +186,12 @@
                     <Sequence DisplayName="AssignOutputArgumentStep7: Assign 'Patch Version'">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep7_1" />
-                        <Variable x:TypeArguments="x:Object" Name="AssignOutputArgumentStep7_2" />
                         <Variable x:TypeArguments="x:String" Default="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" Name="TypeName" />
                       </Sequence.Variables>
-                      <mxswa:GetEntityProperty Attribute="devhub_patchversion" Entity="[InputEntities(&quot;related_devhub_targetsolution#devhub_solution&quot;)]" EntityName="devhub_solution" Value="[AssignOutputArgumentStep7_2]">
-                        <mxswa:GetEntityProperty.TargetType>
-                          <InArgument x:TypeArguments="s:Type">
-                            <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Int32" />
-                          </InArgument>
-                        </mxswa:GetEntityProperty.TargetType>
-                      </mxswa:GetEntityProperty>
                       <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                         <mxswa:ActivityReference.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
-                          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { AssignOutputArgumentStep7_2 }]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+                          <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Integer, "0" }]</InArgument>
                           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Int32" />
                           </InArgument>
@@ -279,7 +271,7 @@
                               <OutArgument x:TypeArguments="x:Object" x:Key="Result">[CustomActivityStep5_3_converted]</OutArgument>
                             </mxswa:ActivityReference.Arguments>
                           </mxswa:ActivityReference>
-                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep5: Get incremented patch version">
+                          <mxswa:ActivityReference AssemblyQualifiedName="DevelopmentHub.Develop.CodeActivities.AddWholeNumbers, DevelopmentHub.Develop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ea2317363a0474b4" DisplayName="CustomActivityStep5: Get incremented patch version">
                             <mxswa:ActivityReference.Arguments>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Left">[DirectCast(CustomActivityStep5_1_converted, System.Int32)]</InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="Right">[DirectCast(CustomActivityStep5_3_converted, System.Int32)]</InArgument>

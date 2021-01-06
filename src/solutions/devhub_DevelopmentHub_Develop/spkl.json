@@ -2,7 +2,7 @@
   "webresources": [],
   "plugins": [
     {
-      "assemblypath": "PluginAssemblies\\DevelopmentHub.Develop\\bin\\Deploy\\DevelopmentHub.Develop.dll",
+      "assemblypath": "PluginAssemblies\\DevelopmentHub.Develop\\bin\\Debug\\net462\\DevelopmentHub.Develop.dll",
       "solution": "devhub_DevelopmentHub_Develop"
     }
   ],

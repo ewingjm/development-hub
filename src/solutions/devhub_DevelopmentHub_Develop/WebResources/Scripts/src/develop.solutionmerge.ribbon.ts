@@ -83,10 +83,6 @@ namespace DevelopmentHub.Develop {
 
     executeWebApiRequest(new ApproveRequest(entity), 'Approving solution merge.')
       .then(async () => {
-        // Flows don't trigger for updates done within actions/workflows.
-        // Setting the statuscode here as a workaround
-        primaryControl.getAttribute('statuscode').setValue(353400000);
-        await primaryControl.data.save();
         primaryControl.data.refresh(false);
       });
   }
