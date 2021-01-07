@@ -43,8 +43,8 @@ stages:
                   displayName: 'Delete environment (community plan)'
                   condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
                   inputs:
-                    authenticationType: 'PowerPlatformEnvironment'
-                    PowerPlatformEnvironment: 'Developer Instance (adminuser)'
+                    authenticationType: 'PowerPlatformSPN'
+                    PowerPlatformSPN: '${{ parameters.deployServiceConnection }}'
                 - task: PowerShell@2
                   displayName: 'Open Maker Portal (community plan)'
                   condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
@@ -93,6 +93,17 @@ stages:
                     project: github 
                 - script: |
                     az pipelines variable-group variable update --group-id 65 --name organizationName --value $(newOrganizationName)
+                  displayName: Update variable group with new organisation name
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
+                - task: PowerShell@2
+                  displayName: 'Update service endpoint URL for Power Platform connection'
+                  condition: and(succeeded(), eq(variables['isCommunityPlan'], true))
+                  inputs:
+                    targetType: 'filePath'
+                    filePath: 'scripts/Set-ServiceEndpointUrl.ps1'
+                    failOnStderr: true
+                    errorActionPreference: 'stop'
+                    arguments: '-Name "${{ parameters.deployServiceConnection }}" -Url "https://$(newOrganizationName).crm11.dynamics.com" -AuthParameters @{ clientSecret="$(azureDevOpsClientSecret)" }'  
       - deployment: Deployment
         displayName: Deploy
         environment: '${{ parameters.environment }}'
