@@ -2,30 +2,20 @@ namespace DevelopmentHub.Deployment
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Globalization;
-    using System.Linq;
-    using Microsoft.Xrm.Sdk.Query;
-    using Microsoft.Xrm.Tooling.Connector;
+    using Capgemini.PowerApps.PackageDeployerTemplate;
     using Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase;
 
     /// <summary>
     /// Import package starter frame.
     /// </summary>
     [Export(typeof(IImportExtensions))]
-    public class PackageTemplate : ImportExtension, IDisposable
+    public class PackageTemplate : PackageTemplateBase
     {
         private bool? forceImport;
         private string azureDevOpsOrganisation;
-        private string azureDevOpsProject;
-        private string azureDevOpsExtractBuildDefinitionId;
         private string solutionPublisherPrefix;
         private string azureDevOpsConnectionName;
         private string approvalsConnectionName;
-
-        private CrmServiceClient licensedCrmSvc;
-
-        private SolutionDeploymentService solutionDeploymentSvc;
-        private FlowDeploymentService flowDeploymentSvc;
         private EnvironmentVariableDeploymentService environmentVariableDeploymentSvc;
 
         /// <inheritdoc/>
@@ -66,38 +56,6 @@ namespace DevelopmentHub.Deployment
                 }
 
                 return this.azureDevOpsOrganisation;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value for the target Azure DevOps project environment variable (if found).
-        /// </summary>
-        protected string AzureDevOpsProject
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.azureDevOpsProject))
-                {
-                    this.azureDevOpsProject = this.GetSetting<string>(nameof(this.AzureDevOpsProject));
-                }
-
-                return this.azureDevOpsProject;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value for the target Azure DevOps extract build definition ID environment variable (if found).
-        /// </summary>
-        protected string AzureDevOpsPipelineId
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.azureDevOpsExtractBuildDefinitionId))
-                {
-                    this.azureDevOpsExtractBuildDefinitionId = this.GetSetting<string>(nameof(this.AzureDevOpsPipelineId));
-                }
-
-                return this.azureDevOpsExtractBuildDefinitionId;
             }
         }
 
@@ -150,60 +108,6 @@ namespace DevelopmentHub.Deployment
         }
 
         /// <summary>
-        /// Gets a <see cref="CrmServiceClient"/> instance authenticated as a licensed user (if username and password are provided).
-        /// </summary>
-        protected CrmServiceClient LicensedCrmSvc
-        {
-            get
-            {
-                if (this.licensedCrmSvc == null)
-                {
-                    var username = this.GetSetting<string>("LicensedUserUsername");
-                    var password = this.GetSetting<string>("LicensedUserPassword");
-
-                    if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
-                    {
-                        this.licensedCrmSvc = new CrmServiceClient($"AuthType=OAuth;Username={username};Password={password};Url={this.CrmSvc.ConnectedOrgPublishedEndpoints.First().Value};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d;RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never");
-                    }
-                }
-
-                return this.licensedCrmSvc;
-            }
-        }
-
-        /// <summary>
-        /// Gets a <see cref="FlowDeploymentSvc"/>.
-        /// </summary>
-        protected FlowDeploymentService FlowDeploymentSvc
-        {
-            get
-            {
-                if (this.flowDeploymentSvc == null)
-                {
-                    this.flowDeploymentSvc = new FlowDeploymentService(this.LicensedCrmSvc ?? this.CrmSvc, this.PackageLog);
-                }
-
-                return this.flowDeploymentSvc;
-            }
-        }
-
-        /// <summary>
-        /// Gets a <see cref="SolutionDeploymentSvc"/>.
-        /// </summary>
-        protected SolutionDeploymentService SolutionDeploymentSvc
-        {
-            get
-            {
-                if (this.solutionDeploymentSvc == null)
-                {
-                    this.solutionDeploymentSvc = new SolutionDeploymentService(this.CrmSvc, this.PackageLog);
-                }
-
-                return this.solutionDeploymentSvc;
-            }
-        }
-
-        /// <summary>
         /// Gets an <see cref="EnvironmentVariableDeploymentSvc"/>.
         /// </summary>
         protected EnvironmentVariableDeploymentService EnvironmentVariableDeploymentSvc
@@ -223,7 +127,6 @@ namespace DevelopmentHub.Deployment
         public override bool AfterPrimaryImport()
         {
             this.SetDevelopmentHubEnvironmentVariables();
-            this.SetDevelopmentHubFlowConnections();
 
             return true;
         }
@@ -255,111 +158,9 @@ namespace DevelopmentHub.Deployment
             }
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="disposing">Disposing.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            this.licensedCrmSvc?.Dispose();
-        }
-
-        /// <summary>
-        /// Activates all flows in a solution.
-        /// </summary>
-        /// <param name="solution">The solution unique name.</param>
-        protected void ActivateFlowsInSolution(string solution)
-        {
-            var solutionId = this.SolutionDeploymentSvc.GetSolutionIdByUniqueName(solution);
-            if (!solutionId.HasValue)
-            {
-                return;
-            }
-
-            var solutionWorkflowIds = this.SolutionDeploymentSvc.GetSolutionComponentObjectIdsByType(solutionId.Value, 29);
-            if (!solutionWorkflowIds.Any())
-            {
-                return;
-            }
-
-            var solutionFlowIds = this.FlowDeploymentSvc.GetDeployedFlows(solutionWorkflowIds, new ColumnSet(false)).Select(f => f.Id);
-            foreach (var flowId in solutionFlowIds)
-            {
-                this.FlowDeploymentSvc.ActivateFlow(flowId);
-            }
-        }
-
-        /// <summary>
-        /// Gets a setting either from runtime arguments or an environment variable (in that order). Environment variables should be prefixed with 'PACKAGEDEPLOYER_SETTINGS_'.
-        /// </summary>
-        /// <typeparam name="T">The type of argument.</typeparam>
-        /// <param name="key">The key.</param>
-        /// <returns>The setting value (if found).</returns>
-        protected T GetSetting<T>(string key)
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                throw new ArgumentException("Key cannot be empty", nameof(key));
-            }
-
-            string value = null;
-
-            if (this.RuntimeSettings != null && this.RuntimeSettings.ContainsKey(key))
-            {
-                var obj = this.RuntimeSettings[key];
-
-                if (obj is T t)
-                {
-                    return t;
-                }
-                else if (obj is string s)
-                {
-                    value = s;
-                }
-            }
-
-            if (value == null)
-            {
-                value = Environment.GetEnvironmentVariable($"PACKAGEDEPLOYER_SETTINGS_{key.ToUpperInvariant()}");
-            }
-
-            if (value != null)
-            {
-                return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
-            }
-
-            return default;
-        }
-
-        private void SetDevelopmentHubFlowConnections()
-        {
-            this.FlowDeploymentSvc.ActivateFlow(new Guid("db657a26-1d37-eb11-a813-000d3a0b97ca"));
-            this.FlowDeploymentSvc.ActivateFlow(new Guid("9bc32b76-754b-ea11-a812-000d3a0b8d0b"));
-            this.FlowDeploymentSvc.ActivateFlow(new Guid("c976585f-06b4-ea11-a812-000d3a86ad99"));
-
-            if (!string.IsNullOrEmpty(this.ApprovalsConnectionName))
-            {
-                this.FlowDeploymentSvc.SetFlowConnection(new Guid("5004652f-f9b3-ea11-a812-000d3a86ad99"), "shared_approvals", this.ApprovalsConnectionName);
-            }
-
-            if (!string.IsNullOrEmpty(this.AzureDevOpsConnectionName))
-            {
-                this.FlowDeploymentSvc.SetFlowConnection(new Guid("a52d0ab8-54b1-e911-a97b-002248019881"), "shared_visualstudioteamservices_1", this.AzureDevOpsConnectionName);
-            }
-        }
-
         private void SetDevelopmentHubEnvironmentVariables()
         {
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsOrganization", this.AzureDevOpsOrganisation);
-            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsProject", this.AzureDevOpsProject);
-            this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_AzureDevOpsExtractBuildDefinition", this.AzureDevOpsPipelineId);
             this.EnvironmentVariableDeploymentSvc.SetEnvironmentVariable("devhub_SolutionPublisher", this.SolutionPublisherPrefix);
         }
     }
