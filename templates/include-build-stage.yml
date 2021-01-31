@@ -36,7 +36,7 @@ stages:
               failOnStderr: true
               filePath: 'scripts/Set-SolutionVersion.ps1'
               targetType: 'filePath'
-              arguments: '-Solutions "$(solutionList)" -Version $(GitVersion.SemVer)'
+              arguments: '-Solutions "$(solutionList)" -Version "$(GitVersion.SemVer)"'
           - task: SonarCloudPrepare@1
             displayName: 'Prepare SonarCloud'
             inputs:
