@@ -74,10 +74,10 @@ You must provide several package deployer settings parameters. Refer to the help
 
 ```powershell
 $settings = [PSCustomObject]@{
-  ApprovalsConnectionName = '<the connection name of the Approvals connection>'
-  AzureDevOpsConnectionName = '<the connection name of the Azure DevOps connection>'
-  AzureDevOpsOrganisation = '<the name of the Azure DevOps organisation>'
-  SolutionPublisherPrefix = '<the prefix of the publisher (without leading underscore)>'
+  'ConnRef:devhub_sharedapprovals_6d3fc' = '<the connection name of the Approvals connection>'
+  'ConnRef:devhub_sharedvisualstudioteamservices_bf2bc' = '<the connection name of the Azure DevOps connection>'
+  'AzureDevOpsOrganisation' = '<the name of the Azure DevOps organisation>'
+  'SolutionPublisherPrefix' = '<the prefix of the publisher (without leading underscore)>'
 }
 $settingsArray = $obj.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
 $runtimePackageSettings = [string]::Join("|", $settingsArray)
