@@ -1,11 +1,11 @@
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory = $false)]
+    [Parameter(Mandatory = $true)]
     [String[]]
-    $Solutions = "devhub_DevelopmentHub_Issues",
-    [Parameter(Mandatory = $false)]
+    $Solutions,
+    [Parameter(Mandatory = $true)]
     [String]
-    $Version = "0.1.6.2"
+    $Version
 )
 
 $Solutions | ForEach-Object {
