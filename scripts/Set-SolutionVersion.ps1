@@ -9,7 +9,7 @@ param (
 )
 
 $Solutions | ForEach-Object {
-    $solutionPath = Join-Path -Path .\solutions -ChildPath $_
+    $solutionPath = Join-Path -Path .\src\solutions -ChildPath $_
     $solutionXmlPath = Join-Path -Path $solutionPath -ChildPath '.\Extract\Other\Solution.xml'
     
     [xml]$solutionXml = Get-Content -Path $solutionXmlPath
