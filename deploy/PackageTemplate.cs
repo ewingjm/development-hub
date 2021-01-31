@@ -128,22 +128,11 @@ namespace DevelopmentHub.Deployment
         {
             this.SetDevelopmentHubEnvironmentVariables();
 
-            return true;
-        }
-
-        /// <inheritdoc/>
-        public override bool BeforeImportStage()
-        {
-            return true;
+            return base.AfterPrimaryImport();
         }
 
         /// <inheritdoc/>
         public override string GetNameOfImport(bool plural) => "Development Hub";
-
-        /// <inheritdoc/>
-        public override void InitializeCustomExtension()
-        {
-        }
 
         /// <inheritdoc />
         public override UserRequestedImportAction OverrideSolutionImportDecision(string solutionUniqueName, Version organizationVersion, Version packageSolutionVersion, Version inboundSolutionVersion, Version deployedSolutionVersion, ImportAction systemSelectedImportAction)
@@ -152,10 +141,8 @@ namespace DevelopmentHub.Deployment
             {
                 return UserRequestedImportAction.ForceUpdate;
             }
-            else
-            {
-                return UserRequestedImportAction.Default;
-            }
+
+            return base.OverrideSolutionImportDecision(solutionUniqueName, organizationVersion, packageSolutionVersion, inboundSolutionVersion, deployedSolutionVersion, systemSelectedImportAction);
         }
 
         private void SetDevelopmentHubEnvironmentVariables()
