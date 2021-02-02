@@ -58,6 +58,78 @@ namespace DevelopmentHub.Develop {
     });
   }
 
+  async function getActiveIssues(select: string[]) {
+    return (await Xrm.WebApi.online.retrieveMultipleRecords(
+      'devhub_issue',
+      `?$select=${select.join(',')}&$filter=statuscode eq 353400000 or statuscode eq 353400002`,
+    )).entities;
+  }
+
+  async function getConflictingSolutions(context: Xrm.FormContext): Promise<any[]> {
+    const issueAttr: Xrm.Attributes.LookupAttribute = context.getAttribute('devhub_issue');
+
+    const issueRef = issueAttr && issueAttr.getValue();
+    if (!issueRef) {
+      return [];
+    }
+
+    const activeIssues = await getActiveIssues(['devhub_developmentsolution', 'devhub_name']);
+    if (!activeIssues || activeIssues.length === 0) {
+      return [];
+    }
+
+    const thisIssue = activeIssues.find((i) => `{${i.devhub_issueid.toUpperCase()}}` === issueRef[0].id);
+    const filter = `(Microsoft.Dynamics.CRM.In(PropertyName='uniquename',PropertyValues=[${activeIssues.map((i) => `'${i.devhub_developmentsolution}'`)}]))`;
+    const activeSolutions = await Xrm.WebApi.online.retrieveMultipleRecords(
+      'solution',
+      `?$select=uniquename&$filter=${filter}&$expand=solution_solutioncomponent($select=objectid,componenttype,rootcomponentbehavior,rootsolutioncomponentid)`,
+    );
+
+    const thisSolutionIndex = activeSolutions.entities
+      .findIndex((s) => s.uniquename === thisIssue.devhub_developmentsolution);
+    const toMergeSolution = activeSolutions.entities[thisSolutionIndex];
+    activeSolutions.entities.splice(thisSolutionIndex, 1);
+
+    const conflictingSolutions = activeSolutions.entities.filter((solution) => {
+      const conflictingComponents = solution.solution_solutioncomponent.filter((component) => {
+        const matched = toMergeSolution.solution_solutioncomponent
+          .find((toMergeComponent) => component.objectid === toMergeComponent.objectid);
+
+        // Entity
+        if (component.componenttype === 1) {
+          if (matched && component.rootcomponentbehavior < 2 && matched.rootcomponentbehavior < 2) {
+            // Check for both entities including all subcomponents or metadata
+            return true;
+          }
+          if (component.rootcomponentbehavior === 0) {
+            // Check for to merge solution containing a subcomponent of this entity
+            const entityComponent = toMergeSolution.solution_solutioncomponent.find(
+              (c) => c.objectid === component.objectid,
+            );
+            return toMergeSolution.solution_solutioncomponent.some(
+              (toMergeComponent) => entityComponent.solutioncomponentid
+              === toMergeComponent.rootsolutioncomponentid,
+            );
+          }
+        }
+
+        if (!matched && component.rootsolutioncomponentid) {
+          // Check for to merge solution containing the root entity with all subcomponents
+          return toMergeSolution.solution_solutioncomponent.some(
+            (toMergeComponent) => toMergeComponent.objectid === component.rootsolutioncomponentid
+            && toMergeComponent.rootcomponentbehavior === 0,
+          );
+        }
+
+        return !!matched;
+      });
+
+      return conflictingComponents.length > 0;
+    });
+
+    return conflictingSolutions;
+  }
+
   export function isReviewEnabled(primaryControl: Xrm.FormContext): boolean {
     return primaryControl.getAttribute('statuscode').getValue() === SolutionMergeStatusCode.AwaitingReview
             && primaryControl.ui.getFormType() !== XrmEnum.FormType.Create;
@@ -78,13 +150,26 @@ namespace DevelopmentHub.Develop {
     });
   }
 
-  export function approve(primaryControl: Xrm.FormContext): void {
+  export async function approve(primaryControl: Xrm.FormContext) {
     const entity = primaryControl.data.entity.getEntityReference();
 
-    executeWebApiRequest(new ApproveRequest(entity), 'Approving solution merge.')
-      .then(async () => {
-        primaryControl.data.refresh(false);
+    Xrm.Utility.showProgressIndicator('Checking for conflicts.');
+    const conflictingSolutions = await getConflictingSolutions(primaryControl);
+    if (conflictingSolutions.length > 0) {
+      const confirmResult = await Xrm.Navigation.openConfirmDialog({
+        text: `Components in this solution were also found in the following solutions: ${conflictingSolutions.map((s) => s.uniquename).join(', ').toString()}. Please ensure that unintended changes have not been introduced changes to components in this solution.`,
+        title: 'Possible conflict detected.',
+        confirmButtonLabel: 'Approve',
       });
+
+      if (!confirmResult.confirmed) {
+        Xrm.Utility.closeProgressIndicator();
+        return;
+      }
+    }
+    await executeWebApiRequest(new ApproveRequest(entity), 'Approving solution merge.');
+    await primaryControl.data.refresh(false);
+    Xrm.Utility.closeProgressIndicator();
   }
 
   export function reject(primaryControl: Xrm.FormContext): void {
