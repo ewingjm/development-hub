@@ -2,7 +2,6 @@ namespace DevelopmentHub.Deployment
 {
     using System;
     using System.ComponentModel.Composition;
-    using System.Diagnostics;
     using Capgemini.PowerApps.PackageDeployerTemplate;
     using Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase;
 
