@@ -80,54 +80,51 @@ namespace DevelopmentHub.Develop {
 
     const thisIssue = activeIssues.find((i) => `{${i.devhub_issueid.toUpperCase()}}` === issueRef[0].id);
     const filter = `(Microsoft.Dynamics.CRM.In(PropertyName='uniquename',PropertyValues=[${activeIssues.map((i) => `'${i.devhub_developmentsolution}'`)}]))`;
-    const activeSolutions = await Xrm.WebApi.online.retrieveMultipleRecords(
+    const solutions = (await Xrm.WebApi.online.retrieveMultipleRecords(
       'solution',
       `?$select=uniquename&$filter=${filter}&$expand=solution_solutioncomponent($select=objectid,componenttype,rootcomponentbehavior,rootsolutioncomponentid)`,
-    );
+    )).entities;
 
-    const thisSolutionIndex = activeSolutions.entities
+    const thisSolutionIndex = solutions
       .findIndex((s) => s.uniquename === thisIssue.devhub_developmentsolution);
-    const toMergeSolution = activeSolutions.entities[thisSolutionIndex];
-    activeSolutions.entities.splice(thisSolutionIndex, 1);
+    const toMergeSol = solutions[thisSolutionIndex];
+    solutions.splice(thisSolutionIndex, 1);
 
-    const conflictingSolutions = activeSolutions.entities.filter((solution) => {
-      const conflictingComponents = solution.solution_solutioncomponent.filter((component) => {
-        const matched = toMergeSolution.solution_solutioncomponent
-          .find((toMergeComponent) => component.objectid === toMergeComponent.objectid);
+    const conflicts = solutions.filter((sol) => sol.solution_solutioncomponent.some((comp) => {
+      const match = toMergeSol.solution_solutioncomponent.find(
+        (toMergeComp) => comp.objectid === toMergeComp.objectid,
+      );
 
-        // Entity
-        if (component.componenttype === 1) {
-          if (matched && component.rootcomponentbehavior < 2 && matched.rootcomponentbehavior < 2) {
-            // Check for both entities including all subcomponents or metadata
-            return true;
-          }
-          if (component.rootcomponentbehavior === 0) {
-            // Check for to merge solution containing a subcomponent of this entity
-            const entityComponent = toMergeSolution.solution_solutioncomponent.find(
-              (c) => c.objectid === component.objectid,
-            );
-            return toMergeSolution.solution_solutioncomponent.some(
-              (toMergeComponent) => entityComponent.solutioncomponentid
-              === toMergeComponent.rootsolutioncomponentid,
-            );
-          }
+      // Entity
+      if (comp.componenttype === 1) {
+        if (match && comp.rootcomponentbehavior < 2 && match.rootcomponentbehavior < 2) {
+          // Check for both entities including all subcomponents or metadata
+          return true;
         }
-
-        if (!matched && component.rootsolutioncomponentid) {
-          // Check for to merge solution containing the root entity with all subcomponents
-          return toMergeSolution.solution_solutioncomponent.some(
-            (toMergeComponent) => toMergeComponent.objectid === component.rootsolutioncomponentid
-            && toMergeComponent.rootcomponentbehavior === 0,
+        if (comp.rootcomponentbehavior === 0) {
+          // Check for to merge solution containing a subcomponent of this entity
+          const entityComponent = toMergeSol.solution_solutioncomponent.find(
+            (c) => c.objectid === comp.objectid,
+          );
+          return toMergeSol.solution_solutioncomponent.some(
+            (toMergeComponent) => entityComponent.solutioncomponentid
+              === toMergeComponent.rootsolutioncomponentid,
           );
         }
+      }
 
-        return !!matched;
-      });
+      if (!match && comp.rootsolutioncomponentid) {
+        // Check for to merge solution containing the root entity with all subcomponents
+        return toMergeSol.solution_solutioncomponent.some(
+          (toMergeComponent) => toMergeComponent.objectid === comp.rootsolutioncomponentid
+            && toMergeComponent.rootcomponentbehavior === 0,
+        );
+      }
 
-      return conflictingComponents.length > 0;
-    });
+      return !!match;
+    }));
 
-    return conflictingSolutions;
+    return conflicts;
   }
 
   export function isReviewEnabled(primaryControl: Xrm.FormContext): boolean {
