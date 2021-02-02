@@ -79,7 +79,7 @@ $settings = [PSCustomObject]@{
   'AzureDevOpsOrganisation' = '<the name of the Azure DevOps organisation>'
   'SolutionPublisherPrefix' = '<the prefix of the publisher (without leading underscore)>'
 }
-$settingsArray = $obj.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
+$settingsArray = $settings.PSObject.Properties | ForEach-Object { "$($_.Name)=$($_.Value)" }
 $runtimePackageSettings = [string]::Join("|", $settingsArray)
 
 Import-CrmPackage -PackageInformation $packages[0] -CrmConnection $conn -RuntimePackageSettings $runtimePackageSettings
