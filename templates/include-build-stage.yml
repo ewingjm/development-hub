@@ -48,6 +48,7 @@ stages:
               projectVersion: '$(GitVersion.SemVer)'
               extraProperties: |
                 sonar.eslint.reportPaths=$(Build.SourcesDirectory)/src/solutions/devhub_DevelopmentHub_Develop/WebResources/Scripts/test_results/analysis/eslint.json
+                sonar.coverage.exclusions=src/solutions/**/*.ts, deploy/**/*.cs
           - task: PowerShell@2
             displayName: 'Build package'
             inputs:

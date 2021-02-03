@@ -137,7 +137,7 @@ namespace DevelopmentHub.Deployment
         /// <inheritdoc />
         public override UserRequestedImportAction OverrideSolutionImportDecision(string solutionUniqueName, Version organizationVersion, Version packageSolutionVersion, Version inboundSolutionVersion, Version deployedSolutionVersion, ImportAction systemSelectedImportAction)
         {
-            if (this.ForceImportOnSameVersion && systemSelectedImportAction == ImportAction.SkipSameVersion)
+            if (this.ForceImportOnSameVersion && (systemSelectedImportAction == ImportAction.SkipSameVersion || systemSelectedImportAction == ImportAction.SkipLowerVersion))
             {
                 return UserRequestedImportAction.ForceUpdate;
             }
