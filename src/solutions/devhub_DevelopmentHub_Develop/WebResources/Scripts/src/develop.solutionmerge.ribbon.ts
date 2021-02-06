@@ -95,24 +95,23 @@ namespace DevelopmentHub.Develop {
         (toMergeComp) => comp.objectid === toMergeComp.objectid,
       );
 
-      // Entity
-      if (comp.componenttype === 1) {
-        if (match && comp.rootcomponentbehavior < 2 && match.rootcomponentbehavior < 2) {
-          // Check for both entities including all subcomponents or metadata
+      // Both solutions contain entity
+      if (comp.componenttype === 1 && match) {
+        // Check for both entities including all subcomponents or metadata
+        if (comp.rootcomponentbehavior < 2 && match.rootcomponentbehavior < 2) {
           return true;
         }
+        // All subcomponents and metadata included
         if (comp.rootcomponentbehavior === 0) {
           // Check for to merge solution containing a subcomponent of this entity
-          const entityComponent = toMergeSol.solution_solutioncomponent.find(
-            (c) => c.objectid === comp.objectid,
-          );
           return toMergeSol.solution_solutioncomponent.some(
-            (toMergeComponent) => entityComponent.solutioncomponentid
+            (toMergeComponent) => match.solutioncomponentid
               === toMergeComponent.rootsolutioncomponentid,
           );
         }
       }
 
+      // Component is a subcomponent
       if (!match && comp.rootsolutioncomponentid) {
         // Check for to merge solution containing the root entity with all subcomponents
         return toMergeSol.solution_solutioncomponent.some(
