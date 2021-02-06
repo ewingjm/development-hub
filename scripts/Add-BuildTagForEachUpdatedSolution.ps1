@@ -2,7 +2,7 @@ $resultArray = git show --name-only
 [System.Collections.ArrayList]$changedSolutions = @()
 
 foreach ($_ in $resultArray) {
-  if ($_.StartsWith("src/solutions") -and $_.Contains("Extract")) {
+  if ($_.StartsWith("src/solutions")) {
     $solutionName = $_.Split("/")[2]
 
     if (!$changedSolutions.Contains($solutionName)) {
@@ -13,4 +13,4 @@ foreach ($_ in $resultArray) {
 }
 $output = $changedSolutions -Join ','  
 
-Write-Host "##vso[task.setvariable variable=solutionList;]$output"
+Write-Host "##vso[task.setvariable variable=solutionList]$output"
