@@ -1111,6 +1111,8 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
+      <IconMediumName>devhub_/Images/devhub_solution.svg</IconMediumName>
+      <IconSmallName>devhub_/Images/devhub_solution.svg</IconSmallName>
       <IconVectorName>devhub_/Images/devhub_solution.svg</IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>

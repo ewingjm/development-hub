@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.21012.135" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.21021.140" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>devhub_DevelopmentHub_Develop</UniqueName>
     <LocalizedNames>
@@ -86,10 +86,8 @@
       <RootComponent type="1" schemaName="devhub_issue" behavior="2" />
       <RootComponent type="1" schemaName="devhub_solution" behavior="0" />
       <RootComponent type="1" schemaName="devhub_solutionmerge" behavior="0" />
-      <RootComponent type="1" schemaName="devhub_solutionversion" behavior="0" />
       <RootComponent type="29" id="{154fbb6c-7784-e911-a97e-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{1fd3b61a-4080-4298-9822-d3bad18842f7}" behavior="0" />
-      <RootComponent type="29" id="{20af6fb0-4bb9-ea11-a812-000d3a86ad99}" behavior="0" />
       <RootComponent type="29" id="{2b0c0fac-4df1-435d-8ba8-0e78baefb755}" behavior="0" />
       <RootComponent type="29" id="{38601740-ae0b-46af-8809-5d402b5a0a02}" behavior="0" />
       <RootComponent type="29" id="{3e79228e-9084-e911-a97e-0022480186c3}" behavior="0" />
@@ -102,7 +100,6 @@
       <RootComponent type="29" id="{7df170c4-df25-4f70-b60f-c06ece00761f}" behavior="0" />
       <RootComponent type="29" id="{891d73b3-529b-e911-a980-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{89dc07f3-97df-456e-8c2d-7427234b4237}" behavior="0" />
-      <RootComponent type="29" id="{adbc4ed7-87c3-ea11-a812-000d3a86ad99}" behavior="0" />
       <RootComponent type="29" id="{b7817b8e-529b-e911-a980-0022480186c3}" behavior="0" />
       <RootComponent type="29" id="{bacc52a9-3469-4105-bbc8-269a62670429}" behavior="0" />
       <RootComponent type="29" id="{c976585f-06b4-ea11-a812-000d3a86ad99}" behavior="0" />
@@ -401,19 +398,19 @@
         <Dependent key="33" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="34" type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.21012.00135)" />
+        <Required key="34" type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.21021.00140)" />
         <Dependent key="33" type="60" displayName="Information" parentDisplayName="Solution Merge" id="{6f14717f-673c-45a3-b862-4c3e7408be3f}" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="35" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
+        <Required key="35" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="37" type="59" schemaName="Count by Owner" displayName="Count by Owner" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{08600d52-9576-e911-a819-002248008902}" />
+        <Required key="37" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>
-        <Required key="38" type="59" schemaName="Count per Day" displayName="Count per Day" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{4f470eb3-9576-e911-a819-002248008902}" />
+        <Required key="38" type="59" schemaName="Count by Type" displayName="Count by Type" parentSchemaName="devhub_issue" parentDisplayName="Issue" solution="devhub_DevelopmentHub_Issues (0.1.11.1)" id="{cb92cc2f-9576-e911-a819-002248008902}" />
         <Dependent key="36" type="80" schemaName="devhub_DevelopmentHub" displayName="Development Hub" />
       </MissingDependency>
       <MissingDependency>

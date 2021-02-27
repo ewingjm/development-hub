@@ -992,6 +992,8 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
+      <IconMediumName>devhub_/Images/devhub_Environment.svg</IconMediumName>
+      <IconSmallName>devhub_/Images/devhub_Environment.svg</IconSmallName>
       <IconVectorName>devhub_/Images/devhub_Environment.svg</IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>

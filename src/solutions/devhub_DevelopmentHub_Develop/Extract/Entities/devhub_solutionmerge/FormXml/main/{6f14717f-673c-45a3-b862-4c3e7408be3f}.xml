@@ -63,11 +63,10 @@
                         </labels>
                         <control id="devhub_sourcebranch" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_sourcebranch" disabled="false" />
                       </cell>
-                      <cell id="{c11860bb-72f3-4b60-8abc-588f16a6da49}" showlabel="true" locklevel="0" visible="false">
+                      <cell locklevel="0" id="{7335bef0-dddb-400f-996a-5debacfa0d89}">
                         <labels>
-                          <label description="Solution Version" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="devhub_solutionversion" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_solutionversion" disabled="true" />
                       </cell>
                     </row>
                   </rows>
