@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModuleSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SiteMapUniqueName>devhub_DevelopmentHub</SiteMapUniqueName>
+  <SiteMap IntroducedVersion="7.0.0.0">
+    <Area Id="devhub_DevelopmentHub" ResourceId="SitemapDesigner.NewArea" DescriptionResourceId="SitemapDesigner.NewArea" VectorIcon="/WebResources/devhub_/Images/devhub_Issue.svg" Icon="/WebResources/devhub_/Images/devhub_Issue.svg" ShowGroups="true" IntroducedVersion="7.0.0.0" ordinalvalue="0">
+      <Group Id="devhub_AzureDevOps" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown" ordinalvalue="2" solutionaction="Added">
+        <Titles>
+          <Title LCID="1033" Title="Azure DevOps" />
+        </Titles>
+        <SubArea Id="devhub_Projects" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="devhub_project" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="0" />
+        <SubArea Id="devhub_Repositories" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="devhub_repository" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" ordinalvalue="1" />
+      </Group>
+    </Area>
+  </SiteMap>
+  <LocalizedNames>
+    <LocalizedName description="Development Hub" languagecode="1033" />
+  </LocalizedNames>
+</AppModuleSiteMap>

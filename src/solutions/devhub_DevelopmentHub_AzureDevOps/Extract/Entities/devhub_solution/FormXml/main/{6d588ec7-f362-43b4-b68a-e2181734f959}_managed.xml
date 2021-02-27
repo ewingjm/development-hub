@@ -7,7 +7,6 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
-        <tab name="tab_2" id="{ecc66872-531e-37d5-cdd2-36047e2a27ea}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="2" solutionaction="Modified" />
         <tab name="tab_azuredevops" id="061cc0d8-1fac-4421-bde2-98acb8971229" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Azure DevOps" languagecode="1033" />

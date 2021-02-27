@@ -11,6 +11,7 @@
   <optionsets />
   <WebResources />
   <CustomControls />
+  <AppModuleSiteMaps />
   <AppModules />
   <EntityDataProviders />
   <connectionreferences>

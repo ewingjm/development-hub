@@ -21,7 +21,6 @@
     <AppModuleComponent type="1" schemaName="devhub_repository" />
     <AppModuleComponent type="1" schemaName="devhub_solution" />
     <AppModuleComponent type="1" schemaName="devhub_solutionmerge" />
-    <AppModuleComponent type="1" schemaName="devhub_solutionversion" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
