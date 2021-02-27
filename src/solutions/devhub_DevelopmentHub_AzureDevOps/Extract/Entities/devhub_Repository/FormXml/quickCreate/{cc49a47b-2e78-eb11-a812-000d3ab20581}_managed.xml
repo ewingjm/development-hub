@@ -55,10 +55,19 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="266FE48D-4D04-4E9A-8C5A-7DEF9A2F059B" labelid="{e0b0dda1-4168-449c-a1f7-7770dc643b6e}">
+                      <cell id="{911558d0-b9bb-e258-c071-a24a52519acc}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Target Branch" languagecode="1033" />
                         </labels>
+                        <control id="devhub_targetbranch" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_targetbranch" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6bd99a0d-96a5-6628-7679-b962d67ca838}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Source Control Strategy" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_sourcecontrolstrategy" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="devhub_sourcecontrolstrategy" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -73,7 +82,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{60c27410-21fb-4768-a2ef-e07765db0d67}">
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{60c27410-21fb-4768-a2ef-e07765db0d67}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
