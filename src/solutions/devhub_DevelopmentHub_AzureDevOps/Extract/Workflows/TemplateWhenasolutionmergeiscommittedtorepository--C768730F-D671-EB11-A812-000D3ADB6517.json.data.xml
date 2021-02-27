@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{c768730f-d671-eb11-a812-000d3adb6517}" Name="[Template] When a solution merge is committed to {{repository}} -&gt; Update the solution merge status" Description="This is the template flow for repository updates updating solution merges to a 'merged' status." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/TemplateWhenasolutionmergeiscommittedtorepository--C768730F-D671-EB11-A812-000D3ADB6517.json</JsonFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>5</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>0</StateCode>
+  <StatusCode>1</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.2.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>none</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="[Template] When a solution merge is committed to {{repository}} -&gt; Update the solution merge status" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This is the template flow for repository updates updating solution merges to a 'merged' status." />
+  </Descriptions>
+</Workflow>

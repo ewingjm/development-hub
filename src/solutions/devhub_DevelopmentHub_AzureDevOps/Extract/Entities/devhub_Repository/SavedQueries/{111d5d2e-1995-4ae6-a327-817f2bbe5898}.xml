@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{111d5d2e-1995-4ae6-a327-817f2bbe5898}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="devhub_name" select="1" icon="1" preview="1">
+        <row name="result" id="devhub_repositoryid">
+          <cell name="devhub_name" width="172" />
+          <cell name="devhub_project" width="168" />
+          <cell name="devhub_sourcecontrolstrategy" width="187" />
+          <cell name="devhub_targetbranch" width="141" />
+          <cell name="devhub_extractbuilddefinitionid" width="199" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="devhub_repository">
+          <attribute name="devhub_repositoryid" />
+          <attribute name="devhub_name" />
+          <order attribute="devhub_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="devhub_project" />
+          <attribute name="devhub_sourcecontrolstrategy" />
+          <attribute name="devhub_targetbranch" />
+          <attribute name="devhub_extractbuilddefinitionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Repositories" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

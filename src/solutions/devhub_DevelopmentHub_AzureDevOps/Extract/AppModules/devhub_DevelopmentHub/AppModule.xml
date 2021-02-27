@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>devhub_DevelopmentHub</UniqueName>
+  <IntroducedVersion>0.0.1.0</IntroducedVersion>
+  <WebResourceId>84951c9a-e850-ea11-a813-000d3a7f128d</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="62" schemaName="devhub_DevelopmentHub" />
+    <AppModuleComponent type="60" id="{899883f9-9876-e911-a819-002248008902}" />
+    <AppModuleComponent type="1" schemaName="devhub_environment" />
+    <AppModuleComponent type="1" schemaName="devhub_issue" />
+    <AppModuleComponent type="59" id="{08600d52-9576-e911-a819-002248008902}" />
+    <AppModuleComponent type="59" id="{cb92cc2f-9576-e911-a819-002248008902}" />
+    <AppModuleComponent type="59" id="{4f470eb3-9576-e911-a819-002248008902}" />
+    <AppModuleComponent type="1" schemaName="devhub_project" />
+    <AppModuleComponent type="1" schemaName="devhub_repository" />
+    <AppModuleComponent type="1" schemaName="devhub_solution" />
+    <AppModuleComponent type="1" schemaName="devhub_solutionmerge" />
+    <AppModuleComponent type="1" schemaName="devhub_solutionversion" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="Development Hub" languagecode="1033" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Develop, review, and merge solution development activities." languagecode="1033" />
+  </Descriptions>
+</AppModule>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{c53472fd-b978-eb11-a812-000d3adc8f9a}" Name="If project is created -&gt; Lock name" Description="This is to prevent repository update triggers from becoming out of sync. A new project must be created for name changes." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/Ifprojectiscreated-Lockname-C53472FD-B978-EB11-A812-000D3ADC8F9A.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>2</Category>
+  <Mode>1</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <RunAs>1</RunAs>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.2.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerScope>2</ProcessTriggerScope>
+  <PrimaryEntity>devhub_Project</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="If project is created -&gt; Lock name" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description languagecode="1033" description="This is to prevent repository update triggers from becoming out of sync. A new project must be created for name changes." />
+  </Descriptions>
+</Workflow>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{18072f17-2331-46c8-bf74-4d555b0206bf}</savedqueryid>
+    <layoutxml>
+      <grid name="devhub_repositories" jump="devhub_name" select="1" icon="1" preview="0">
+        <row name="devhub_repository" id="devhub_repositoryid">
+          <cell name="devhub_name" width="300" />
+          <cell name="devhub_project" width="100" />
+          <cell name="devhub_targetbranch" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="devhub_repository">
+          <attribute name="devhub_repositoryid" />
+          <attribute name="devhub_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="devhub_project" />
+          <attribute name="devhub_targetbranch" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Repository Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

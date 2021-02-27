@@ -1,0 +1,12 @@
+<environmentvariabledefinition schemaname="devhub_AzureDevOpsOrganization">
+  <description default="The name of the Azure DevOps organization which contains the source code for the target solutions.">
+    <label description="The name of the Azure DevOps organization which contains the source code for the target solutions." languagecode="1033" />
+  </description>
+  <displayname default="Azure DevOps Organization">
+    <label description="Azure DevOps Organization" languagecode="1033" />
+  </displayname>
+  <introducedversion>0.2.1</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <type>100000000</type>
+</environmentvariabledefinition>
