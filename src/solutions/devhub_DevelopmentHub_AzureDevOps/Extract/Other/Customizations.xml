@@ -7,26 +7,23 @@
   <Templates />
   <EntityMaps />
   <EntityRelationships />
-  <EnvironmentVariables />
   <OrganizationSettings />
   <optionsets />
+  <WebResources />
   <CustomControls />
+  <AppModuleSiteMaps />
+  <AppModules />
   <EntityDataProviders />
   <connectionreferences>
-    <connectionreference connectionreferencelogicalname="devhub_sharedcommondataserviceforapps_14f40">
-      <connectionreferencedisplayname>Common Data Service (current environment)</connectionreferencedisplayname>
-      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
-      <iscustomizable>1</iscustomizable>
-      <statecode>0</statecode>
-      <statuscode>1</statuscode>
-    </connectionreference>
-    <connectionreference connectionreferencelogicalname="devhub_sharedvisualstudioteamservices_bf2bc">
+    <connectionreference connectionreferencelogicalname="devhub_sharedapprovals_6d3fc"></connectionreference>
+    <connectionreference connectionreferencelogicalname="devhub_sharedvisualstudioteamservices_d7fcb">
       <connectionreferencedisplayname>Azure DevOps</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices</connectorid>
       <iscustomizable>1</iscustomizable>
       <statecode>0</statecode>
       <statuscode>1</statuscode>
     </connectionreference>
+    <connectionreference connectionreferencelogicalname="devhub_sharedcommondataserviceforapps_f7ca3"></connectionreference>
   </connectionreferences>
   <Languages>
     <Language>1033</Language>

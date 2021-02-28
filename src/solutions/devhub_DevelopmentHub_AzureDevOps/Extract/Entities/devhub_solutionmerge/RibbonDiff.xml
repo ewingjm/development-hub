@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="devhub.devhub_solutionmerge.ApproveChanges.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="20">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.Alt" Command="devhub.devhub_solutionmerge.ApproveChanges.Command" Id="devhub.devhub_solutionmerge.ApproveChanges.Button" Image32by32="$webresource:devhub_/Images/devhub_pushchanges.svg" Image16by16="$webresource:devhub_/Images/devhub_pushchanges.svg" LabelText="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText" Sequence="20" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_pushchanges.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="devhub.devhub_solutionmerge.ApproveChanges.Command">
+      <EnableRules>
+        <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.approve" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules>
+      <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule">
+        <ValueRule Field="statuscode" Value="353400007" Default="false" InvertResult="false" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.Alt">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Approves latest changes from the development solution and updates the pull request." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

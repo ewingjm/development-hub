@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_devhub_project" />
+  <EntityRelationship Name="business_unit_devhub_repository" />
+  <EntityRelationship Name="devhub_Project_devhub_Repository" />
+  <EntityRelationship Name="devhub_Repository_SolutionMergeCommitFlow" />
+  <EntityRelationship Name="devhub_solution_Repository_devhub_Repository" />
+  <EntityRelationship Name="lk_devhub_project_createdby" />
+  <EntityRelationship Name="lk_devhub_project_modifiedby" />
+  <EntityRelationship Name="lk_devhub_repository_createdby" />
+  <EntityRelationship Name="lk_devhub_repository_modifiedby" />
+  <EntityRelationship Name="owner_devhub_project" />
+  <EntityRelationship Name="owner_devhub_repository" />
+  <EntityRelationship Name="team_devhub_project" />
+  <EntityRelationship Name="team_devhub_repository" />
+  <EntityRelationship Name="user_devhub_project" />
+  <EntityRelationship Name="user_devhub_repository" />
+</EntityRelationships>

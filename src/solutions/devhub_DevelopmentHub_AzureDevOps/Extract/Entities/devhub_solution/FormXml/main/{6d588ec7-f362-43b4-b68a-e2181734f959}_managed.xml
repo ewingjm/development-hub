@@ -7,7 +7,6 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
-        <tab name="tab_2" id="{ecc66872-531e-37d5-cdd2-36047e2a27ea}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="2" solutionaction="Modified" />
         <tab name="tab_azuredevops" id="061cc0d8-1fac-4421-bde2-98acb8971229" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Azure DevOps" languagecode="1033" />
@@ -21,19 +20,11 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{b6c21b1d-dad4-4335-8c77-f6a32f7b8571}" locklevel="0" ordinalvalue="10000">
+                      <cell id="{ffa1d450-3f39-467a-b5a7-728ee70b2f5b}" locklevel="0" ordinalvalue="10000">
                         <labels>
-                          <label description="Azure DevOps Project" languagecode="1033" />
+                          <label description="Repository" languagecode="1033" />
                         </labels>
-                        <control id="devhub_azuredevopsproject" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_azuredevopsproject" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{c4bc12b8-abfa-4c4d-b98d-0dd96df0e95d}" locklevel="0" ordinalvalue="10001">
-                        <labels>
-                          <label description="Azure DevOps Extract Build Definition ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_azuredevopsextractbuilddefinitionid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_azuredevopsextractbuilddefinitionid" disabled="false" />
+                        <control id="devhub_repository" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_repository" disabled="false" />
                       </cell>
                     </row>
                   </rows>

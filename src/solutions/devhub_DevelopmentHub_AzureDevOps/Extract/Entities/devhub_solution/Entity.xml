@@ -4,58 +4,17 @@
   <EntityInfo>
     <entity Name="devhub_solution">
       <attributes>
-        <attribute PhysicalName="devhub_AzureDevOpsExtractBuildDefinitionID">
-          <Type>int</Type>
-          <Name>devhub_azuredevopsextractbuilddefinitionid</Name>
-          <LogicalName>devhub_azuredevopsextractbuilddefinitionid</LogicalName>
+        <attribute PhysicalName="devhub_Repository">
+          <Type>lookup</Type>
+          <Name>devhub_repository</Name>
+          <LogicalName>devhub_repository</LogicalName>
           <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>0.2.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>1</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>none</Format>
-          <MinValue>0</MinValue>
-          <MaxValue>2147483647</MaxValue>
-          <displaynames>
-            <displayname description="Azure DevOps Extract Build Definition ID" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="The Azure DevOps extract build definition ID for this solution." languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="devhub_AzureDevOpsProject">
-          <Type>nvarchar</Type>
-          <Name>devhub_azuredevopsproject</Name>
-          <LogicalName>devhub_azuredevopsproject</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
           <IntroducedVersion>0.2.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
@@ -74,14 +33,13 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>64</MaxLength>
-          <Length>128</Length>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
           <displaynames>
-            <displayname description="Azure DevOps Project" languagecode="1033" />
+            <displayname description="Repository" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The Azure DevOps project that contains the repository for this solution." languagecode="1033" />
+            <Description description="The repository that this solution is within" languagecode="1033" />
           </Descriptions>
         </attribute>
       </attributes>

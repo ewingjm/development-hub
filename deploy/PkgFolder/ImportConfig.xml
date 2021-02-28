@@ -5,5 +5,9 @@
     <configsolutionfile overwriteunmanagedcustomizations="false" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_Develop.zip" />
     <configsolutionfile overwriteunmanagedcustomizations="false" publishworkflowsandactivateplugins="true" solutionpackagefilename="devhub_DevelopmentHub_AzureDevOps.zip" />
   </solutions>
-  <templateconfig />
+  <templateconfig>
+    <processes>
+      <process name="[Template] When a solution merge is committed to {{repository}} -> Update the solution merge status" state="Inactive" />
+    </processes>
+  </templateconfig>
 </configdatastorage>

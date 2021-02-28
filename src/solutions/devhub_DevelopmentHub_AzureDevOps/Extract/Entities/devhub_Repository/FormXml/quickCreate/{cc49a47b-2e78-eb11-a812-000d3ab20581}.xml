@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{cc49a47b-2e78-eb11-a812-000d3ab20581}</formid>
+    <IntroducedVersion>0.2.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="F931FFE2-B873-473F-8F95-9502F0AA3F5E" name="tab_1" showlabel="false" labelid="{efd0344b-6b69-4847-bc9d-0c34c540e0d4}">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{3e66091c-9950-479f-a7a4-d22a7f4afcf1}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{f8ad46db-e936-47ff-8dcf-b5f91d9d1162}" locklevel="0" labelid="{99ea7563-b14e-4aa8-a62a-b600995caf2b}">
+                        <labels>
+                          <label description="Project" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_project" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_project" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1521faa1-0f0b-4de6-b8b4-82ef729a8243}" locklevel="0" labelid="{f71235fc-d8b9-401c-ac2e-cd819de40eb9}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fbc4a96e-067d-4a6a-9683-529b2957fb5d}" locklevel="0" labelid="{2497b8f7-8643-4b84-9b34-44040524d787}">
+                        <labels>
+                          <label description="Extract Build Definition ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_extractbuilddefinitionid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_extractbuilddefinitionid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{dcae4b1d-8087-47bf-a64a-8cbf389e8d4f}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{911558d0-b9bb-e258-c071-a24a52519acc}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Target Branch" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_targetbranch" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_targetbranch" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6bd99a0d-96a5-6628-7679-b962d67ca838}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Source Control Strategy" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_sourcecontrolstrategy" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="devhub_sourcecontrolstrategy" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="46FD66EA-B686-41D9-AAE0-C565BD78EC1F" name="tab_1_column_3_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{8dde31f8-f7ac-41e0-b615-91c7f7bd5993}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{60c27410-21fb-4768-a2ef-e07765db0d67}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description=" quick create form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

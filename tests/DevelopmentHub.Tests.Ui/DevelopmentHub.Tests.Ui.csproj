@@ -10,7 +10,7 @@
     <CodeAnalysisRuleSet>developmenthub.tests.ui.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Capgemini.PowerApps.SpecFlowBindings" Version="0.10.5" />
+    <PackageReference Include="Capgemini.PowerApps.SpecFlowBindings" Version="0.13.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

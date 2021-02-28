@@ -101,53 +101,11 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{b6c21b1d-dad4-4335-8c77-f6a32f7b8571}" locklevel="0">
+                      <cell id="{ffa1d450-3f39-467a-b5a7-728ee70b2f5b}" locklevel="0">
                         <labels>
-                          <label description="Azure DevOps Project" languagecode="1033" />
+                          <label description="Repository" languagecode="1033" />
                         </labels>
-                        <control id="devhub_azuredevopsproject" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_azuredevopsproject" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{c4bc12b8-abfa-4c4d-b98d-0dd96df0e95d}" locklevel="0">
-                        <labels>
-                          <label description="Azure DevOps Extract Build Definition ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_azuredevopsextractbuilddefinitionid" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_azuredevopsextractbuilddefinitionid" disabled="false" />
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
-        <tab name="tab_2" id="{ecc66872-531e-37d5-cdd2-36047e2a27ea}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
-          <labels>
-            <label description="Version History" languagecode="1033" />
-          </labels>
-          <columns>
-            <column width="100%">
-              <sections>
-                <section name="tab_2_section_1" showlabel="false" showbar="false" locklevel="0" id="{728b7e44-68cd-d436-570d-b9a32968376a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
-                  <labels>
-                    <label description="Section" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell showlabel="false" locklevel="0" id="{1f0e8768-74d5-4e00-a0f4-3aa026b15877}" rowspan="1" colspan="1">
-                        <labels>
-                          <label description="Solution Versions" languagecode="1033" />
-                        </labels>
-                        <control id="subgrid_SolutionVersions" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <TargetEntityType>devhub_solutionversion</TargetEntityType>
-                            <ViewId>{8A73DCFA-5D50-4090-A788-44AF43EF1C93}</ViewId>
-                            <ViewIds>{8A73DCFA-5D50-4090-A788-44AF43EF1C93}</ViewIds>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>devhub_SolutionVersion_Solution_devhub_solution</RelationshipName>
-                          </parameters>
-                        </control>
+                        <control id="devhub_repository" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_repository" disabled="false" />
                       </cell>
                     </row>
                   </rows>

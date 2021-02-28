@@ -13,7 +13,6 @@
     <AppModuleComponent type="1" schemaName="devhub_environment" solutionaction="Added" />
     <AppModuleComponent type="1" schemaName="devhub_solution" solutionaction="Added" />
     <AppModuleComponent type="1" schemaName="devhub_solutionmerge" solutionaction="Added" />
-    <AppModuleComponent type="1" schemaName="devhub_solutionversion" solutionaction="Added" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />

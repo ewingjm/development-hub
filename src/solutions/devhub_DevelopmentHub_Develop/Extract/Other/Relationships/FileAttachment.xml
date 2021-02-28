@@ -20,44 +20,4 @@
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>
-  <EntityRelationship Name="FileAttachment_devhub_SolutionVersion_devhub_ManagedSolutionZip">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
-    <IsCustomizable>0</IsCustomizable>
-    <IntroducedVersion>0.1.20.0</IntroducedVersion>
-    <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>devhub_SolutionVersion</ReferencingEntityName>
-    <ReferencedEntityName>FileAttachment</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <IsValidForAdvancedFind>0</IsValidForAdvancedFind>
-    <ReferencingAttributeName>devhub_ManagedSolutionZip</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="The managed solution zip file." languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
-  </EntityRelationship>
-  <EntityRelationship Name="FileAttachment_devhub_SolutionVersion_devhub_UnmanagedSolutionZip">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
-    <IsCustomizable>0</IsCustomizable>
-    <IntroducedVersion>0.1.20.0</IntroducedVersion>
-    <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>devhub_SolutionVersion</ReferencingEntityName>
-    <ReferencedEntityName>FileAttachment</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <IsValidForAdvancedFind>0</IsValidForAdvancedFind>
-    <ReferencingAttributeName>devhub_UnmanagedSolutionZip</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="The unmanaged solution zip file." languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
-  </EntityRelationship>
 </EntityRelationships>

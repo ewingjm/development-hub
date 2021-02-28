@@ -10,7 +10,7 @@
         <LocalizedCollectionName description="Environments" languagecode="1033" />
       </LocalizedCollectionNames>
       <Descriptions>
-        <Description description="A Common Data Service environment." languagecode="1033" />
+        <Description description="An environment." languagecode="1033" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -971,7 +971,7 @@
       <MobileOfflineFilters></MobileOfflineFilters>
       <IsMapiGridEnabled>1</IsMapiGridEnabled>
       <IsReadingPaneEnabled>1</IsReadingPaneEnabled>
-      <IsQuickCreateEnabled>0</IsQuickCreateEnabled>
+      <IsQuickCreateEnabled>1</IsQuickCreateEnabled>
       <SyncToExternalSearchIndex>0</SyncToExternalSearchIndex>
       <IntroducedVersion>0.0.1.0</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>
@@ -992,6 +992,8 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
+      <IconMediumName>devhub_/Images/devhub_Environment.svg</IconMediumName>
+      <IconSmallName>devhub_/Images/devhub_Environment.svg</IconSmallName>
       <IconVectorName>devhub_/Images/devhub_Environment.svg</IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>

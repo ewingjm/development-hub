@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name LocalizedName="Solution Merge" OriginalName="Solution Merge">devhub_solutionmerge</Name>
+  <EntityInfo>
+    <entity Name="devhub_solutionmerge">
+      <attributes>
+        <attribute PhysicalName="statecode">
+          <Type>state</Type>
+          <Name>statecode</Name>
+          <LogicalName>statecode</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.1.12.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="devhub_solutionmerge_statecode">
+            <OptionSetType>state</OptionSetType>
+            <IntroducedVersion>0.1.12.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Status" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Status of the Solution Merge" languagecode="1033" />
+            </Descriptions>
+            <states>
+              <state value="0" defaultstatus="1" invariantname="Active">
+                <labels>
+                  <label description="Active" languagecode="1033" />
+                </labels>
+              </state>
+              <state value="1" defaultstatus="2" invariantname="Inactive">
+                <labels>
+                  <label description="Inactive" languagecode="1033" />
+                </labels>
+              </state>
+            </states>
+          </optionset>
+          <displaynames>
+            <displayname description="Status" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Status of the Solution Merge" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="statuscode">
+          <Type>status</Type>
+          <Name>statuscode</Name>
+          <LogicalName>statuscode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.1.12.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="devhub_solutionmerge_statuscode">
+            <OptionSetType>status</OptionSetType>
+            <IntroducedVersion>0.1.12.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Status Reason" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Reason for the status of the Solution Merge" languagecode="1033" />
+            </Descriptions>
+            <statuses>
+              <status value="1" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;353400000&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;353400005&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Awaiting Review" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400000" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400000&quot; tostatusid=&quot;353400004&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400000&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400000&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Approved" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400004" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;353400000&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Queued" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400003" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;353400006&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;353400007&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;353400001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;353400002&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Merging" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400002" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;353400000&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Failed" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400006" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400006&quot; tostatusid=&quot;353400007&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400006&quot; tostatusid=&quot;353400001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400006&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Awaiting Manual Merge" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400007" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400007&quot; tostatusid=&quot;353400001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400007&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Awaiting PR Merge" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="2" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;2&quot; tostatusid=&quot;1&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Cancelled" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400001" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot; /&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Merged" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400005" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400005&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400005&quot; tostatusid=&quot;2&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Rejected" languagecode="1033" />
+                </labels>
+              </status>
+            </statuses>
+          </optionset>
+          <displaynames>
+            <displayname description="Status Reason" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Reason for the status of the Solution Merge" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+      </attributes>
+    </entity>
+  </EntityInfo>
+  <RibbonDiffXml />
+</Entity>

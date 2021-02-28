@@ -50,19 +50,19 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{c8f500bc-c64d-4cd2-99a3-ab91ffdb5c76}" locklevel="0">
-                        <labels>
-                          <label description="Client ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{5fdefa8e-b2ee-4c40-b319-7e0e36af08c7}" locklevel="0">
                         <labels>
                           <label description="Tenant ID" languagecode="1033" />
                         </labels>
                         <control id="devhub_tenantid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_tenantid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c8f500bc-c64d-4cd2-99a3-ab91ffdb5c76}" locklevel="0">
+                        <labels>
+                          <label description="Client ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
                       </cell>
                     </row>
                     <row>
