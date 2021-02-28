@@ -90,7 +90,7 @@ else {
 Write-Host "Authenticating to extract environment."
 $extractUrl = $solutionMerge.devhub_TargetSolution.devhub_StagingEnvironment.devhub_url
 $extractWebApiHeaders = Get-WebApiHeaders -url $extractUrl -clientId $ClientId -tenantId $TenantId -clientSecret $ClientSecret
-$extractWebApiUrl = "$($extractUrl)api/data/v9.1"
+$extractWebApiUrl = "$($extractUrl)/api/data/v9.1"
 
 Write-Host "Exporting $($solutionMerge.devhub_TargetSolution.devhub_uniquename) as unmanaged."
 $unmanagedZipResponse = Invoke-RestMethod -Uri "$($extractWebApiUrl)/ExportSolution" `
