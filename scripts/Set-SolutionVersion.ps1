@@ -1,14 +1,14 @@
 [CmdletBinding()]
 param (
     [Parameter(Mandatory = $true)]
-    [String[]]
+    [String]
     $Solutions,
     [Parameter(Mandatory = $true)]
     [String]
     $Version
 )
 
-$Solutions | ForEach-Object {
+$Solutions.Split(',') | ForEach-Object {
     $solutionPath = Join-Path -Path .\src\solutions -ChildPath $_
     $solutionXmlPath = Join-Path -Path $solutionPath -ChildPath '.\Extract\Other\Solution.xml'
     
