@@ -14,7 +14,7 @@ For more context, read [this](https://medium.com/capgemini-microsoft-team/contin
   + [Register an Azure DevOps project](#register-an-azure-devops-project)
   + [Register a Git repository](#register-a-git-repository)
   + [Register a master environment](#register-a-master-environment)
-  + [Register a solutions](#register-a-solutions)
+  + [Register a solution](#register-a-solution)
 * [Usage](#usage)
   + [Create an issue](#create-an-issue)
   + [Develop a solution](#develop-a-solution)
