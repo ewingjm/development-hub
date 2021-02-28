@@ -130,11 +130,13 @@ A **Solution Merge** record should be created when development is complete on an
 
 ![Solution Merge](./docs/images/solutionmerge.png)
 
-The solution merge is created in an _Awaiting Review_ status. Review comments can be added to the solution merge in the form of notes and the solution merge either approved or rejected. 
+The solution merge is created in an _Awaiting Review_ status. Comments can be as notes and the solution merge either approved or rejected. 
 
-Once approved, the development solution will be merged into the target solution. If multiple solution merges have been approved, they will enter a queue. This means that an _Approved_ solution merge will transition to either a _Merging_ or _Queued_ status. The solution merge will go to an inactive _Merged_ status when the solution merge has been committed to the target branch with a corresponding `Solution-merge-id` Git trailer in the commit message. When using the _Pull request_ source control strategy, a pull request will be created automatically and the solution merge will transition to a status of _Awaiting PR Merge_.
+An approved development solution will be merged into the target solution. If multiple solution merges have been approved, they will be queued. This means that an _Approved_ solution merge will transition to either a _Merging_ or _Queued_ status. A _Merged_ status will be reached when the solution merge has been committed to the target branch with a matching `Solution-merge-id` Git trailer in the commit message (this is automatically added). 
 
-> The version number after a solution merge is based on the type of issue. A _Feature_ issue will increment the minor version and a _Bug_ issue will increment the patch version. Major version increments must be done manually. 
+When using the _Pull request_ source control strategy, a pull request will be created automatically and the solution merge will transition to a status of _Awaiting PR Merge_.
+
+> A _Feature_ issue will increment the minor version and a _Bug_ issue will increment the patch version. Major version increments must be done manually. 
 
 #### Merge source code
 
@@ -146,15 +148,11 @@ If the solution to be merged has associated source code (e.g. you have made chan
 
 Enabling the _Manual Merge Activities_ field on the solution merge record will cause the merging process to pause before extracting and committing to source control. This is useful where you are merging changes by hand (e.g. where you need to delete components from the solution).
 
-When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an _Awaiting Manual Merge Activities_ status. 
-
-To notify the flow that the manual merge activities are complete, navigate to _Action items -> Approvals_ within Power Automate and set the approval status to merged.
+When the merging process is in a state where manual merge activities can begin, the solution merge will transition to an _Awaiting Manual Merge Activities_ status. To notify the flow that the manual merge activities are complete, navigate to _Action items -> Approvals_ within Power Automate and set the approval status to merged.
 
 #### Handle a failed merge
 
-If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a _Failed_ status. 
-
-A note will be attached with a link to the failed flow run which can be used to diagnose the failure reason. A _Retry_ button is available to retry the merge after the necessary steps have been taken.
+If the merging process failed (e.g. due to missing dependencies) then the solution merge will transition to a _Failed_ status. A note will be attached with a link to the failed flow run which can be used to diagnose the failure reason. A _Retry_ button is available to retry the merge after the necessary steps have been taken.
 
 In the example below, a dependency was missing from the target environment:
 
