@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{eb19a90f-2c79-eb11-a812-002248414025}</formid>
+    <IntroducedVersion>0.2.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="F931FFE2-B873-473F-8F95-9502F0AA3F5E" name="tab_1" showlabel="false" labelid="{f734cffd-713b-49fe-bfc4-bb7b6a5a0c49}">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{f6fbdd86-e51f-4ecb-af75-d20a1a547b95}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{51cea3a1-0553-4836-8248-08584cbb1eda}" locklevel="0" labelid="{eb4c265c-10e1-45d9-bd42-d9e9097b2501}">
+                        <labels>
+                          <label description="Issue" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_issue" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_issue" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{18fc9b84-b6bb-4c93-8ca1-9ee98c5669cb}" locklevel="0" labelid="{4c45bb0f-11c3-455a-abf6-24f874bad8bc}">
+                        <labels>
+                          <label description="Target Solution" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_targetsolution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_targetsolution" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{cca355ce-6617-4cbb-8a5e-8bee80f000bb}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{2446b306-0c61-46f2-979d-ffeeda56ecfa}" locklevel="0" labelid="{838f3756-3cac-4584-9aaa-3f9d8c815e7a}">
+                        <labels>
+                          <label description="Manual Merge Activities" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_manualmergeactivities" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="devhub_manualmergeactivities" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b9e8d674-6f9b-42ae-8a4c-3688769977ec}" locklevel="0" labelid="{6fe84bce-b2d7-4a0c-ae40-530549af4e51}">
+                        <labels>
+                          <label description="Source Branch" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_sourcebranch" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_sourcebranch" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="46FD66EA-B686-41D9-AAE0-C565BD78EC1F" name="tab_1_column_3_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{72f8e0d5-7f0f-4e97-8e33-343718f4222e}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{e2e6e530-0aaa-4426-94ec-2d4b5edb667a}" labelid="{6fb0b728-27f6-47f9-8d4c-84ab2549919a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description=" quick create form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>

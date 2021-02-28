@@ -1228,7 +1228,7 @@
       <MobileOfflineFilters></MobileOfflineFilters>
       <IsMapiGridEnabled>1</IsMapiGridEnabled>
       <IsReadingPaneEnabled>1</IsReadingPaneEnabled>
-      <IsQuickCreateEnabled>0</IsQuickCreateEnabled>
+      <IsQuickCreateEnabled>1</IsQuickCreateEnabled>
       <SyncToExternalSearchIndex>0</SyncToExternalSearchIndex>
       <IntroducedVersion>0.1.12.0</IntroducedVersion>
       <IsCustomizable>1</IsCustomizable>

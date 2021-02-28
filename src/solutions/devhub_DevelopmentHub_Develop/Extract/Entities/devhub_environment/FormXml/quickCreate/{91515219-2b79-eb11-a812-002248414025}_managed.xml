@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{91515219-2b79-eb11-a812-002248414025}</formid>
+    <IntroducedVersion>0.2.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab id="F931FFE2-B873-473F-8F95-9502F0AA3F5E" name="tab_1" showlabel="false" labelid="{61bfeb88-7d9f-41bb-bd59-10a1bd08c3ba}">
+          <labels>
+            <label description="Tab" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{638c4c17-8bed-4a1b-b64b-70e9a6919f27}">
+                  <labels>
+                    <label description="Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{bb88f391-9034-437a-b01e-788b1ed9ea9a}" locklevel="0" labelid="{32ee330d-745d-4c9f-9d06-bbbc383202c0}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{36556e8d-c1ad-4ea7-b6b9-135d863c957d}" locklevel="0" labelid="{591adc2d-a1eb-4392-9d02-9c37df52ee9e}">
+                        <labels>
+                          <label description="URL" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_url" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="devhub_url" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{7984edd9-a67a-46f8-a882-56c3da0ba3fd}">
+                  <labels>
+                    <label description="Auth" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8c4cb554-585f-44f1-8f79-05b889e9b37d}" locklevel="0" labelid="{c4cf88bc-89c7-46c2-842b-0dfb85fe32a7}">
+                        <labels>
+                          <label description="Tenant ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_tenantid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_tenantid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{baa38e8e-3f53-4bb6-b7a0-9195da2d6496}" locklevel="0" labelid="{58f456d6-eae7-4859-97eb-4542506d95fa}">
+                        <labels>
+                          <label description="Client ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9871a02a-9aed-4772-8354-6400947539a6}" locklevel="0" labelid="{689500f2-5556-459b-b79e-519214daf5a7}">
+                        <labels>
+                          <label description="Client Secret" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_clientsecret" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientsecret" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section id="46FD66EA-B686-41D9-AAE0-C565BD78EC1F" name="tab_1_column_3_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{fd3f0bf9-9f32-4660-ac9d-0843240c78fc}">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{9fe17130-6b38-40d1-a275-900aed3737ba}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description=" quick create form" languagecode="1033" />
+    </LocalizedNames>
+  </systemform>
+</forms>
