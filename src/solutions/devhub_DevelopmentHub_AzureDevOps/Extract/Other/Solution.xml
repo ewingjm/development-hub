@@ -6,7 +6,7 @@
       <LocalizedName description="Development Hub - Azure DevOps" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>0.2.1</Version>
+    <Version>0.2.22</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>developmenthub</UniqueName>
