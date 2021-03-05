@@ -35,6 +35,50 @@ function Get-WebApiHeaders ($url, $clientId, $tenantId, $clientSecret) {
   }
 }
 
+function Merge-SourceBranch ($Branch) {
+  Write-Host "Source branch provided. Squashing $Branch."
+  git merge origin/$Branch --squash --no-commit;
+  $result = git merge HEAD
+  if ($result[0] -like "*error*") {
+    Write-Error "Unable to automatically merge the source branch due to a conflict."
+  }
+}
+
+function Export-Solution ($Headers, $SolutionName, $Managed, $Path) {
+  Write-Host "Exporting $SolutionName. Managed: $Managed."
+  $response = Invoke-RestMethod -Uri "$($extractWebApiUrl)/ExportSolutionAsync" `
+    -Method POST `
+    -Headers $Headers `
+    -UseBasicParsing `
+    -Body (ConvertTo-Json @{ SolutionName = $SolutionName; Managed = $Managed }) 
+  Write-Host "Waiting for solution export job to complete. AsyncOperationId: $($response.AsyncOperationId) ExportJobId:$($response.ExportJobId)"
+
+  $timeOutEnd = [DateTime]::Now.AddMinutes(15);
+  $complete = $false
+  while (!$complete) {
+    Start-Sleep -Seconds 10
+    if ($timeOutEnd -lt [DateTime]::Now) {
+      throw "Solution did not export within 15 minute timeout"
+    }
+
+    $asyncOperation = Invoke-RestMethod -Uri "$($extractWebApiUrl)/asyncoperations($($response.AsyncOperationId))?`$select=statuscode,message" -Headers $Headers -UseBasicParsing
+    $complete = $asyncOperation.statuscode -eq 30
+    if (!$complete -and $asyncOperation.statuscode -in @(22, 31, 32)) {
+      throw "Solution export async operation failed: $($asyncOperation.message)"
+    }
+  }
+
+  Write-Host "Export job completed. Downloading solution export data."
+  $downloadResponse = Invoke-RestMethod -Uri "$($extractWebApiUrl)/DownloadSolutionExportData" `
+    -Method POST `
+    -Headers $Headers `
+    -UseBasicParsing `
+    -Body (ConvertTo-Json @{ ExportJobId = $response.ExportJobId }) 
+  
+  Write-Host "Writing solution to $Path."
+  [IO.File]::WriteAllBytes($Path, [Convert]::FromBase64String($downloadResponse.ExportSolutionFile));
+}
+
 Write-Host "Authenticating to development environment."
 $devWebApiHeaders = Get-WebApiHeaders -url $DevEnvironmentUrl -clientId $ClientId -tenantId $TenantId -clientSecret $ClientSecret
 $devWebApiUrl = "$DevEnvironmentUrl/api/data/v9.1"
@@ -51,40 +95,29 @@ git config --global user.name $solutionMerge.createdby.fullname
 Write-Host "Checking source control strategy."
 if ($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_sourcecontrolstrategy -eq 353400000) {
   Write-Host "Source control strategy is pull request."
-  if ($solutionMerge.devhub_sourcebranch) {
-    Write-Host "Source branch provided. Checking out $($solutionMerge.devhub_sourcebranch)."
-    $updateExistingBranch = $true
-    git checkout "$($solutionMerge.devhub_sourcebranch)"
+  Write-Host "Calculating branch name from solution merge issue."
+  $branchPrefix = if ($solutionMerge.devhub_Issue.devhub_type -eq 353400001) { "feature/" } else { "bugfix/" } 
+  $branchName = $solutionMerge.devhub_Issue.devhub_name.ToLower().Replace(' ', '-') -replace "[^a-zA-Z0-9\s-]"
+  $calculatedBranch = "$branchPrefix$branchName"
+
+  Write-Host "Checking if $calculatedBranch exists."
+  $updateExistingBranch = $null -ne (git rev-parse --verify --quiet "origin/$calculatedBranch")
+  if ($updateExistingBranch) {
+    Write-Host "Branch already exists. Updating existing branch at $calculatedBranch."
+    git checkout "$calculatedBranch" 
   }
   else {
-    Write-Host "No source branch provided. Calculating branch name from solution merge issue."
-    $branchPrefix = if ($solutionMerge.devhub_Issue.devhub_type -eq 353400001) { "feature/" } else { "bugfix/" } 
-    $branchName = $solutionMerge.devhub_Issue.devhub_name.ToLower().Replace(' ', '-') -replace "[^a-zA-Z0-9\s-]"
-    $calculatedBranch = "$branchPrefix$branchName"
-
-    Write-Host "Checking if $calculatedBranch exists."
-    $updateExistingBranch = $null -ne (git rev-parse --verify --quiet "origin/$calculatedBranch")
-    if ($updateExistingBranch) {
-      Write-Host "Branch already exists. Updating existing branch at $calculatedBranch."
-      git checkout "$calculatedBranch" 
-    }
-    else {
-      Write-Host "Branch not found. Creating branch $calculatedBranch."
-      git checkout -b "$calculatedBranch" 
-    }
+    Write-Host "Branch not found. Creating branch $calculatedBranch."
+    git checkout -b "$calculatedBranch" 
   }
 }
 else {
   Write-Host "Source control strategy is push. Checking out $($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)"
-  git checkout $solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch
-  if ($SourceBranch) {
-    Write-Host "Source branch provided. Squashing $SourceBranch."
-    git merge origin/$SourceBranch --squash --no-commit;
-  }
-  $result = git merge HEAD
-  if ($result[0] -like "*error*") {
-    Write-Error "Unable to automatically merge the source branch due to a conflict."
-  }
+  git checkout $($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)
+}
+
+if ($solutionMerge.devhub_sourcebranch) {
+  Merge-SourceBranch -Branch $solutionMerge.devhub_sourcebranch
 }
 
 Write-Host "Authenticating to extract environment."
@@ -92,28 +125,18 @@ $extractUrl = $solutionMerge.devhub_TargetSolution.devhub_StagingEnvironment.dev
 $extractWebApiHeaders = Get-WebApiHeaders -url $extractUrl -clientId $ClientId -tenantId $TenantId -clientSecret $ClientSecret
 $extractWebApiUrl = "$($extractUrl)/api/data/v9.1"
 
-Write-Host "Exporting $($solutionMerge.devhub_TargetSolution.devhub_uniquename) as unmanaged."
-$unmanagedZipResponse = Invoke-RestMethod -Uri "$($extractWebApiUrl)/ExportSolution" `
-  -Method POST `
-  -Headers $extractWebApiHeaders `
-  -UseBasicParsing `
-  -Body (ConvertTo-Json @{ SolutionName = $solutionMerge.devhub_TargetSolution.devhub_uniquename; Managed = $false }) 
-
 $unmanagedZipFilePath = Join-Path -Path $env:TEMP -ChildPath "$($solutionMerge.devhub_TargetSolution.devhub_uniquename).zip"
-Write-Host "Writing unmanaged solution to $unmanagedZipFilePath."
-[IO.File]::WriteAllBytes($unmanagedZipFilePath, [Convert]::FromBase64String($unmanagedZipResponse.ExportSolutionFile));
-
-Write-Host "Exporting $($solutionMerge.devhub_TargetSolution.devhub_uniquename) as managed."
-$managedZipResponse = Invoke-RestMethod `
-  -Uri "$extractWebApiUrl/ExportSolution" `
-  -Method POST `
+Export-Solution `
   -Headers $extractWebApiHeaders `
-  -UseBasicParsing `
-  -Body (ConvertTo-Json @{ SolutionName = $solutionMerge.devhub_TargetSolution.devhub_uniquename; Managed = $true })
-
-$managedZipFilePath = Join-Path -Path $env:TEMP -ChildPath "$($solutionMerge.devhub_TargetSolution.devhub_uniquename)_managed.zip"
-Write-Host "Writing managed solution to $managedZipFilePath."
-[IO.File]::WriteAllBytes($managedZipFilePath, [Convert]::FromBase64String($managedZipResponse.ExportSolutionFile));
+  -SolutionName $solutionMerge.devhub_TargetSolution.devhub_uniquename `
+  -Managed $false `
+  -Path $unmanagedZipFilePath
+  
+Export-Solution `
+  -Headers $extractWebApiHeaders `
+  -SolutionName $solutionMerge.devhub_TargetSolution.devhub_uniquename `
+  -Managed $true `
+  -Path (Join-Path -Path $env:TEMP -ChildPath "$($solutionMerge.devhub_TargetSolution.devhub_uniquename)_managed.zip")
 
 $solutionFolder = Get-ChildItem -Filter $solutionMerge.devhub_TargetSolution.devhub_uniquename -Path "./src/solutions" -Directory
 $extractFolder = Join-Path -Path $solutionFolder.FullName -ChildPath "extract"
@@ -157,17 +180,16 @@ if ($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_sourcecontrols
     $repository = $remoteOrigin.Segments[3]  
   }
 
-  $sourceBranch = if ($solutionMerge.devhub_sourcebranch) { $solutionMerge.devhub_sourcebranch } else { $calculatedBranch }
   Write-Host "Checking for existing pull request"
   $result = Invoke-RestMethod `
-    -Uri "https://dev.azure.com/$org/$project/_apis/git/repositories/$repository/pullRequests?searchCriteria.sourceRefName=refs/heads/$sourceBranch&searchCriteria.targetRefName=refs/heads/$($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)&api-version=6.0" `
+    -Uri "https://dev.azure.com/$org/$project/_apis/git/repositories/$repository/pullRequests?searchCriteria.sourceRefName=refs/heads/$calculatedBranch&searchCriteria.targetRefName=refs/heads/$($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)&api-version=6.0" `
     -Headers @{ 'authorization' = "Bearer $env:SYSTEM_ACCESSTOKEN"; 'content-type' = 'application/json' } 
 
   if ($result.value.Count -eq 0) {
     Write-Host "Publishing pull request branch."
     git push -u origin HEAD
     
-    Write-Host "Creating pull request from refs/heads/$sourceBranch into refs/heads/$($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)."
+    Write-Host "Creating pull request from refs/heads/$calculatedBranch into refs/heads/$($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)."
     $result = Invoke-RestMethod `
       -Uri "https://dev.azure.com/$org/$project/_apis/git/repositories/$repository/pullRequests?api-version=6.0" `
       -Method POST `
@@ -176,7 +198,7 @@ if ($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_sourcecontrols
       -Body (ConvertTo-Json `
       @{ 
         title         = "$commitPrefix$commitMessage"; 
-        sourceRefName = "refs/heads/$sourceBranch"; 
+        sourceRefName = "refs/heads/$calculatedBranch"; 
         targetRefName = "refs/heads/$($solutionMerge.devhub_TargetSolution.devhub_Repository.devhub_targetbranch)";
         description   = @"
 
