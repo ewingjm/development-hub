@@ -109,6 +109,10 @@ namespace DevelopmentHub.Develop {
               === toMergeComponent.rootsolutioncomponentid,
           );
         }
+        // If the toMerge solution component is "shell only"
+        if (match.rootcomponentbehavior == 2) {
+          return false;
+        }
       }
 
       // Component is a subcomponent
