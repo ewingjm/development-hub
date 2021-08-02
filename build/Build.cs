@@ -140,6 +140,13 @@ class Build : NukeBuild
     Target PrepareDevelopmentEnvironment => _ => _
         .Executes(() =>
         {
+            SourceDirectory.GlobFiles("**/WebResources/*/package.json").ForEach(packageFile =>
+            {
+                NpmTasks.NpmRun(s => s
+                    .SetProcessWorkingDirectory(packageFile.Parent)
+                    .SetCommand("build"));
+            });
+
             InstallSolutionAndDependencies(DataverseSolution, SolutionType.Unmanaged);
         });
 
