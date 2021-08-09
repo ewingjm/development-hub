@@ -138,15 +138,9 @@ class Build : NukeBuild
         });
 
     Target PrepareDevelopmentEnvironment => _ => _
+        .DependsOn(Compile)
         .Executes(() =>
         {
-            SourceDirectory.GlobFiles("**/WebResources/*/package.json").ForEach(packageFile =>
-            {
-                NpmTasks.NpmRun(s => s
-                    .SetProcessWorkingDirectory(packageFile.Parent)
-                    .SetCommand("build"));
-            });
-
             InstallSolutionAndDependencies(DataverseSolution, SolutionType.Unmanaged);
         });
 
@@ -232,10 +226,6 @@ class Build : NukeBuild
         }
 
         var buildConfiguration = solutionType == SolutionType.Managed ? "Release" : "Debug";
-        DotNetBuild(s => s
-            .SetProjectFile(SolutionsDirectory / solution / $"{solution}.cdsproj")
-            .SetConfiguration(buildConfiguration)
-            .SetDisableParallel(true));
 
         Pac($"solution import --path \"{ SolutionsDirectory / solution / "bin" / buildConfiguration / $"{solution}.zip" }\" -ap -pc -a");
         installedSolutions.Add(solution);
