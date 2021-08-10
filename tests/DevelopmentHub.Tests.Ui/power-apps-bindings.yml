@@ -1,6 +1,7 @@
 url: DEVELOPMENTHUB_TEST_URL
 browserOptions: 
   browserType: Chrome
+  driversPath: ChromeWebDriver
   headless: true
   width: 1920
   height: 1080
