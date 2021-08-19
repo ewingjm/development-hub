@@ -1141,6 +1141,11 @@
                   <label description="Failed" languagecode="1033" />
                 </labels>
               </status>
+              <status value="353400009" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Awaiting PR Merge" languagecode="1033" />
+                </labels>
+              </status>
               <status value="2" state="1" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Cancelled" languagecode="1033" />
