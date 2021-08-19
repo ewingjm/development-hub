@@ -131,11 +131,11 @@
             <Description description="Unique identifier of the delegate user who created the record." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="devhub_ClientID">
+        <attribute PhysicalName="devhub_CommitHash">
           <Type>nvarchar</Type>
-          <Name>devhub_clientid</Name>
-          <LogicalName>devhub_clientid</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <Name>devhub_commithash</Name>
+          <LogicalName>devhub_commithash</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -162,53 +162,13 @@
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <Format>text</Format>
-          <MaxLength>36</MaxLength>
-          <Length>72</Length>
+          <MaxLength>40</MaxLength>
+          <Length>80</Length>
           <displaynames>
-            <displayname description="Client ID" languagecode="1033" />
+            <displayname description="Commit Hash" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The client ID to use when connecting to this environment." languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="devhub_ClientSecret">
-          <Type>nvarchar</Type>
-          <Name>devhub_clientsecret</Name>
-          <LogicalName>devhub_clientsecret</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>0.2.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>100</MaxLength>
-          <Length>200</Length>
-          <displaynames>
-            <displayname description="Client Secret" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="The commit hash the environment was prepared based on." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="devhub_environmentId">
@@ -246,6 +206,45 @@
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier for entity instances" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="devhub_Lifetime">
+          <Type>picklist</Type>
+          <Name>devhub_lifetime</Name>
+          <LogicalName>devhub_lifetime</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.2.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>353400000</AppDefaultValue>
+          <OptionSetName>devhub_lifetime</OptionSetName>
+          <displaynames>
+            <displayname description="Lifetime" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Whether the environment's lifetime is static or ephemeral. Static environments are created and deleted outside of the Development Hub and are used as part of a sequential merge strategy. Ephemeral environments are created and deleted by the Development Hub as part of a parallel merge strategy." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="devhub_name">
@@ -288,18 +287,17 @@
             <Description description="The name of the environment." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="devhub_TenantID">
-          <Type>nvarchar</Type>
-          <Name>devhub_tenantid</Name>
-          <LogicalName>devhub_tenantid</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+        <attribute PhysicalName="devhub_Solution">
+          <Type>lookup</Type>
+          <Name>devhub_solution</Name>
+          <LogicalName>devhub_solution</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
           <IntroducedVersion>0.2.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
@@ -318,14 +316,13 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>36</MaxLength>
-          <Length>72</Length>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
           <displaynames>
-            <displayname description="Tenant ID" languagecode="1033" />
+            <displayname description="Solution" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The tenant ID of the target instance." languagecode="1033" />
+            <Description description="The solution this environment was created for (applies to ephemeral environments only)" languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="devhub_Url">
@@ -354,9 +351,9 @@
           <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
           <IsDataSourceSecret>0</IsDataSourceSecret>
           <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
+          <IsSearchable>1</IsSearchable>
           <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
+          <IsRetrievable>1</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <Format>url</Format>
           <MaxLength>200</MaxLength>
@@ -733,7 +730,7 @@
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
@@ -812,7 +809,7 @@
           <AutoNumberFormat></AutoNumberFormat>
           <IsSearchable>0</IsSearchable>
           <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
+          <IsRetrievable>1</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <optionset Name="devhub_environment_statuscode">
             <OptionSetType>status</OptionSetType>
@@ -825,14 +822,34 @@
               <Description description="Reason for the status of the Environment" languagecode="1033" />
             </Descriptions>
             <statuses>
-              <status value="1" state="0">
+              <status value="353400004" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;353400002&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400004&quot; tostatusid=&quot;353400001&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
                 <labels>
-                  <label description="Active" languagecode="1033" />
+                  <label description="Pending Provision" languagecode="1033" />
                 </labels>
               </status>
-              <status value="2" state="1">
+              <status value="353400001" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400001&quot; tostatusid=&quot;353400002&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400001&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400001&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400001&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
                 <labels>
-                  <label description="Inactive" languagecode="1033" />
+                  <label description="Provisioning" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400002" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;353400001&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400002&quot; tostatusid=&quot;353400004&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Failed to Provision" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="1" state="0" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;1&quot; tostatusid=&quot;353400003&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Ready" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400003" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;2&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;353400003&quot; tostatusid=&quot;1&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Pending Delete" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="2" state="1" TransitionData="&lt;allowedtransitions xmlns=&quot;http://schemas.microsoft.com/crm/2009/WebServices&quot;&gt;&lt;allowedtransition sourcestatusid=&quot;2&quot; tostatusid=&quot;1&quot; /&gt;&lt;allowedtransition sourcestatusid=&quot;2&quot; tostatusid=&quot;353400004&quot; /&gt;&lt;/allowedtransitions&gt;" Color="#0000ff">
+                <labels>
+                  <label description="Deleted" languagecode="1033" />
                 </labels>
               </status>
             </statuses>
@@ -995,7 +1012,7 @@
       <IconMediumName>devhub_/Images/devhub_Environment.svg</IconMediumName>
       <IconSmallName>devhub_/Images/devhub_Environment.svg</IconSmallName>
       <IconVectorName>devhub_/Images/devhub_Environment.svg</IconVectorName>
-      <EnforceStateTransitions>0</EnforceStateTransitions>
+      <EnforceStateTransitions>1</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
       <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>
       <ChangeTrackingEnabled>0</ChangeTrackingEnabled>

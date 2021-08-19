@@ -210,41 +210,42 @@
             <Description description="The date and time that the solution merge was reviewed." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="devhub_DevelopmentSolution">
-          <Type>file</Type>
-          <Name>devhub_developmentsolution</Name>
-          <LogicalName>devhub_developmentsolution</LogicalName>
+        <attribute PhysicalName="devhub_Environment">
+          <Type>lookup</Type>
+          <Name>devhub_environment</Name>
+          <LogicalName>devhub_environment</LogicalName>
           <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>disabled</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>0.1.20.0</IntroducedVersion>
+          <IntroducedVersion>0.2.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>0</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
           <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
           <SourceType>0</SourceType>
           <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
           <IsSortableEnabled>0</IsSortableEnabled>
           <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>0</CanModifyIsSortableSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
           <IsDataSourceSecret>0</IsDataSourceSecret>
           <AutoNumberFormat></AutoNumberFormat>
           <IsSearchable>0</IsSearchable>
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
           <displaynames>
-            <displayname description="Development Solution" languagecode="1033" />
+            <displayname description="Environment" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The development solution that was merged." languagecode="1033" />
+            <Description description="The environment to be used for this solution merge." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="devhub_Issue">
@@ -345,6 +346,45 @@
           </displaynames>
           <Descriptions>
             <Description description="Whether or not manual activities are required in the merge." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="devhub_MergeStrategy">
+          <Type>picklist</Type>
+          <Name>devhub_mergestrategy</Name>
+          <LogicalName>devhub_mergestrategy</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.2.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>devhub_mergestrategy</OptionSetName>
+          <displaynames>
+            <displayname description="Merge Strategy" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The merge strategy applied to this solution merge. For internal use only." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="devhub_name">
@@ -969,7 +1009,7 @@
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
@@ -1076,19 +1116,29 @@
                   <label description="Queued" languagecode="1033" />
                 </labels>
               </status>
+              <status value="353400007" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Provisioning Environment" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400008" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Pending Merge" languagecode="1033" />
+                </labels>
+              </status>
               <status value="353400003" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Merging" languagecode="1033" />
                 </labels>
               </status>
-              <status value="353400002" state="0" TransitionData="" Color="#0000ff">
-                <labels>
-                  <label description="Failed" languagecode="1033" />
-                </labels>
-              </status>
               <status value="353400006" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Awaiting Manual Merge" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="353400002" state="0" TransitionData="" Color="#0000ff">
+                <labels>
+                  <label description="Failed" languagecode="1033" />
                 </labels>
               </status>
               <status value="2" state="1" TransitionData="" Color="#0000ff">

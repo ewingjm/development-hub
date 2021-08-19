@@ -47,27 +47,10 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{8c4cb554-585f-44f1-8f79-05b889e9b37d}" locklevel="0" labelid="{c4cf88bc-89c7-46c2-842b-0dfb85fe32a7}">
+                      <cell id="{26e57b50-0e2a-762c-684c-072d82576153}" showlabel="false">
                         <labels>
-                          <label description="Tenant ID" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="devhub_tenantid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_tenantid" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{baa38e8e-3f53-4bb6-b7a0-9195da2d6496}" locklevel="0" labelid="{58f456d6-eae7-4859-97eb-4542506d95fa}">
-                        <labels>
-                          <label description="Client ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{9871a02a-9aed-4772-8354-6400947539a6}" locklevel="0" labelid="{689500f2-5556-459b-b79e-519214daf5a7}">
-                        <labels>
-                          <label description="Client Secret" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_clientsecret" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientsecret" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -82,7 +65,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{9fe17130-6b38-40d1-a275-900aed3737ba}">
+                      <cell id="07C04A4E-A482-45CC-BAB7-7FCA3CD02938" labelid="{9fe17130-6b38-40d1-a275-900aed3737ba}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

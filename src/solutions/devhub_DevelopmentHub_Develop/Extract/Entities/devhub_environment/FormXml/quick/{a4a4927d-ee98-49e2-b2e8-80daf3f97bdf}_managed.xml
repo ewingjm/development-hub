@@ -20,7 +20,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{e3d809de-175d-48c9-8b50-972324e32f46}">
+                      <cell id="{e3d809de-175d-48c9-8b50-972324e32f46}" showlabel="true" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
@@ -36,11 +36,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{beac85cb-2383-9c7e-22ba-d53622b2adc6}" showlabel="true" locklevel="0">
+                      <cell id="{910ade84-13f7-4a25-a0bb-64f0e2c5801b}" locklevel="0">
                         <labels>
-                          <label description="Status Reason" languagecode="1033" />
+                          <label description="Lifetime" languagecode="1033" />
                         </labels>
-                        <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+                        <control id="devhub_lifetime" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="devhub_lifetime" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -56,6 +56,14 @@
                         </control>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{f584d36c-26b2-48e3-8b36-a560a210cb19}" locklevel="0">
+                        <labels>
+                          <label description="Status Reason" languagecode="1033" />
+                        </labels>
+                        <control id="statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -63,6 +71,9 @@
           </columns>
         </tab>
       </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

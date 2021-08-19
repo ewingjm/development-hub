@@ -11,8 +11,9 @@
       <grid name="resultset" jump="devhub_name" select="1" icon="1" preview="1">
         <row name="result" id="devhub_environmentid">
           <cell name="devhub_name" width="300" />
-          <cell name="devhub_url" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="statuscode" width="100" />
+          <cell name="devhub_lifetime" width="100" />
+          <cell name="devhub_url" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="statuscode" width="200" />
         </row>
       </grid>
     </layoutxml>
@@ -27,6 +28,7 @@
           </filter>
           <attribute name="devhub_url" />
           <attribute name="statuscode" />
+          <attribute name="devhub_lifetime" />
           <order attribute="devhub_name" descending="false" />
         </entity>
       </fetch>
