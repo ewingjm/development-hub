@@ -86,6 +86,7 @@
       <RootComponent type="1" schemaName="devhub_issue" behavior="2" />
       <RootComponent type="1" schemaName="devhub_solution" behavior="0" />
       <RootComponent type="1" schemaName="devhub_solutionmerge" behavior="0" />
+      <RootComponent type="9" schemaName="devhub_apptemplates" behavior="0" />
       <RootComponent type="9" schemaName="devhub_lifetime" behavior="0" />
       <RootComponent type="9" schemaName="devhub_mergestrategy" behavior="0" />
       <RootComponent type="29" id="{061d64f1-d7fa-eb11-94ef-000d3ad6738d}" behavior="0" />

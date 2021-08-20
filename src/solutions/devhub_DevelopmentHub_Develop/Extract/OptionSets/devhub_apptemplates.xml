@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<optionset Name="devhub_apptemplates" localizedName="App Templates" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <OptionSetType>picklist</OptionSetType>
+  <IsGlobal>1</IsGlobal>
+  <IntroducedVersion>0.2.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <displaynames>
+    <displayname description="App Templates" languagecode="1033" />
+  </displaynames>
+  <Descriptions>
+    <Description description="" languagecode="1033" />
+  </Descriptions>
+  <options>
+    <option value="353400000">
+      <labels>
+        <label description="D365_Sales" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="353400001">
+      <labels>
+        <label description="D365_CustomerService" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="353400002">
+      <labels>
+        <label description="D365_FieldService" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="353400003">
+      <labels>
+        <label description="D365_ProjectServiceAutomation" languagecode="1033" />
+      </labels>
+    </option>
+    <option value="353400004">
+      <labels>
+        <label description="D365_CDSSampleApp" languagecode="1033" />
+      </labels>
+    </option>
+  </options>
+</optionset>

@@ -43,6 +43,14 @@
                         <control id="devhub_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="devhub_description" disabled="false" uniqueid="{217ec1b2-099d-9d4e-a0db-a8b4b749b1be}" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{809c1b90-6458-4619-8004-d30d82292a6f}" locklevel="0" visible="true">
+                        <labels>
+                          <label description="App Templates" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_apptemplates" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="devhub_apptemplates" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_4" id="5f174613-d7eb-4747-9761-153044e2e774" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
@@ -168,7 +176,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

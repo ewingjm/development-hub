@@ -43,6 +43,14 @@
                         <control id="devhub_description" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="devhub_description" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{17d3d8e1-b5e6-42be-aac9-1aec73e6bf47}" locklevel="0" visible="true">
+                        <labels>
+                          <label description="App Templates" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_apptemplates" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="devhub_apptemplates" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
