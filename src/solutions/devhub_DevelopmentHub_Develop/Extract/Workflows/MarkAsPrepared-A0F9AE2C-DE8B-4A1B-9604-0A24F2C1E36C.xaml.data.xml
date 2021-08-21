@@ -28,7 +28,7 @@
   </LocalizedNames>
   <labels>
     <steplabels id="{df51b44a-0533-406f-83e6-96f11720c234}">
-      <label languagecode="1033" description="The commit hash was empty." />
+      <label languagecode="1033" description="A commit hash and URL must be provided to ready an environment." />
     </steplabels>
   </labels>
 </Workflow>
