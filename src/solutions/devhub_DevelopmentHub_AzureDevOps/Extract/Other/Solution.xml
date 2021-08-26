@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.21081.137" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.21081.137" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>devhub_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
@@ -347,18 +348,6 @@
       <MissingDependency>
         <Required type="62" schemaName="devhub_DevelopmentHub" solution="devhub_DevelopmentHub_Issues (0.2.22)" />
         <Dependent type="62" schemaName="devhub_DevelopmentHub" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="devhub_sharedcommondataserviceforapps_a9a2e" solution="Active" id.connectionreferencelogicalname="devhub_sharedcommondataserviceforapps_a9a2e" />
-        <Dependent type="29" displayName="When a repository is created or updated - Create an associated solution merge commit flow" id="{828e3518-5b78-eb11-a812-000d3ab20581}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="devhub_sharedcommondataserviceforapps_a9a2e" solution="Active" id.connectionreferencelogicalname="devhub_sharedcommondataserviceforapps_a9a2e" />
-        <Dependent type="29" displayName="When an environment is pending delete -&gt; Delete the environment" id="{d8e04f54-0501-ec11-94ef-000d3ad679ad}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="devhub_sharedcommondataserviceforapps_f7ca3" solution="devhub_DevelopmentHub_Develop (0.2.0)" id.connectionreferencelogicalname="devhub_sharedcommondataserviceforapps_f7ca3" />
-        <Dependent type="29" displayName="[Template] When a solution merge is committed to {{repository}} -&gt; Update the solution merge status" id="{c768730f-d671-eb11-a812-000d3adb6517}" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>
