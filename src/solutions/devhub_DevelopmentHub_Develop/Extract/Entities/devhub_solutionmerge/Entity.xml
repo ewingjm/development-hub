@@ -1116,12 +1116,12 @@
                   <label description="Queued" languagecode="1033" />
                 </labels>
               </status>
-              <status value="353400007" state="0" TransitionData="" Color="#0000ff">
+              <status value="353400008" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Provisioning Environment" languagecode="1033" />
                 </labels>
               </status>
-              <status value="353400008" state="0" TransitionData="" Color="#0000ff">
+              <status value="353400009" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Pending Merge" languagecode="1033" />
                 </labels>
@@ -1141,7 +1141,7 @@
                   <label description="Failed" languagecode="1033" />
                 </labels>
               </status>
-              <status value="353400009" state="0" TransitionData="" Color="#0000ff">
+              <status value="353400007" state="0" TransitionData="" Color="#0000ff">
                 <labels>
                   <label description="Awaiting PR Merge" languagecode="1033" />
                 </labels>
