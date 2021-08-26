@@ -28,7 +28,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{8ea7650c-506d-46f0-b1f4-73c3fc7761a4}">
+                      <cell id="{8b4e51ed-ae76-4c22-b726-ba9fa8281684}" locklevel="0">
+                        <labels>
+                          <label description="Merge Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergepipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_mergepipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ea7650c-506d-46f0-b1f4-73c3fc7761a4}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
@@ -42,6 +50,9 @@
           </columns>
         </tab>
       </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

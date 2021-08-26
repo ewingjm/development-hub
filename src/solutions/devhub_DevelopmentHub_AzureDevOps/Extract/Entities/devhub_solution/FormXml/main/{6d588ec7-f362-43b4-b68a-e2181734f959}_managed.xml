@@ -5,22 +5,22 @@
     <IntroducedVersion>0.0.1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
+    <form headerdensity="HighWithControls" solutionaction="Modified">
       <tabs>
-        <tab name="tab_azuredevops" id="061cc0d8-1fac-4421-bde2-98acb8971229" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
+        <tab name="tab_AzureDevOps" id="db99d7e7-c601-463f-bc49-28eca8dd43ca" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Azure DevOps" languagecode="1033" />
           </labels>
           <columns>
             <column width="100%" id="0">
               <sections>
-                <section name="tab_azuredevops_section_details" id="ee8da8ae-227e-4137-ad1e-93f255165759" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                <section name="tab_AzureDevOps_section_General" id="4758ee6e-6608-4ebf-99d3-c637d60c119e" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
                   <labels>
-                    <label description="Details" languagecode="1033" />
+                    <label description="General" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{ffa1d450-3f39-467a-b5a7-728ee70b2f5b}" locklevel="0" ordinalvalue="10000">
+                      <cell id="{fcd6f164-67ba-42da-8698-b958b7f289cf}" locklevel="0" ordinalvalue="10000">
                         <labels>
                           <label description="Repository" languagecode="1033" />
                         </labels>

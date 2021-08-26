@@ -7,14 +7,14 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls">
       <tabs>
-        <tab verticallayout="true" id="{a5eee5d3-050b-47e6-bcca-125c0a4f22fa}" IsUserDefined="1">
+        <tab verticallayout="true" id="{a5eee5d3-050b-47e6-bcca-125c0a4f22fa}" IsUserDefined="1" name="tab_General">
           <labels>
             <label description="General" languagecode="1033" />
           </labels>
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{294c6776-5588-4de9-b1fe-d2f2e18af98c}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{294c6776-5588-4de9-b1fe-d2f2e18af98c}" columns="1" name="tab_General_section_General">
                   <labels>
                     <label description="General" languagecode="1033" />
                   </labels>
@@ -28,18 +28,50 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{9be7e41f-6627-4487-986d-7fe101eeee60}" rowspan="1" colspan="1" auto="false">
+                      <cell id="{55064651-bff8-4e2e-87bd-fa0d19903779}" locklevel="0">
+                        <labels>
+                          <label description="Merge Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergepipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_mergepipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{977a18f1-8684-456f-8dec-1abb895ada71}" locklevel="0">
+                        <labels>
+                          <label description="Provision Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_provisionenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_provisionenvironmentpipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{897d6274-97a4-45c0-a7a8-52a36f747081}" locklevel="0">
+                        <labels>
+                          <label description="Delete Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_deleteenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_deleteenvironmentpipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_General_section_Repositories" id="5d405de9-4028-4315-b7fe-4407dbd158df" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Repositories" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{34a0ef6a-ec9d-4b83-8912-190d90ffc220}" rowspan="1" colspan="1" showlabel="true" auto="true">
                         <labels>
                           <label description="Repositories" languagecode="1033" />
                         </labels>
-                        <control id="subgrid_repositories" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="subgrid_Repositories" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <TargetEntityType>devhub_repository</TargetEntityType>
                             <ViewId>{111D5D2E-1995-4AE6-A327-817F2BBE5898}</ViewId>
+                            <ViewIds>{111D5D2E-1995-4AE6-A327-817F2BBE5898}</ViewIds>
                             <EnableViewPicker>true</EnableViewPicker>
                             <RelationshipName>devhub_Project_devhub_Repository</RelationshipName>
                             <RecordsPerPage>5</RecordsPerPage>
-                            <AutoExpand>Fixed</AutoExpand>
+                            <AutoExpand>Auto</AutoExpand>
                           </parameters>
                         </control>
                       </cell>

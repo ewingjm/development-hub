@@ -14,7 +14,10 @@
                 <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{c17490a0-dd8b-4dcc-b5ab-7235e721e984}" ordinalvalue="0">
                   <rows>
                     <row>
-                      <cell id="{340a5a9e-c2d3-68a1-4456-7d700dd8341d}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                      <cell id="{17d3d8e1-b5e6-42be-aac9-1aec73e6bf47}" locklevel="0" visible="true" ordinalvalue="10004" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{b6fa6a48-09cd-4e81-a7fb-7ff23ce39d12}" locklevel="0" ordinalvalue="10003" solutionaction="Added">
                         <labels>
                           <label description="Repository" languagecode="1033" />
                         </labels>

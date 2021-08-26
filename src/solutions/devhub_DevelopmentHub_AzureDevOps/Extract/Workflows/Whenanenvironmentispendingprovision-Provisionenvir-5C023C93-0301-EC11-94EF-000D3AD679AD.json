@@ -1,0 +1,157 @@
+{
+    "properties": {
+        "connectionReferences": {
+            "shared_visualstudioteamservices": {
+                "runtimeSource": "embedded",
+                "connection": {
+                    "connectionReferenceLogicalName": "devhub_sharedvisualstudioteamservices_d7fcb"
+                },
+                "api": {
+                    "name": "shared_visualstudioteamservices"
+                }
+            },
+            "shared_commondataserviceforapps": {
+                "runtimeSource": "embedded",
+                "connection": {
+                    "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
+                },
+                "api": {
+                    "name": "shared_commondataserviceforapps"
+                }
+            }
+        },
+        "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+                "$connections": {
+                    "defaultValue": {},
+                    "type": "Object"
+                },
+                "$authentication": {
+                    "defaultValue": {},
+                    "type": "SecureObject"
+                },
+                "Azure DevOps Organization": {
+                    "defaultValue": "ewingjm",
+                    "type": "String",
+                    "metadata": {
+                        "schemaName": "devhub_AzureDevOpsOrganization",
+                        "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
+                    }
+                }
+            },
+            "triggers": {
+                "When_an_environment's_status_is_updated_to_pending_provision": {
+                    "type": "OpenApiConnectionWebhook",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "SubscribeWebhookTrigger",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                            "subscriptionRequest/message": 4,
+                            "subscriptionRequest/entityname": "devhub_environment",
+                            "subscriptionRequest/scope": 4,
+                            "subscriptionRequest/filteringattributes": "statuscode",
+                            "subscriptionRequest/filterexpression": "statuscode eq 353400004"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                }
+            },
+            "actions": {
+                "Queue_a_new_provision_environment_run": {
+                    "runAfter": {
+                        "Check_provision_pipeline_is_configured": [
+                            "Succeeded"
+                        ]
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_visualstudioteamservices",
+                            "operationId": "QueueNewBuild",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
+                        },
+                        "parameters": {
+                            "account": "@parameters('Azure DevOps Organization')",
+                            "project": "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_name']",
+                            "buildDefId": "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_provisionenvironmentpipelineid']",
+                            "buildDetails/parameters": "{\n\"DevelopmentHub.DevelopmentEnvironment.Name\": \"@{workflow()['tags']['environmentName']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Url\": \"@{uriHost(outputs('Get_the_project''s_provision_environment_pipeline')?['body/@odata.id'])}\",\n\"DevelopmentHub.ExtractEnvironment.DisplayName\": \"@{triggerOutputs()?['body/devhub_name']}\",\n\"DevelopmentHub.ExtractEnvironment.RecordId\": \"@{triggerOutputs()?['body/devhub_environmentid']}\",\n\"DevelopmentHub.TargetSolution.Name\": \"@{outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_uniquename']}\",\n\"DevelopmentHub.TargetSolution.AppTemplates\": \"@{if(not(equals(outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_apptemplates@OData.Community.Display.V1.FormattedValue'], null)), replace(outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_apptemplates@OData.Community.Display.V1.FormattedValue'], ';', ','), '')}\",\n\"DevelopmentHub.TargetSolution.Repository\": \"@{outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_name']}\"\n}"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                },
+                "Get_the_project's_provision_environment_pipeline": {
+                    "runAfter": {},
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "GetItem",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                            "entityName": "devhub_solutions",
+                            "recordId": "@triggerOutputs()?['body/_devhub_solution_value']",
+                            "$select": "devhub_uniquename,devhub_apptemplates",
+                            "$expand": "devhub_Repository($select=devhub_name;$expand=devhub_Project($select=devhub_provisionenvironmentpipelineid, devhub_name))"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                },
+                "Check_provision_pipeline_is_configured": {
+                    "actions": {
+                        "Update_environment_to_failed_to_provision": {
+                            "runAfter": {},
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "UpdateRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "devhub_environments",
+                                    "recordId": "@triggerOutputs()?['body/devhub_environmentid']",
+                                    "item/statuscode": 353400002
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "Terminate": {
+                            "runAfter": {
+                                "Update_environment_to_failed_to_provision": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Terminate",
+                            "inputs": {
+                                "runStatus": "Failed",
+                                "runError": {
+                                    "message": "Failed to provision environment as a provision environment pipeline definition ID has not been configured for the project."
+                                }
+                            }
+                        }
+                    },
+                    "runAfter": {
+                        "Get_the_project's_provision_environment_pipeline": [
+                            "Succeeded"
+                        ]
+                    },
+                    "expression": {
+                        "equals": [
+                            "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_provisionenvironmentpipelineid']",
+                            "@null"
+                        ]
+                    },
+                    "type": "If"
+                }
+            },
+            "outputs": {}
+        }
+    },
+    "schemaVersion": "1.0.0.0"
+}

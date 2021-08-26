@@ -22,15 +22,23 @@
                     <row>
                       <cell id="{7e900a81-03db-4e7d-8b48-2c051e6b2880}">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Name" languagecode="1033" />
                         </labels>
                         <control id="devhub_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_name" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{8ea7650c-506d-46f0-b1f4-73c3fc7761a4}">
+                      <cell id="{8b4e51ed-ae76-4c22-b726-ba9fa8281684}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Merge Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergepipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_mergepipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ea7650c-506d-46f0-b1f4-73c3fc7761a4}" visible="false">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
@@ -42,6 +50,9 @@
           </columns>
         </tab>
       </tabs>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

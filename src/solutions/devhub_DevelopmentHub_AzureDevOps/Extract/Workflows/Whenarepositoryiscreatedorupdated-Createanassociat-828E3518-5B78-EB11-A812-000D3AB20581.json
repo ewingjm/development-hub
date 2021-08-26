@@ -1,1 +1,288 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"devhub_sharedcommondataserviceforapps_f7ca3"},"api":{"name":"shared_commondataserviceforapps"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"When_a_repository_is_created_or_updated":{"type":"OpenApiConnectionWebhook","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"SubscribeWebhookTrigger","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"subscriptionRequest/message":4,"subscriptionRequest/entityname":"devhub_repository","subscriptionRequest/scope":4,"subscriptionRequest/filteringattributes":"devhub_targetbranch,devhub_name,devhub_project"},"authentication":"@parameters('$authentication')"}}},"actions":{"Link_repository":{"actions":{"Get_the_existing_solution_merge_commit_flow":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_repositories","recordId":"@triggerOutputs()?['body/devhub_repositoryid']","$select":"_devhub_solutionmergecommitflow_value"},"authentication":"@parameters('$authentication')"}},"If_there_is_an_existing_solution_merge_commit_flow":{"actions":{"Deactivate_the_existing_flow":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"workflows","recordId":"@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']","item/statecode":0,"item/statuscode":1},"authentication":"@parameters('$authentication')"}},"Delete_the_existing_flow":{"runAfter":{"Deactivate_the_existing_flow":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"DeleteRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"workflows","recordId":"@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Get_the_existing_solution_merge_commit_flow":["Succeeded"]},"expression":{"not":{"equals":["@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']","@null"]}},"type":"If"},"Get_project":{"runAfter":{"If_there_is_an_existing_solution_merge_commit_flow":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_projects","recordId":"@triggerOutputs()?['body/_devhub_project_value']","$select":"devhub_name"},"authentication":"@parameters('$authentication')"}},"Get_the_solution_merge_commit_template_flow":{"runAfter":{"Get_project":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"workflows","recordId":"c768730f-d671-eb11-a812-000d3adb6517","$select":"clientdata,primaryentity,type,category,name"},"authentication":"@parameters('$authentication')"}},"Get_the_Azure_DevOps_organisation":{"runAfter":{"Get_the_solution_merge_commit_template_flow":["Succeeded"]},"type":"Workflow","inputs":{"host":{"workflowReferenceName":"9bc32b76-754b-ea11-a812-000d3a0b8d0b"},"body":{"text":"devhub_AzureDevOpsOrganization"}}},"Select_new_flow_object":{"runAfter":{"Get_the_Azure_DevOps_organisation":["Succeeded"]},"type":"Select","inputs":{"from":"@createArray(outputs('Get_the_solution_merge_commit_template_flow')?['body'])","select":{"clientdata":"@replace(replace(replace(replace(outputs('Get_the_solution_merge_commit_template_flow')?['body/clientdata'],'{{organisation}}',outputs('Get_the_Azure_DevOps_organisation')?['body']?['environment_variable_value']),'{{project}}',outputs('Get_project')?['body/devhub_name']),'{{repository}}',triggerOutputs()?['body/devhub_name']),'{{targetbranch}}',triggerOutputs()?['body/devhub_targetbranch'])","primaryentity":"@outputs('Get_the_solution_merge_commit_template_flow')?['body/primaryentity']","type":"@outputs('Get_the_solution_merge_commit_template_flow')?['body/type']","category":"@outputs('Get_the_solution_merge_commit_template_flow')?['body/category']","name":"@replace(replace(outputs('Get_the_solution_merge_commit_template_flow')?['body/name'], '[Template] ', ''), '{{repository}}', triggerOutputs()?['body/devhub_name'])","description":"This flow was created automatically by the Development Hub as  @{triggerOutputs()?['body/devhub_name']} was registered as a target repository for solutions.","workflowid":"@guid()"}}},"Add_new_flow":{"runAfter":{"Select_new_flow_object":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"CreateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"@concat('workflows')","item":"@body('Select_new_flow_object')"},"authentication":"@parameters('$authentication')"}},"Activate_the_flow":{"runAfter":{"Add_new_flow":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"workflows","recordId":"@body('Select_new_flow_object')[0]['workflowid']","item/statecode":1,"item/statuscode":2},"authentication":"@parameters('$authentication')"}},"Set_flow_on_repository":{"runAfter":{"Activate_the_flow":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_repositories","recordId":"@triggerOutputs()?['body/devhub_repositoryid']","item/devhub_SolutionMergeCommitFlow@odata.bind":"workflows(@{body('Select_new_flow_object')[0]['workflowid']})","item/statecode":0,"item/statuscode":1},"authentication":"@parameters('$authentication')"}}},"runAfter":{},"type":"Scope"},"Set_status_to_'Failed_to_link_repository'":{"runAfter":{"Link_repository":["Failed"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_repositories","recordId":"@triggerOutputs()?['body/devhub_repositoryid']","item/statecode":1,"item/statuscode":353400001},"authentication":"@parameters('$authentication')"}}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+    "properties": {
+        "connectionReferences": {
+            "shared_commondataserviceforapps": {
+                "runtimeSource": "embedded",
+                "connection": {
+                    "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_a9a2e"
+                },
+                "api": {
+                    "name": "shared_commondataserviceforapps"
+                }
+            }
+        },
+        "definition": {
+            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+            "contentVersion": "1.0.0.0",
+            "parameters": {
+                "$connections": {
+                    "defaultValue": {},
+                    "type": "Object"
+                },
+                "$authentication": {
+                    "defaultValue": {},
+                    "type": "SecureObject"
+                },
+                "Azure DevOps Organization": {
+                    "defaultValue": "ewingjm",
+                    "type": "String",
+                    "metadata": {
+                        "schemaName": "devhub_AzureDevOpsOrganization",
+                        "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
+                    }
+                }
+            },
+            "triggers": {
+                "When_a_repository_is_created_or_updated": {
+                    "type": "OpenApiConnectionWebhook",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "SubscribeWebhookTrigger",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                            "subscriptionRequest/message": 4,
+                            "subscriptionRequest/entityname": "devhub_repository",
+                            "subscriptionRequest/scope": 4,
+                            "subscriptionRequest/filteringattributes": "devhub_targetbranch,devhub_name,devhub_project"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                }
+            },
+            "actions": {
+                "Link_repository": {
+                    "actions": {
+                        "Get_the_existing_solution_merge_commit_flow": {
+                            "runAfter": {},
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "GetItem",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "devhub_repositories",
+                                    "recordId": "@triggerOutputs()?['body/devhub_repositoryid']",
+                                    "$select": "_devhub_solutionmergecommitflow_value"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "If_there_is_an_existing_solution_merge_commit_flow": {
+                            "actions": {
+                                "Deactivate_the_existing_flow": {
+                                    "runAfter": {},
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connectionName": "shared_commondataserviceforapps",
+                                            "operationId": "UpdateRecord",
+                                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                        },
+                                        "parameters": {
+                                            "entityName": "workflows",
+                                            "recordId": "@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']",
+                                            "item/statecode": 0,
+                                            "item/statuscode": 1
+                                        },
+                                        "authentication": "@parameters('$authentication')"
+                                    }
+                                },
+                                "Delete_the_existing_flow": {
+                                    "runAfter": {
+                                        "Deactivate_the_existing_flow": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connectionName": "shared_commondataserviceforapps",
+                                            "operationId": "DeleteRecord",
+                                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                        },
+                                        "parameters": {
+                                            "entityName": "workflows",
+                                            "recordId": "@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']"
+                                        },
+                                        "authentication": "@parameters('$authentication')"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Get_the_existing_solution_merge_commit_flow": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": {
+                                "not": {
+                                    "equals": [
+                                        "@outputs('Get_the_existing_solution_merge_commit_flow')?['body/_devhub_solutionmergecommitflow_value']",
+                                        "@null"
+                                    ]
+                                }
+                            },
+                            "type": "If"
+                        },
+                        "Get_project": {
+                            "runAfter": {
+                                "If_there_is_an_existing_solution_merge_commit_flow": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "GetItem",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "devhub_projects",
+                                    "recordId": "@triggerOutputs()?['body/_devhub_project_value']",
+                                    "$select": "devhub_name"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "Get_the_solution_merge_commit_template_flow": {
+                            "runAfter": {
+                                "Get_project": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "GetItem",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "workflows",
+                                    "recordId": "c768730f-d671-eb11-a812-000d3adb6517",
+                                    "$select": "clientdata,primaryentity,type,category,name"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "Select_new_flow_object": {
+                            "runAfter": {
+                                "Get_the_solution_merge_commit_template_flow": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Select",
+                            "inputs": {
+                                "from": "@createArray(outputs('Get_the_solution_merge_commit_template_flow')?['body'])",
+                                "select": {
+                                    "clientdata": "@replace(replace(replace(replace(outputs('Get_the_solution_merge_commit_template_flow')?['body/clientdata'],'{{organisation}}', parameters('Azure DevOps Organization')),'{{project}}',outputs('Get_project')?['body/devhub_name']),'{{repository}}',triggerOutputs()?['body/devhub_name']),'{{targetbranch}}',triggerOutputs()?['body/devhub_targetbranch'])",
+                                    "primaryentity": "@outputs('Get_the_solution_merge_commit_template_flow')?['body/primaryentity']",
+                                    "type": "@outputs('Get_the_solution_merge_commit_template_flow')?['body/type']",
+                                    "category": "@outputs('Get_the_solution_merge_commit_template_flow')?['body/category']",
+                                    "name": "@replace(replace(outputs('Get_the_solution_merge_commit_template_flow')?['body/name'], '[Template] ', ''), '{{repository}}', triggerOutputs()?['body/devhub_name'])",
+                                    "description": "This flow was created automatically by the Development Hub as  @{triggerOutputs()?['body/devhub_name']} was registered as a target repository for solutions.",
+                                    "workflowid": "@guid()"
+                                }
+                            }
+                        },
+                        "Add_new_flow": {
+                            "runAfter": {
+                                "Select_new_flow_object": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "CreateRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "@concat('workflows')",
+                                    "item": "@body('Select_new_flow_object')"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "Activate_the_flow": {
+                            "runAfter": {
+                                "Add_new_flow": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "UpdateRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "workflows",
+                                    "recordId": "@body('Select_new_flow_object')[0]['workflowid']",
+                                    "item/statecode": 1,
+                                    "item/statuscode": 2
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        },
+                        "Set_flow_on_repository": {
+                            "runAfter": {
+                                "Activate_the_flow": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connectionName": "shared_commondataserviceforapps",
+                                    "operationId": "UpdateRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                    "entityName": "devhub_repositories",
+                                    "recordId": "@triggerOutputs()?['body/devhub_repositoryid']",
+                                    "item/devhub_SolutionMergeCommitFlow@odata.bind": "workflows(@{body('Select_new_flow_object')[0]['workflowid']})",
+                                    "item/statecode": 0,
+                                    "item/statuscode": 1
+                                },
+                                "authentication": "@parameters('$authentication')"
+                            }
+                        }
+                    },
+                    "runAfter": {},
+                    "type": "Scope"
+                },
+                "Set_status_to_'Failed_to_link_repository'": {
+                    "runAfter": {
+                        "Link_repository": [
+                            "Failed"
+                        ]
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_commondataserviceforapps",
+                            "operationId": "UpdateRecord",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                            "entityName": "devhub_repositories",
+                            "recordId": "@triggerOutputs()?['body/devhub_repositoryid']",
+                            "item/statecode": 1,
+                            "item/statuscode": 353400001
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                }
+            },
+            "outputs": {}
+        }
+    },
+    "schemaVersion": "1.0.0.0"
+}
