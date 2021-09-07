@@ -80,28 +80,6 @@
                         "authentication": "@parameters('$authentication')"
                     }
                 },
-                "Queue_a_new_merge_run": {
-                    "runAfter": {
-                        "Get_the_solution_merge_approver": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_visualstudioteamservices",
-                            "operationId": "QueueNewBuild",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
-                        },
-                        "parameters": {
-                            "account": "@parameters('Azure DevOps Organization')",
-                            "project": "@outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_name']",
-                            "buildDefId": "@outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_mergepipelineid']",
-                            "buildDetails/parameters": "{\n\"manualMergeActivities\": @{toLower(string(bool(triggerOutputs()?['body/devhub_manualmergeactivities'])))},\n\"sourceControlStrategy\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\",\n\"sourceBranch\": \"@{triggerOutputs()?['body/devhub_sourcebranch']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Name\": \"@{workflow()['tags']['environmentName']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Url\": \"@{concat('https://', uriHost(outputs('Get_the_project''s_merge_pipeline')?['body/@odata.id']))}\",\n\"DevelopmentHub.ExtractEnvironment.Url\": \"@{outputs('Get_the_extract_environment')?['body/devhub_url']}\",\n\"DevelopmentHub.ExtractEnvironment.CommitHash\": \"@{outputs('Get_the_extract_environment')?['body/devhub_commithash']}\",\n\"DevelopmentHub.SolutionMerge.RecordId\": \"@{triggerOutputs()?['body/devhub_solutionmergeid']}\",\n\"DevelopmentHub.SolutionMerge.MergeStrategy\": \"@{if(equals(triggerOutputs()?['body/devhub_mergestrategy'], 353400000), 'Sequential', 'Parallel')}\",\n\"DevelopmentHub.SolutionMerge.ManualMergeActivities\": \"@{triggerOutputs()?['body/devhub_manualmergeactivities']}\",\n\"DevelopmentHub.SolutionMerge.ApproverEmail\": \"@{outputs('Get_the_solution_merge_approver')?['body/internalemailaddress']}\",\n\"DevelopmentHub.SolutionMerge.CreatorEmail\": \"@{outputs('Get_the_solution_merge_creator')?['body/internalemailaddress']}\",\n\"DevelopmentHub.SolutionMerge.Approver\": \"@{outputs('Get_the_solution_merge_approver')?['body/fullname']}\",\n\"DevelopmentHub.SolutionMerge.Creator\": \"@{outputs('Get_the_solution_merge_creator')?['body/fullname']}\",\n\"DevelopmentHub.SolutionMerge.SourceBranch\": \"@{triggerOutputs()?['body/devhub_sourcebranch']}\",\n\"DevelopmentHub.Issue.DevelopmentSolution\": \"@{outputs('Get_the_issue')?['body/devhub_developmentsolution']}\",\n\"DevelopmentHub.Issue.Name\": \"@{outputs('Get_the_issue')?['body/devhub_name']}\",\n\"DevelopmentHub.Issue.Type\": \"@{if(equals(outputs('Get_the_issue')?['body/devhub_type'], 353400001), 'Feature', 'Bug')}\",\n\"DevelopmentHub.Issue.WorkItemId\": \"@{outputs('Get_the_issue')?['body/devhub_azuredevopsworkitemid']}\",\n\"DevelopmentHub.Issue.RecordId\": \"@{triggerOutputs()?['body/_devhub_issue_value']}\",\n\"DevelopmentHub.TargetSolution.Name\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_uniquename']}\",\n\"DevelopmentHub.TargetSolution.Repository\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_name']}\",\n\"DevelopmentHub.TargetSolution.DisplayName\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_displayname']}\",\n\"DevelopmentHub.TargetSolution.Description\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_description']}\",\n\"DevelopmentHub.Repository.TargetBranch\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_targetbranch']}\",\n\"DevelopmentHub.Repository.SourceControlStrategy\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\"\n}"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
                 "Get_the_extract_environment": {
                     "runAfter": {
                         "Get_the_project's_merge_pipeline": [
@@ -180,6 +158,28 @@
                         "parameters": {
                             "entityName": "systemusers",
                             "recordId": "@triggerOutputs()?['body/_devhub_approvedby_value']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                    }
+                },
+                "Send_an_HTTP_request_to_Azure_DevOps": {
+                    "runAfter": {
+                        "Get_the_solution_merge_approver": [
+                            "Succeeded"
+                        ]
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                        "host": {
+                            "connectionName": "shared_visualstudioteamservices",
+                            "operationId": "HttpRequest",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
+                        },
+                        "parameters": {
+                            "account": "@parameters('Azure DevOps Organization')",
+                            "parameters/Method": "POST",
+                            "parameters/Uri": "@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_name']}/_apis/pipelines/@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_mergepipelineid']}/runs?api-version=6.0-preview.1",
+                            "parameters/Body": "{\n    \"templateParameters\": {\n        @{if(not(equals(triggerOutputs()?['body/devhub_sourcebranch'], null)), concat('\"sourceBranch\": \"', triggerOutputs()?['body/devhub_sourcebranch'], '\",'), ' ')}\n        \"sourceControlStrategy\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\",\n        \"manualMergeActivities\": @{toLower(string(triggerOutputs()?['body/devhub_manualmergeactivities']))}\n    },\n    \"variables\": {\n        \"DevelopmentHub.DevelopmentEnvironment.Name\": {\n            \"value\": \"@{workflow()['tags']['environmentName']}\"\n        },\n        \"DevelopmentHub.DevelopmentEnvironment.Url\": {\n            \"value\": \"@{concat('https://', uriHost(outputs('Get_the_project''s_merge_pipeline')?['body/@odata.id']))}\",\n        },\n        \"DevelopmentHub.ExtractEnvironment.Url\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_url']}\"\n        },\n        \"DevelopmentHub.ExtractEnvironment.CommitHash\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_commithash']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_solutionmergeid']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.MergeStrategy\": {\n            \"value\": \"@{if(equals(triggerOutputs()?['body/devhub_mergestrategy'], 353400000), 'Sequential', 'Parallel')}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ManualMergeActivities\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_manualmergeactivities']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ApproverEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.CreatorEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Approver\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Creator\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.SourceBranch\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_sourcebranch']}\"\n        },\n        \"DevelopmentHub.Issue.DevelopmentSolution\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_developmentsolution']}\"\n        },\n        \"DevelopmentHub.Issue.Name\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_name']}\"\n        },\n        \"DevelopmentHub.Issue.Type\": {\n            \"value\": \"@{if(equals(outputs('Get_the_issue')?['body/devhub_type'], 353400001), 'Feature', 'Bug')}\"\n        },\n        \"DevelopmentHub.Issue.WorkItemId\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_azuredevopsworkitemid']}\"\n        },\n        \"DevelopmentHub.Issue.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/_devhub_issue_value']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Name\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_uniquename']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Repository\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_name']}\"\n        },\n        \"DevelopmentHub.TargetSolution.DisplayName\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_displayname']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Description\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_description']}\"\n        },\n        \"DevelopmentHub.Repository.TargetBranch\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_targetbranch']}\"\n        },\n        \"DevelopmentHub.Repository.SourceControlStrategy\": {\n            \"value\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\"\n        }\n    }\n}"
                         },
                         "authentication": "@parameters('$authentication')"
                     }
