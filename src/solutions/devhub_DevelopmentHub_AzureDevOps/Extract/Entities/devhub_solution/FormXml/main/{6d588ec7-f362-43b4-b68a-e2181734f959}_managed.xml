@@ -7,6 +7,23 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls" solutionaction="Modified">
       <tabs>
+        <tab verticallayout="true" id="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" IsUserDefined="1" name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" locklevel="0" expanded="true" showlabel="false" ordinalvalue="0">
+          <columns>
+            <column width="50%" id="1">
+              <sections>
+                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_5" id="003c5bb4-9e52-4f4c-b441-e6202b6706d0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="111" labelwidth="115" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{62c18c99-9af6-46b6-8a46-090f9109a565}" showlabel="false" ordinalvalue="10003" solutionaction="Removed" />
+                      <cell showlabel="false" locklevel="0" id="{b3e525d7-31a5-47b9-be33-3f42eeffe0bf}" ordinalvalue="20004" solutionaction="Removed" />
+                      <cell showlabel="false" locklevel="0" id="{df0e9923-7171-4fac-bbeb-6deb101f825d}" ordinalvalue="30005" solutionaction="Removed" />
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
         <tab name="tab_AzureDevOps" id="db99d7e7-c601-463f-bc49-28eca8dd43ca" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Azure DevOps" languagecode="1033" />
