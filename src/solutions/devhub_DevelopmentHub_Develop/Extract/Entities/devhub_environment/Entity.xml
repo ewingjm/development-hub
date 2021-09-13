@@ -940,20 +940,6 @@
           </Descriptions>
         </attribute>
       </attributes>
-      <EntityKeys>
-        <EntityKey>
-          <Name>devhub_Url</Name>
-          <LogicalName>devhub_url</LogicalName>
-          <IntroducedVersion>0.0.1.0</IntroducedVersion>
-          <IsCustomizable>0</IsCustomizable>
-          <EntityKeyAttributes>
-            <AttributeName>devhub_url</AttributeName>
-          </EntityKeyAttributes>
-          <displaynames>
-            <displayname description="URL" languagecode="1033" />
-          </displaynames>
-        </EntityKey>
-      </EntityKeys>
       <EntitySetName>devhub_environments</EntitySetName>
       <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
