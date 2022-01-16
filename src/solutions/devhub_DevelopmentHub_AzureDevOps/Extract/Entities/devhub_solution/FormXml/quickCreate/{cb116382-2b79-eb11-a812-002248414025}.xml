@@ -28,6 +28,25 @@
                 </section>
               </sections>
             </column>
+            <column width="33%" id="1">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{2296ec5d-ba11-4b71-b468-3d865c935d5e}" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{997e0daa-8e16-41db-b678-54182f2c78fb}" locklevel="0" labelid="{b7b04a4d-263c-4528-a2e7-8a60eda97443}" showlabel="true" visible="false" ordinalvalue="10002" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{5e9b6318-7f2b-46e6-aed2-5afdbfb7331b}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Provision Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_provisionenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_provisionenvironmentpipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
           </columns>
         </tab>
       </tabs>

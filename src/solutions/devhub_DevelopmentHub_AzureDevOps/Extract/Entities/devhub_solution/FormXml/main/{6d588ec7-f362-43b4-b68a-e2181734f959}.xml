@@ -9,6 +9,25 @@
       <tabs>
         <tab verticallayout="true" id="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" IsUserDefined="1" name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}" locklevel="0" expanded="true" showlabel="false" ordinalvalue="0">
           <columns>
+            <column width="50%" id="0">
+              <sections>
+                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_4" id="5f174613-d7eb-4747-9761-153044e2e774" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{9aa15507-7008-c434-248d-d6284d3192bc}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10002" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{9f6cee94-c87d-4fe2-9da7-dd8fd03709e8}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Provision Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_provisionenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_provisionenvironmentpipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
             <column width="50%" id="1">
               <sections>
                 <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_5" id="003c5bb4-9e52-4f4c-b441-e6202b6706d0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="111" labelwidth="115" ordinalvalue="0">

@@ -43,6 +43,9 @@
             },
             "triggers": {
                 "When_an_environment's_status_is_updated_to_pending_provision": {
+                    "metadata": {
+                        "operationMetadataId": "eaaaa008-0648-4411-89f5-3653a2f89fc5"
+                    },
                     "type": "OpenApiConnectionWebhook",
                     "inputs": {
                         "host": {
@@ -68,6 +71,9 @@
                             "Succeeded"
                         ]
                     },
+                    "metadata": {
+                        "operationMetadataId": "86f5fedb-5d7a-4770-904d-4e0172062e6f"
+                    },
                     "type": "OpenApiConnection",
                     "inputs": {
                         "host": {
@@ -78,7 +84,7 @@
                         "parameters": {
                             "account": "@parameters('Azure DevOps Organization')",
                             "project": "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_name']",
-                            "buildDefId": "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_provisionenvironmentpipelineid']",
+                            "buildDefId": "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_provisionenvironmentpipelineid']",
                             "buildDetails/parameters": "{\n\"DevelopmentHub.DevelopmentEnvironment.Name\": \"@{workflow()['tags']['environmentName']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Url\": \"@{uriHost(outputs('Get_the_project''s_provision_environment_pipeline')?['body/@odata.id'])}\",\n\"DevelopmentHub.ExtractEnvironment.DisplayName\": \"@{triggerOutputs()?['body/devhub_name']}\",\n\"DevelopmentHub.ExtractEnvironment.RecordId\": \"@{triggerOutputs()?['body/devhub_environmentid']}\",\n\"DevelopmentHub.TargetSolution.Name\": \"@{outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_uniquename']}\",\n\"DevelopmentHub.TargetSolution.AppTemplates\": \"@{if(not(equals(outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_apptemplates@OData.Community.Display.V1.FormattedValue'], null)), replace(outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_apptemplates@OData.Community.Display.V1.FormattedValue'], ';', ','), '')}\",\n\"DevelopmentHub.TargetSolution.Repository\": \"@{outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_name']}\"\n}"
                         },
                         "authentication": "@parameters('$authentication')"
@@ -86,6 +92,9 @@
                 },
                 "Get_the_project's_provision_environment_pipeline": {
                     "runAfter": {},
+                    "metadata": {
+                        "operationMetadataId": "ff95ece7-2099-4f73-bb94-16ae9a95ae8c"
+                    },
                     "type": "OpenApiConnection",
                     "inputs": {
                         "host": {
@@ -96,8 +105,8 @@
                         "parameters": {
                             "entityName": "devhub_solutions",
                             "recordId": "@triggerOutputs()?['body/_devhub_solution_value']",
-                            "$select": "devhub_uniquename,devhub_apptemplates",
-                            "$expand": "devhub_Repository($select=devhub_name;$expand=devhub_Project($select=devhub_provisionenvironmentpipelineid, devhub_name))"
+                            "$select": "devhub_uniquename,devhub_apptemplates,devhub_provisionenvironmentpipelineid",
+                            "$expand": "devhub_Repository($select=devhub_name;$expand=devhub_Project($select=devhub_name))"
                         },
                         "authentication": "@parameters('$authentication')"
                     }
@@ -106,6 +115,9 @@
                     "actions": {
                         "Update_environment_to_failed_to_provision": {
                             "runAfter": {},
+                            "metadata": {
+                                "operationMetadataId": "2f59fd74-a76d-4ab7-ba42-687e00ae3758"
+                            },
                             "type": "OpenApiConnection",
                             "inputs": {
                                 "host": {
@@ -127,11 +139,14 @@
                                     "Succeeded"
                                 ]
                             },
+                            "metadata": {
+                                "operationMetadataId": "e2c3428c-f911-4187-b1bb-12750866c212"
+                            },
                             "type": "Terminate",
                             "inputs": {
                                 "runStatus": "Failed",
                                 "runError": {
-                                    "message": "Failed to provision environment as a provision environment pipeline definition ID has not been configured for the project."
+                                    "message": "Failed to provision environment as a provision environment pipeline definition ID has not been configured for the solution."
                                 }
                             }
                         }
@@ -143,9 +158,12 @@
                     },
                     "expression": {
                         "equals": [
-                            "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_provisionenvironmentpipelineid']",
+                            "@outputs('Get_the_project''s_provision_environment_pipeline')?['body/devhub_provisionenvironmentpipelineid']",
                             "@null"
                         ]
+                    },
+                    "metadata": {
+                        "operationMetadataId": "37847b8c-8352-4eb2-93d7-63c46d842f8d"
                     },
                     "type": "If"
                 }

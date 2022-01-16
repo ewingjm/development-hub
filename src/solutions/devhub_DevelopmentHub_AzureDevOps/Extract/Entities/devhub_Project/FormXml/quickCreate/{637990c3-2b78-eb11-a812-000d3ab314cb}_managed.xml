@@ -43,14 +43,6 @@
                         <control id="devhub_deleteenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_deleteenvironmentpipelineid" disabled="false" />
                       </cell>
                     </row>
-                    <row>
-                      <cell id="{2a313359-3926-42e4-b98c-edb4c0ba1af9}" locklevel="0">
-                        <labels>
-                          <label description="Provision Environment Pipeline ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_provisionenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_provisionenvironmentpipelineid" disabled="false" />
-                      </cell>
-                    </row>
                   </rows>
                 </section>
               </sections>

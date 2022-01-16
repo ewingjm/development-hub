@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.21081.137" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.21121.121" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>devhub_DevelopmentHub_AzureDevOps</UniqueName>
     <LocalizedNames>
@@ -90,6 +89,7 @@
       <RootComponent type="29" id="{33e09501-b878-eb11-a812-000d3adc8f9a}" behavior="0" />
       <RootComponent type="29" id="{5c023c93-0301-ec11-94ef-000d3ad679ad}" behavior="0" />
       <RootComponent type="29" id="{828e3518-5b78-eb11-a812-000d3ab20581}" behavior="0" />
+      <RootComponent type="29" id="{b355c695-045d-ec11-8f8f-0022481a4539}" behavior="0" />
       <RootComponent type="29" id="{b800019e-2c14-4941-9ade-39735dc93cf3}" behavior="0" />
       <RootComponent type="29" id="{c53472fd-b978-eb11-a812-000d3adc8f9a}" behavior="0" />
       <RootComponent type="29" id="{c768730f-d671-eb11-a812-000d3adb6517}" behavior="0" />
@@ -231,6 +231,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="devhub_displayname" displayName="Display Name" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent type="29" displayName="Provision Environment Pipeline ID is mandatory when merge strategy is parallel" id="{b355c695-045d-ec11-8f8f-0022481a4539}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="devhub_displayname" displayName="Display Name" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
       </MissingDependency>
       <MissingDependency>
@@ -247,6 +251,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="devhub_mergestrategy" displayName="Merge Strategy" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent type="29" displayName="Provision Environment Pipeline ID is mandatory when merge strategy is parallel" id="{b355c695-045d-ec11-8f8f-0022481a4539}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="devhub_mergestrategy" displayName="Merge Strategy" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Solution" id="{6d588ec7-f362-43b4-b68a-e2181734f959}" />
       </MissingDependency>
       <MissingDependency>
@@ -268,6 +276,10 @@
       <MissingDependency>
         <Required type="2" schemaName="devhub_patchversion" displayName="Patch Version" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
         <Dependent type="60" displayName=" quick create form" parentDisplayName="Solution" id="{cb116382-2b79-eb11-a812-002248414025}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="devhub_solutionid" displayName="Solution" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
+        <Dependent type="29" displayName="Provision Environment Pipeline ID is mandatory when merge strategy is parallel" id="{b355c695-045d-ec11-8f8f-0022481a4539}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="devhub_stagingenvironment" displayName="Staging Environment" parentSchemaName="devhub_solution" parentDisplayName="Solution" solution="devhub_DevelopmentHub_Develop (0.2.0)" />
