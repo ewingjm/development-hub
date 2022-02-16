@@ -1,5 +1,4 @@
 <environmentvariabledefinition schemaname="devhub_SolutionPublisher">
-  <defaultvalue></defaultvalue>
   <description default="The publisher prefix to use for solutions. Must correspond with a publisher that exists in the environment.">
     <label description="The publisher prefix to use for solutions. Must correspond with a publisher that exists in the environment." languagecode="1033" />
   </description>

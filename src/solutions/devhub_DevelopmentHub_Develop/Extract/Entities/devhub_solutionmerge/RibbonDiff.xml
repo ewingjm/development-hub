@@ -6,6 +6,11 @@
         <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.Alt" Command="devhub.devhub_solutionmerge.Approve.Command" Id="devhub.devhub_solutionmerge.Approve.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.LabelText" Sequence="14" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Approve.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_approve.svg" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="devhub.devhub_solutionmerge.ApproveChanges.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="20">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.Alt" Command="devhub.devhub_solutionmerge.ApproveChanges.Command" Id="devhub.devhub_solutionmerge.ApproveChanges.Button" Image32by32="$webresource:devhub_/Images/devhub_pushchanges.svg" Image16by16="$webresource:devhub_/Images/devhub_pushchanges.svg" LabelText="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText" Sequence="20" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_pushchanges.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="devhub.devhub_solutionmerge.Reject.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="15">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.Alt" Command="devhub.devhub_solutionmerge.Reject.Command" Id="devhub.devhub_solutionmerge.Reject.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.LabelText" Sequence="15" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Reject.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_reject.svg" />
@@ -16,11 +21,6 @@
         <Button Alt="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.Alt" Command="devhub.devhub_solutionmerge.Retry.Command" Id="devhub.devhub_solutionmerge.Retry.Button" LabelText="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.LabelText" Sequence="0" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.Retry.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_retry.svg" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="devhub.devhub_solutionmerge.ApproveChanges.Button.CustomAction" Location="Mscrm.Form.devhub_solutionmerge.MainTab.Actions.Controls._children" Sequence="20">
-      <CommandUIDefinition>
-        <Button Alt="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.Alt" Command="devhub.devhub_solutionmerge.ApproveChanges.Command" Id="devhub.devhub_solutionmerge.ApproveChanges.Button" Image32by32="$webresource:devhub_/Images/devhub_pushchanges.svg" Image16by16="$webresource:devhub_/Images/devhub_pushchanges.svg" LabelText="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText" Sequence="20" TemplateAlias="isv" ToolTipTitle="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle" ToolTipDescription="$LocLabels:devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription" ModernImage="$webresource:devhub_/Images/devhub_pushchanges.svg" />
-      </CommandUIDefinition>
-    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -29,6 +29,17 @@
     <CommandDefinition Id="devhub.devhub_solutionmerge.Approve.Command">
       <EnableRules>
         <EnableRule Id="devhub.devhub_solutionmerge.Review.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.approve" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="devhub.devhub_solutionmerge.ApproveChanges.Command">
+      <EnableRules>
+        <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -59,22 +70,14 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
-    <CommandDefinition Id="devhub.devhub_solutionmerge.ApproveChanges.Command">
-      <EnableRules>
-        <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule" />
-      </EnableRules>
-      <DisplayRules />
-      <Actions>
-        <JavaScriptFunction FunctionName="DevelopmentHub.Develop.approve" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js">
-          <CrmParameter Value="PrimaryControl" />
-        </JavaScriptFunction>
-      </Actions>
-    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules>
+      <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule">
+        <ValueRule Field="statuscode" Value="353400007" Default="false" InvertResult="false" />
+      </EnableRule>
       <EnableRule Id="devhub.devhub_solutionmerge.Retry.EnableRule">
         <ValueRule Field="statuscode" Value="353400002" />
       </EnableRule>
@@ -82,9 +85,6 @@
         <CustomRule FunctionName="DevelopmentHub.Develop.isReviewEnabled" Library="$webresource:devhub_/Js/develop.solutionmerge.ribbon.js" Default="false">
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
-      </EnableRule>
-      <EnableRule Id="devhub.devhub_solutionmerge.IsAwaitingPRApproval.EnableRule">
-        <ValueRule Field="statuscode" Value="353400007" Default="false" InvertResult="false" />
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
@@ -107,6 +107,26 @@
     <LocLabel Id="devhub.devhub_solutionmerge.Approve.Button.ToolTipTitle">
       <Titles>
         <Title description="Approve" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.Alt">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Approves latest changes from the development solution and updates the pull request." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Approve changes" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="devhub.devhub_solutionmerge.Reject.Button.Alt">
@@ -147,26 +167,6 @@
     <LocLabel Id="devhub.devhub_solutionmerge.Retry.Button.ToolTipTitle">
       <Titles>
         <Title description="Retry" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.Alt">
-      <Titles>
-        <Title description="Approve changes" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.LabelText">
-      <Titles>
-        <Title description="Approve changes" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipDescription">
-      <Titles>
-        <Title description="Approves latest changes from the development solution and updates the pull request." languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="devhub.devhub_solutionmerge.ApproveChanges.Button.ToolTipTitle">
-      <Titles>
-        <Title description="Approve changes" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>
