@@ -4,6 +4,7 @@
   <Name>devhub_/Js/develop.common.js</Name>
   <DisplayName>develop.common.js</DisplayName>
   <Description>Common JavaScript event handlers.</Description>
+  <LanguageCode>0</LanguageCode>
   <WebResourceType>3</WebResourceType>
   <IntroducedVersion>0.1.15.0</IntroducedVersion>
   <IsEnabledForMobileClient>0</IsEnabledForMobileClient>

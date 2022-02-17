@@ -78,4 +78,48 @@ namespace DevelopmentHub.Develop {
         (error) => onExecuteWorkflowError(error),
       );
   }
+
+  export function toggleFieldOnValue(
+    context: Xrm.Events.EventContext,
+    sourceField: string,
+    value: any,
+    targetField: string,
+  ) {
+    const formContext = context.getFormContext();
+
+    const sourceAttribute = formContext.getAttribute(sourceField) as
+      Xrm.Attributes.Attribute;
+    if (!sourceAttribute) {
+      return;
+    }
+
+    const targetControl = formContext.getControl(targetField) as
+      Xrm.Controls.StandardControl;
+    if (!targetControl) {
+      return;
+    }
+
+    const sourceValue = sourceAttribute.getValue();
+    const sourceType = sourceAttribute.getAttributeType();
+
+    let toggle = false;
+    switch (sourceType) {
+      case 'multioptionset':
+        toggle = sourceValue
+          ? (JSON.stringify(sourceValue.sort()) === JSON.stringify(value.sort()))
+          : sourceValue === value;
+        break;
+      case 'lookup':
+        toggle = sourceValue ? sourceValue[0].id === value : sourceValue === value;
+        break;
+      default:
+        toggle = sourceValue === value;
+        break;
+    }
+
+    targetControl.setVisible(toggle);
+    if (!toggle) {
+      targetControl.getAttribute().setValue(null);
+    }
+  }
 }
