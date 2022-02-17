@@ -26,6 +26,9 @@
             },
             "triggers": {
                 "When_a_solution_merge_is_approved": {
+                    "metadata": {
+                        "operationMetadataId": "69ff95c5-a314-4bde-bd82-1a60234d4fc2"
+                    },
                     "type": "OpenApiConnectionWebhook",
                     "inputs": {
                         "host": {
@@ -151,7 +154,7 @@
                                                 "parameters": {
                                                     "entityName": "devhub_solutionmerges",
                                                     "$select": "devhub_name",
-                                                    "$filter": "devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and devhub_mergestrategy eq 353400000 and devhub_environment_value eq @{triggerOutputs()?['body/_devhub_environment_value']} and (statuscode eq 353400000 or statuscode eq 353400003 or statuscode eq 353400002 or statuscode eq 353400006)",
+                                                    "$filter": "devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and devhub_mergestrategy eq 353400000 and _devhub_environment_value eq @{triggerOutputs()?['body/_devhub_environment_value']} and (statuscode eq 353400000 or statuscode eq 353400003 or statuscode eq 353400002 or statuscode eq 353400006)",
                                                     "$orderby": "devhub_approvedon desc",
                                                     "$top": 1
                                                 },
@@ -244,6 +247,9 @@
                                 }
                             },
                             "expression": "@triggerOutputs()?['body/devhub_mergestrategy']",
+                            "metadata": {
+                                "operationMetadataId": "bdd6278a-9d44-4880-a1bf-ee37c8467ed1"
+                            },
                             "type": "Switch"
                         },
                         "Update_status_to_pending_merge": {
@@ -251,6 +257,9 @@
                                 "Switch_on_merge_strategy": [
                                     "Succeeded"
                                 ]
+                            },
+                            "metadata": {
+                                "operationMetadataId": "cbfc069a-1223-4cb0-9a79-d5bef64aec6f"
                             },
                             "type": "OpenApiConnection",
                             "inputs": {
@@ -269,6 +278,9 @@
                         }
                     },
                     "runAfter": {},
+                    "metadata": {
+                        "operationMetadataId": "820ee2f4-bdd8-4296-98d0-95ce89a0e95e"
+                    },
                     "type": "Scope"
                 },
                 "Set_solution_merge_status_to_'Failed'_(merge_development_solution)": {
@@ -277,6 +289,9 @@
                             "Failed",
                             "TimedOut"
                         ]
+                    },
+                    "metadata": {
+                        "operationMetadataId": "331c4f98-f492-47f6-b27f-3ad912b136f0"
                     },
                     "type": "OpenApiConnection",
                     "inputs": {
@@ -300,6 +315,9 @@
                             "Succeeded"
                         ]
                     },
+                    "metadata": {
+                        "operationMetadataId": "d09b106a-6314-4e47-a872-0a61a8923ef0"
+                    },
                     "type": "OpenApiConnection",
                     "inputs": {
                         "host": {
@@ -320,6 +338,9 @@
                     "actions": {
                         "Get_the_target_solution": {
                             "runAfter": {},
+                            "metadata": {
+                                "operationMetadataId": "ff0b3aa6-7f9d-4c4e-b7fb-180d9c2e6e86"
+                            },
                             "type": "OpenApiConnection",
                             "inputs": {
                                 "host": {
@@ -387,6 +408,9 @@
                                 }
                             },
                             "expression": "@outputs('Get_the_developed_issue')?['body/devhub_type']",
+                            "metadata": {
+                                "operationMetadataId": "cbe942be-9c1b-4b21-82f8-76cc6f590e3b"
+                            },
                             "type": "Switch"
                         }
                     },
@@ -401,6 +425,9 @@
                             353400000
                         ]
                     },
+                    "metadata": {
+                        "operationMetadataId": "f517eb59-3789-4bbd-b06b-c6e85303fea5"
+                    },
                     "type": "If"
                 },
                 "When_the_solution_merge_status_is_'Merged'": {
@@ -408,6 +435,9 @@
                         "Set_solution_merge_status_as_pending_merge_or_queued": [
                             "Succeeded"
                         ]
+                    },
+                    "metadata": {
+                        "operationMetadataId": "c8124adb-ef7b-4b02-ad2d-126f1668ef9e"
                     },
                     "type": "OpenApiConnectionWebhook",
                     "inputs": {
@@ -432,6 +462,9 @@
                             "Succeeded"
                         ]
                     },
+                    "metadata": {
+                        "operationMetadataId": "15e98bbf-6dec-4900-b615-d769d32d4bf3"
+                    },
                     "type": "OpenApiConnection",
                     "inputs": {
                         "host": {
@@ -452,6 +485,9 @@
                         "Get_the_developed_issue": [
                             "Succeeded"
                         ]
+                    },
+                    "metadata": {
+                        "operationMetadataId": "68e7f3bc-0eb0-48e4-9d76-f9a3d4a1fadf"
                     },
                     "type": "OpenApiConnection",
                     "inputs": {
@@ -474,6 +510,9 @@
                         "Get_the_development_solution_by_unique_name": [
                             "Succeeded"
                         ]
+                    },
+                    "metadata": {
+                        "operationMetadataId": "0384c2cb-c10c-4c74-9440-9c107a729c09"
                     },
                     "type": "OpenApiConnection",
                     "inputs": {
