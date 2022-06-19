@@ -154,7 +154,7 @@
                         "parameters": {
                           "entityName": "devhub_solutionmerges",
                           "$select": "devhub_name",
-                          "$filter": "devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and devhub_mergestrategy eq 353400000 and _devhub_environment_value eq @{triggerOutputs()?['body/_devhub_environment_value']} and (statuscode eq 353400000 or statuscode eq 353400003 or statuscode eq 353400002 or statuscode eq 353400006)",
+                          "$filter": "devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and devhub_mergestrategy eq 353400000 and _devhub_environment_value eq @{triggerOutputs()?['body/_devhub_environment_value']} and statecode eq 0 and statuscode ne 1 and statuscode ne 353400004",
                           "$orderby": "devhub_approvedon desc",
                           "$top": 1
                         },
