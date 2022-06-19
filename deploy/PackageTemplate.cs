@@ -141,7 +141,7 @@ namespace DevelopmentHub.Deployment
             if (solutionName == "devhub_DevelopmentHub_Develop" && oldVersion.StartsWith("0.2", StringComparison.OrdinalIgnoreCase))
             {
                 this.DefaultEnvironmentLifetimes();
-                this.DefaultSolutionMergeStrategies();
+                this.DefaultMergeStrategies();
             }
         }
 
@@ -185,12 +185,13 @@ namespace DevelopmentHub.Deployment
             }
         }
 
-        private void DefaultSolutionMergeStrategies()
+        private void DefaultMergeStrategies()
         {
-            this.PackageLog.Log("Default existing solution merge strategies to 'Sequential'.");
+            this.PackageLog.Log("Default existing solutions to a merge strategy of 'Sequential'.");
 
             var solutionQuery = new QueryByAttribute("devhub_solution");
             solutionQuery.AddAttributeValue("devhub_mergestrategy", null);
+            solutionQuery.ColumnSet.AddColumn("devhub_stagingenvironment");
 
             var solutions = this.CrmServiceAdapter.RetrieveMultiple(solutionQuery);
             this.PackageLog.Log($"Found {solutions.Entities.Count} solutions to update.");
@@ -198,8 +199,8 @@ namespace DevelopmentHub.Deployment
             foreach (var solution in solutions.Entities)
             {
                 this.PackageLog.Log($"Updating solution {solution.Id}.");
-
                 solution.Attributes.Add("devhub_mergestrategy", new OptionSetValue(353400000) /*Sequential*/);
+
                 try
                 {
                     this.CrmSvc.Update(solution);
@@ -207,6 +208,27 @@ namespace DevelopmentHub.Deployment
                 catch (FaultException<OrganizationServiceFault> ex)
                 {
                     this.PackageLog.Log($"Failed to update solution {solution.Id}.", TraceEventType.Error, ex);
+                }
+
+                this.PackageLog.Log("Getting solution merges for solution.");
+
+                var solutionMergeQuery = new QueryByAttribute("devhub_solutionmerge");
+                solutionMergeQuery.AddAttributeValue("devhub_targetsolution", solution.Id);
+                var solutionMerges = this.CrmServiceAdapter.RetrieveMultiple(solutionMergeQuery);
+
+                foreach (var solutionMerge in solutionMerges.Entities)
+                {
+                    solutionMerge.Attributes.Add("devhub_environment", solution["devhub_stagingenvironment"]);
+                    solutionMerge.Attributes.Add("devhub_mergestrategy", new OptionSetValue(353400000) /*Sequential*/);
+
+                    try
+                    {
+                        this.CrmSvc.Update(solutionMerge);
+                    }
+                    catch (FaultException<OrganizationServiceFault> ex)
+                    {
+                        this.PackageLog.Log($"Failed to update solution merge {solutionMerge.Id}.", TraceEventType.Error, ex);
+                    }
                 }
             }
         }
