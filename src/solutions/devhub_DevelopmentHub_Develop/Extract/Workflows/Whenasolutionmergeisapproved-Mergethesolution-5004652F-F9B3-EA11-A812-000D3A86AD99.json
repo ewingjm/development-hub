@@ -479,54 +479,6 @@
             },
             "authentication": "@parameters('$authentication')"
           }
-        },
-        "Get_the_development_solution_by_unique_name": {
-          "runAfter": {
-            "Get_the_developed_issue": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "68e7f3bc-0eb0-48e4-9d76-f9a3d4a1fadf"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecords",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "solutions",
-              "$select": "solutionid",
-              "$filter": "uniquename eq '@{outputs('Get_the_developed_issue')?['body/devhub_developmentsolution']}'",
-              "$top": 1
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Delete_the_development_solution": {
-          "runAfter": {
-            "Get_the_development_solution_by_unique_name": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "0384c2cb-c10c-4c74-9440-9c107a729c09"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "DeleteRecord",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "solutions",
-              "recordId": "@first(outputs('Get_the_development_solution_by_unique_name')?['body/value'])['solutionid']"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
         }
       },
       "outputs": {}
