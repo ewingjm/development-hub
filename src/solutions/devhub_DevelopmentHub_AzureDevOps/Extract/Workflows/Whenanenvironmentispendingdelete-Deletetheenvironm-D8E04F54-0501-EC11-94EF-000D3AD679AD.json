@@ -1,145 +1,145 @@
 {
-    "properties": {
-        "connectionReferences": {
-            "shared_commondataserviceforapps": {
-                "runtimeSource": "embedded",
-                "connection": {
-                    "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
-                },
-                "api": {
-                    "name": "shared_commondataserviceforapps"
-                }
-            },
-            "shared_visualstudioteamservices": {
-                "runtimeSource": "embedded",
-                "connection": {
-                    "connectionReferenceLogicalName": "devhub_sharedvisualstudioteamservices_d7fcb"
-                },
-                "api": {
-                    "name": "shared_visualstudioteamservices"
-                }
-            },
-            "shared_commondataserviceforapps_1": {
-                "runtimeSource": "embedded",
-                "connection": {
-                    "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
-                },
-                "api": {
-                    "name": "shared_commondataserviceforapps"
-                }
-            }
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
         },
-        "definition": {
-            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-            "contentVersion": "1.0.0.0",
-            "parameters": {
-                "$connections": {
-                    "defaultValue": {},
-                    "type": "Object"
-                },
-                "$authentication": {
-                    "defaultValue": {},
-                    "type": "SecureObject"
-                },
-                "Azure DevOps Organization": {
-                    "defaultValue": "ewingjm",
-                    "type": "String",
-                    "metadata": {
-                        "schemaName": "devhub_AzureDevOpsOrganization",
-                        "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
-                    }
-                }
-            },
-            "triggers": {
-                "When_an_environment_is_pending_delete": {
-                    "type": "OpenApiConnectionWebhook",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps_1",
-                            "operationId": "SubscribeWebhookTrigger",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "subscriptionRequest/message": 3,
-                            "subscriptionRequest/entityname": "devhub_environment",
-                            "subscriptionRequest/scope": 4,
-                            "subscriptionRequest/filteringattributes": "statuscode",
-                            "subscriptionRequest/filterexpression": "statuscode eq 353400003"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                }
-            },
-            "actions": {
-                "Get_the_project's_delete_environment_pipeline": {
-                    "runAfter": {},
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "devhub_solutions",
-                            "recordId": "@triggerOutputs()?['body/_devhub_solution_value']",
-                            "$select": "devhub_uniquename",
-                            "$expand": "devhub_Repository($select=devhub_name;$expand=devhub_Project($select=devhub_deleteenvironmentpipelineid, devhub_name))"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Queue_a_new_delete_environment_run": {
-                    "runAfter": {
-                        "Check_delete_pipeline_is_configured": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_visualstudioteamservices",
-                            "operationId": "QueueNewBuild",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
-                        },
-                        "parameters": {
-                            "account": "@parameters('Azure DevOps Organization')",
-                            "project": "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_name']",
-                            "buildDefId": "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_deleteenvironmentpipelineid']",
-                            "buildDetails/parameters": "{\n\"DevelopmentHub.DevelopmentEnvironment.Name\": \"@{workflow()['tags']['environmentName']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Url\": \"@{uriHost(outputs('Get_the_project''s_delete_environment_pipeline')?['body/@odata.id'])}\",\n\"DevelopmentHub.ExtractEnvironment.DisplayName\": \"@{triggerOutputs()?['body/devhub_name']}\",\n\"DevelopmentHub.ExtractEnvironment.RecordId\": \"@{triggerOutputs()?['body/devhub_environmentid']}\",\n\"DevelopmentHub.ExtractEnvironment.Url\": \"@{triggerOutputs()?['body/devhub_url']}\"\n}"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Check_delete_pipeline_is_configured": {
-                    "actions": {
-                        "Terminate": {
-                            "runAfter": {},
-                            "type": "Terminate",
-                            "inputs": {
-                                "runStatus": "Failed",
-                                "runError": {
-                                    "message": "Failed to delete environment as a delete environment pipeline definition ID has not been configured for the project."
-                                }
-                            }
-                        }
-                    },
-                    "runAfter": {
-                        "Get_the_project's_delete_environment_pipeline": [
-                            "Succeeded"
-                        ]
-                    },
-                    "expression": {
-                        "equals": [
-                            "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_deleteenvironmentpipelineid']",
-                            "@null"
-                        ]
-                    },
-                    "type": "If"
-                }
-            },
-            "outputs": {}
+        "api": {
+          "name": "shared_commondataserviceforapps"
         }
+      },
+      "shared_visualstudioteamservices": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedvisualstudioteamservices_d7fcb"
+        },
+        "api": {
+          "name": "shared_visualstudioteamservices"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
     },
-    "schemaVersion": "1.0.0.0"
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Azure DevOps Organization": {
+          "defaultValue": "ewingjm",
+          "type": "String",
+          "metadata": {
+            "schemaName": "devhub_AzureDevOpsOrganization",
+            "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
+          }
+        }
+      },
+      "triggers": {
+        "When_an_environment_is_pending_delete": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "devhub_environment",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode",
+              "subscriptionRequest/filterexpression": "statuscode eq 353400003"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_the_project's_delete_environment_pipeline": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_solutions",
+              "recordId": "@triggerOutputs()?['body/_devhub_solution_value']",
+              "$select": "devhub_uniquename",
+              "$expand": "devhub_Repository($select=devhub_name;$expand=devhub_Project($select=devhub_deleteenvironmentpipelineid, devhub_name))"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Queue_a_new_delete_environment_run": {
+          "runAfter": {
+            "Check_delete_pipeline_is_configured": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_visualstudioteamservices",
+              "operationId": "QueueNewBuild",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
+            },
+            "parameters": {
+              "account": "@parameters('Azure DevOps Organization')",
+              "project": "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_name']",
+              "buildDefId": "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_deleteenvironmentpipelineid']",
+              "buildDetails/parameters": "{\n\"DevelopmentHub.DevelopmentEnvironment.Name\": \"@{workflow()['tags']['environmentName']}\",\n\"DevelopmentHub.DevelopmentEnvironment.Url\": \"@{uriHost(outputs('Get_the_project''s_delete_environment_pipeline')?['body/@odata.id'])}\",\n\"DevelopmentHub.ExtractEnvironment.DisplayName\": \"@{triggerOutputs()?['body/devhub_name']}\",\n\"DevelopmentHub.ExtractEnvironment.RecordId\": \"@{triggerOutputs()?['body/devhub_environmentid']}\",\n\"DevelopmentHub.ExtractEnvironment.Url\": \"@{triggerOutputs()?['body/devhub_url']}\"\n}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Check_delete_pipeline_is_configured": {
+          "actions": {
+            "Terminate": {
+              "runAfter": {},
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "message": "Failed to delete environment as a delete environment pipeline definition ID has not been configured for the project."
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Get_the_project's_delete_environment_pipeline": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@outputs('Get_the_project''s_delete_environment_pipeline')?['body/devhub_repository/devhub_project/devhub_deleteenvironmentpipelineid']",
+              "@null"
+            ]
+          },
+          "type": "If"
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
 }
