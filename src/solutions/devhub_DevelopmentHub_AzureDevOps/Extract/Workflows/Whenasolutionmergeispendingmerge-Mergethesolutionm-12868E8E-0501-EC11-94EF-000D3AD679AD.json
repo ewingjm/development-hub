@@ -1,192 +1,213 @@
 {
-    "properties": {
-        "connectionReferences": {
-            "shared_commondataserviceforapps": {
-                "runtimeSource": "embedded",
-                "connection": {
-                    "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
-                },
-                "api": {
-                    "name": "shared_commondataserviceforapps"
-                }
-            },
-            "shared_visualstudioteamservices": {
-                "runtimeSource": "embedded",
-                "connection": {
-                    "connectionReferenceLogicalName": "devhub_sharedvisualstudioteamservices_d7fcb"
-                },
-                "api": {
-                    "name": "shared_visualstudioteamservices"
-                }
-            }
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
         },
-        "definition": {
-            "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-            "contentVersion": "1.0.0.0",
-            "parameters": {
-                "$connections": {
-                    "defaultValue": {},
-                    "type": "Object"
-                },
-                "$authentication": {
-                    "defaultValue": {},
-                    "type": "SecureObject"
-                },
-                "Azure DevOps Organization": {
-                    "defaultValue": "ewingjm",
-                    "type": "String",
-                    "metadata": {
-                        "schemaName": "devhub_AzureDevOpsOrganization",
-                        "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
-                    }
-                }
-            },
-            "triggers": {
-                "When_a_solution_merge_is_pending_merge": {
-                    "type": "OpenApiConnectionWebhook",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "SubscribeWebhookTrigger",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "subscriptionRequest/message": 3,
-                            "subscriptionRequest/entityname": "devhub_solutionmerge",
-                            "subscriptionRequest/scope": 4,
-                            "subscriptionRequest/filteringattributes": "statuscode",
-                            "subscriptionRequest/filterexpression": "statuscode eq 353400009"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                }
-            },
-            "actions": {
-                "Get_the_project's_merge_pipeline": {
-                    "runAfter": {},
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "devhub_solutions",
-                            "recordId": "@triggerOutputs()?['body/_devhub_targetsolution_value']",
-                            "$select": "devhub_uniquename,devhub_displayname,devhub_description",
-                            "$expand": "devhub_Repository($select=devhub_name, devhub_targetbranch, devhub_sourcecontrolstrategy;$expand=devhub_Project($select=devhub_mergepipelineid, devhub_name))"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Get_the_extract_environment": {
-                    "runAfter": {
-                        "Get_the_project's_merge_pipeline": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "devhub_environments",
-                            "recordId": "@triggerOutputs()?['body/_devhub_environment_value']",
-                            "$select": "devhub_url,devhub_commithash"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Get_the_issue": {
-                    "runAfter": {
-                        "Get_the_extract_environment": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "devhub_issues",
-                            "recordId": "@triggerOutputs()?['body/_devhub_issue_value']",
-                            "$select": "devhub_name, devhub_type, devhub_azuredevopsworkitemid, devhub_developmentsolution"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Get_the_solution_merge_creator": {
-                    "runAfter": {
-                        "Get_the_issue": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "systemusers",
-                            "recordId": "@triggerOutputs()?['body/_createdby_value']"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Get_the_solution_merge_approver": {
-                    "runAfter": {
-                        "Get_the_solution_merge_creator": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_commondataserviceforapps",
-                            "operationId": "GetItem",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                            "entityName": "systemusers",
-                            "recordId": "@triggerOutputs()?['body/_devhub_approvedby_value']"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                },
-                "Send_an_HTTP_request_to_Azure_DevOps": {
-                    "runAfter": {
-                        "Get_the_solution_merge_approver": [
-                            "Succeeded"
-                        ]
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                        "host": {
-                            "connectionName": "shared_visualstudioteamservices",
-                            "operationId": "HttpRequest",
-                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
-                        },
-                        "parameters": {
-                            "account": "@parameters('Azure DevOps Organization')",
-                            "parameters/Method": "POST",
-                            "parameters/Uri": "@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_name']}/_apis/pipelines/@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_mergepipelineid']}/runs?api-version=6.0-preview.1",
-                            "parameters/Body": "{\n    \"templateParameters\": {\n        @{if(not(equals(triggerOutputs()?['body/devhub_sourcebranch'], null)), concat('\"sourceBranch\": \"', triggerOutputs()?['body/devhub_sourcebranch'], '\",'), ' ')}\n        \"sourceControlStrategy\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\",\n        \"manualMergeActivities\": @{toLower(string(triggerOutputs()?['body/devhub_manualmergeactivities']))}\n    },\n    \"variables\": {\n        \"DevelopmentHub.DevelopmentEnvironment.Name\": {\n            \"value\": \"@{workflow()['tags']['environmentName']}\"\n        },\n        \"DevelopmentHub.DevelopmentEnvironment.Url\": {\n            \"value\": \"@{concat('https://', uriHost(outputs('Get_the_project''s_merge_pipeline')?['body/@odata.id']))}\",\n        },\n        \"DevelopmentHub.ExtractEnvironment.Url\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_url']}\"\n        },\n        \"DevelopmentHub.ExtractEnvironment.CommitHash\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_commithash']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_solutionmergeid']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.MergeStrategy\": {\n            \"value\": \"@{if(equals(triggerOutputs()?['body/devhub_mergestrategy'], 353400000), 'Sequential', 'Parallel')}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ManualMergeActivities\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_manualmergeactivities']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ApproverEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.CreatorEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Approver\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Creator\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.SourceBranch\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_sourcebranch']}\"\n        },\n        \"DevelopmentHub.Issue.DevelopmentSolution\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_developmentsolution']}\"\n        },\n        \"DevelopmentHub.Issue.Name\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_name']}\"\n        },\n        \"DevelopmentHub.Issue.Type\": {\n            \"value\": \"@{if(equals(outputs('Get_the_issue')?['body/devhub_type'], 353400001), 'Feature', 'Bug')}\"\n        },\n        \"DevelopmentHub.Issue.WorkItemId\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_azuredevopsworkitemid']}\"\n        },\n        \"DevelopmentHub.Issue.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/_devhub_issue_value']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Name\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_uniquename']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Repository\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_name']}\"\n        },\n        \"DevelopmentHub.TargetSolution.DisplayName\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_displayname']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Description\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_description']}\"\n        },\n        \"DevelopmentHub.Repository.TargetBranch\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_targetbranch']}\"\n        },\n        \"DevelopmentHub.Repository.SourceControlStrategy\": {\n            \"value\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\"\n        }\n    }\n}"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                    }
-                }
-            },
-            "outputs": {}
+        "api": {
+          "name": "shared_commondataserviceforapps"
         }
+      },
+      "shared_visualstudioteamservices": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedvisualstudioteamservices_d7fcb"
+        },
+        "api": {
+          "name": "shared_visualstudioteamservices"
+        }
+      }
     },
-    "schemaVersion": "1.0.0.0"
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Azure DevOps Organization (devhub_AzureDevOpsOrganization)": {
+          "defaultValue": "ewingjm",
+          "type": "String",
+          "metadata": {
+            "schemaName": "devhub_AzureDevOpsOrganization",
+            "description": "The name of the Azure DevOps organization which contains the source code for the target solutions."
+          }
+        }
+      },
+      "triggers": {
+        "When_a_solution_merge_is_pending_merge": {
+          "metadata": {
+            "operationMetadataId": "1765d5bc-89fe-4364-bc86-99193c3d1d1a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "devhub_solutionmerge",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode",
+              "subscriptionRequest/filterexpression": "statuscode eq 353400009"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_the_project's_merge_pipeline": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f9e2415b-c01d-4a2e-b69b-0746caa6f451"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_solutions",
+              "recordId": "@triggerOutputs()?['body/_devhub_targetsolution_value']",
+              "$select": "devhub_uniquename,devhub_displayname,devhub_description,devhub_majorversion,devhub_minorversion,devhub_patchversion",
+              "$expand": "devhub_Repository($select=devhub_name, devhub_targetbranch, devhub_sourcecontrolstrategy;$expand=devhub_Project($select=devhub_mergepipelineid, devhub_name))"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_the_extract_environment": {
+          "runAfter": {
+            "Get_the_project's_merge_pipeline": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "24725dfe-9025-459f-84b1-f3e2835910c8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_environments",
+              "recordId": "@triggerOutputs()?['body/_devhub_environment_value']",
+              "$select": "devhub_url,devhub_commithash"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_the_issue": {
+          "runAfter": {
+            "Get_the_extract_environment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4d9d8c6a-ae58-454b-966e-be76bcfdfd60"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_issues",
+              "recordId": "@triggerOutputs()?['body/_devhub_issue_value']",
+              "$select": "devhub_name, devhub_type, devhub_azuredevopsworkitemid, devhub_developmentsolution"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_the_solution_merge_creator": {
+          "runAfter": {
+            "Get_the_issue": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "54caf1e9-29cc-418e-bf71-5ab999e299a7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_createdby_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_the_solution_merge_approver": {
+          "runAfter": {
+            "Get_the_solution_merge_creator": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "408829e1-67a2-4029-a057-963ef07c0373"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_devhub_approvedby_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_HTTP_request_to_Azure_DevOps": {
+          "runAfter": {
+            "Get_the_solution_merge_approver": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "866a905e-2173-481e-a988-89b82c6e765e"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_visualstudioteamservices",
+              "operationId": "HttpRequest",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_visualstudioteamservices"
+            },
+            "parameters": {
+              "account": "@parameters('Azure DevOps Organization (devhub_AzureDevOpsOrganization)')",
+              "parameters/Method": "POST",
+              "parameters/Uri": "@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_name']}/_apis/pipelines/@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_project/devhub_mergepipelineid']}/runs?api-version=6.0-preview.1",
+              "parameters/Body": "{\n    \"templateParameters\": {\n        @{if(not(equals(triggerOutputs()?['body/devhub_sourcebranch'], null)), concat('\"sourceBranch\": \"', triggerOutputs()?['body/devhub_sourcebranch'], '\",'), ' ')}\n        \"sourceControlStrategy\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\",\n        \"manualMergeActivities\": @{toLower(string(triggerOutputs()?['body/devhub_manualmergeactivities']))}\n    },\n    \"variables\": {\n        \"DevelopmentHub.DevelopmentEnvironment.Name\": {\n            \"value\": \"@{workflow()['tags']['environmentName']}\"\n        },\n        \"DevelopmentHub.DevelopmentEnvironment.Url\": {\n            \"value\": \"@{concat('https://', uriHost(outputs('Get_the_project''s_merge_pipeline')?['body/@odata.id']))}\",\n        },\n        \"DevelopmentHub.ExtractEnvironment.Url\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_url']}\"\n        },\n        \"DevelopmentHub.ExtractEnvironment.CommitHash\": {\n            \"value\": \"@{outputs('Get_the_extract_environment')?['body/devhub_commithash']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_solutionmergeid']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.MergeStrategy\": {\n            \"value\": \"@{if(equals(triggerOutputs()?['body/devhub_mergestrategy'], 353400000), 'Sequential', 'Parallel')}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ManualMergeActivities\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_manualmergeactivities']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.ApproverEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.CreatorEmail\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/internalemailaddress']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Approver\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_approver')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.Creator\": {\n            \"value\": \"@{outputs('Get_the_solution_merge_creator')?['body/fullname']}\"\n        },\n        \"DevelopmentHub.SolutionMerge.SourceBranch\": {\n            \"value\": \"@{triggerOutputs()?['body/devhub_sourcebranch']}\"\n        },\n        \"DevelopmentHub.Issue.DevelopmentSolution\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_developmentsolution']}\"\n        },\n        \"DevelopmentHub.Issue.Name\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_name']}\"\n        },\n        \"DevelopmentHub.Issue.Type\": {\n            \"value\": \"@{if(equals(outputs('Get_the_issue')?['body/devhub_type'], 353400001), 'Feature', 'Bug')}\"\n        },\n        \"DevelopmentHub.Issue.WorkItemId\": {\n            \"value\": \"@{outputs('Get_the_issue')?['body/devhub_azuredevopsworkitemid']}\"\n        },\n        \"DevelopmentHub.Issue.RecordId\": {\n            \"value\": \"@{triggerOutputs()?['body/_devhub_issue_value']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Name\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_uniquename']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Repository\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_name']}\"\n        },\n        \"DevelopmentHub.TargetSolution.DisplayName\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_displayname']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Description\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_description']}\"\n        },\n        \"DevelopmentHub.TargetSolution.Version\": {\n            \"value\": \"@{if(\n    equals(triggerOutputs()?['body/devhub_mergestrategy'], 353400000), \n    if(\n        equals(outputs('Get_the_issue')?['body/devhub_type'], 353400001), \n        concat(\n            outputs('Get_the_project''s_merge_pipeline')?['body/devhub_majorversion'], \n            '.', \n            add(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_minorversion'], 1), \n            '.', \n            0\n        ), \n        concat(\n            outputs('Get_the_project''s_merge_pipeline')?['body/devhub_majorversion'], \n            '.', \n            outputs('Get_the_project''s_merge_pipeline')?['body/devhub_minorversion'], \n            '.', \n            add(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_patchversion'], 1)\n        )\n    ), \n    ''\n)}\"\n        },\n        \"DevelopmentHub.Repository.TargetBranch\": {\n            \"value\": \"@{outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_targetbranch']}\"\n        },\n        \"DevelopmentHub.Repository.SourceControlStrategy\": {\n            \"value\": \"@{if(equals(outputs('Get_the_project''s_merge_pipeline')?['body/devhub_repository/devhub_sourcecontrolstrategy'], 353400000), 'Pull request', 'Push')}\"\n        }\n    }\n}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
 }
