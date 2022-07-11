@@ -191,7 +191,7 @@ namespace DevelopmentHub.Deployment
 
             var solutionQuery = new QueryByAttribute("devhub_solution");
             solutionQuery.AddAttributeValue("devhub_mergestrategy", null);
-            solutionQuery.ColumnSet.AddColumn("devhub_stagingenvironment");
+            solutionQuery.ColumnSet = new ColumnSet("devhub_stagingenvironment");
 
             var solutions = this.CrmServiceAdapter.RetrieveMultiple(solutionQuery);
             this.PackageLog.Log($"Found {solutions.Entities.Count} solutions to update.");
