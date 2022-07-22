@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{9bc32b76-754b-ea11-a812-000d3a0b8d0b}" Name="Environment Variable Key -&gt; Environment Variable Value" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/EnvironmentVariableKey-EnvironmentVariableValue-9BC32B76-754B-EA11-A812-000D3A0B8D0B.json</JsonFileName>
+<Workflow WorkflowId="{d8e04f54-0501-ec11-94ef-000d3ad679ad}" Name="When an environment is pending delete -&gt; Delete the environment" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/Whenanenvironmentispendingdelete-Deletetheenvironm-D8E04F54-0501-EC11-94EF-000D3AD679AD.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -15,11 +15,11 @@
   <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>1.0</IntroducedVersion>
+  <IntroducedVersion>0.2.22</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="Environment Variable Key -&gt; Environment Variable Value" />
+    <LocalizedName languagecode="1033" description="When an environment is pending delete -&gt; Delete the environment" />
   </LocalizedNames>
 </Workflow>

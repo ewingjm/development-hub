@@ -18,6 +18,15 @@
                   <labels>
                     <label description="ColorStrip" languagecode="1033" />
                   </labels>
+                  <rows>
+                    <row>
+                      <cell id="{86b84b42-049d-415e-9f2d-1da0fc2787a5}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
                 </section>
               </sections>
             </column>
@@ -59,6 +68,14 @@
                           <label description="Name" languagecode="1033" />
                         </labels>
                         <control id="devhub_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0a3bb3b8-1c86-95d1-d2c6-1d4ea364b8c2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Merge Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergepipelineid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_mergepipelineid" disabled="false" />
                       </cell>
                     </row>
                   </rows>

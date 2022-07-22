@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <AppModuleSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SiteMapUniqueName>devhub_DevelopmentHub</SiteMapUniqueName>
+  <EnableCollapsibleGroups>False</EnableCollapsibleGroups>
+  <ShowHome>True</ShowHome>
+  <ShowPinned>True</ShowPinned>
+  <ShowRecents>True</ShowRecents>
   <SiteMap IntroducedVersion="7.0.0.0">
     <Area Id="devhub_DevelopmentHub" ResourceId="SitemapDesigner.NewArea" DescriptionResourceId="SitemapDesigner.NewArea" VectorIcon="/WebResources/devhub_/Images/devhub_Issue.svg" Icon="/WebResources/devhub_/Images/devhub_Issue.svg" ShowGroups="true" IntroducedVersion="7.0.0.0" ordinalvalue="0">
       <Group Id="NewGroup_4aa6eeb6" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown" ordinalvalue="1" solutionaction="Added">

@@ -27,6 +27,22 @@
                         <control id="devhub_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_name" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{48622a9f-2c83-4f6f-a353-9bc233e36287}" locklevel="0">
+                        <labels>
+                          <label description="Merge Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergepipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_mergepipelineid" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a53786bc-5d4f-47db-8afa-1302856fd8c2}" locklevel="0">
+                        <labels>
+                          <label description="Delete Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_deleteenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_deleteenvironmentpipelineid" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>

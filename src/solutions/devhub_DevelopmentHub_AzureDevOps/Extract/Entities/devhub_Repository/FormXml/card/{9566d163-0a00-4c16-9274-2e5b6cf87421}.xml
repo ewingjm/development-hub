@@ -20,7 +20,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{1a6ae241-687e-45b4-a488-300d5fc5d64e}">
+                      <cell id="{1a6ae241-687e-45b4-a488-300d5fc5d64e}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -76,14 +76,6 @@
                           <label description="Name" languagecode="1033" />
                         </labels>
                         <control id="devhub_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_name" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{45562a5a-0aa3-b0bb-192a-1a29c889842e}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Extract Build Definition ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_extractbuilddefinitionid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_extractbuilddefinitionid" disabled="false" />
                       </cell>
                     </row>
                   </rows>

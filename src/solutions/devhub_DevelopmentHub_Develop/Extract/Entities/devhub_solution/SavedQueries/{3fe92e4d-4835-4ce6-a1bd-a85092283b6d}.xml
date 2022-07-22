@@ -11,8 +11,9 @@
       <grid name="" jump="devhub_displayname" select="1" icon="1" preview="0">
         <row name="devhub_solution" id="devhub_solutionid">
           <cell name="devhub_displayname" width="300" />
-          <cell name="devhub_uniquename" width="100" />
-          <cell name="devhub_stagingenvironment" width="100" />
+          <cell name="devhub_uniquename" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_description" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_mergestrategy" width="200" />
         </row>
       </grid>
     </layoutxml>
@@ -25,9 +26,10 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <order attribute="devhub_displayname" descending="false" />
           <attribute name="devhub_uniquename" />
-          <attribute name="devhub_stagingenvironment" />
+          <attribute name="devhub_description" />
+          <attribute name="devhub_mergestrategy" />
+          <order attribute="devhub_displayname" descending="false" />
         </entity>
       </fetch>
     </fetchxml>

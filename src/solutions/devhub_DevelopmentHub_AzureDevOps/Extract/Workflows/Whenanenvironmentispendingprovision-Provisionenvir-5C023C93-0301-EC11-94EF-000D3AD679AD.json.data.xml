@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{c976585f-06b4-ea11-a812-000d3a86ad99}" Name="When a solution merge is merged -&gt; Approve the first queued solution merge" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/Whenasolutionmergeismerged-Approvethefirstqueuedso-C976585F-06B4-EA11-A812-000D3A86AD99.json</JsonFileName>
+<Workflow WorkflowId="{5c023c93-0301-ec11-94ef-000d3ad679ad}" Name="When an environment is pending provision -&gt; Provision environment" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/Whenanenvironmentispendingprovision-Provisionenvir-5C023C93-0301-EC11-94EF-000D3AD679AD.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -15,11 +15,11 @@
   <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>1.0</IntroducedVersion>
+  <IntroducedVersion>0.2.22</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="When a solution merge is merged -&gt; Approve the first queued solution merge" />
+    <LocalizedName languagecode="1033" description="When an environment is pending provision -&gt; Provision environment" />
   </LocalizedNames>
 </Workflow>

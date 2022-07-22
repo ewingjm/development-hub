@@ -3,12 +3,13 @@
   <EntityRelationship Name="business_unit_devhub_environment" />
   <EntityRelationship Name="business_unit_devhub_solution" />
   <EntityRelationship Name="business_unit_devhub_solutionmerge" />
+  <EntityRelationship Name="devhub_environment_Solution_devhub_solution" />
   <EntityRelationship Name="devhub_environment_solution_StagingEnvironment" />
   <EntityRelationship Name="devhub_issue_solutionmerge_Issue" />
   <EntityRelationship Name="devhub_solution_solutionmerge_TargetSolution" />
+  <EntityRelationship Name="devhub_solutionmerge_Environment_Environment" />
   <EntityRelationship Name="devhub_solutionmerge_issue_LastSolutionMerge" />
   <EntityRelationship Name="devhub_systemuser_solutionmerge_ApprovedBy" />
-  <EntityRelationship Name="FileAttachment_devhub_solutionmerge_devhub_DevelopmentSolution" />
   <EntityRelationship Name="lk_devhub_environment_createdby" />
   <EntityRelationship Name="lk_devhub_environment_modifiedby" />
   <EntityRelationship Name="lk_devhub_solution_createdby" />

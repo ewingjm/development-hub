@@ -14,11 +14,33 @@
                 <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{c17490a0-dd8b-4dcc-b5ab-7235e721e984}" ordinalvalue="0">
                   <rows>
                     <row>
-                      <cell id="{340a5a9e-c2d3-68a1-4456-7d700dd8341d}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                      <cell id="{17d3d8e1-b5e6-42be-aac9-1aec73e6bf47}" locklevel="0" visible="true" ordinalvalue="10004" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{b6fa6a48-09cd-4e81-a7fb-7ff23ce39d12}" locklevel="0" ordinalvalue="10003" solutionaction="Added">
                         <labels>
                           <label description="Repository" languagecode="1033" />
                         </labels>
                         <control id="devhub_repository" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_repository" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section id="02DECBA0-3AE2-484D-A19F-C5353AF4F4F2" name="tab_1_column_2_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{2296ec5d-ba11-4b71-b468-3d865c935d5e}" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{997e0daa-8e16-41db-b678-54182f2c78fb}" locklevel="0" labelid="{b7b04a4d-263c-4528-a2e7-8a60eda97443}" showlabel="true" visible="false" ordinalvalue="10002" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{5e9b6318-7f2b-46e6-aed2-5afdbfb7331b}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Provision Environment Pipeline ID" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_provisionenvironmentpipelineid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_provisionenvironmentpipelineid" disabled="false" />
                       </cell>
                     </row>
                   </rows>

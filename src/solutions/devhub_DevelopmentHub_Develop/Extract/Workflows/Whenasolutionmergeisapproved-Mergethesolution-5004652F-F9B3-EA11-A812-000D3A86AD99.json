@@ -1,1 +1,488 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"devhub_sharedcommondataserviceforapps_f7ca3"},"api":{"name":"shared_commondataserviceforapps"}},"shared_approvals":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"devhub_sharedapprovals_6d3fc"},"api":{"name":"shared_approvals"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"When_a_solution_merge_is_approved":{"type":"OpenApiConnectionWebhook","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"SubscribeWebhookTrigger","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"subscriptionRequest/message":3,"subscriptionRequest/entityname":"devhub_solutionmerge","subscriptionRequest/scope":4,"subscriptionRequest/filteringattributes":"statuscode","subscriptionRequest/filterexpression":"statuscode eq 353400000"},"authentication":"@parameters('$authentication')"},"description":"Using devhub_approvedon rather than statuscode as the flow wasn't triggering with statuscode as a filtering attribute"}},"actions":{"Merge_development_solution":{"actions":{"Get_the_last_approved_solution_merge":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"ListRecords","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","$select":"devhub_name","$filter":"devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and (statuscode eq 353400000 or statuscode eq 353400003 or statuscode eq 353400002 or statuscode eq 353400006)","$orderby":"devhub_approvedon desc","$top":1},"authentication":"@parameters('$authentication')"}},"If_another_solution_merge_is_in_progress":{"actions":{"Create_a_note_stating_the_solution_merge_is_queued":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"CreateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"annotations","item/subject":"Solution merge queued","item/notetext":"This solution merge has been queued behind '@{outputs('Get_the_last_approved_solution_merge')?['body/value'][0]['devhub_name']}'.","item/objectid_devhub_solutionmerge@odata.bind":"devhub_solutionmerges(@{triggerOutputs()?['body/devhub_solutionmergeid']})"},"authentication":"@parameters('$authentication')"}},"Cancel_the_flow":{"runAfter":{"Queue_the_solution_merge":["Succeeded"]},"type":"Terminate","inputs":{"runStatus":"Cancelled"}},"Queue_the_solution_merge":{"runAfter":{"Create_a_note_stating_the_solution_merge_is_queued":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"PerformBoundAction","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","actionName":"Microsoft.Dynamics.CRM.devhub_QueueSolutionMerge","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Get_the_last_approved_solution_merge":["Succeeded"]},"expression":{"not":{"equals":["@outputs('Get_the_last_approved_solution_merge')?['body/value']?[0]?['devhub_solutionmergeid']","@null"]}},"type":"If"},"Get_the_target_environment":{"runAfter":{"If_another_solution_merge_is_in_progress":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutions","recordId":"@triggerOutputs()?['body/_devhub_targetsolution_value']","$select":"devhub_solutionid,devhub_uniquename","$expand":"devhub_StagingEnvironment($select=devhub_environmentid,devhub_tenantid,devhub_clientid,devhub_clientsecret,devhub_url)"},"authentication":"@parameters('$authentication')"}},"Update_the_solution_merge_status_to_merging":{"runAfter":{"Get_the_target_environment":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","item/statuscode":353400003},"authentication":"@parameters('$authentication')"}},"Get_the_developed_issue":{"runAfter":{"Update_the_solution_merge_status_to_merging":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_issues","recordId":"@outputs('Update_the_solution_merge_status_to_merging')?['body/_devhub_issue_value']","$select":"devhub_developmentsolution,devhub_type"},"authentication":"@parameters('$authentication')"}},"Export_the_development_solution":{"runAfter":{"Get_the_developed_issue":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"PerformUnboundAction","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"actionName":"ExportSolution","item/SolutionName":"@outputs('Get_the_developed_issue')?['body/devhub_developmentsolution']","item/Managed":false,"item/ExportAutoNumberingSettings":false,"item/ExportCalendarSettings":false,"item/ExportCustomizationSettings":false,"item/ExportEmailTrackingSettings":false,"item/ExportGeneralSettings":false,"item/ExportMarketingSettings":false,"item/ExportOutlookSynchronizationSettings":false,"item/ExportRelationshipRoles":false,"item/ExportIsvConfig":false,"item/ExportSales":false,"item/ExportExternalApplications":false},"authentication":"@parameters('$authentication')"}},"Get_access_token_for_staging_environment":{"runAfter":{"Export_the_development_solution":["Succeeded"]},"type":"Workflow","inputs":{"host":{"workflowReferenceName":"db657a26-1d37-eb11-a813-000d3a0b97ca"},"body":{"text":"@outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_tenantid']","text_1":"@outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_clientid']","text_2":"@outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_clientsecret']","text_3":"@outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']"}}},"Import_development_solution":{"runAfter":{"Get_access_token_for_staging_environment":["Succeeded"]},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/ImportSolution","headers":{"Content-Type":"application/json"},"body":{"CustomizationFile":"@{outputs('Export_the_development_solution')?['body/ExportSolutionFile']}","OverwriteUnmanagedCustomizations":true,"PublishWorkflows":true,"ImportJobId":"@{variables('importJobId')}"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"},"retryPolicy":{"type":"none"}}},"Query_import_job_until_done":{"actions":{"Parse_import_job_JSON":{"runAfter":{"Get_import_job":["Succeeded"]},"type":"ParseJson","inputs":{"content":"@body('Get_import_job')","schema":{"type":"object","properties":{"progress":{"type":"number"},"data":{"type":"string"},"completedon":{"type":"string"}}}}},"Get_import_job":{"runAfter":{},"type":"Http","inputs":{"method":"GET","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/importjobs(@{variables('importJobId')})","authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"},"retryPolicy":{"type":"none"}}},"Set_importJobComplete":{"runAfter":{"Parse_import_job_JSON":["Succeeded"]},"type":"SetVariable","inputs":{"name":"importJobComplete","value":"@not(equals(body('Parse_import_job_JSON')?['completedon'], null))"}},"If_incomplete":{"actions":{"Delay":{"runAfter":{},"type":"Wait","inputs":{"interval":{"count":30,"unit":"Second"}}}},"runAfter":{"Set_importJobComplete":["Succeeded"]},"expression":{"equals":["@variables('importJobComplete')","@false"]},"type":"If"}},"runAfter":{"Import_development_solution":["Succeeded","TimedOut"]},"expression":"@equals(variables('importJobComplete'), true)","limit":{"count":40,"timeout":"PT30M "},"type":"Until"},"If_importing_the_development_solution_failed":{"actions":{"Create_a_note_stating_the_solution_import_failed":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"CreateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"annotations","item/subject":"Solution import failed","item/notetext":"The import into the staging environment failed with the following error:\n\n@{xpath(xml(body('Parse_import_job_JSON')?['data']), 'string(/importexportxml/solutionManifests/solutionManifest/result/@errortext)')}","item/objectid_devhub_solutionmerge@odata.bind":"devhub_solutionmerges(@{triggerOutputs()?['body/devhub_solutionmergeid']})"},"authentication":"@parameters('$authentication')"}},"Fail_the_flow":{"runAfter":{"Update_the_solution_merge_to_failed":["Succeeded"]},"type":"Terminate","inputs":{"runStatus":"Failed","runError":{"message":"The development solution import failed"}}},"Update_the_solution_merge_to_failed":{"runAfter":{"Create_a_note_stating_the_solution_import_failed":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","item/statuscode":353400002},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Query_import_job_until_done":["Succeeded"]},"expression":{"equals":["@xpath(xml(body('Parse_import_job_JSON')?['data']), 'string(/importexportxml/solutionManifests/solutionManifest/result/@result)')","failure"]},"type":"If"},"Get_solutions":{"runAfter":{"If_importing_the_development_solution_failed":["Succeeded"]},"type":"Http","inputs":{"method":"GET","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/solutions?$filter=uniquename eq '@{outputs('Get_the_developed_issue')?['body/devhub_developmentsolution']}' or uniquename eq '@{outputs('Get_the_target_environment')?['body/devhub_uniquename']}'&$select=uniquename&$expand=solution_solutioncomponent($select=objectid,componenttype,rootcomponentbehavior)","authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"},"retryPolicy":{"type":"none"}}},"Parse_solutions_JSON":{"runAfter":{"Get_solutions":["Succeeded"]},"type":"ParseJson","inputs":{"content":"@body('Get_solutions')","schema":{"type":"object","properties":{"@@odata.context":{"type":"string"},"value":{"type":"array","items":{"type":"object","properties":{"@@odata.etag":{"type":"string"},"uniquename":{"type":"string"},"solutionid":{"type":"string"},"solution_solutioncomponent":{"type":"array"},"solution_solutioncomponent@odata.nextLink":{"type":"string"}},"required":["@@odata.etag","uniquename","solutionid","solution_solutioncomponent","solution_solutioncomponent@odata.nextLink"]}}}}}},"Filter_development_solution":{"runAfter":{"Parse_solutions_JSON":["Succeeded"]},"type":"Query","inputs":{"from":"@body('Parse_solutions_JSON')?['value']","where":"@equals(item()?['uniquename'], outputs('Get_the_developed_issue')?['body/devhub_developmentsolution'])"}},"Filter_target_solution":{"runAfter":{"Set_developmentSolutionComponents":["Succeeded"]},"type":"Query","inputs":{"from":"@body('Parse_solutions_JSON')?['value']","where":"@equals(item()?['uniquename'], outputs('Get_the_target_environment')?['body/devhub_uniquename'])"}},"Apply_to_each_development_solution_component":{"foreach":"@variables('developmentSolutionComponents')","actions":{"Find_target_solution_component_for_same_object_ID":{"runAfter":{},"type":"Query","inputs":{"from":"@variables('targetSolutionComponents')","where":"@equals(item()?['objectid'], items('Apply_to_each_development_solution_component')?['objectid'])"}},"If_matching_target_solution_component":{"actions":{"If_root_component_behavior_should_be_updated":{"actions":{"Update_solution_component":{"runAfter":{},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/UpdateSolutionComponent","headers":{"Content-Type":"application/json"},"body":{"ComponentId":"@{items('Apply_to_each_development_solution_component')?['objectid']}","ComponentType":"@items('Apply_to_each_development_solution_component')?['componenttype']","SolutionUniqueName":"@{outputs('Get_the_target_environment')?['body/devhub_uniquename']}","IncludedComponentSettingsValues":"@if(equals(item()?['rootcomponentbehaviour'], 2), createArray(), null)"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}}},"runAfter":{},"expression":{"and":[{"not":{"equals":["@first(body('Find_target_solution_component_for_same_object_ID'))['rootcomponentbehavior']","@item()?['rootcomponentbehavior']"]}},{"not":{"equals":["@first(body('Find_target_solution_component_for_same_object_ID'))['rootcomponentbehavior']",0]}},{"not":{"equals":["@item()?['rootcomponentbehavior']","@null"]}}]},"type":"If"}},"runAfter":{"Find_target_solution_component_for_same_object_ID":["Succeeded"]},"else":{"actions":{"Add_solution_component":{"runAfter":{},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/AddSolutionComponent","headers":{"Content-Type":"application/json"},"body":{"ComponentId":"@{string(item()?['objectid'])}","ComponentType":"@items('Apply_to_each_development_solution_component')?['componenttype']","SolutionUniqueName":"@{outputs('Get_the_target_environment')?['body/devhub_uniquename']}","AddRequiredComponents":false,"DoNotIncludeSubcomponents":"@if(equals(item()?['rootcomponentbehavior'], 0), false, true)","IncludedComponentSettingsValues":"@if(equals(item()?['rootcomponentbehaviour'], 2), createArray(), null)"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}}}},"expression":{"greater":["@length(body('Find_target_solution_component_for_same_object_ID'))",0]},"type":"If"}},"runAfter":{"Set_targetSolutionComponents":["Succeeded"]},"type":"Foreach"},"Get_the_post-merge_solution_version":{"runAfter":{"Apply_to_each_development_solution_component":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"PerformBoundAction","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","actionName":"Microsoft.Dynamics.CRM.devhub_GetPostMergeSolutionVersion","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']"},"authentication":"@parameters('$authentication')"}},"Update_target_solution_version":{"runAfter":{"Get_the_post-merge_solution_version":["Succeeded"]},"type":"Http","inputs":{"method":"PATCH","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/solutions(@{first(body('Filter_target_solution'))?['solutionid']})","headers":{"Content-Type":"application/json"},"body":{"version":"@{outputs('Get_the_post-merge_solution_version')?['body/MajorVersion']}.@{outputs('Get_the_post-merge_solution_version')?['body/MinorVersion']}.@{outputs('Get_the_post-merge_solution_version')?['body/PatchVersion']}"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}},"Publish":{"runAfter":{"Update_target_solution_version":["Succeeded"]},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/PublishAllXml","headers":{"Content-Type":"application/json"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}},"If_there_are_manual_merge_activities":{"actions":{"Update_the_solution_merge_status_to_awaiting_manual_merge":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","item/statuscode":353400006},"authentication":"@parameters('$authentication')"}},"Start_and_wait_for_an_approval":{"runAfter":{"Get_the_solution_merge_creator":["Succeeded"]},"type":"OpenApiConnectionWebhook","inputs":{"host":{"connectionName":"shared_approvals","operationId":"StartAndWaitForAnApproval","apiId":"/providers/Microsoft.PowerApps/apis/shared_approvals"},"parameters":{"approvalType":"CustomResponse","WebhookApprovalCreationInput/responseOptions":["Merged"],"WebhookApprovalCreationInput/title":"Solution merge awaiting manual merge activities - @{triggerOutputs()?['body/devhub_name']}","WebhookApprovalCreationInput/assignedTo":"@outputs('Get_the_solution_merge_creator')?['body/internalemailaddress']","WebhookApprovalCreationInput/enableNotifications":true,"WebhookApprovalCreationInput/enableReassignment":true},"authentication":"@parameters('$authentication')"}},"Get_the_solution_merge_creator":{"runAfter":{"Update_the_solution_merge_status_to_awaiting_manual_merge":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","recordId":"@triggerOutputs()?['body/_createdby_value']","$select":"internalemailaddress,personalemailaddress"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Publish":["Succeeded"]},"expression":{"equals":["@triggerOutputs()?['body/devhub_manualmergeactivities']",true]},"type":"If"},"Delete_development_solution":{"runAfter":{"If_there_are_manual_merge_activities":["Succeeded"]},"type":"Http","inputs":{"method":"DELETE","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/solutions(@{first(body('Filter_development_solution'))?['solutionid']})","headers":{"Content-Type":"application/json"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}},"Export_managed_solution":{"runAfter":{"Delete_development_solution":["Succeeded"]},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/ExportSolution","headers":{"Content-Type":"application/json"},"body":{"Managed":true,"SolutionName":"@{outputs('Get_the_target_environment')?['body/devhub_uniquename']}"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}},"Parse_export_managed_solution_JSON":{"runAfter":{"Export_managed_solution":["Succeeded"]},"type":"ParseJson","inputs":{"content":"@body('Export_managed_solution')","schema":{"type":"object","properties":{"@@odata.context":{"type":"string"},"ExportSolutionFile":{"type":"string"}}}}},"Export_unmanaged_solution":{"runAfter":{"Parse_export_managed_solution_JSON":["Succeeded"]},"type":"Http","inputs":{"method":"POST","uri":"@{outputs('Get_the_target_environment')?['body/devhub_stagingenvironment/devhub_url']}/api/data/v9.1/ExportSolution","headers":{"Content-Type":"application/json"},"body":{"Managed":false,"SolutionName":"@{outputs('Get_the_target_environment')?['body/devhub_uniquename']}"},"authentication":{"type":"Raw","value":"Bearer @{outputs('Get_access_token_for_staging_environment')?['Body']?['access_token']}"}}},"Parse_export_unmanaged_solution_JSON":{"runAfter":{"Export_unmanaged_solution":["Succeeded"]},"type":"ParseJson","inputs":{"content":"@body('Export_unmanaged_solution')","schema":{"type":"object","properties":{"@@odata.context":{"type":"string"},"ExportSolutionFile":{"type":"string"}}}}},"Set_developmentSolutionComponents":{"runAfter":{"Filter_development_solution":["Succeeded"]},"type":"SetVariable","inputs":{"name":"developmentSolutionComponents","value":"@first(body('Filter_development_solution'))['solution_solutioncomponent']"}},"Set_targetSolutionComponents":{"runAfter":{"Filter_target_solution":["Succeeded"]},"type":"SetVariable","inputs":{"name":"targetSolutionComponents","value":"@first(body('Filter_target_solution'))['solution_solutioncomponent']"}}},"runAfter":{"Initialize_targetSolutionComponents":["Succeeded"]},"type":"Scope"},"Initialize_importJobId":{"runAfter":{},"type":"InitializeVariable","inputs":{"variables":[{"name":"importJobId","type":"string","value":"@{guid()}"}]}},"Initialize_importJobProgress":{"runAfter":{"Initialize_importJobId":["Succeeded"]},"type":"InitializeVariable","inputs":{"variables":[{"name":"importJobComplete","type":"boolean","value":"@false"}]}},"Initialize_developmentSolutionComponents":{"runAfter":{"Initialize_importJobProgress":["Succeeded"]},"type":"InitializeVariable","inputs":{"variables":[{"name":"developmentSolutionComponents","type":"array"}]}},"Initialize_targetSolutionComponents":{"runAfter":{"Initialize_developmentSolutionComponents":["Succeeded"]},"type":"InitializeVariable","inputs":{"variables":[{"name":"targetSolutionComponents","type":"array"}]}},"Set_solution_merge_status_to_'Failed'_(merge_development_solution)":{"runAfter":{"Merge_development_solution":["Failed","TimedOut"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","item/statecode":0,"item/statuscode":353400002},"authentication":"@parameters('$authentication')"}},"Update_the_solution_merge_to_'Merged'":{"runAfter":{"If_issue_is_feature":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","item/statecode":1,"item/statuscode":353400001},"authentication":"@parameters('$authentication')"}},"Archive_development_solution_on_solution_merge":{"runAfter":{"Update_the_solution_merge_to_'Merged'":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateEntityFileImageFieldContent","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutionmerges","recordId":"@triggerOutputs()?['body/devhub_solutionmergeid']","fileImageFieldName":"devhub_developmentsolution","item":"@base64ToBinary(outputs('Export_the_development_solution')?['body/ExportSolutionFile'])","x-ms-file-name":"@{outputs('Get_the_developed_issue')?['body/devhub_developmentsolution']}.zip"},"authentication":"@parameters('$authentication')"}},"Get_the_development_solution_by_unique_name":{"runAfter":{"Archive_development_solution_on_solution_merge":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"ListRecords","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"solutions","$select":"solutionid","$filter":"uniquename eq '@{outputs('Get_the_developed_issue')?['body/devhub_developmentsolution']}'","$top":1},"authentication":"@parameters('$authentication')"}},"Delete_the_development_solution":{"runAfter":{"Get_the_development_solution_by_unique_name":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"DeleteRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"solutions","recordId":"@first(outputs('Get_the_development_solution_by_unique_name')?['body/value'])['solutionid']"},"authentication":"@parameters('$authentication')"}},"Create_a_failure_note_on_the_solution_merge_(merge_development_solution)":{"runAfter":{"Set_solution_merge_status_to_'Failed'_(merge_development_solution)":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"CreateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"annotations","item/subject":"Failed to merge","item/notetext":"Failed to merge the development solution with the target solution. Please refer to the flow <a href=\"@{concat('https://flow.microsoft.com/manage/environments/', workflow().tags.environmentName, '/flows/', workflow().name, '/runs/', workflow().run.name)}\">run</a> for more detail. \n\n","item/objectid_devhub_solutionmerge@odata.bind":"devhub_solutionmerges(@{triggerOutputs()?['body/devhub_solutionmergeid']})"},"authentication":"@parameters('$authentication')"}},"If_issue_is_feature":{"actions":{"Update_solution_minor_version":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutions","recordId":"@triggerOutputs()?['body/_devhub_targetsolution_value']","item/devhub_minorversion":"@outputs('Get_the_post-merge_solution_version')?['body/MinorVersion']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Merge_development_solution":["Succeeded"]},"else":{"actions":{"Update_solution_patch_version":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"devhub_solutions","recordId":"@triggerOutputs()?['body/_devhub_targetsolution_value']","item/devhub_patchversion":"@outputs('Get_the_post-merge_solution_version')?['body/PatchVersion']"},"authentication":"@parameters('$authentication')"}}}},"expression":{"equals":["@outputs('Get_the_developed_issue')?['body/devhub_type']",353400001]},"type":"If"}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "devhub_sharedcommondataserviceforapps_f7ca3"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_solution_merge_is_approved": {
+          "metadata": {
+            "operationMetadataId": "69ff95c5-a314-4bde-bd82-1a60234d4fc2"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "devhub_solutionmerge",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode",
+              "subscriptionRequest/filterexpression": "statuscode eq 353400000"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "Using devhub_approvedon rather than statuscode as the flow wasn't triggering with statuscode as a filtering attribute"
+        }
+      },
+      "actions": {
+        "Set_solution_merge_status_as_pending_merge_or_queued": {
+          "actions": {
+            "Switch_on_merge_strategy": {
+              "runAfter": {},
+              "cases": {
+                "Parallel": {
+                  "case": 353400001,
+                  "actions": {
+                    "If_environment_is_not_set": {
+                      "actions": {
+                        "Create_an_environment_pending_provision": {
+                          "runAfter": {},
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "devhub_environments",
+                              "item/devhub_lifetime": 353400001,
+                              "item/devhub_name": "Extract @{triggerOutputs()?['body/devhub_name']}",
+                              "item/devhub_url": "@null",
+                              "item/ownerid@odata.bind": "systemusers(@{triggerOutputs()?['body/_createdby_value']})",
+                              "item/devhub_Solution@odata.bind": "devhub_solutions(@{triggerOutputs()?['body/_devhub_targetsolution_value']})",
+                              "item/statecode": 0,
+                              "item/statuscode": 353400004
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Set_the_environment_on_the_solution_merge_and_update_status": {
+                          "runAfter": {
+                            "Create_an_environment_pending_provision": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "devhub_solutionmerges",
+                              "recordId": "@triggerOutputs()?['body/devhub_solutionmergeid']",
+                              "item/devhub_Environment@odata.bind": "devhub_environments(@{outputs('Create_an_environment_pending_provision')?['body/devhub_environmentid']})",
+                              "item/statuscode": 353400008
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "When_the_environment_is_ready": {
+                          "runAfter": {
+                            "Set_the_environment_on_the_solution_merge_and_update_status": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnectionWebhook",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "SubscribeWebhookTrigger",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "subscriptionRequest/message": 3,
+                              "subscriptionRequest/entityname": "devhub_environment",
+                              "subscriptionRequest/scope": 4,
+                              "subscriptionRequest/filteringattributes": "statuscode",
+                              "subscriptionRequest/filterexpression": "devhub_environmentid eq @{outputs('Create_an_environment_pending_provision')?['body/devhub_environmentid']} and statuscode eq 1"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "description": "This flow does not handle the preparation of the environment. There is a dependency on Git, thus this is better suited to the CI/CD solution layered on top."
+                        }
+                      },
+                      "runAfter": {},
+                      "expression": {
+                        "equals": [
+                          "@triggerOutputs()?['body/_devhub_environment_value']",
+                          "@null"
+                        ]
+                      },
+                      "type": "If"
+                    }
+                  }
+                },
+                "Sequential": {
+                  "case": 353400000,
+                  "actions": {
+                    "Get_the_last_approved_solution_merge": {
+                      "runAfter": {},
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "devhub_solutionmerges",
+                          "$select": "devhub_name",
+                          "$filter": "devhub_solutionmergeid ne @{triggerOutputs()?['body/devhub_solutionmergeid']} and devhub_mergestrategy eq 353400000 and _devhub_environment_value eq @{triggerOutputs()?['body/_devhub_environment_value']} and statecode eq 0 and statuscode ne 1 and statuscode ne 353400004",
+                          "$orderby": "devhub_approvedon desc",
+                          "$top": 1
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "If_another_solution_merge_is_in_progress": {
+                      "actions": {
+                        "Create_a_note_stating_the_solution_merge_is_queued": {
+                          "runAfter": {},
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "CreateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "annotations",
+                              "item/subject": "Solution merge queued",
+                              "item/notetext": "This solution merge has been queued behind '@{outputs('Get_the_last_approved_solution_merge')?['body/value'][0]['devhub_name']}'.",
+                              "item/objectid_devhub_solutionmerge@odata.bind": "devhub_solutionmerges(@{triggerOutputs()?['body/devhub_solutionmergeid']})"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Cancel_the_flow": {
+                          "runAfter": {
+                            "Queue_the_solution_merge": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "Terminate",
+                          "inputs": {
+                            "runStatus": "Cancelled"
+                          }
+                        },
+                        "Queue_the_solution_merge": {
+                          "runAfter": {
+                            "Create_a_note_stating_the_solution_merge_is_queued": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "PerformBoundAction",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "devhub_solutionmerges",
+                              "actionName": "Microsoft.Dynamics.CRM.devhub_QueueSolutionMerge",
+                              "recordId": "@triggerOutputs()?['body/devhub_solutionmergeid']"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Get_the_last_approved_solution_merge": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "not": {
+                          "equals": [
+                            "@outputs('Get_the_last_approved_solution_merge')?['body/value']?[0]?['devhub_solutionmergeid']",
+                            "@null"
+                          ]
+                        }
+                      },
+                      "type": "If"
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {
+                  "Terminate": {
+                    "runAfter": {},
+                    "type": "Terminate",
+                    "inputs": {
+                      "runStatus": "Failed",
+                      "runError": {
+                        "message": "The merge strategy was not set or is unrecognised."
+                      }
+                    }
+                  }
+                }
+              },
+              "expression": "@triggerOutputs()?['body/devhub_mergestrategy']",
+              "metadata": {
+                "operationMetadataId": "bdd6278a-9d44-4880-a1bf-ee37c8467ed1"
+              },
+              "type": "Switch"
+            },
+            "Update_status_to_pending_merge": {
+              "runAfter": {
+                "Switch_on_merge_strategy": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cbfc069a-1223-4cb0-9a79-d5bef64aec6f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "devhub_solutionmerges",
+                  "recordId": "@triggerOutputs()?['body/devhub_solutionmergeid']",
+                  "item/statuscode": 353400009
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "820ee2f4-bdd8-4296-98d0-95ce89a0e95e"
+          },
+          "type": "Scope"
+        },
+        "Set_solution_merge_status_to_'Failed'_(merge_development_solution)": {
+          "runAfter": {
+            "Set_solution_merge_status_as_pending_merge_or_queued": [
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "331c4f98-f492-47f6-b27f-3ad912b136f0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_solutionmerges",
+              "recordId": "@triggerOutputs()?['body/devhub_solutionmergeid']",
+              "item/statecode": 0,
+              "item/statuscode": 353400002
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_a_failure_note_on_the_solution_merge_(merge_development_solution)": {
+          "runAfter": {
+            "Set_solution_merge_status_to_'Failed'_(merge_development_solution)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d09b106a-6314-4e47-a872-0a61a8923ef0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "annotations",
+              "item/subject": "Failed to merge",
+              "item/notetext": "Failed to initiate the merging of the development solution with the target solution. Please refer to the flow <a href=\"@{concat('https://flow.microsoft.com/manage/environments/', workflow().tags.environmentName, '/flows/', workflow().name, '/runs/', workflow().run.name)}\">run</a> for more detail. \n\n",
+              "item/objectid_devhub_solutionmerge@odata.bind": "devhub_solutionmerges(@{triggerOutputs()?['body/devhub_solutionmergeid']})"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "If_the_merge_strategy_is_sequential": {
+          "actions": {
+            "Get_the_target_solution": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "ff0b3aa6-7f9d-4c4e-b7fb-180d9c2e6e86"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "devhub_solutions",
+                  "recordId": "@triggerOutputs()?['body/_devhub_targetsolution_value']",
+                  "$select": "devhub_minorversion, devhub_patchversion"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Switch_on_issue_type": {
+              "runAfter": {
+                "Get_the_target_solution": [
+                  "Succeeded"
+                ]
+              },
+              "cases": {
+                "Feature": {
+                  "case": 353400001,
+                  "actions": {
+                    "Update_solution_minor_version": {
+                      "runAfter": {},
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "devhub_solutions",
+                          "recordId": "@triggerOutputs()?['body/_devhub_targetsolution_value']",
+                          "item/devhub_minorversion": "@add(outputs('Get_the_target_solution')?['body/devhub_minorversion'])"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {
+                  "Update_solution_patch_version": {
+                    "runAfter": {},
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "devhub_solutions",
+                        "recordId": "@triggerOutputs()?['body/_devhub_targetsolution_value']",
+                        "item/devhub_patchversion": "@add(outputs('Get_the_target_solution')?['body/devhub_patchversion'], 1)"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": "@outputs('Get_the_developed_issue')?['body/devhub_type']",
+              "metadata": {
+                "operationMetadataId": "cbe942be-9c1b-4b21-82f8-76cc6f590e3b"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "Get_the_developed_issue": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/devhub_mergestrategy']",
+              353400000
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f517eb59-3789-4bbd-b06b-c6e85303fea5"
+          },
+          "type": "If"
+        },
+        "When_the_solution_merge_status_is_'Merged'": {
+          "runAfter": {
+            "Set_solution_merge_status_as_pending_merge_or_queued": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8124adb-ef7b-4b02-ad2d-126f1668ef9e"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "devhub_solutionmerge",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "statuscode",
+              "subscriptionRequest/filterexpression": "devhub_solutionmergeid eq @{triggerOutputs()?['body/devhub_solutionmergeid']} and statuscode eq 353400001"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_the_developed_issue": {
+          "runAfter": {
+            "When_the_solution_merge_status_is_'Merged'": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "15e98bbf-6dec-4900-b615-d769d32d4bf3"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "devhub_issues",
+              "recordId": "@triggerOutputs()?['body/_devhub_issue_value']",
+              "$select": "devhub_developmentsolution,devhub_type"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

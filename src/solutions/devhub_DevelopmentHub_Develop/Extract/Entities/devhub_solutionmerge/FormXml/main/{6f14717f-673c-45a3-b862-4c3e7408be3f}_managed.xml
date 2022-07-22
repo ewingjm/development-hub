@@ -12,11 +12,11 @@
             <label description="General" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="40%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{039975e0-c765-44b3-8487-2deedaa8bea3}" name="{039975e0-c765-44b3-8487-2deedaa8bea3}" columns="11" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{039975e0-c765-44b3-8487-2deedaa8bea3}" name="{039975e0-c765-44b3-8487-2deedaa8bea3}" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="General" languagecode="1033" />
+                    <label description="Details" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
@@ -35,12 +35,6 @@
                           </parameters>
                         </control>
                       </cell>
-                      <cell id="{de51ae81-1e98-4788-80f0-590a67de7859}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Name" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_name" uniqueid="{2aec4226-5d6a-985d-7cad-6c054ad3e9a0}" disabled="false" />
-                      </cell>
                     </row>
                     <row>
                       <cell id="{59062375-9a2e-27b5-8c4a-ac7ea4ccd522}" showlabel="true" locklevel="0">
@@ -49,13 +43,14 @@
                         </labels>
                         <control id="devhub_targetsolution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_targetsolution" disabled="false" />
                       </cell>
-                      <cell id="{787e02ac-63a2-4f02-a496-baca1a4579bd}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Development Solution" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_developmentsolution" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="devhub_developmentsolution" disabled="true" />
-                      </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_3" showlabel="true" showbar="false" locklevel="0" id="{62ba406e-8972-6dc3-0062-1924bd19c52c}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115">
+                  <labels>
+                    <label description="Merge Details" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
                       <cell id="{8ea7960e-c00d-7288-d822-327eadae427e}" showlabel="true" locklevel="0">
                         <labels>
@@ -63,19 +58,12 @@
                         </labels>
                         <control id="devhub_sourcebranch" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="devhub_sourcebranch" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{7335bef0-dddb-400f-996a-5debacfa0d89}">
+                      <cell locklevel="0" id="{d183b65e-db1a-4c58-bfe2-162f60828a7b}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
                     </row>
-                  </rows>
-                </section>
-                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_3" showlabel="false" showbar="false" locklevel="0" id="{62ba406e-8972-6dc3-0062-1924bd19c52c}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115">
-                  <labels>
-                    <label description="Section" languagecode="1033" />
-                  </labels>
-                  <rows>
                     <row>
                       <cell id="{e4c96ee3-3e0c-31d5-5e09-c397883b2d63}" showlabel="true" locklevel="0">
                         <labels>
@@ -83,19 +71,20 @@
                         </labels>
                         <control id="devhub_manualmergeactivities" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="devhub_manualmergeactivities" disabled="false" uniqueid="{ad4b4660-5e53-4402-6c13-c7db2a63bc0e}" />
                       </cell>
-                      <cell id="{1906ce19-e5ee-dc2e-1bd0-d4677395ce54}" showlabel="false">
+                      <cell locklevel="0" id="{278eebdf-7128-4505-af99-b50261256a75}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
                     </row>
                     <row>
-                      <cell showlabel="true" locklevel="0" id="{9ce811a3-77b2-4a67-bc20-5754b5a905d2}">
+                      <cell id="{6619799e-84c5-4ce4-a6b5-2388d9afc036}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Merge Strategy" languagecode="1033" />
                         </labels>
+                        <control id="devhub_mergestrategy" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="devhub_mergestrategy" disabled="true" />
                       </cell>
-                      <cell id="{ac3eadeb-971d-648c-130c-10625c342162}" showlabel="false">
+                      <cell locklevel="0" id="{4557666e-db29-42b1-9a5f-051ac5036040}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -103,49 +92,41 @@
                     </row>
                   </rows>
                 </section>
-                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_2" showlabel="false" showbar="false" locklevel="0" id="{49014417-e9a9-89cb-a712-e08117896db2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                <section name="tab_General_section_Environment" id="c5d54013-48b0-419a-a1e3-e8d6be81fbee" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="Section" languagecode="1033" />
+                    <label description="Environment" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{2d6cac64-bb14-d19e-8be5-0beece28d2d0}" showlabel="true" rowspan="15" auto="false" colspan="1">
+                      <cell id="{f7347f2a-e5f6-4777-87ea-a7e8f9083c68}" locklevel="0">
                         <labels>
-                          <label description="Note Text" languagecode="1033" />
+                          <label description="Environment" languagecode="1033" />
                         </labels>
-                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                        <control id="devhub_environment" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_environment" disabled="true" />
                       </cell>
                     </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
+                    <row>
+                      <cell locklevel="0" id="{cb8a9160-9a0d-4f18-89c6-91207da4ec47}">
+                        <labels>
+                          <label description="New QV control 1628885821154" languagecode="1033" />
+                        </labels>
+                        <control id="QuickviewControl1628885821154" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="devhub_environment" disabled="false">
+                          <parameters>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="devhub_environment"&gt;a4a4927d-ee98-49e2-b2e8-80daf3f97bdf&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
             </column>
-          </columns>
-        </tab>
-        <tab name="tab_AdditionalInfo" id="{b1902b46-61d0-25b6-d38d-9bb1e60c63b1}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
-          <labels>
-            <label description="Additional Info" languagecode="1033" />
-          </labels>
-          <columns>
-            <column width="100%">
+            <column width="50%">
               <sections>
-                <section name="tab_Approval_section_Details" showlabel="false" showbar="false" locklevel="0" id="{db731e50-a519-748b-1c94-9477b2bb2052}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                <section name="tab_AdditionalInfo_section_Review" id="acc57fed-8b25-4267-b43c-efe14eb26b09" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="Details" languagecode="1033" />
+                    <label description="Review" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
@@ -164,11 +145,6 @@
                           </parameters>
                         </control>
                       </cell>
-                      <cell showlabel="true" locklevel="0" id="{2301751a-7fb6-4b1f-9311-8828ec2c2f23}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
                     </row>
                     <row>
                       <cell id="{85e76cd8-3c75-3631-2a4c-955840917519}" showlabel="true" locklevel="0">
@@ -177,47 +153,25 @@
                         </labels>
                         <control id="devhub_approvedon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="devhub_approvedon" disabled="true" uniqueid="{ce9a8a47-17a3-e165-2531-844982da42ea}" />
                       </cell>
-                      <cell showlabel="true" locklevel="0" id="{3369e438-f3fc-454d-882a-ef6caf523275}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="{ff981c83-7418-4010-a4d9-13f804c35a90}_section_2" showlabel="false" showbar="false" locklevel="0" id="{49014417-e9a9-89cb-a712-e08117896db2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell id="{fd7cff3b-3cc5-4b03-a583-44aed4c8f9f6}" showlabel="true" locklevel="0">
+                      <cell id="{2d6cac64-bb14-d19e-8be5-0beece28d2d0}" showlabel="true" rowspan="1" auto="false" colspan="1">
                         <labels>
-                          <label description="Queued On" languagecode="1033" />
+                          <label description="Note Text" languagecode="1033" />
                         </labels>
-                        <control id="devhub_queuedon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="devhub_queuedon" disabled="true" />
-                      </cell>
-                      <cell showlabel="true" locklevel="0" id="{cf1165db-311d-4d2e-8b28-8afb6e1b6055}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell showlabel="true" locklevel="0" id="{363d52d8-b814-4497-b7b9-443f79af7854}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell showlabel="true" locklevel="0" id="{13f0e0ef-631f-4490-bdea-3e2da12ade7a}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell showlabel="true" locklevel="0" id="{bd430119-0ec1-4c11-a56a-010e61780df6}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell showlabel="true" locklevel="0" id="{32e9f9ac-bb9c-4550-8cab-668a7e012a1b}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
+                        <control id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}">
+                          <parameters>
+                            <UClientNotesConfigurationJSON>{"sortNotesByValue":"createdon"}</UClientNotesConfigurationJSON>
+                            <UClientEnableWhatsNewFilter>true</UClientEnableWhatsNewFilter>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>

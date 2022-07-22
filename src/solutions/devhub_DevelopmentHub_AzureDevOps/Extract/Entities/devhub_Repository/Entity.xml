@@ -131,46 +131,6 @@
             <Description description="Unique identifier of the delegate user who created the record." languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="devhub_ExtractBuildDefinitionID">
-          <Type>nvarchar</Type>
-          <Name>devhub_extractbuilddefinitionid</Name>
-          <LogicalName>devhub_extractbuilddefinitionid</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>0.2.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>1</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>10</MaxLength>
-          <Length>20</Length>
-          <displaynames>
-            <displayname description="Extract Build Definition ID" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="The ID of the extract build definition for this repository." languagecode="1033" />
-          </Descriptions>
-        </attribute>
         <attribute PhysicalName="devhub_Name">
           <Type>nvarchar</Type>
           <Name>devhub_name</Name>
@@ -217,6 +177,7 @@
           <LogicalName>devhub_project</LogicalName>
           <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
@@ -292,6 +253,7 @@
           <LogicalName>devhub_solutionmergecommitflow</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
@@ -648,6 +610,7 @@
           <Name>owningbusinessunit</Name>
           <LogicalName>owningbusinessunit</LogicalName>
           <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>0</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -969,18 +932,6 @@
         </attribute>
       </attributes>
       <EntityKeys>
-        <EntityKey>
-          <Name>devhub_ExtractBuildDefinitionID</Name>
-          <LogicalName>devhub_extractbuilddefinitionid</LogicalName>
-          <IntroducedVersion>0.2.1</IntroducedVersion>
-          <IsCustomizable>0</IsCustomizable>
-          <EntityKeyAttributes>
-            <AttributeName>devhub_extractbuilddefinitionid</AttributeName>
-          </EntityKeyAttributes>
-          <displaynames>
-            <displayname description="Extract Build Definition ID" languagecode="1033" />
-          </displaynames>
-        </EntityKey>
         <EntityKey>
           <Name>devhub_ProjectRepository</Name>
           <LogicalName>devhub_projectrepository</LogicalName>

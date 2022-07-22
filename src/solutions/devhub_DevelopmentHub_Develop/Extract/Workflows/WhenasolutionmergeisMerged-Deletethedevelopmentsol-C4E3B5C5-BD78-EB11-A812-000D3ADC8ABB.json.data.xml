@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{5004652f-f9b3-ea11-a812-000d3a86ad99}" Name="When a solution merge is approved -&gt; Merge the solution" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/Whenasolutionmergeisapproved-Mergethesolution-5004652F-F9B3-EA11-A812-000D3A86AD99.json</JsonFileName>
+<Workflow WorkflowId="{c4e3b5c5-bd78-eb11-a812-000d3adc8abb}" Name="When a solution merge is 'Merged' -&gt; Delete the development solution." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/WhenasolutionmergeisMerged-Deletethedevelopmentsol-C4E3B5C5-BD78-EB11-A812-000D3ADC8ABB.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -15,10 +15,11 @@
   <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>1.0</IntroducedVersion>
+  <IntroducedVersion>0.2.1</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="When a solution merge is approved -&gt; Merge the solution" />
+    <LocalizedName languagecode="1033" description="When a solution merge is 'Merged' -&gt; Delete the development solution." />
   </LocalizedNames>
 </Workflow>

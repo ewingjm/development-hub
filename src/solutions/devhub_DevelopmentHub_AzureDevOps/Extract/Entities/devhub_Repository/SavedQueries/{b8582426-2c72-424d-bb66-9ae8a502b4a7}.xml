@@ -14,7 +14,6 @@
           <cell name="devhub_project" width="100" />
           <cell name="devhub_sourcecontrolstrategy" width="100" />
           <cell name="devhub_targetbranch" width="100" />
-          <cell name="devhub_extractbuilddefinitionid" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -22,7 +21,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="devhub_repository">
-          <attribute name="devhub_repositoryid" />
           <attribute name="devhub_name" />
           <order attribute="devhub_name" descending="false" />
           <filter type="and">
@@ -34,7 +32,7 @@
           <attribute name="devhub_project" />
           <attribute name="devhub_sourcecontrolstrategy" />
           <attribute name="devhub_targetbranch" />
-          <attribute name="devhub_extractbuilddefinitionid" />
+          <attribute name="devhub_repositoryid" />
         </entity>
       </fetch>
     </fetchxml>

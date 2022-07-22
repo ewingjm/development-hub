@@ -14,7 +14,7 @@
           <columns>
             <column width="50%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" name="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" name="{9df7542f-44b1-41e1-a5d1-bb002d3ef7ef}" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="Information" languagecode="1033" />
                   </labels>
@@ -43,10 +43,33 @@
                         <control id="devhub_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="devhub_description" disabled="false" uniqueid="{217ec1b2-099d-9d4e-a0db-a8b4b749b1be}" />
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_4" id="5f174613-d7eb-4747-9761-153044e2e774" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Merge" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell id="{9aa15507-7008-c434-248d-d6284d3192bc}" showlabel="true" locklevel="0">
+                      <cell id="{20c99f02-f069-495e-b7f7-08579c263d5a}" locklevel="1">
                         <labels>
-                          <label description="Staging Environment" languagecode="1033" />
+                          <label description="Strategy" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_mergestrategy" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="devhub_mergestrategy" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{809c1b90-6458-4619-8004-d30d82292a6f}" locklevel="0" visible="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="App Templates" languagecode="1033" />
+                        </labels>
+                        <control id="devhub_apptemplates" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="devhub_apptemplates" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9aa15507-7008-c434-248d-d6284d3192bc}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Environment" languagecode="1033" />
                         </labels>
                         <control id="devhub_stagingenvironment" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_stagingenvironment" disabled="false" />
                       </cell>
@@ -57,29 +80,46 @@
             </column>
             <column width="50%">
               <sections>
-                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_3" showlabel="false" showbar="false" locklevel="0" id="{0cdbe593-e2a2-3804-d095-cdbe62c05d58}" IsUserDefined="0" layout="varwidth" columns="111" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                <section name="{80977aef-85bb-46cc-9c30-4ab517bee6bd}_section_5" id="003c5bb4-9e52-4f4c-b441-e6202b6706d0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="111" labelwidth="115">
                   <labels>
                     <label description="Version" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{e19301c6-463e-5c3e-6700-c673cabaa697}" showlabel="true" locklevel="0">
+                      <cell id="{be7db78a-48bd-481f-85c8-e2c5114fc4bf}" locklevel="0" visible="true" showlabel="false">
                         <labels>
-                          <label description="Major Version" languagecode="1033" />
+                          <label description="Major" languagecode="1033" />
                         </labels>
-                        <control id="devhub_majorversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="devhub_majorversion" disabled="false" uniqueid="{d32664c3-7098-dc7c-ceaa-d9dca570b8a3}" />
+                        <control id="devhub_majorversion" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_majorversion" disabled="false" />
                       </cell>
-                      <cell id="{5103b9da-c724-d938-8148-a7134446722e}" showlabel="true" locklevel="0">
+                      <cell id="{8bf95b2c-bc6f-4bb0-8a22-aefb26d29175}" locklevel="0" showlabel="false">
                         <labels>
-                          <label description="Minor Version" languagecode="1033" />
+                          <label description="Minor" languagecode="1033" />
                         </labels>
-                        <control id="devhub_minorversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="devhub_minorversion" disabled="false" uniqueid="{e54ad56a-c78b-9d51-31a4-ae26ee76e1d7}" />
+                        <control id="devhub_minorversion" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_minorversion" disabled="false" />
                       </cell>
-                      <cell id="{e3776aca-c481-d9b3-1111-39178420094b}" showlabel="true" locklevel="0">
+                      <cell id="{f233ef88-421d-4f5c-bcfa-ffc926b3bee5}" locklevel="0" showlabel="false">
                         <labels>
-                          <label description="Patch Version" languagecode="1033" />
+                          <label description="Patch" languagecode="1033" />
                         </labels>
-                        <control id="devhub_patchversion" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="devhub_patchversion" disabled="false" uniqueid="{9972edae-eebb-06cb-620b-5ad58de4975c}" />
+                        <control id="devhub_patchversion" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="devhub_patchversion" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{62c18c99-9af6-46b6-8a46-090f9109a565}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{b3e525d7-31a5-47b9-be33-3f42eeffe0bf}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{df0e9923-7171-4fac-bbeb-6deb101f825d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -167,6 +207,21 @@
       </Navigation>
       <controlDescriptions />
       <DisplayConditions Order="0" FallbackForm="true" />
+      <formLibraries>
+        <Library name="devhub_/Js/develop.common.js" libraryUniqueId="{2d5266a5-c773-4452-bdfa-f4673c8b88f6}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="true" active="true" attribute="devhub_mergestrategy">
+          <Handlers>
+            <Handler functionName="DevelopmentHub.Develop.toggleFieldOnValue" libraryName="devhub_/Js/develop.common.js" handlerUniqueId="{ba2f03bb-7ba8-4cda-bdeb-a6fce8946663}" enabled="true" parameters="&quot;devhub_mergestrategy&quot;, 353400001, &quot;devhub_apptemplates&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="DevelopmentHub.Develop.toggleFieldOnValue" libraryName="devhub_/Js/develop.common.js" handlerUniqueId="{c59fdf98-9269-4f96-a62a-1ee43cd98ff7}" enabled="true" parameters="&quot;devhub_mergestrategy&quot;, 353400001, &quot;devhub_apptemplates&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

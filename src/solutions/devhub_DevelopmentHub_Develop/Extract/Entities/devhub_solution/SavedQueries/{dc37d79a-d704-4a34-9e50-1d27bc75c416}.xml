@@ -13,7 +13,7 @@
           <cell name="devhub_displayname" width="300" />
           <cell name="devhub_uniquename" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="devhub_description" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="devhub_stagingenvironment" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_mergestrategy" width="200" />
         </row>
       </grid>
     </layoutxml>
@@ -27,8 +27,8 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="devhub_uniquename" />
-          <attribute name="devhub_stagingenvironment" />
           <attribute name="devhub_description" />
+          <attribute name="devhub_mergestrategy" />
           <order attribute="devhub_displayname" descending="false" />
         </entity>
       </fetch>

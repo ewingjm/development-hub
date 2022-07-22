@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{ee9bc39c-ffb2-e911-a97b-002248019881}" Name="Fields Are Locked After Approval" Description="Updates are not allowed after an approval" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <XamlFileName>/Workflows/FieldsAreLockedAfterApproval-EE9BC39C-FFB2-E911-A97B-002248019881.xaml</XamlFileName>
+<Workflow WorkflowId="{2edb6882-1afd-eb11-94ef-000d3ad6738d}" Name="Name is read-only when environment is ephemeral" Description="The name is managed by the merging process." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/Nameisread-onlywhenenvironmentisephemeral-2EDB6882-1AFD-EB11-94EF-000D3AD6738D.xaml</XamlFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>2</Category>
@@ -15,16 +15,16 @@
   <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>0.1.17.0</IntroducedVersion>
+  <IntroducedVersion>0.2.0</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <ProcessTriggerScope>1</ProcessTriggerScope>
-  <PrimaryEntity>devhub_solutionmerge</PrimaryEntity>
+  <PrimaryEntity>devhub_environment</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="Fields Are Locked After Approval" />
+    <LocalizedName languagecode="1033" description="Name is read-only when environment is ephemeral" />
   </LocalizedNames>
   <Descriptions>
-    <Description languagecode="1033" description="Updates are not allowed after an approval" />
+    <Description languagecode="1033" description="The name is managed by the merging process." />
   </Descriptions>
 </Workflow>

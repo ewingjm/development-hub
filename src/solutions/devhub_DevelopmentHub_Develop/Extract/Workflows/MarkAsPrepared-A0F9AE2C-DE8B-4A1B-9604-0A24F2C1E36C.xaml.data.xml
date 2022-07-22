@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{a0f9ae2c-de8b-4a1b-9604-0a24f2c1e36c}" Name="MarkAsPrepared" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/MarkAsPrepared-A0F9AE2C-DE8B-4A1B-9604-0A24F2C1E36C.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>3</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>0</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>1</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <CreateStage>40</CreateStage>
+  <RunAs>1</RunAs>
+  <SdkMessageId>{e3577782-20fd-eb11-94ef-000d3ad6738d}</SdkMessageId>
+  <UniqueName>MarkAsPrepared</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>0.2.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <FormId>{00000000-0000-0000-0000-000000000000}</FormId>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <PrimaryEntity>devhub_environment</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="MarkAsPrepared" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{df51b44a-0533-406f-83e6-96f11720c234}">
+      <label languagecode="1033" description="A commit hash and URL must be provided to ready an environment." />
+    </steplabels>
+  </labels>
+</Workflow>

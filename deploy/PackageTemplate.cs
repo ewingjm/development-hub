@@ -2,7 +2,11 @@ namespace DevelopmentHub.Deployment
 {
     using System;
     using System.ComponentModel.Composition;
+    using System.Diagnostics;
+    using System.ServiceModel;
     using Capgemini.PowerApps.PackageDeployerTemplate;
+    using Microsoft.Xrm.Sdk;
+    using Microsoft.Xrm.Sdk.Query;
     using Microsoft.Xrm.Tooling.PackageDeployment.CrmPackageExtentionBase;
 
     /// <summary>
@@ -15,7 +19,6 @@ namespace DevelopmentHub.Deployment
         private string azureDevOpsOrganisation;
         private string solutionPublisherPrefix;
         private string azureDevOpsConnectionName;
-        private string approvalsConnectionName;
         private EnvironmentVariableDeploymentService environmentVariableDeploymentSvc;
 
         /// <inheritdoc/>
@@ -92,22 +95,6 @@ namespace DevelopmentHub.Deployment
         }
 
         /// <summary>
-        /// Gets a value for the approvals connection name used for the Development Hub (if found).
-        /// </summary>
-        protected string ApprovalsConnectionName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.approvalsConnectionName))
-                {
-                    this.approvalsConnectionName = this.GetSetting<string>(nameof(this.ApprovalsConnectionName));
-                }
-
-                return this.approvalsConnectionName;
-            }
-        }
-
-        /// <summary>
         /// Gets an <see cref="EnvironmentVariableDeploymentSvc"/>.
         /// </summary>
         protected EnvironmentVariableDeploymentService EnvironmentVariableDeploymentSvc
@@ -132,6 +119,33 @@ namespace DevelopmentHub.Deployment
         }
 
         /// <inheritdoc/>
+        public override void RunSolutionUpgradeMigrationStep(string solutionName, string oldVersion, string newVersion, Guid oldSolutionId, Guid newSolutionId)
+        {
+            if (string.IsNullOrEmpty(solutionName))
+            {
+                throw new ArgumentException($"'{nameof(solutionName)}' cannot be null or empty", nameof(solutionName));
+            }
+
+            if (string.IsNullOrEmpty(oldVersion))
+            {
+                throw new ArgumentException($"'{nameof(oldVersion)}' cannot be null or empty", nameof(oldVersion));
+            }
+
+            if (string.IsNullOrEmpty(newVersion))
+            {
+                throw new ArgumentException($"'{nameof(newVersion)}' cannot be null or empty", nameof(newVersion));
+            }
+
+            base.RunSolutionUpgradeMigrationStep(solutionName, oldVersion, newVersion, oldSolutionId, newSolutionId);
+
+            if (solutionName == "devhub_DevelopmentHub_Develop" && oldVersion.StartsWith("0.2", StringComparison.OrdinalIgnoreCase))
+            {
+                this.DefaultEnvironmentLifetimes();
+                this.DefaultMergeStrategies();
+            }
+        }
+
+        /// <inheritdoc/>
         public override string GetNameOfImport(bool plural) => "Development Hub";
 
         /// <inheritdoc />
@@ -143,6 +157,80 @@ namespace DevelopmentHub.Deployment
             }
 
             return base.OverrideSolutionImportDecision(solutionUniqueName, organizationVersion, packageSolutionVersion, inboundSolutionVersion, deployedSolutionVersion, systemSelectedImportAction);
+        }
+
+        private void DefaultEnvironmentLifetimes()
+        {
+            this.PackageLog.Log("Default existing environment lifetimes to 'Static'.");
+
+            var environmentQuery = new QueryByAttribute("devhub_environment");
+            environmentQuery.AddAttributeValue("devhub_lifetime", null);
+
+            var environments = this.CrmServiceAdapter.RetrieveMultiple(environmentQuery);
+            this.PackageLog.Log($"Found {environments.Entities.Count} environments to update.");
+
+            foreach (var environment in environments.Entities)
+            {
+                this.PackageLog.Log($"Updating environment {environment.Id}.");
+
+                environment.Attributes.Add("devhub_lifetime", new OptionSetValue(353400000) /*Static*/);
+                try
+                {
+                    this.CrmSvc.Update(environment);
+                }
+                catch (FaultException<OrganizationServiceFault> ex)
+                {
+                    this.PackageLog.Log($"Failed to update environment {environment.Id}.", TraceEventType.Error, ex);
+                }
+            }
+        }
+
+        private void DefaultMergeStrategies()
+        {
+            this.PackageLog.Log("Default existing solutions to a merge strategy of 'Sequential'.");
+
+            var solutionQuery = new QueryByAttribute("devhub_solution");
+            solutionQuery.AddAttributeValue("devhub_mergestrategy", null);
+            solutionQuery.ColumnSet = new ColumnSet("devhub_stagingenvironment");
+
+            var solutions = this.CrmServiceAdapter.RetrieveMultiple(solutionQuery);
+            this.PackageLog.Log($"Found {solutions.Entities.Count} solutions to update.");
+
+            foreach (var solution in solutions.Entities)
+            {
+                this.PackageLog.Log($"Updating solution {solution.Id}.");
+                solution.Attributes.Add("devhub_mergestrategy", new OptionSetValue(353400000) /*Sequential*/);
+
+                try
+                {
+                    this.CrmSvc.Update(solution);
+                }
+                catch (FaultException<OrganizationServiceFault> ex)
+                {
+                    this.PackageLog.Log($"Failed to update solution {solution.Id}.", TraceEventType.Error, ex);
+                }
+
+                this.PackageLog.Log("Getting solution merges for solution.");
+
+                var solutionMergeQuery = new QueryByAttribute("devhub_solutionmerge");
+                solutionMergeQuery.AddAttributeValue("devhub_targetsolution", solution.Id);
+                var solutionMerges = this.CrmServiceAdapter.RetrieveMultiple(solutionMergeQuery);
+
+                foreach (var solutionMerge in solutionMerges.Entities)
+                {
+                    solutionMerge.Attributes.Add("devhub_environment", solution["devhub_stagingenvironment"]);
+                    solutionMerge.Attributes.Add("devhub_mergestrategy", new OptionSetValue(353400000) /*Sequential*/);
+
+                    try
+                    {
+                        this.CrmSvc.Update(solutionMerge);
+                    }
+                    catch (FaultException<OrganizationServiceFault> ex)
+                    {
+                        this.PackageLog.Log($"Failed to update solution merge {solutionMerge.Id}.", TraceEventType.Error, ex);
+                    }
+                }
+            }
         }
 
         private void SetDevelopmentHubEnvironmentVariables()

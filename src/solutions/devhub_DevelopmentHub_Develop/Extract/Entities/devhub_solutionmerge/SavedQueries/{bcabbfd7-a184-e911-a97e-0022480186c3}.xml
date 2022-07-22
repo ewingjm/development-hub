@@ -10,14 +10,14 @@
     <layoutxml>
       <grid name="resultset" jump="devhub_name" select="1" preview="1" icon="1">
         <row name="result" id="devhub_solutionmergeid">
-          <cell name="devhub_issue" width="100" />
-          <cell name="a_866722318e84e911a97e0022480186c3.devhub_developmentsolution" width="100" disableSorting="1" />
-          <cell name="devhub_targetsolution" width="100" />
-          <cell name="statuscode" width="100" />
-          <cell name="createdby" width="100" />
-          <cell name="createdon" width="125" />
+          <cell name="devhub_issue" width="150" />
           <cell name="a_866722318e84e911a97e0022480186c3.devhub_type" width="100" disableSorting="1" />
-          <cell name="a_866722318e84e911a97e0022480186c3.devhub_description" width="100" disableSorting="1" />
+          <cell name="statuscode" width="175" />
+          <cell name="a_866722318e84e911a97e0022480186c3.devhub_developmentsolution" width="175" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="devhub_targetsolution" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_9d12fce845a84cb8979c1b82bbb79455.devhub_url" width="275" />
+          <cell name="createdby" width="125" />
+          <cell name="createdon" width="150" />
         </row>
       </grid>
     </layoutxml>
@@ -29,14 +29,16 @@
           <attribute name="devhub_targetsolution" />
           <attribute name="statuscode" />
           <attribute name="createdby" />
-          <order attribute="createdon" descending="false" />
           <link-entity alias="a_866722318e84e911a97e0022480186c3" name="devhub_issue" from="devhub_issueid" to="devhub_issue" link-type="outer" visible="false">
             <attribute name="devhub_type" />
             <attribute name="devhub_developmentsolution" />
-            <attribute name="devhub_description" />
           </link-entity>
           <attribute name="devhub_issue" />
           <attribute name="devhub_solutionmergeid" />
+          <order attribute="createdon" descending="false" />
+          <link-entity alias="a_9d12fce845a84cb8979c1b82bbb79455" name="devhub_environment" to="devhub_environment" from="devhub_environmentid" link-type="outer" visible="false">
+            <attribute name="devhub_url" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

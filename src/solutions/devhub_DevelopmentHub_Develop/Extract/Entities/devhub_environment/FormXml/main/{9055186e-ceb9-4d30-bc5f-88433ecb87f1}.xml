@@ -12,7 +12,7 @@
             <label description="General" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="50%">
               <sections>
                 <section showlabel="true" showbar="false" IsUserDefined="0" id="{2d27e888-4bf1-48a7-b489-dd78e5cb3ce0}" name="tab_general_section_details" columns="1">
                   <labels>
@@ -36,46 +36,40 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{f9925bc6-a4cc-4f8c-bfee-bcd320a6c46d}">
+                      <cell id="{a62a5031-88e7-4bd9-88f1-ae889e563f02}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Lifetime" languagecode="1033" />
                         </labels>
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-                <section name="tab_geneal_section_auth" id="e1d86fd7-8117-4c2b-a194-eb8a2b13f8ed" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
-                  <labels>
-                    <label description="Auth" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell id="{5fdefa8e-b2ee-4c40-b319-7e0e36af08c7}" locklevel="0">
-                        <labels>
-                          <label description="Tenant ID" languagecode="1033" />
-                        </labels>
-                        <control id="devhub_tenantid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_tenantid" disabled="false" />
+                        <control id="devhub_lifetime" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="devhub_lifetime" disabled="true" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{c8f500bc-c64d-4cd2-99a3-ab91ffdb5c76}" locklevel="0">
+                      <cell id="{3b016cf9-f519-4aff-8b87-ed2ef0339481}" locklevel="0" visible="false">
                         <labels>
-                          <label description="Client ID" languagecode="1033" />
+                          <label description="Solution" languagecode="1033" />
                         </labels>
-                        <control id="devhub_clientid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientid" disabled="false" />
+                        <control id="devhub_solution" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="devhub_solution" disabled="true">
+                          <parameters>
+                            <AvailableViewIds>{3FE92E4D-4835-4CE6-A1BD-A85092283B6D}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{de94194b-a577-4947-8369-f81f64e992d3}" locklevel="0">
+                      <cell id="{589d2326-2c08-4b2c-8089-c6ea68de796f}" locklevel="0" visible="false" availableforphone="true">
                         <labels>
-                          <label description="Client Secret" languagecode="1033" />
+                          <label description="Commit Hash" languagecode="1033" />
                         </labels>
-                        <control id="devhub_clientsecret" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_clientsecret" disabled="false" />
+                        <control id="devhub_commithash" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="devhub_commithash" disabled="true" />
                       </cell>
                     </row>
                   </rows>
                 </section>
               </sections>
+            </column>
+            <column width="50%">
+              <sections></sections>
             </column>
           </columns>
         </tab>
@@ -83,7 +77,7 @@
       <header id="{9579a346-a51d-4681-b1e6-6d4bf08f2ef2}" columns="111">
         <rows>
           <row>
-            <cell id="{77fb0311-7536-40ac-b77e-9d5bb3699ec4}">
+            <cell id="{77fb0311-7536-40ac-b77e-9d5bb3699ec4}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
@@ -106,7 +100,7 @@
       <footer id="{a8c05818-b375-415a-ba7b-dbe82404843c}" columns="111">
         <rows>
           <row>
-            <cell id="{df5eb271-8b09-4876-8392-9168c28bd075}">
+            <cell id="{df5eb271-8b09-4876-8392-9168c28bd075}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
@@ -127,7 +121,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
